@@ -1,140 +1,34 @@
 {
-  "name": "Starter Kit",
+  "name": "Linear",
   "colors": {
     "light": {
-      "brand": "#F97316"
+      "brand": "#5E6AD2",
+      "heading": "#1B1F24",
+      "text": "#1B1F24"
     },
     "dark": {
-      "brand": "#FDBA74"
+      "brand": "#9DA4DF",
+      "heading": "#FFFFFF",
+      "text": "#E5E7EB"
     }
   },
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
-        "icon": "book",
-        "groups": [
-          {
-            "group": "Start Here",
-            "icon": "rocket",
-            "pages": [
-              {
-                "title": "Introduction",
-                "path": "introduction",
-                "icon": "home"
-              },
-              {
-                "title": "Quickstart",
-                "path": "quickstart",
-                "icon": "zap"
-              },
-              {
-                "title": "Components",
-                "path": "components",
-                "icon": "code"
-              }
-            ]
-          },
-          {
-            "group": "Components",
-            "icon": "layers",
-            "pages": [
-              {
-                "title": "Images",
-                "path": "components/images",
-                "icon": "image"
-              },
-              {
-                "title": "Cards",
-                "path": "components/cards",
-                "icon": "square"
-              },
-              {
-                "title": "Code",
-                "path": "components/code",
-                "icon": "code"
-              },
-              {
-                "title": "Callouts",
-                "path": "components/callouts",
-                "icon": "message-square"
-              },
-              {
-                "title": "Steps",
-                "path": "components/steps",
-                "icon": "list-ordered"
-              },
-              {
-                "title": "Tabs",
-                "path": "components/tabs",
-                "icon": "columns"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "icon": "code",
-        "groups": [
-          {
-            "group": "Overview",
-            "icon": "file-text",
-            "pages": [
-              {
-                "title": "Authentication",
-                "path": "authentication",
-                "icon": "lock"
-              }
-            ]
-          },
-          {
-            "group": "Sample Endpoints",
-            "openapi": "openapi.yaml"
-          }
-        ]
-      },
-      {
-        "tab": "Help Center",
-        "icon": "help-circle",
+        "tab": "Guides",
+        "icon": "book-open",
         "pages": [
           {
-            "title": "Help Center",
-            "path": "help-center",
-            "icon": "home"
+            "title": "Introduction",
+            "path": "introduction"
           },
           {
-            "group": "FAQs",
-            "icon": "help-circle",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Documentation Source",
-                "path": "help-center/faq/getting-started"
-              }
-            ]
+            "title": "Quickstart",
+            "path": "quickstart"
           },
           {
-            "group": "Troubleshooting",
-            "icon": "alert-triangle",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Page Missing in Sidebar",
-                "path": "help-center/troubleshooting/install-error"
-              }
-            ]
-          },
-          {
-            "group": "Guides",
-            "icon": "book-open",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Create Your First Page",
-                "path": "help-center/guides/setup-project"
-              }
-            ]
+            "title": "Feature Overview",
+            "path": "guides/overview"
           }
         ]
       },
@@ -144,8 +38,17 @@
         "pages": [
           {
             "title": "Changelog",
-            "path": "changelog",
-            "icon": "history"
+            "path": "changelog"
+          }
+        ]
+      },
+      {
+        "tab": "Roadmap",
+        "icon": "map",
+        "pages": [
+          {
+            "title": "Roadmap",
+            "path": "roadmap"
           }
         ]
       }

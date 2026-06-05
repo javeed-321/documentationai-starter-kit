@@ -1,58 +1,90 @@
 ---
 title: Quickstart
-description: Minimal steps to customize this sample starter kit.
+description: Get up and running with Linear in minutes: create a workspace, invite your team, and start tracking issues.
 ---
-## Overview
 
-<Callout kind="alert" collapsed="false">
-  This site ships with placeholder content. Use this quickstart to replace it with your real product docs.
+## Prerequisites
+
+<Callout kind="info">
+  You need a valid email address to create a Linear account. No credit card is required to start.
 </Callout>
 
-## 1. Update a page
+## Create your workspace
 
 <Steps>
-  <Step title="Edit introduction" icon="edit" title-type="p">
-    Replace the sample introduction with a concise overview of your product and the key actions you want new users to take first.
+  <Step title="Sign up" icon="user-plus">
+    Go to the Linear sign-up page and enter your email. Verify the code sent to your inbox.
   </Step>
-
-  <Step title="Preview your change" icon="monitor" title-type="p">
-    Use your dashboard board editor to confirm the updated introduction looks and reads as expected.
+  <Step title="Name your workspace" icon="edit">
+    Choose a workspace name such as `Acme Engineering`. This becomes your team URL at `https://linear.app/acme-engineering`.
+  </Step>
+  <Step title="Set your team" icon="users">
+    Add your first team name, for example `Platform`. You can create additional teams later.
   </Step>
 </Steps>
 
-## 2. Add a new page
+## Invite your team
 
 <Steps>
-  <Step title="Add a page" icon="file-text" title-type="p">
-    Create a new `page` by clicking on the + button from the left navigation bar of dashboard. If you are using git, create the .mdx file and add to navigation bar using documentation.json
+  <Step title="Send invites" icon="mail">
+    From workspace settings, enter teammate emails and choose their role (Admin, Member, or Guest).
+  </Step>
+  <Step title="Confirm access" icon="check-circle">
+    Each person receives an email with a direct link to join. They can sign in with Google, GitHub, or email.
   </Step>
 </Steps>
 
-## Example onboarding flow (replace with yours)
+## Create your first issues
 
-1. Sign up for an account and verify your email.
+<Steps>
+  <Step title="Open the composer" icon="plus">
+    Press `C` anywhere in the app or click the `New issue` button.
+  </Step>
+  <Step title="Fill details" icon="edit-3">
+    Add a title, description, assignee, and labels. Use markdown for formatting.
+  </Step>
+  <Step title="Save and track" icon="save">
+    Press `Enter` to create the issue. It appears in your team's inbox and backlog.
+  </Step>
+</Steps>
 
-2. Create your first workspace, project, or environment.
+## Keyboard navigation basics
 
-3. Add one integration or data source to connect your existing tools.
+Linear is designed for speed. Try these core shortcuts after signing in:
 
-4. Complete a guided action (for example, run your first job or publish your first resource).
+- `G` then `I` — Go to Inbox
+- `G` then `B` — Go to Backlog
+- `C` — Create new issue
+- `K` and `J` — Move between issues
+- `/` — Focus search
 
-5. Invite a teammate and assign a basic role or permission.
+<Callout kind="tip">
+  Press `?` at any time to view the full shortcut list.
+</Callout>
 
-## 3. Connect API Reference (optional)
+## Connect Git repositories
 
-If you have an API, replace `openapi.yaml` with your real OpenAPI file. If you do not need an API reference, remove that tab either from dashboard or  `documentation.json`.
+Link your repositories to enable automatic issue updates from commits and pull requests.
+
+<CodeGroup tabs="GitHub,GitLab">
+```bash
+# In your repository settings on GitHub
+# Add Linear as an OAuth app and grant read/write access to issues and pull requests
+```
+
+```bash
+# In your repository settings on GitLab
+# Create a new application and paste the Linear callback URL
+```
+</CodeGroup>
 
 ## Next steps
 
-<Columns cols="2">
-  <Card title="Core Concepts" href="/concepts" icon="layers" horizontal="false">
-    Keep the mental model simple and easy to scan.
+<Columns cols={2}>
+  <Card title="Keyboard shortcuts" icon="command" href="#keyboard-navigation-basics">
+    Master the full set of shortcuts.
   </Card>
-
-  <Card title="Authentication" href="/authentication" icon="lock" horizontal="false">
-    Add your real auth flows and security notes.
+  <Card title="Git integration" icon="git-branch" href="#connect-git-repositories">
+    Configure commit message automation.
   </Card>
 </Columns>
-
