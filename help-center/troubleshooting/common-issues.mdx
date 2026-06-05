@@ -1,0 +1,86 @@
+---
+title: Troubleshooting
+description: Fix issues with article display, search, integrations, and help center performance.
+---
+
+## Common Issues
+
+We understand how disruptive these problems can feel when customers need answers quickly. Each expandable below walks through a specific symptom, its usual root cause, and the exact steps to resolve it.
+
+<Expandable title="Search returns no results" default-open="false">
+**Problem**
+
+Your help center search bar shows "No results found for query" even though the article exists and is published.
+
+**Cause**
+
+The article's visibility is set to "Internal only" or the search index has not refreshed after recent edits.
+
+**Fix**
+
+1. Open the article in Intercom and confirm Visibility is set to "Public".
+2. Save the article, then go to Help Center → Settings → Search and click "Rebuild index".
+3. Wait two minutes and test the search again from an incognito window.
+</Expandable>
+
+<Expandable title="Custom styling and branding not applying" default-open="false">
+**Problem**
+
+Your brand colors, logo, and custom CSS appear correctly in the editor preview but look broken or missing on the live help center.
+
+**Cause**
+
+The custom theme file contains a syntax error or the CSS file failed to publish.
+
+**Fix**
+
+1. In Help Center → Appearance, click "Edit theme" and check the CSS panel for unclosed braces.
+2. Replace any custom rules with this minimal working snippet:
+
+```css
+:root {
+  --primary-color: #0066ff;
+}
+```
+
+3. Click Publish, then hard-refresh the live help center URL.
+</Expandable>
+
+<Expandable title="Integration sync failures" default-open="false">
+**Problem**
+
+Articles from your connected knowledge base show the error "Sync failed: 403 Forbidden" in the Integrations dashboard.
+
+**Cause**
+
+The API token used for the integration has expired or lost the required scopes.
+
+**Fix**
+
+1. Go to Settings → Integrations and locate the failing connection.
+2. Click "Reconnect" and generate a new token with `articles:read` and `articles:write` scopes.
+3. Paste the token, save, and trigger a manual sync.
+</Expandable>
+
+<Expandable title="Articles render poorly on mobile" default-open="false">
+**Problem**
+
+On mobile devices, images overflow the screen and text columns become too narrow, showing the message "Layout warning: content exceeds viewport".
+
+**Cause**
+
+Images lack responsive attributes and the mobile breakpoint CSS is missing from your theme.
+
+**Fix**
+
+1. Edit the article and replace every `<img>` tag with this responsive version:
+
+```html
+<img src="image-url" style="max-width:100%;height:auto;" />
+```
+
+2. In Appearance → Mobile, toggle "Enable responsive layout" on and publish.
+3. Test on a real device or using browser dev tools device mode.
+</Expandable>
+
+<CollectionList collection="help-center" />

@@ -1,26 +1,26 @@
 {
-  "id": "sk-pg-02",
-  "name": "Canva - Visual Design",
+  "id": "sk-uc-hc",
+  "name": "Help Center only — Intercom",
   "input": {
-    "productName": "Canva",
-    "description": "Product Guides alone — consumer design product with how-to guides",
-    "brandColor": "#00C4CC",
+    "productName": "Intercom",
+    "description": "Help Center use case alone — must have CollectionList, no Board/Update/OpenAPI",
+    "brandColor": "#3B82F6",
     "useCases": [
-      "product-guides"
+      "help-center"
     ],
-    "heroImageUrl": "https://blob-cdn.documentation.ai/org-2ebb2ef5-dd91-493f-9938-283fbdb14c81/doc-d2a73d2e-4391-4446-a5c8-2d0b41b7c4c1/1774416350161-ay106tw0elt-Image-3.png?q=85&fm=auto&auto=compress%2Cformat"
+    "heroImageUrl": "https://blob-cdn.documentation.ai/org-2ebb2ef5-dd91-493f-9938-283fbdb14c81/doc-d2a73d2e-4391-4446-a5c8-2d0b41b7c4c1/1774416420393-s9t4cno1w99-Image-8.png?q=85&fm=auto&auto=compress%2Cformat"
   },
   "stats": {
-    "totalFiles": 6,
-    "validFiles": 6,
+    "totalFiles": 5,
+    "validFiles": 5,
     "failedFiles": [],
-    "totalAttempts": 6,
-    "duration": 19833
+    "totalAttempts": 5,
+    "duration": 20642
   },
   "usage": {
-    "promptTokens": 43243,
-    "completionTokens": 7548,
-    "totalTokens": 50791
+    "promptTokens": 34947,
+    "completionTokens": 6210,
+    "totalTokens": 41157
   },
-  "seconds": 20
+  "seconds": 21
 }
