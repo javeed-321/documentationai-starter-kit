@@ -1,75 +1,69 @@
 ---
 title: Feature Overview
-description: Explore Linear's core building blocks including cycles, roadmaps, triage, and powerful search.
+description: Explore Canva's key tools including the editor, apps, and publishing options for every design need.
 ---
 
-## Over view
+## Overview
 
-Linear organizes work around fast, keyboard-driven workflows. You move issues through structured planning tools that keep teams aligned without heavy process overhead. The core features—cycles, roadmaps, triage, and search—form the foundation for sprint planning, milestone tracking, and issue discovery.
+Canva provides a complete set of design tools that help you create professional visuals without specialized software. The editor forms the core workspace where every project begins. From there you access layers, photo tools, video features, and multiple publishing paths. These capabilities work together so you can move from idea to finished design in one place.
 
-## Cycles
+## Editor Interface and Layers
 
-Cycles replace traditional sprints with flexible timeboxes. You assign issues to a cycle, set a duration, and track progress in real time. Linear automatically rolls unfinished work to the next cycle when you choose.
+The editor displays a clean canvas with a left sidebar for elements and a right panel for properties. Layers appear in a stack that you reorder by dragging. You can group items, lock them, or adjust opacity directly on the layer list.
 
 <Columns cols={2}>
-  <Card title="Planning" icon="calendar" href="#cycles">
-    Break work into two- or four-week cycles and see capacity at a glance.
+  <Card title="Layers panel" icon="layers" href="#editor-interface-and-layers">
+    Organize text, images, and shapes in a clear hierarchy.
   </Card>
-  <Card title="Automation" icon="zap" href="#cycles">
-    Configure rules that move issues between cycles based on status changes.
+  <Card title="Quick actions" icon="zap" href="#editor-interface-and-layers">
+    Duplicate, align, or flip objects with one click.
   </Card>
 </Columns>
 
-## Roadmaps and milestones
+## Photo Editing and Background Remover
 
-Roadmap views turn issues and projects into visual timelines. You group work by quarter or release and connect milestones to specific dates or cycle boundaries.
+Upload any image and open the Edit photo menu. Adjust brightness, contrast, and saturation with sliders. The background remover isolates subjects automatically and places them on a transparent layer.
 
 <Tabs>
-  <Tab title="Timeline" icon="bar-chart">
-    Drag milestones across quarters to adjust delivery dates instantly.
+  <Tab title="Web" icon="monitor">
+    Click Edit photo then select Background remover. The tool processes in seconds.
   </Tab>
-  <Tab title="List" icon="list">
-    Switch to a prioritized list view when you need to reorder initiatives quickly.
+  <Tab title="Mobile" icon="smartphone">
+    Tap the photo, choose Edit, then tap Remove background.
   </Tab>
 </Tabs>
 
-## Triage and labels
+## Video and Animation Tools
 
-The triage inbox collects new issues from integrations and teammates. You review, label, and route them without leaving the keyboard.
+Add video clips directly to the timeline. Trim, split, and reorder clips without leaving the editor. Apply animations to text and images by selecting an element and choosing from the Animate menu.
+
+```mermaid
+graph LR
+    A[Upload clip] --> B[Trim & split]
+    B --> C[Add animation]
+    C --> D[Export video]
+```
+
+<Expandable title="Animation timing tips" default-open="false">
+  Set duration per element to create staggered reveals that guide viewer attention.
+</Expandable>
+
+## Print Products and Presentations
+
+Design once and publish to multiple formats. Choose print products such as posters or business cards from the Publish menu. For presentations, switch to the Slides view and reorder pages instantly.
 
 <Callout kind="tip">
-  Use the `T` key to open triage from anywhere in the app.
+  Always check the bleed and margin settings before sending a design to print.
 </Callout>
-
-Labels combine with custom properties so you can filter by priority, team, or customer impact in one click.
-
-## Filters, views, and commands
-
-Linear's command bar (`Cmd/Ctrl+K`) gives you instant access to saved views and complex filters. You build queries such as `assignee:me status:in-progress cycle:current` and save them for daily use.
-
-<CodeGroup tabs="Search,Filter">
-```text
-assignee:me AND label:bug cycle:current
-```
-```text
-project:Roadmap status:backlog
-```
-</CodeGroup>
 
 ## Examples
 
-Create a cycle view that shows only high-priority issues assigned to your team. Then pin the view to your sidebar for one-keystroke access.
+A marketing team created a product launch deck in Canva by combining layered graphics, a short product video, and print-ready flyers. They used the background remover on lifestyle photos and applied consistent animations across all slides.
 
-## Best practices
+## Best Practices
 
-<Expandable title="Keyboard-first workflow" default-open="false">
+- Keep the layers panel tidy by naming groups as you build.
+- Preview animations at different speeds before final export.
+- Use the print preview to confirm colors and crop marks.
 
-  Learn the most common commands first: `C` to create an issue, `K` and `J` to navigate the list, and `/` to open the command bar. Muscle memory reduces context switching.
-
-</Expandable>
-
-<Expandable title="Cycle hygiene" default-open="false">
-
-  Keep cycles under two weeks when possible. Review carry-over issues at the end of each cycle and decide whether to move, split, or close them.
-
-</Expandable>
+These tools give you full control while staying simple enough for quick iterations.

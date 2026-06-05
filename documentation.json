@@ -1,13 +1,13 @@
 {
-  "name": "Linear",
+  "name": "Canva",
   "colors": {
     "light": {
-      "brand": "#5E6AD2",
+      "brand": "#00C4CC",
       "heading": "#1B1F24",
       "text": "#1B1F24"
     },
     "dark": {
-      "brand": "#9DA4DF",
+      "brand": "#51F4FB",
       "heading": "#FFFFFF",
       "text": "#E5E7EB"
     }
@@ -17,18 +17,32 @@
       {
         "tab": "Guides",
         "icon": "book-open",
-        "pages": [
+        "groups": [
           {
-            "title": "Introduction",
-            "path": "introduction"
+            "group": "Getting started",
+            "icon": "rocket",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "introduction"
+              },
+              {
+                "title": "Quickstart",
+                "path": "quickstart"
+              }
+            ]
           },
           {
-            "title": "Quickstart",
-            "path": "quickstart"
-          },
-          {
-            "title": "Feature Overview",
-            "path": "guides/overview"
+            "group": "Guides",
+            "icon": "book-open",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Feature Overview",
+                "path": "guides/overview"
+              }
+            ]
           }
         ]
       },
@@ -38,7 +52,8 @@
         "pages": [
           {
             "title": "Changelog",
-            "path": "changelog"
+            "path": "changelog",
+            "show-sidebar": false
           }
         ]
       },
@@ -48,7 +63,9 @@
         "pages": [
           {
             "title": "Roadmap",
-            "path": "roadmap"
+            "path": "roadmap",
+            "show-sidebar": false,
+            "show-toc": false
           }
         ]
       }
