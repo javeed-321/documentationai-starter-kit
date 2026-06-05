@@ -17,12 +17,6 @@
       {
         "tab": "Help Center",
         "icon": "help-circle",
-        "pages": [
-          {
-            "title": "Help Center",
-            "path": "help-center"
-          }
-        ],
         "groups": [
           {
             "group": "FAQs",
