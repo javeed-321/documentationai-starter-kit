@@ -48,6 +48,7 @@
       },
       {
         "tab": "Changelog",
+        "show-sidebar": false,
         "icon": "clock",
         "pages": [
           {
@@ -59,6 +60,8 @@
       },
       {
         "tab": "Roadmap",
+        "show-sidebar": false,
+        "show-toc": false,
         "icon": "map",
         "pages": [
           {
