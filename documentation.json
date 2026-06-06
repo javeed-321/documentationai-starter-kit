@@ -15,6 +15,7 @@
   "navigation": {
     "tabs": [
       {
+<<<<<<< HEAD
         "tab": "Guides",
         "icon": "book-open",
         "groups": [
@@ -134,6 +135,18 @@
                 "show-toc": false
               }
             ]
+=======
+        "tab": "API Reference",
+        "icon": "code",
+        "pages": [
+          {
+            "title": "Authentication",
+            "path": "help-center/faq/getting-started"
+          },
+          {
+            "title": "Endpoints",
+            "path": "help-center/troubleshooting/common-issues"
+>>>>>>> d76998787efc56afe5e2b1191cc3c46e82186651
           }
         ]
       }
