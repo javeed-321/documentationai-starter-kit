@@ -1,0 +1,54 @@
+---
+title: Troubleshooting
+description: Resolve common problems with Intercom setup, integrations, and help center functionality.
+---
+
+## Common Issues
+
+<Expandable title="Messenger not appearing on your site" default-open="false">
+Problem: The messenger does not load on any page of your website.
+
+Cause: The Intercom script is missing from the page head or blocked by a content security policy.
+
+Fix: Add the following script to the `<head>` section of every page:
+
+```html
+<script>
+  window.intercomSettings = {
+    app_id: "YOUR_APP_ID"
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+```
+
+Refresh the page and check the browser console for any blocked script errors.
+</Expandable>
+
+<Expandable title="Help center search returns no results" default-open="false">
+Problem: Visitors type a query in the help center search bar but receive an empty list.
+
+Cause: Articles are not yet indexed or the search index has not refreshed after recent content changes.
+
+Fix: Go to Settings → Help Center → Content and click "Rebuild search index". Wait two minutes, then test the search again with a phrase that matches an article title exactly.
+</Expandable>
+
+<Expandable title="Notifications and emails are not delivered" default-open="false">
+Problem: You see the message "Email failed to send" in the conversation timeline and customers report missing replies.
+
+Cause: The sender domain is not verified or the email provider rejected the message due to SPF or DKIM settings.
+
+Fix: Verify your domain in Settings → Email. Add the three DNS records shown there, then run the domain check. After it passes, send a test message from a conversation.
+</Expandable>
+
+<Expandable title="API integration returns authentication errors" default-open="false">
+Problem: Requests to the Intercom REST API return `{"type":"error.list","errors":[{"code":"unauthorized","message":"Access Token Invalid"}]}`.
+
+Cause: The access token is expired, revoked, or missing the required scopes.
+
+Fix: Generate a new personal access token in Settings → Developers → Access tokens. Grant it the scopes `read:conversations` and `write:contacts`. Update your integration code with the new token:
+
+```bash
+curl https://api.intercom.io/me \
+  -H 'Authorization: Bearer YOUR_NEW_TOKEN'
+```
+</Expandable>
