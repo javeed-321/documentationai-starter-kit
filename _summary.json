@@ -1,24 +1,29 @@
 {
-  "testName": "Analytics Platform with comparison operators",
-  "productName": "MetricsFlow",
+  "id": "sk-uc-hc",
+  "testName": "Help Center only — Intercom",
+  "productName": "Intercom",
+  "source": "evals",
+  "difficulty": "simple",
+  "useCases": [
+    "help-center"
+  ],
+  "tags": [
+    "v2-router",
+    "help-center",
+    "simple"
+  ],
   "passed": true,
-  "durationMs": 45287,
-  "totalFiles": 11,
-  "validFiles": 11,
+  "durationMs": 30562,
+  "totalFiles": 5,
+  "validFiles": 5,
   "failedFiles": [],
-  "totalAttempts": 11,
-  "tokens": 93115,
+  "totalAttempts": 5,
+  "tokens": 41116,
   "files": [
-    "introduction.mdx",
-    "quickstart.mdx",
-    "guides/overview.mdx",
-    "api/introduction.mdx",
-    "api/authentication.mdx",
-    "api/quickstart.mdx",
-    "api/errors.mdx",
-    "changelog.mdx",
-    "roadmap.mdx",
-    "api-reference/openapi.yaml",
+    "help-center.mdx",
+    "help-center/faq/getting-started.mdx",
+    "help-center/troubleshooting/common-issues.mdx",
+    "help-center/contact.mdx",
     "documentation.json"
   ]
 }

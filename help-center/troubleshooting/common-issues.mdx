@@ -1,0 +1,109 @@
+---
+title: Troubleshooting
+description: Fix frequent problems with Intercom Messenger visibility, message delivery, and integrations.
+---
+
+## Messenger not loading
+
+<Expandable title="Messenger does not appear on your site" default-open="false">
+
+**Problem**  
+The Intercom Messenger stays hidden even after you embed the code.
+
+**Cause**  
+The install script failed to load because of a missing or incorrect workspace ID.
+
+**Fix**  
+Check your browser console for this exact error:
+
+```
+Intercom snippet missing app_id
+```
+
+Open your page source and confirm the script tag contains your real workspace ID:
+
+```html
+<script>
+  window.intercomSettings = { app_id: "YOUR_WORKSPACE_ID" };
+</script>
+```
+
+Replace `YOUR_WORKSPACE_ID` with the ID from your Intercom settings and refresh the page.
+
+  1. Open the collection settings and review the **Who can view** list.
+
+  2. Add the missing team member or change the setting to **All team members**.
+
+  3. Ask the affected user to log out and log back in to clear the permission cache.
+
+  4. Test the Help Center link again from their account.
+</Expandable>
+
+<Expandable title="Webhook delivery keeps failing" default-open="false">
+
+**Problem**  
+Your server logs show repeated 4xx or 5xx responses when Intercom tries to reach your webhook URL.
+
+**Cause**  
+The endpoint returns an error or times out before Intercom finishes sending the payload.
+
+**Fix**  
+Test the endpoint yourself with curl and look for this response:
+
+```
+HTTP/1.1 401 Unauthorized
+```
+
+Update your handler to accept the request with this header check:
+
+```bash
+curl -X POST https://yourdomain.com/webhook \
+  -H "X-Hub-Signature: sha1=..." \
+  -d '{"type":"conversation.user.created"}'
+```
+
+Return HTTP 200 within three seconds and verify the signature before processing the event.
+
+</Expandable>
+
+<Expandable title="User identification returns an error" default-open="false">
+
+**Problem**  
+You see the error `User hash is invalid` when calling `Intercom('boot', ...)`.
+
+**Cause**  
+The identity verification hash was generated with the wrong secret or the wrong user data.
+
+**Fix**  
+Regenerate the hash on your server using your Intercom identity secret and this exact snippet:
+
+```javascript
+const crypto = require('crypto');
+const hash = crypto
+  .createHmac('sha256', process.env.INTERCOM_IDENTITY_SECRET)
+  .update(user.email)
+  .digest('hex');
+```
+
+Pass the new hash in the `user_hash` field when you boot the Messenger.
+
+</Expandable>
+
+<Expandable title="Notifications arrive late or not at all" default-open="false">
+
+**Problem**  
+Push or email notifications for new messages take minutes to appear.
+
+**Cause**  
+The notification channel is disabled or the device token is no longer valid.
+
+**Fix**  
+Open your Intercom inbox and check the conversation for this status:
+
+```
+Notification failed: Invalid push token
+```
+
+Remove the stale token from the user profile, then ask the user to re-enable notifications in their app settings.
+
+</Expandable>
