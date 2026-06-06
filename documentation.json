@@ -30,7 +30,7 @@
             ]
           },
           {
-            "group": "FAQs",
+            "group": "FAQ",
             "icon": "help-circle",
             "expandable": false,
             "pages": [
@@ -52,7 +52,7 @@
             ]
           },
           {
-            "group": "Support",
+            "group": "Contact",
             "icon": "folder",
             "expandable": false,
             "pages": [

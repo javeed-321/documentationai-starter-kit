@@ -1,64 +1,84 @@
 ---
 title: FAQ
-description: Answers to common questions about setting up and using the Intercom Help Center.
+description: Answers to the most common questions when first installing and configuring Intercom.
 ---
 
-## Initial setup steps
+## Account Creation
 
 <ExpandableGroup>
-<Expandable title="How do I create my first Help Center?" default-open="true">
+<Expandable title="How do I create my first Intercom account?" default-open="true">
 
-Go to your Intercom workspace, select Help Center from the menu, and click Create new site. Choose a name and domain, then follow the prompts to add your first collection.
+Visit the signup page and enter your work email. You will receive a verification link within minutes. Click it to activate your workspace and complete the initial setup questions.
 
 </Expandable>
-<Expandable title="What information do I need before starting?">
+<Expandable title="What if the verification email never arrives?">
 
-Gather your company logo, a short welcome message, and a list of the main topics your customers ask about most often.
+Check your spam folder first. If it is not there, request a new link from the signup screen. Contact support only after waiting 30 minutes.
+
+</Expandable>
+<Expandable title="Can I use a personal email address?">
+
+A work email is required so Intercom can connect your team later. Personal addresses trigger extra verification steps.
 
 </Expandable>
 </ExpandableGroup>
 
-## Article publishing
+## Team Permissions
 
 <ExpandableGroup>
-<Expandable title="How do I publish an article?" default-open="true">
+<Expandable title="How do I invite teammates?" default-open="true">
 
-Write the article in the editor, add it to a collection, then click Publish. Your changes go live immediately for visitors.
+Go to Settings then Team. Enter their email addresses and choose a role. They receive an invite link that expires in seven days.
 
 </Expandable>
-<Expandable title="Can I preview an article before publishing?">
+<Expandable title="What roles are available and what can each do?">
 
-Yes. Use the Preview button at the top of the editor to see exactly how the article will appear to customers.
+Admins manage billing and settings. Agents reply to conversations. Viewers can only read reports. Start with the Agent role for most teammates.
+
+</Expandable>
+<Expandable title="A teammate cannot see certain conversations.">
+
+Confirm their role has access to the correct inbox. Admins can adjust inbox permissions under Settings then Inboxes.
 
 </Expandable>
 </ExpandableGroup>
 
-## Search functionality
+## Data Import
 
 <ExpandableGroup>
-<Expandable title="Why aren't my articles appearing in search?" default-open="true">
+<Expandable title="How do I import existing contacts?" default-open="true">
 
-Make sure each article has a clear title and at least one relevant keyword in the first paragraph. Re-index the Help Center after major changes.
+Export your contacts as CSV from your current tool. In Intercom go to Customers then Import. Map the columns and start the upload.
 
 </Expandable>
-<Expandable title="How can I improve search results?">
+<Expandable title="What happens if some rows fail to import?">
 
-Add synonyms and common customer phrases to article content. Test searches yourself and adjust titles or headings as needed.
+Intercom shows a list of failed rows with reasons. Fix the CSV and re-upload only the failed rows.
+
+</Expandable>
+<Expandable title="Can I import past conversation history?">
+
+Only basic contact data imports at this stage. Full conversation history requires a separate migration request through support.
 
 </Expandable>
 </ExpandableGroup>
 
-## Mobile responsiveness
+## Messenger Customization
 
 <ExpandableGroup>
-<Expandable title="Does the Help Center work on phones and tablets?" default-open="true">
+<Expandable title="How do I change the messenger color and greeting?" default-open="true">
 
-Yes. The design automatically adjusts to fit any screen size so customers can read articles comfortably on mobile devices.
+Open Settings then Messenger. Pick a brand color, upload your logo, and write a short welcome message. Save and the changes appear immediately.
 
 </Expandable>
-<Expandable title="What should I check on mobile after publishing?">
+<Expandable title="The messenger does not show on my website.">
 
-Open the Help Center on a phone, scroll through a few articles, and confirm that images resize and text remains readable without zooming.
+Check that the install code is on every page. Use your browser console to confirm the script loads without errors.
+
+</Expandable>
+<Expandable title="Can I hide the messenger on specific pages?">
+
+Add a small code snippet that sets `Intercom('hide')` on those pages. Restore visibility with `Intercom('show')` when needed.
 
 </Expandable>
 </ExpandableGroup>

@@ -13,12 +13,12 @@
     "simple"
   ],
   "passed": true,
-  "durationMs": 32299,
+  "durationMs": 30562,
   "totalFiles": 5,
   "validFiles": 5,
   "failedFiles": [],
   "totalAttempts": 5,
-  "tokens": 41367,
+  "tokens": 41116,
   "files": [
     "help-center.mdx",
     "help-center/faq/getting-started.mdx",
