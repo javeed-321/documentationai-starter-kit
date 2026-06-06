@@ -37,10 +37,6 @@
               {
                 "title": "FAQ",
                 "path": "help-center/faq/getting-started"
-              },
-              {
-                "title": "Contact & Support",
-                "path": "help-center/contact"
               }
             ]
           },
@@ -54,9 +50,20 @@
                 "path": "help-center/troubleshooting/common-issues"
               }
             ]
+          },
+          {
+            "group": "Support",
+            "icon": "folder",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Contact & Support",
+                "path": "help-center/contact"
+              }
+            ]
           }
         ]
       }
     ]
   }
-} 
+}

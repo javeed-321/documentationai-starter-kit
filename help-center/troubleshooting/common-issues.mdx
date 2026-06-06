@@ -1,54 +1,69 @@
 ---
 title: Troubleshooting
-description: Resolve common problems with Intercom setup, integrations, and help center functionality.
+description: Resolve common issues with your Intercom Help Center such as articles not appearing or search problems.
 ---
 
-## Common Issues
+We know how frustrating it is when your Help Center isn't behaving as expected. Use the quick checks below to get things working again.
 
-<Expandable title="Messenger not appearing on your site" default-open="false">
-Problem: The messenger does not load on any page of your website.
+## Articles not publishing
 
-Cause: The Intercom script is missing from the page head or blocked by a content security policy.
+<Expandable title="Articles not publishing">
+Your newly written article stays stuck in Draft and never shows up on the live site.
 
-Fix: Add the following script to the `<head>` section of every page:
+**Common cause**  
+The article is saved but the parent collection has not been published, or the article itself is missing the final publish step.
 
-```html
-<script>
-  window.intercomSettings = {
-    app_id: "YOUR_APP_ID"
-  };
-</script>
-<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/YOUR_APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
-```
-
-Refresh the page and check the browser console for any blocked script errors.
+**Fix**  
+1. Open the article in the editor.  
+2. Click **Publish** at the top right.  
+3. Go to the collection settings and make sure its status is set to **Live**.  
+4. Refresh the Help Center URL; the article should now appear within five minutes.
 </Expandable>
 
-<Expandable title="Help center search returns no results" default-open="false">
-Problem: Visitors type a query in the help center search bar but receive an empty list.
+## Search not returning results
 
-Cause: Articles are not yet indexed or the search index has not refreshed after recent content changes.
+<Expandable title="Search not returning results">
+Visitors type a keyword that matches an article title, yet they see the message "No results found."
 
-Fix: Go to Settings → Help Center → Content and click "Rebuild search index". Wait two minutes, then test the search again with a phrase that matches an article title exactly.
+**Common cause**  
+Search indexing has not finished or the article is excluded from search because its visibility is set to "Team only."
+
+**Fix**  
+1. Wait up to 15 minutes after publishing; indexing runs automatically.  
+2. Open the article settings and change Visibility to **Everyone**.  
+3. In the collection settings, confirm Search is toggled on.  
+4. Test again with an incognito window to rule out cached results.
 </Expandable>
 
-<Expandable title="Notifications and emails are not delivered" default-open="false">
-Problem: You see the message "Email failed to send" in the conversation timeline and customers report missing replies.
+## Styling issues
 
-Cause: The sender domain is not verified or the email provider rejected the message due to SPF or DKIM settings.
+<Expandable title="Styling issues">
+Custom CSS you added no longer applies, or the Help Center looks broken after an update.
 
-Fix: Verify your domain in Settings → Email. Add the three DNS records shown there, then run the domain check. After it passes, send a test message from a conversation.
+**Common cause**  
+The custom CSS file contains a syntax error, or the theme was switched without re-applying the overrides.
+
+**Fix**  
+1. Go to **Settings → Appearance → Custom CSS**.  
+2. Paste your rules into a validator and remove any unclosed brackets.  
+3. Save, then hard-refresh the Help Center page (Ctrl + Shift + R).  
+4. If the issue persists, switch back to the default theme temporarily to confirm the custom file is the source.
 </Expandable>
 
-<Expandable title="API integration returns authentication errors" default-open="false">
-Problem: Requests to the Intercom REST API return `{"type":"error.list","errors":[{"code":"unauthorized","message":"Access Token Invalid"}]}`.
+## Access control problems
 
-Cause: The access token is expired, revoked, or missing the required scopes.
+<Expandable title="Access control problems">
+Logged-in team members see "You do not have permission to view this collection" even though they should.
 
-Fix: Generate a new personal access token in Settings → Developers → Access tokens. Grant it the scopes `read:conversations` and `write:contacts`. Update your integration code with the new token:
+**Common cause**  
+The collection's access setting restricts it to specific roles that the user does not have, or an old team permission is cached.
 
-```bash
-curl https://api.intercom.io/me \
-  -H 'Authorization: Bearer YOUR_NEW_TOKEN'
-```
+**Fix**  
+1. Open the collection settings and review the **Who can view** list.  
+2. Add the missing team member or change the setting to **All team members**.  
+3. Ask the affected user to log out and log back in to clear the permission cache.  
+4. Test the Help Center link again from their account.
+
 </Expandable>
+
+<CollectionList collection="help-center" />

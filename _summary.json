@@ -1,0 +1,29 @@
+{
+  "id": "sk-uc-hc",
+  "testName": "Help Center only — Intercom",
+  "productName": "Intercom",
+  "source": "evals",
+  "difficulty": "simple",
+  "useCases": [
+    "help-center"
+  ],
+  "tags": [
+    "v2-router",
+    "help-center",
+    "simple"
+  ],
+  "passed": true,
+  "durationMs": 32299,
+  "totalFiles": 5,
+  "validFiles": 5,
+  "failedFiles": [],
+  "totalAttempts": 5,
+  "tokens": 41367,
+  "files": [
+    "help-center.mdx",
+    "help-center/faq/getting-started.mdx",
+    "help-center/troubleshooting/common-issues.mdx",
+    "help-center/contact.mdx",
+    "documentation.json"
+  ]
+}
