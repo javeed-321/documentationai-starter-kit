@@ -1,0 +1,87 @@
+---
+title: Troubleshooting
+description: Fix common problems with checkout, payments, apps, and store performance on Shopify.
+---
+
+## Common Issues
+
+<Callout kind="info">
+Review the exact error message shown in your Shopify admin before trying these fixes.
+</Callout>
+
+<Expandable title="Payment declines at checkout" default-open="false">
+
+**Problem**
+
+Customers see the message "Your payment was declined by the card issuer" and the order fails.
+
+**Cause**
+
+The decline often stems from mismatched billing details or temporary holds by the payment processor.
+
+**Fix**
+
+1. Open the order in Shopify admin and note the exact decline code.
+2. Ask the customer to verify the card number, expiry date, and billing address match what they entered.
+3. In Settings > Payments, disable and re-enable the payment provider, then test with a new checkout.
+
+</Expandable>
+
+<Expandable title="App conflicts blocking checkout" default-open="false">
+
+**Problem**
+
+Checkout shows "An unexpected error occurred. Please try again later" after installing or updating an app.
+
+**Cause**
+
+Two apps are trying to modify the same checkout fields at the same time.
+
+**Fix**
+
+```bash
+# In Shopify admin, go to Apps > Installed apps
+# Temporarily disable the most recently added app
+# Clear browser cache and attempt checkout again
+```
+
+Re-enable apps one at a time while testing checkout until the conflict appears.
+
+</Expandable>
+
+<Expandable title="Theme errors on product pages" default-open="false">
+
+**Problem**
+
+Product pages display "Liquid error: 'product' is not a valid object" after a theme update.
+
+**Cause**
+
+A section or block references a product object that no longer exists in the current theme file.
+
+**Fix**
+
+1. In Online Store > Themes, click Actions > Edit code on your active theme.
+2. Search for the file mentioned in the error (usually `product-template.liquid`).
+3. Replace the broken object reference with `{{ product | default: collection.products.first }}`.
+4. Save and preview the page.
+
+</Expandable>
+
+<Expandable title="Inventory sync failures" default-open="false">
+
+**Problem**
+
+The admin shows "Inventory levels could not be updated for SKU ABC123" and stock counts stay outdated.
+
+**Cause**
+
+A third-party app or CSV import is overwriting Shopify's inventory API calls.
+
+**Fix**
+
+- Go to Products > Inventory and select the affected location.
+- Click "Sync now" and watch the status column for errors.
+- If the error repeats, disconnect the conflicting sales channel in Settings > Sales channels, then reconnect it.
+
+</Expandable>
