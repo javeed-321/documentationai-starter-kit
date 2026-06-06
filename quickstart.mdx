@@ -1,89 +1,69 @@
 ---
 title: Quickstart
-description: Get started with MetricsFlow by connecting your event stream and running your first real-time aggregation query in minutes.
+description: Set up Notion's non-English content features and test them with sample international pages.
 ---
 
 ## Prerequisites
 
 <Callout kind="info">
-You need an active MetricsFlow account and an API key. Sign up at `https://dashboard.example.com` if you have not already.
+  You need an active Notion workspace with admin access. Enable the non-English content add-on from your workspace settings before proceeding.
 </Callout>
 
-## Connect an Event Source
+## Enable language detection
 
 <Steps>
-  <Step title="Install the CLI" icon="download">
-    Download and install the MetricsFlow CLI with the following command.
-
-    ```bash
-    curl -sSL https://install.example.com/metricsflow | sh
-    ```
+  <Step title="Turn on detection" icon="settings">
+    Navigate to Workspace settings and toggle Language detection to on. This activates automatic identification for all new pages.
   </Step>
-  <Step title="Configure your source" icon="settings">
-    Create a minimal source configuration file named `source.yaml`.
-
-    ```yaml
-    source:
-      type: kafka
-      brokers:
-        - kafka.example.com:9092
-      topic: user-events
-      apiKey: YOUR_API_KEY
-    ```
-  </Step>
-  <Step title="Apply the configuration" icon="check-circle">
-    Run the apply command to connect the stream.
-
-    ```bash
-    metricsflow apply -f source.yaml
-    ```
+  <Step title="Apply to existing pages" icon="check-circle">
+    Select the pages you want to update and choose Apply language detection from the bulk actions menu.
   </Step>
 </Steps>
 
-## Define a Streaming Aggregation
+## Add non-English content
 
-<CodeGroup tabs="YAML,CLI">
-```yaml
-aggregation:
-  name: events-per-minute
-  source: user-events
-  window: 1m
-  groupBy: ["userId"]
-  metrics:
-    - name: eventCount
-      type: count
+Create your first international page with the following example.
+
+<CodeGroup tabs="English,Japanese,French">
+```markdown
+# Project Update
+
+This quarter we expanded into new markets.
 ```
-```bash
-metricsflow aggregation create \
-  --name events-per-minute \
-  --window 1m \
-  --group-by userId \
-  --metric eventCount:count
+
+```markdown
+# プロジェクト更新
+
+今四半期に新しい市場に拡大しました。
+```
+
+```markdown
+# Mise à jour du projet
+
+Ce trimestre nous nous sommes étendus sur de nouveaux marchés.
 ```
 </CodeGroup>
 
-## Query Live Metrics
+## Configure display preferences
 
-Run your first query to see results within seconds.
+<Steps>
+  <Step title="Set preferred languages" icon="globe">
+    Go to your personal settings and add languages in priority order. Notion uses this list to choose the best display variant.
+  </Step>
+  <Step title="Test rendering" icon="eye">
+    Open a page in multiple languages and verify that the correct version appears based on your preferences.
+  </Step>
+</Steps>
 
-```bash
-metricsflow query \
-  --aggregation events-per-minute \
-  --since 5m
-```
+## Verify search results
 
-Expect sub-50 ms latency even at 50,000 events per second.
+Search for a term that appears in multiple languages. Results should surface the matching language variant first when your preferences align.
 
-## Next Steps
-
-<Columns cols={3}>
-  <Card title="Event Sources" icon="database" href="#connect-an-event-source">
-    Learn how to add more sources and handle schema evolution.
+<Columns cols={2}>
+  <Card title="Language detection" icon="search" href="#enable-language-detection">
+    Learn advanced options for detection rules.
   </Card>
-  <Card title="Aggregations" icon="bar-chart" href="#define-a-streaming-aggregation">
-    Explore advanced windowing and custom metric expressions.
-  </Card>
-  <Card title="Dashboards & Alerts" icon="monitor" href="#query-live-metrics">
-    Build visualizations and set up threshold-based alerts.
+  <Card title="Display settings" icon="settings" href="#configure-display-preferences">
+    Customize how content appears across languages.
   </Card>
 </Columns>

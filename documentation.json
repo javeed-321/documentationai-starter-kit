@@ -1,13 +1,13 @@
 {
-  "name": "MetricsFlow",
+  "name": "Notion",
   "colors": {
     "light": {
-      "brand": "#f59e0b",
+      "brand": "#3B82F6",
       "heading": "#1B1F24",
       "text": "#1B1F24"
     },
     "dark": {
-      "brand": "#F4BA59",
+      "brand": "#87B1F6",
       "heading": "#FFFFFF",
       "text": "#E5E7EB"
     }
@@ -43,60 +43,6 @@
                 "path": "guides/overview"
               }
             ]
-          }
-        ]
-      },
-      {
-        "tab": "Docs",
-        "icon": "book-open",
-        "groups": [
-          {
-            "group": "Getting started",
-            "icon": "rocket",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Introduction",
-                "path": "api/introduction"
-              },
-              {
-                "title": "Quickstart",
-                "path": "api/quickstart"
-              }
-            ]
-          },
-          {
-            "group": "Authentication",
-            "icon": "folder",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Authentication",
-                "path": "api/authentication"
-              }
-            ]
-          },
-          {
-            "group": "Troubleshooting",
-            "icon": "alert-triangle",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Error Codes",
-                "path": "api/errors"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "icon": "code",
-        "groups": [
-          {
-            "group": "API Reference",
-            "icon": "code",
-            "openapi": "api-reference/openapi.yaml"
           }
         ]
       },

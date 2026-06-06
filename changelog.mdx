@@ -1,42 +1,24 @@
 ---
 title: Changelog
-description: Release notes detailing new MetricsFlow features, performance improvements, and API changes.
+description: Track updates and fixes related to non-English content handling in Notion.
 ---
 
-## Recent Releases
+## Release Notes
 
-<Update label="2024-10-15" description="v2.0.0" tags={["breaking", "feature"]}>
-
-## Breaking Changes
-
-- Removed legacy `aggregate()` endpoint; use `computeAggregation()` instead.
-- Renamed `eventRate` parameter to `eventsPerSecond` in all query objects.
-
+<Update label="2024-11-05" description="v3.1.0" tags={["feature"]}>
 ## New Features
-
-- Added `percentile()` and `distinctCount()` aggregation functions.
-- Introduced support for windowed aggregations over > 1 billion records.
-
+- Added full support for Korean and Arabic languages.
+- Improved rendering for bidirectional text and complex scripts.
 </Update>
 
-<Update label="2024-09-20" description="v1.5.0" tags={["feature"]}>
-
-## Performance Improvements
-
-- Reduced average latency to `<50ms` at 50000 events per second.
-- Increased throughput by 40% through optimized partitioning.
-
-## New Features
-
-- Added `sumIf()` and `avgIf()` conditional aggregation functions.
-
-</Update>
-
-<Update label="2024-08-10" description="v1.4.0" tags={["bugfix"]}>
-
+<Update label="2024-09-12" description="v3.0.5" tags={["bugfix"]}>
 ## Bug Fixes
+- Fixed search indexing for Japanese and Chinese characters.
+- Resolved display issues with accented characters in page titles.
+</Update>
 
-- Fixed race condition in real-time aggregation pipeline.
-- Corrected overflow handling for counts exceeding 1 billion records.
-
+<Update label="2024-07-22" description="v3.0.0" tags={["feature"]}>
+## New Features
+- Introduced initial non-English content handling across all blocks.
+- Enhanced search to support multilingual queries.
 </Update>
