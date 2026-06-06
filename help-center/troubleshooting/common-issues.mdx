@@ -1,102 +1,77 @@
 ---
 title: Troubleshooting
-description: Fix frequent problems with Intercom Messenger visibility, message delivery, and integrations.
+description: Fix typical problems with article visibility, search, theming, and agent workflows in Zendesk Help Center.
 ---
 
-## Messenger not loading
+## Common Issues
 
-<Expandable title="Messenger does not appear on your site" default-open="false">
+Use the expanders below to match your symptom with the exact cause and fix. Each section includes the error message or behavior you see in Zendesk Help Center.
+
+<Expandable title="Articles do not appear in search results" default-open="false">
 
 **Problem**  
-The Intercom Messenger stays hidden even after you embed the code.
+Your published articles return no matches when agents or end users search for keywords that exist in the title or body.
 
 **Cause**  
-The install script failed to load because of a missing or incorrect workspace ID.
+The article is not indexed because its visibility setting is restricted to a group that the search user does not belong to, or the search index has not refreshed after the last publish.
 
 **Fix**  
-Check your browser console for this exact error:
-
-```
-Intercom snippet missing app_id
-```
-
-Open your page source and confirm the script tag contains your real workspace ID:
-
-```html
-<script>
-  window.intercomSettings = { app_id: "YOUR_WORKSPACE_ID" };
-</script>
-```
-
-Replace `YOUR_WORKSPACE_ID` with the ID from your Intercom settings and refresh the page.
+1. Open the article in edit mode.  
+2. Check the visibility dropdown and set it to "Everyone" or a group the searcher belongs to.  
+3. Click Publish, then run this command in your browser console while on the Help Center home page:  
+   `document.querySelector('.search-input').value = 'your-keyword'; document.querySelector('.search-form').submit();`  
+4. Wait two minutes and search again.
 
 </Expandable>
 
-<Expandable title="Webhook delivery keeps failing" default-open="false">
+<Expandable title="Theme changes do not appear or CSS is broken" default-open="false">
 
 **Problem**  
-Your server logs show repeated 4xx or 5xx responses when Intercom tries to reach your webhook URL.
+After uploading a new theme or editing custom CSS, the Help Center still shows the old layout or displays raw CSS in the browser.
 
 **Cause**  
-The endpoint returns an error or times out before Intercom finishes sending the payload.
+The theme was not activated for the current brand, or a syntax error in the CSS file prevents the stylesheet from loading.
 
 **Fix**  
-Test the endpoint yourself with curl and look for this response:
-
-```
-HTTP/1.1 401 Unauthorized
-```
-
-Update your handler to accept the request with this header check:
-
-```bash
-curl -X POST https://yourdomain.com/webhook \
-  -H "X-Hub-Signature: sha1=..." \
-  -d '{"type":"conversation.user.created"}'
-```
-
-Return HTTP 200 within three seconds and verify the signature before processing the event.
+1. Go to Guide admin > Customize design > Themes.  
+2. Select your brand and click the three-dot menu next to the theme, then choose "Publish".  
+3. Open the CSS file and look for unclosed braces or missing semicolons.  
+4. Replace the faulty section with this minimal reset:  
+   ```css
+   .article-body { font-family: inherit; line-height: 1.5; }
+   ```  
+5. Save and publish again.
 
 </Expandable>
 
-<Expandable title="User identification returns an error" default-open="false">
+<Expandable title="Permission or SSO login errors" default-open="false">
 
 **Problem**  
-You see the error `User hash is invalid` when calling `Intercom('boot', ...)`.
+Users see the message "You do not have permission to view this page" or are redirected to an SSO error page after clicking a Help Center link.
 
 **Cause**  
-The identity verification hash was generated with the wrong secret or the wrong user data.
+The SSO configuration in Zendesk does not include the Help Center as an allowed redirect URI, or the user role lacks the "View Help Center" permission.
 
 **Fix**  
-Regenerate the hash on your server using your Intercom identity secret and this exact snippet:
-
-```javascript
-const crypto = require('crypto');
-const hash = crypto
-  .createHmac('sha256', process.env.INTERCOM_IDENTITY_SECRET)
-  .update(user.email)
-  .digest('hex');
-```
-
-Pass the new hash in the `user_hash` field when you boot the Messenger.
+1. In Zendesk Admin Center, go to Settings > Account > Security > Single sign-on.  
+2. Edit the SSO configuration and add `https://your-subdomain.zendesk.com/hc` to the Allowed redirect URLs list.  
+3. Save, then test with an incognito window.  
+4. If the error persists, open Guide > Settings > Permissions and grant the role "Help Center access: View articles".
 
 </Expandable>
 
-<Expandable title="Notifications arrive late or not at all" default-open="false">
+<Expandable title="Web Widget does not load or shows blank" default-open="false">
 
 **Problem**  
-Push or email notifications for new messages take minutes to appear.
+The web widget appears as a blank box or fails to load with the console error `zendeskWebWidget is not defined`.
 
 **Cause**  
-The notification channel is disabled or the device token is no longer valid.
+The widget snippet is placed before the required Zendesk script, or the Help Center domain is not added to the widget's allowed origins.
 
 **Fix**  
-Open your Intercom inbox and check the conversation for this status:
-
-```
-Notification failed: Invalid push token
-```
-
-Remove the stale token from the user profile, then ask the user to re-enable notifications in their app settings.
+1. Edit the document head and move the widget code block to the very end of the `<body>`.  
+2. In Admin Center, go to Channels > Widget > Settings > Security.  
+3. Add your Help Center URL under Allowed domains: `https://your-subdomain.zendesk.com`.  
+4. Save and hard-refresh the page.
 
 </Expandable>

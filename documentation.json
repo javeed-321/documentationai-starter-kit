@@ -1,13 +1,13 @@
 {
-  "name": "Intercom",
+  "name": "Zendesk",
   "colors": {
     "light": {
-      "brand": "#3B82F6",
+      "brand": "#03363D",
       "heading": "#1B1F24",
       "text": "#1B1F24"
     },
     "dark": {
-      "brand": "#87B1F6",
+      "brand": "#59E0F2",
       "heading": "#FFFFFF",
       "text": "#E5E7EB"
     }
@@ -30,13 +30,17 @@
             ]
           },
           {
-            "group": "FAQ",
+            "group": "FAQs",
             "icon": "help-circle",
             "expandable": false,
             "pages": [
               {
                 "title": "FAQ",
                 "path": "help-center/faq/getting-started"
+              },
+              {
+                "title": "Contact & Support",
+                "path": "help-center/contact"
               }
             ]
           },
@@ -48,17 +52,6 @@
               {
                 "title": "Troubleshooting",
                 "path": "help-center/troubleshooting/common-issues"
-              }
-            ]
-          },
-          {
-            "group": "Contact",
-            "icon": "folder",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Contact & Support",
-                "path": "help-center/contact"
               }
             ]
           }

@@ -1,24 +1,25 @@
 {
-  "id": "sk-uc-hc",
-  "testName": "Help Center only — Intercom",
-  "productName": "Intercom",
+  "id": "sk-hc-01",
+  "testName": "Zendesk - Customer Support (SaaS)",
+  "productName": "Zendesk",
   "source": "evals",
   "difficulty": "simple",
   "useCases": [
     "help-center"
   ],
   "tags": [
-    "v2-router",
     "help-center",
+    "support",
+    "saas",
     "simple"
   ],
   "passed": true,
-  "durationMs": 30562,
+  "durationMs": 24985,
   "totalFiles": 5,
   "validFiles": 5,
   "failedFiles": [],
   "totalAttempts": 5,
-  "tokens": 41116,
+  "tokens": 40398,
   "files": [
     "help-center.mdx",
     "help-center/faq/getting-started.mdx",
