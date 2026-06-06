@@ -1,69 +1,86 @@
 ---
 title: Troubleshooting
-description: Resolve common issues with your Intercom Help Center such as articles not appearing or search problems.
+description: >-
+  Resolve common issues with your Intercom Help Center such as articles not
+  appearing or search problems.
 ---
-
-We know how frustrating it is when your Help Center isn't behaving as expected. Use the quick checks below to get things working again.
+We know how frustrating it is when your Help Center isn't behaving as expected. Use the quick chec ks below to get things working again.
 
 ## Articles not publishing
 
-<Expandable title="Articles not publishing">
-Your newly written article stays stuck in Draft and never shows up on the live site.
+<Expandable title="Articles not publishing" default-open="false">
+  Your newly written article stays stuck in Draft and never shows up on the live site.
 
-**Common cause**  
-The article is saved but the parent collection has not been published, or the article itself is missing the final publish step.
+  **Common cause**\
+  The article is saved but the parent collection has not been published, or the article itself is missing the final publish step.
 
-**Fix**  
-1. Open the article in the editor.  
-2. Click **Publish** at the top right.  
-3. Go to the collection settings and make sure its status is set to **Live**.  
-4. Refresh the Help Center URL; the article should now appear within five minutes.
+  **Fix**
+
+  1. Open the article in the editor.
+
+  2. Click **Publish** at the top right.
+
+  3. Go to the collection settings and make sure its status is set to **Live**.
+
+  4. Refresh the Help Center URL; the article should now appear within five minutes.
 </Expandable>
 
 ## Search not returning results
 
-<Expandable title="Search not returning results">
-Visitors type a keyword that matches an article title, yet they see the message "No results found."
+<Expandable title="Search not returning results" default-open="false">
+  Visitors type a keyword that matches an article title, yet they see the message "No results found."
 
-**Common cause**  
-Search indexing has not finished or the article is excluded from search because its visibility is set to "Team only."
+  **Common cause**\
+  Search indexing has not finished or the article is excluded from search because its visibility is set to "Team only."
 
-**Fix**  
-1. Wait up to 15 minutes after publishing; indexing runs automatically.  
-2. Open the article settings and change Visibility to **Everyone**.  
-3. In the collection settings, confirm Search is toggled on.  
-4. Test again with an incognito window to rule out cached results.
+  **Fix**
+
+  1. Wait up to 15 minutes after publishing; indexing runs automatically.
+
+  2. Open the article settings and change Visibility to **Everyone**.
+
+  3. In the collection settings, confirm Search is toggled on.
+
+  4. Test again with an incognito window to rule out cached results.
 </Expandable>
 
 ## Styling issues
 
-<Expandable title="Styling issues">
-Custom CSS you added no longer applies, or the Help Center looks broken after an update.
+<Expandable title="Styling issues" default-open="false">
+  Custom CSS you added no longer applies, or the Help Center looks broken after an update.
 
-**Common cause**  
-The custom CSS file contains a syntax error, or the theme was switched without re-applying the overrides.
+  **Common cause**\
+  The custom CSS file contains a syntax error, or the theme was switched without re-applying the overrides.
 
-**Fix**  
-1. Go to **Settings → Appearance → Custom CSS**.  
-2. Paste your rules into a validator and remove any unclosed brackets.  
-3. Save, then hard-refresh the Help Center page (Ctrl + Shift + R).  
-4. If the issue persists, switch back to the default theme temporarily to confirm the custom file is the source.
+  **Fix**
+
+  1. Go to **Settings → Appearance → Custom CSS**.
+
+  2. Paste your rules into a validator and remove any unclosed brackets.
+
+  3. Save, then hard-refresh the Help Center page (Ctrl + Shift + R).
+
+  4. If the issue persists, switch back to the default theme temporarily to confirm the custom file is the source.
 </Expandable>
 
 ## Access control problems
 
-<Expandable title="Access control problems">
-Logged-in team members see "You do not have permission to view this collection" even though they should.
+<Expandable title="Access control problems" default-open="false">
+  Logged-in team members see "You do not have permission to view this collection" even though they should.
 
-**Common cause**  
-The collection's access setting restricts it to specific roles that the user does not have, or an old team permission is cached.
+  **Common cause**\
+  The collection's access setting restricts it to specific roles that the user does not have, or an old team permission is cached.
 
-**Fix**  
-1. Open the collection settings and review the **Who can view** list.  
-2. Add the missing team member or change the setting to **All team members**.  
-3. Ask the affected user to log out and log back in to clear the permission cache.  
-4. Test the Help Center link again from their account.
+  **Fix**
 
+  1. Open the collection settings and review the **Who can view** list.
+
+  2. Add the missing team member or change the setting to **All team members**.
+
+  3. Ask the affected user to log out and log back in to clear the permission cache.
+
+  4. Test the Help Center link again from their account.
 </Expandable>
 
-<CollectionList collection="help-center" />
+<CollectionList node="" />
+
