@@ -1,0 +1,24 @@
+{
+  "testName": "Analytics Platform with comparison operators",
+  "productName": "MetricsFlow",
+  "passed": true,
+  "durationMs": 45287,
+  "totalFiles": 11,
+  "validFiles": 11,
+  "failedFiles": [],
+  "totalAttempts": 11,
+  "tokens": 93115,
+  "files": [
+    "introduction.mdx",
+    "quickstart.mdx",
+    "guides/overview.mdx",
+    "api/introduction.mdx",
+    "api/authentication.mdx",
+    "api/quickstart.mdx",
+    "api/errors.mdx",
+    "changelog.mdx",
+    "roadmap.mdx",
+    "api-reference/openapi.yaml",
+    "documentation.json"
+  ]
+}

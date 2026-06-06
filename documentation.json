@@ -1,13 +1,13 @@
 {
-  "name": "Intercom",
+  "name": "MetricsFlow",
   "colors": {
     "light": {
-      "brand": "#3B82F6",
+      "brand": "#f59e0b",
       "heading": "#1B1F24",
       "text": "#1B1F24"
     },
     "dark": {
-      "brand": "#87B1F6",
+      "brand": "#F4BA59",
       "heading": "#FFFFFF",
       "text": "#E5E7EB"
     }
@@ -15,23 +15,64 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Help Center",
-        "icon": "help-circle",
-        "pages": [
-          {
-            "title": "Help Center",
-            "path": "help-center"
-          }
-        ],
+        "tab": "Guides",
+        "icon": "book-open",
         "groups": [
           {
-            "group": "FAQs",
-            "icon": "help-circle",
+            "group": "Getting started",
+            "icon": "rocket",
             "expandable": false,
             "pages": [
               {
-                "title": "FAQ",
-                "path": "help-center/faq/getting-started"
+                "title": "Introduction",
+                "path": "introduction"
+              },
+              {
+                "title": "Quickstart",
+                "path": "quickstart"
+              }
+            ]
+          },
+          {
+            "group": "Guides",
+            "icon": "book-open",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Feature Overview",
+                "path": "guides/overview"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Docs",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Getting started",
+            "icon": "rocket",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Introduction",
+                "path": "api/introduction"
+              },
+              {
+                "title": "Quickstart",
+                "path": "api/quickstart"
+              }
+            ]
+          },
+          {
+            "group": "Authentication",
+            "icon": "folder",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Authentication",
+                "path": "api/authentication"
               }
             ]
           },
@@ -41,19 +82,56 @@
             "expandable": false,
             "pages": [
               {
-                "title": "Troubleshooting",
-                "path": "help-center/troubleshooting/common-issues"
+                "title": "Error Codes",
+                "path": "api/errors"
               }
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "groups": [
           {
-            "group": "Contact",
+            "group": "API Reference",
+            "icon": "code",
+            "openapi": "api-reference/openapi.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "clock",
+        "groups": [
+          {
+            "group": "Changelog",
             "icon": "folder",
             "expandable": false,
             "pages": [
               {
-                "title": "Contact & Support",
-                "path": "help-center/contact"
+                "title": "Changelog",
+                "path": "changelog",
+                "show-sidebar": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Roadmap",
+        "icon": "map",
+        "groups": [
+          {
+            "group": "Roadmap",
+            "icon": "folder",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Roadmap",
+                "path": "roadmap",
+                "show-sidebar": false,
+                "show-toc": false
               }
             ]
           }

@@ -1,0 +1,68 @@
+---
+title: Authentication
+description: Secure your MetricsFlow API calls using API keys, OAuth2, and signed requests for production workloads.
+---
+
+## Overview
+
+MetricsFlow requires authentication on every request to the API. You send credentials with each call so the platform can verify identity and enforce permissions. Three methods are available: API keys for simple server-to-server access, OAuth2 for delegated user authorization, and request signing for environments that need extra integrity checks.
+
+Role-based access control applies to all methods. Each credential maps to a role that defines which endpoints and data scopes are reachable.
+
+## Authentication Methods
+
+<Tabs>
+  <Tab title="API Keys" icon="key">
+    API keys are long-lived tokens tied to a service account. Create them in the dashboard and rotate them on a schedule.
+
+    <ParamField header="X-API-Key" param-type="string" required="true">
+      The API key value. Prefix every request with this header.
+    </ParamField>
+  </Tab>
+  <Tab title="OAuth2" icon="lock">
+    OAuth2 uses short-lived access tokens obtained through the client credentials or authorization code flows.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Bearer token in the format `Bearer {access_token}`.
+    </ParamField>
+  </Tab>
+  <Tab title="Signed Requests" icon="shield">
+    Signed requests attach an HMAC signature computed from the request body, timestamp, and your secret.
+
+    <ParamField header="X-Signature" param-type="string" required="true">
+      Base64-encoded HMAC-SHA256 of the canonical request string.
+    </ParamField>
+    <ParamField header="X-Timestamp" param-type="string" required="true">
+      Unix timestamp in seconds when the signature was generated.
+    </ParamField>
+  </Tab>
+</Tabs>
+
+## Implementation Examples
+
+<CodeGroup tabs="cURL,JavaScript,Python">
+```bash
+curl -H "X-API-Key: YOUR_API_KEY" \
+     https://api.example.com/v1/metrics
+```
+
+```javascript
+const response = await fetch("https://api.example.com/v1/metrics", {
+  headers: { "X-API-Key": "YOUR_API_KEY" },
+});
+```
+
+```python
+import requests
+response = requests.get(
+    "https://api.example.com/v1/metrics",
+    headers={"X-API-Key": "YOUR_API_KEY"},
+)
+```
+</CodeGroup>
+
+## Security Best Practices
+
+<Callout kind="alert">
+Rotate API keys every 90 days. Never embed secrets in client-side code. Always send requests over TLS and validate the response signature when using signed requests.
+</Callout>
