@@ -1,109 +1,75 @@
 ---
 title: Troubleshooting
-description: Fix frequent problems with Intercom Messenger visibility, message delivery, and integrations.
+description: Resolve common problems with your Intercom integration and help center.
 ---
 
-## Messenger not loading
+## Common Issues
 
-<Expandable title="Messenger does not appear on your site" default-open="false">
+We understand how disruptive these problems can feel when you're trying to help customers. Each expandable below walks through a specific symptom, its likely cause, and the exact steps to resolve it.
 
-**Problem**  
-The Intercom Messenger stays hidden even after you embed the code.
+<Expandable title="Messenger not appearing" default-open="false">
 
-**Cause**  
-The install script failed to load because of a missing or incorrect workspace ID.
+The Intercom Messenger bubble fails to display on your site, leaving visitors without a way to reach support.
 
-**Fix**  
-Check your browser console for this exact error:
+**Cause:** The embed script references an incorrect workspace ID or loads after the page has already rendered.
+
+**Fix:** Open your site in a browser and check the console for this exact message:
 
 ```
-Intercom snippet missing app_id
+Intercom: Messenger failed to initialize. Verify your workspace ID.
 ```
 
-Open your page source and confirm the script tag contains your real workspace ID:
+Update the script tag in your HTML head to match the ID shown in your Intercom settings exactly:
 
 ```html
 <script>
   window.intercomSettings = { app_id: "YOUR_WORKSPACE_ID" };
 </script>
+<script async src="https://widget.intercom.io/widget/YOUR_WORKSPACE_ID"></script>
 ```
 
-Replace `YOUR_WORKSPACE_ID` with the ID from your Intercom settings and refresh the page.
-
-  1. Open the collection settings and review the **Who can view** list.
-
-  2. Add the missing team member or change the setting to **All team members**.
-
-  3. Ask the affected user to log out and log back in to clear the permission cache.
-
-  4. Test the Help Center link again from their account.
-</Expandable>
-
-<Expandable title="Webhook delivery keeps failing" default-open="false">
-
-**Problem**  
-Your server logs show repeated 4xx or 5xx responses when Intercom tries to reach your webhook URL.
-
-**Cause**  
-The endpoint returns an error or times out before Intercom finishes sending the payload.
-
-**Fix**  
-Test the endpoint yourself with curl and look for this response:
-
-```
-HTTP/1.1 401 Unauthorized
-```
-
-Update your handler to accept the request with this header check:
-
-```bash
-curl -X POST https://yourdomain.com/webhook \
-  -H "X-Hub-Signature: sha1=..." \
-  -d '{"type":"conversation.user.created"}'
-```
-
-Return HTTP 200 within three seconds and verify the signature before processing the event.
+Refresh the page and confirm the bubble appears in the bottom-right corner.
 
 </Expandable>
 
-<Expandable title="User identification returns an error" default-open="false">
+<Expandable title="Chat connection issues" default-open="false">
 
-**Problem**  
-You see the error `User hash is invalid` when calling `Intercom('boot', ...)`.
+Visitors see the Messenger but receive the error "Connection to Intercom failed. Please try again later." when they open a conversation.
 
-**Cause**  
-The identity verification hash was generated with the wrong secret or the wrong user data.
+**Cause:** A browser extension or content-security-policy header blocks the required WebSocket connection to Intercom servers.
 
-**Fix**  
-Regenerate the hash on your server using your Intercom identity secret and this exact snippet:
+**Fix:** Temporarily disable extensions and test again. If the issue persists, add these entries to your site's content-security-policy header:
 
-```javascript
-const crypto = require('crypto');
-const hash = crypto
-  .createHmac('sha256', process.env.INTERCOM_IDENTITY_SECRET)
-  .update(user.email)
-  .digest('hex');
+```
+connect-src https://api.intercom.io wss://nexus-websocket-a.intercom.io;
 ```
 
-Pass the new hash in the `user_hash` field when you boot the Messenger.
+Once updated, ask a test visitor to open the Messenger and start typing. The connection status should change from "Connecting..." to "Connected" within a few seconds.
 
 </Expandable>
 
-<Expandable title="Notifications arrive late or not at all" default-open="false">
+<Expandable title="Article search problems" default-open="false">
 
-**Problem**  
-Push or email notifications for new messages take minutes to appear.
+Search in the help center returns "No articles found" even though matching content exists in your Collection.
 
-**Cause**  
-The notification channel is disabled or the device token is no longer valid.
+**Cause:** Articles were published without being added to an active Collection, so the search index never included them.
 
-**Fix**  
-Open your Intercom inbox and check the conversation for this status:
+**Fix:** In your Intercom workspace, go to Help Center > Collections. Select the relevant Collection and click "Add articles." Choose the missing articles and save. Rebuild the search index by clicking "Update search" in Collection settings. Test the search term again in your live help center to confirm results now appear.
+
+</Expandable>
+
+<Expandable title="Notification failures" default-open="false">
+
+You receive the error "Notification delivery failed: 403 Forbidden" when testing email or in-app notifications for new help center articles.
+
+**Cause:** The notification rule references an outdated or revoked API token instead of the current workspace credentials.
+
+**Fix:** Generate a fresh access token in Intercom under Settings > Integrations > API keys. Replace the token in your notification rule configuration:
 
 ```
-Notification failed: Invalid push token
+Authorization: Bearer YOUR_NEW_ACCESS_TOKEN
 ```
 
-Remove the stale token from the user profile, then ask the user to re-enable notifications in their app settings.
+Save the rule and send a test notification to yourself. The delivery status should update to "Sent" within one minute.
 
 </Expandable>
