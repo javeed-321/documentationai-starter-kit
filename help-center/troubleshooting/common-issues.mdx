@@ -1,0 +1,77 @@
+---
+title: Troubleshooting
+description: Fix common Zendesk Help Center problems such as article visibility and search indexing.
+---
+
+## Common Issues
+
+You hit a snag while setting up your Help Center. Each expandable below walks through a real symptom, why it happens, and the exact steps to clear it.
+
+<Expandable title="Search returns no results" default-open="false">
+
+Articles do not appear in Help Center search even after publishing.
+
+**Cause**  
+The search index has not refreshed, or articles lack the required visibility setting.
+
+**Fix**  
+1. Open the article in the Zendesk Admin Center.  
+2. Set Visibility to Everyone and save.  
+3. Run this command in the Zendesk API console:  
+   ```bash
+   curl -u email@company.com/token:YOUR_API_TOKEN \
+   https://example.com/api/v2/search.json?query=type:article
+   ```  
+4. Wait five minutes, then test the search again from the Help Center.
+
+</Expandable>
+
+<Expandable title="Custom CSS overrides branding" default-open="false">
+
+Your logo and colors disappear after adding custom styles.
+
+**Cause**  
+A stylesheet rule targets a global class that Zendesk uses for the header.
+
+**Fix**  
+1. In Guide, go to Customize → Edit CSS.  
+2. Wrap your rules so they only affect the content area:  
+   ```css
+   .article-body h1 { color: #1a73e8; }
+   ```  
+3. Preview the change on a draft article before publishing.
+
+</Expandable>
+
+<Expandable title="Tickets still created despite deflection" default-open="false">
+
+Visitors bypass suggested articles and open a ticket anyway.
+
+**Cause**  
+The deflection widget is missing the correct article limit or the form is set to always show.
+
+**Fix**  
+1. Edit the Contact form in Admin Center.  
+2. Set Suggested articles to 5 and enable "Hide form until search is used."  
+3. Add this line to the widget embed code:  
+   ```html
+   data-deflection="true"
+   ```  
+4. Clear browser cache and test the flow as a visitor.
+
+</Expandable>
+
+<Expandable title="Widget fails to load on page" default-open="false">
+
+The embed script throws `Failed to load resource: net::ERR_BLOCKED_BY_CLIENT`.
+
+**Cause**  
+A content blocker or missing domain allow-list prevents the script from running.
+
+**Fix**  
+1. In Zendesk, go to Channels → Widget → Security.  
+2. Add your site domain under Allowed domains: `https://support.example.com`.  
+3. Replace the embed snippet with the updated version that includes the `nonce` attribute if you use a CSP header.  
+4. Reload the page and confirm the widget appears.
+
+</Expandable>
