@@ -1,87 +1,44 @@
 ---
 title: Troubleshooting
-description: Fix common problems with checkout, payments, apps, and store performance on Shopify.
+description: Step-by-step fixes for frequent Shopify problems such as checkout errors, app conflicts, and theme issues.
 ---
 
-## Common Issues
+## Quick Fixes for Stuck Moments
 
-<Callout kind="info">
-Review the exact error message shown in your Shopify admin before trying these fixes.
+We know how frustrating it feels when something breaks right before a sale. Each section below shows the exact symptom you see, why it happens, and the fastest way to get moving again.
+
+<Expandable title="Payment declined at checkout" default-open="false">
+Problem: Customers see the message `Payment declined: Your card was declined by the issuer.`
+
+Cause: The payment gateway rejects the card because of mismatched billing details or temporary holds from the bank.
+
+Fix: Ask the customer to re-enter the card with the exact billing address on file. If the error repeats, switch the order to manual capture in the order details screen and contact the bank directly with the authorization code shown in the transaction log.
+</Expandable>
+
+<Expandable title="Inventory not syncing across sales channels" default-open="false">
+Problem: Stock levels show available in one channel but sold out in another, with the message `Sync failed: Inventory update rejected.`
+
+Cause: A third-party warehouse app is overwriting Shopify's native stock count before the sync job finishes.
+
+Fix: Pause the warehouse app in the Apps section, then run a manual inventory recount from the product page. Once counts match, re-enable the app and set its sync interval to every 15 minutes instead of real time.
+</Expandable>
+
+<Expandable title="Theme images appear broken or misaligned" default-open="false">
+Problem: Product photos load as blank squares or overlap text, and the browser console shows `Failed to load resource: net::ERR_BLOCKED_BY_CLIENT`.
+
+Cause: The theme's image compression setting conflicts with a browser extension or content blocker.
+
+Fix: In the theme editor, open the product template, turn off automatic image optimization, save, and hard-refresh the storefront. If the issue continues, duplicate the theme, remove any custom liquid code that resizes images, and publish the copy.
+</Expandable>
+
+<Expandable title="App fails to install with permission error" default-open="false">
+Problem: The install button shows `App could not be installed. Missing write_products scope.`
+
+Cause: The app requests more access than your current staff account permissions allow.
+
+Fix: Ask the store owner to grant you full permissions in Settings > Users and permissions. Then retry the install from the Shopify App Store page. If the error persists, contact the app developer with the exact scope name listed in the error.
+</Expandable>
+
+<Callout kind="tip">
+Still seeing the same message after trying the steps? Reply to this page with the exact error text and we will walk through the next check together.
 </Callout>
-
-<Expandable title="Payment declines at checkout" default-open="false">
-
-**Problem**
-
-Customers see the message "Your payment was declined by the card issuer" and the order fails.
-
-**Cause**
-
-The decline often stems from mismatched billing details or temporary holds by the payment processor.
-
-**Fix**
-
-1. Open the order in Shopify admin and note the exact decline code.
-2. Ask the customer to verify the card number, expiry date, and billing address match what they entered.
-3. In Settings > Payments, disable and re-enable the payment provider, then test with a new checkout.
-
-</Expandable>
-
-<Expandable title="App conflicts blocking checkout" default-open="false">
-
-**Problem**
-
-Checkout shows "An unexpected error occurred. Please try again later" after installing or updating an app.
-
-**Cause**
-
-Two apps are trying to modify the same checkout fields at the same time.
-
-**Fix**
-
-```bash
-# In Shopify admin, go to Apps > Installed apps
-# Temporarily disable the most recently added app
-# Clear browser cache and attempt checkout again
-```
-
-Re-enable apps one at a time while testing checkout until the conflict appears.
-
-</Expandable>
-
-<Expandable title="Theme errors on product pages" default-open="false">
-
-**Problem**
-
-Product pages display "Liquid error: 'product' is not a valid object" after a theme update.
-
-**Cause**
-
-A section or block references a product object that no longer exists in the current theme file.
-
-**Fix**
-
-1. In Online Store > Themes, click Actions > Edit code on your active theme.
-2. Search for the file mentioned in the error (usually `product-template.liquid`).
-3. Replace the broken object reference with `{{ product | default: collection.products.first }}`.
-4. Save and preview the page.
-
-</Expandable>
-
-<Expandable title="Inventory sync failures" default-open="false">
-
-**Problem**
-
-The admin shows "Inventory levels could not be updated for SKU ABC123" and stock counts stay outdated.
-
-**Cause**
-
-A third-party app or CSV import is overwriting Shopify's inventory API calls.
-
-**Fix**
-
-- Go to Products > Inventory and select the affected location.
-- Click "Sync now" and watch the status column for errors.
-- If the error repeats, disconnect the conflicting sales channel in Settings > Sales channels, then reconnect it.
-
-</Expandable>
