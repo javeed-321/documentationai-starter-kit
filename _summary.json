@@ -1,0 +1,29 @@
+{
+  "id": "sk-uc-kb",
+  "testName": "Internal Knowledge Base only — Notion",
+  "productName": "Notion",
+  "source": "evals",
+  "difficulty": "simple",
+  "useCases": [
+    "internal-kb"
+  ],
+  "tags": [
+    "v2-router",
+    "internal-kb",
+    "simple"
+  ],
+  "passed": true,
+  "durationMs": 38512,
+  "totalFiles": 5,
+  "validFiles": 5,
+  "failedFiles": [],
+  "totalAttempts": 5,
+  "tokens": 41530,
+  "files": [
+    "welcome.mdx",
+    "new-hire-guide.mdx",
+    "processes/template.mdx",
+    "runbooks/template.mdx",
+    "documentation.json"
+  ]
+}

@@ -1,0 +1,48 @@
+---
+title: Runbook Template
+description: Standardized template for creating operational runbooks in Notion covering common incidents and procedures.
+---
+
+## Trigger
+
+Incidents are detected through monitoring alerts sent to the on-call channel or by direct reports from users. Triage begins by confirming the scope in the internal dashboard and checking recent changes in the Notion workspace settings.
+
+## Steps
+
+Follow these steps to remediate the incident.
+
+<Steps>
+  <Step title="Verify the alert" icon="check-circle">
+    Confirm the affected page or database by running a workspace search.
+
+    ```bash
+    notion search --query "affected-page-title" --workspace "production"
+    ```
+  </Step>
+  <Step title="Isolate the issue" icon="shield">
+    Pause automated sync jobs if the problem involves external integrations.
+
+    ```bash
+    notion integrations pause --id INTEGRATION_ID
+    ```
+  </Step>
+  <Step title="Apply the fix" icon="settings">
+    Update the relevant property or permission setting through the workspace admin panel.
+  </Step>
+</Steps>
+
+## Escalation Path
+
+<Callout kind="alert">
+If the issue persists after 15 minutes or affects more than 50 users, page the platform team lead using the on-call rotation. Provide the incident ID and current status in the escalation message.
+</Callout>
+
+## Rollback
+
+Revert the last change if remediation does not restore service.
+
+```bash
+notion workspace revert --change-id CHANGE_ID --confirm
+```
+
+Document the outcome and any follow-up actions in the incident record before closing the ticket.
