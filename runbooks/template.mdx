@@ -1,48 +1,40 @@
 ---
 title: Runbook Template
-description: Standardized template for creating operational runbooks in Notion covering common incidents and procedures.
+description: Template for creating operational runbooks stored in the Notion workspace.
 ---
 
 ## Trigger
 
-Incidents are detected through monitoring alerts sent to the on-call channel or by direct reports from users. Triage begins by confirming the scope in the internal dashboard and checking recent changes in the Notion workspace settings.
+This runbook activates when an incident affects pages or databases in the Notion workspace. Common triggers include sync failures between the desktop client and the server, permission errors on shared pages, or query timeouts when users access embedded views. Check the workspace activity log before proceeding.
 
 ## Steps
 
-Follow these steps to remediate the incident.
+Open the incident page in Notion and embed the status database at the top of the page. Use the /embed command and select the "Incident Status" database view filtered to the current date.
 
-<Steps>
-  <Step title="Verify the alert" icon="check-circle">
-    Confirm the affected page or database by running a workspace search.
+Update the database entry to mark the incident as "In Progress". Then run the following command to force a full sync on the affected workspace:
 
-    ```bash
-    notion search --query "affected-page-title" --workspace "production"
-    ```
-  </Step>
-  <Step title="Isolate the issue" icon="shield">
-    Pause automated sync jobs if the problem involves external integrations.
+```bash
+curl -X POST https://api.example.com/notion/sync \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"workspace_id": "ws_12345"}'
+```
 
-    ```bash
-    notion integrations pause --id INTEGRATION_ID
-    ```
-  </Step>
-  <Step title="Apply the fix" icon="settings">
-    Update the relevant property or permission setting through the workspace admin panel.
-  </Step>
-</Steps>
+Verify that all linked pages load without errors. If the embedded database shows stale data, refresh the view manually from the page menu.
 
 ## Escalation Path
 
 <Callout kind="alert">
-If the issue persists after 15 minutes or affects more than 50 users, page the platform team lead using the on-call rotation. Provide the incident ID and current status in the escalation message.
+If the sync command returns a 5xx error or the database embed fails to update, contact the on-call engineer at oncall@example.com or page via the internal Slack channel #notion-oncall. Provide the incident ID and the last sync timestamp from the workspace logs.
 </Callout>
 
 ## Rollback
 
-Revert the last change if remediation does not restore service.
+Revert the workspace to the last known good state by restoring from the Notion page history. Select the version saved before the incident trigger time and publish the restored page. Run the sync command again with the rollback flag:
 
 ```bash
-notion workspace revert --change-id CHANGE_ID --confirm
+curl -X POST https://api.example.com/notion/sync \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"workspace_id": "ws_12345", "rollback": true}'
 ```
 
-Document the outcome and any follow-up actions in the incident record before closing the ticket.
+Confirm that the status database reflects the restored state before closing the incident.
