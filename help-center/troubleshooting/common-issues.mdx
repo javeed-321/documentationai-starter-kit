@@ -1,77 +1,68 @@
 ---
 title: Troubleshooting
-description: Fix common Zendesk Help Center problems such as article visibility and search indexing.
+description: Resolve issues with AI resolutions, ticket routing, integrations, and performance in the Zendesk platform.
 ---
 
 ## Common Issues
 
-You hit a snag while setting up your Help Center. Each expandable below walks through a real symptom, why it happens, and the exact steps to clear it.
+Use the sections below to identify symptoms, understand root causes, and apply targeted fixes for Zendesk Resolution Platform.
 
-<Expandable title="Search returns no results" default-open="false">
+<Expandable title="AI agent fails to resolve complex tickets" default-open="false">
+Problem: The AI agent returns the error message `Agent unable to determine resolution path for ticket #45231`.
 
-Articles do not appear in Help Center search even after publishing.
+Cause: The agent lacks access to updated knowledge base articles or required custom fields that define resolution criteria.
 
-**Cause**  
-The search index has not refreshed, or articles lack the required visibility setting.
+Fix: Update the agent's training data and verify field permissions.
 
-**Fix**  
-1. Open the article in the Zendesk Admin Center.  
-2. Set Visibility to Everyone and save.  
-3. Run this command in the Zendesk API console:  
-   ```bash
-   curl -u email@company.com/token:YOUR_API_TOKEN \
-   https://example.com/api/v2/search.json?query=type:article
-   ```  
-4. Wait five minutes, then test the search again from the Help Center.
+1. Navigate to AI agents settings.
+2. Select the affected agent and click Retrain.
+3. Add the missing knowledge base articles.
+4. Ensure the ticket fields `resolution_category` and `priority_level` are visible to the agent role.
 
+Test the ticket again after saving changes.
 </Expandable>
 
-<Expandable title="Custom CSS overrides branding" default-open="false">
+<Expandable title="Ticket triggers route inquiries to the wrong queue" default-open="false">
+Problem: Tickets matching your automation rules land in the general queue instead of the specialized support queue.
 
-Your logo and colors disappear after adding custom styles.
+Cause: A recent change to trigger conditions conflicts with an existing automation that runs first.
 
-**Cause**  
-A stylesheet rule targets a global class that Zendesk uses for the header.
+Fix: Reorder triggers and refine the condition logic.
 
-**Fix**  
-1. In Guide, go to Customize → Edit CSS.  
-2. Wrap your rules so they only affect the content area:  
-   ```css
-   .article-body h1 { color: #1a73e8; }
-   ```  
-3. Preview the change on a draft article before publishing.
+1. Go to Admin Center then Triggers.
+2. Locate the trigger named `Route to Tier 2`.
+3. Move it above any broader catch-all triggers.
+4. Update the condition to include `channel equals email` AND `tags contains enterprise`.
 
+Save and retest with a sample ticket.
 </Expandable>
 
-<Expandable title="Tickets still created despite deflection" default-open="false">
+<Expandable title="Integration sync fails with external CRM" default-open="false">
+Problem: The sync status shows `Sync error: 409 Conflict on contact record update`.
 
-Visitors bypass suggested articles and open a ticket anyway.
+Cause: Duplicate contact records exist in the connected CRM due to mismatched email normalization rules.
 
-**Cause**  
-The deflection widget is missing the correct article limit or the form is set to always show.
+Fix: Align deduplication settings and force a manual resync.
 
-**Fix**  
-1. Edit the Contact form in Admin Center.  
-2. Set Suggested articles to 5 and enable "Hide form until search is used."  
-3. Add this line to the widget embed code:  
-   ```html
-   data-deflection="true"
-   ```  
-4. Clear browser cache and test the flow as a visitor.
+1. Open Marketplace integrations and select your CRM connector.
+2. Choose Settings then Deduplication rules.
+3. Enable Normalize email domains.
+4. Click Resync all contacts.
 
+Monitor the sync log for successful completion.
 </Expandable>
 
-<Expandable title="Widget fails to load on page" default-open="false">
+<Expandable title="Analytics dashboard shows mismatched ticket counts" default-open="false">
+Problem: The resolution analytics report displays ticket totals that differ by 12 percent from the live ticket view.
 
-The embed script throws `Failed to load resource: net::ERR_BLOCKED_BY_CLIENT`.
+Cause: Cached data from a recent platform update has not refreshed for the selected date range.
 
-**Cause**  
-A content blocker or missing domain allow-list prevents the script from running.
+Fix: Clear the analytics cache and adjust the reporting interval.
 
-**Fix**  
-1. In Zendesk, go to Channels → Widget → Security.  
-2. Add your site domain under Allowed domains: `https://support.example.com`.  
-3. Replace the embed snippet with the updated version that includes the `nonce` attribute if you use a CSP header.  
-4. Reload the page and confirm the widget appears.
+1. Visit Reporting and analytics.
+2. Select the affected dashboard.
+3. Click the three-dot menu then choose Clear cache.
+4. Change the date range to exclude today, then refresh.
 
+The numbers should align within a few minutes.
 </Expandable>
