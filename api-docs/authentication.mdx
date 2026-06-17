@@ -1,0 +1,66 @@
+---
+title: Authentication
+description: Authenticate Vercel API requests using tokens, OAuth, and scoped access controls.
+---
+
+## Overview
+
+All requests to the Vercel API require authentication. You supply credentials via the Authorization header. Vercel supports personal access tokens, team-scoped tokens, and OAuth 2.0 flows. Choose the method that matches your use case and least-privilege requirements.
+
+## Authentication Methods
+
+<Tabs>
+  <Tab title="Personal Access Token" icon="key">
+    Generate a token from your account settings. The token inherits your user permissions and can be scoped to specific teams.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Bearer token value. Prefix with `Bearer `.
+    </ParamField>
+  </Tab>
+  <Tab title="Team Access Token" icon="users">
+    Create a token that belongs to a team. Use this token when your automation acts on behalf of the team rather than an individual.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Bearer token value scoped to the target team.
+    </ParamField>
+  </Tab>
+  <Tab title="OAuth 2.0" icon="lock">
+    Register an OAuth application to obtain access tokens with fine-grained scopes. Recommended for third-party integrations.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Bearer OAuth access token.
+    </ParamField>
+  </Tab>
+</Tabs>
+
+## Implementation
+
+Use the following examples to authenticate requests in your preferred language.
+
+<CodeGroup tabs="cURL,JavaScript,Python">
+```bash
+curl https://api.example.com/v1/projects \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+```javascript
+const res = await fetch("https://api.example.com/v1/projects", {
+  headers: {
+    Authorization: "Bearer YOUR_TOKEN",
+  },
+});
+```
+
+```python
+import requests
+
+headers = {"Authorization": "Bearer YOUR_TOKEN"}
+response = requests.get("https://api.example.com/v1/projects", headers=headers)
+```
+</CodeGroup>
+
+## Security Recommendations
+
+<Callout kind="alert">
+Store tokens in environment variables, never commit them to source control. Rotate tokens regularly and grant only the minimum scopes required for each integration. For CI environments, prefer short-lived OAuth tokens or team tokens with explicit project restrictions.
+</Callout>

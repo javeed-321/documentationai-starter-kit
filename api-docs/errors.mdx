@@ -1,0 +1,106 @@
+---
+title: Error Codes
+description: Common Vercel API error responses, status codes, and guidance for handling deployment or AI failures.
+---
+
+## Deployment and Build Errors
+
+<Expandable title="Error: Deployment failed with code BUILD_FAILED">
+Problem: A deployment returns status `400` with message `BUILD_FAILED`.
+
+Cause: The build step encountered an unrecoverable error such as missing environment variables or invalid configuration in `vercel.json`.
+
+Fix: Inspect the build logs for the exact failing command, then add any required variables under Project Settings and redeploy.
+
+```bash
+vercel env add DATABASE_URL
+vercel deploy --prod
+```
+
+</Expandable>
+
+<Expandable title="Error: Fluid Compute timeout after 300s">
+Problem: Long-running serverless functions return `504` with `FUNCTION_TIMEOUT`.
+
+Cause: The workflow exceeded the default 300-second limit on Fluid Compute instances.
+
+Fix: Split the task into smaller steps or enable Workflow orchestration for tasks that require extended execution.
+
+```json
+{
+  "functions": {
+    "api/workflow.ts": {
+      "maxDuration": 900
+    }
+  }
+}
+```
+
+</Expandable>
+
+## Authentication and Permission Errors
+
+<Expandable title="Error: Unauthorized request">
+Problem: API calls return HTTP `401` with body `{"error":"UNAUTHORIZED"}`.
+
+Cause: The `Authorization` header is missing or contains an invalid Vercel access token.
+
+Fix: Generate a new token from the dashboard and include it correctly.
+
+```bash
+curl -H "Authorization: Bearer YOUR_VERCEL_TOKEN" \
+  https://api.vercel.com/v2/deployments
+```
+
+</Expandable>
+
+<Expandable title="Error: Insufficient scope for operation">
+Problem: Requests fail with `403` and message `INSUFFICIENT_SCOPE`.
+
+Cause: The token lacks the required scopes for the attempted action such as creating AI Gateway keys.
+
+Fix: Create a new token with at least `ai:write` and `deployment:write` scopes.
+
+</Expandable>
+
+## AI Gateway Rate-Limit Responses
+
+<Expandable title="Error: Rate limit exceeded">
+Problem: AI model requests return `429` with header `Retry-After: 60`.
+
+Cause: The project exceeded the AI Gateway per-minute quota for the chosen model.
+
+Fix: Implement exponential backoff or request a higher quota through the dashboard.
+
+```javascript
+const res = await fetch("https://api.vercel.com/v1/ai/generate", {
+  headers: { Authorization: "Bearer YOUR_TOKEN" },
+});
+if (res.status === 429) {
+  await new Promise(r => setTimeout(r, 60000));
+}
+```
+
+</Expandable>
+
+## Retry Strategies and Debugging
+
+<Expandable title="Recommended retry logic">
+Problem: Transient network or rate-limit errors interrupt client code.
+
+Cause: Client does not respect `Retry-After` or exponential backoff.
+
+Fix: Use the following pattern for all Vercel API calls.
+
+```javascript
+async function withRetry(fn, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    const res = await fn();
+    if (res.status < 500 && res.status !== 429) return res;
+    await new Promise(r => setTimeout(r, 1000 * 2 ** i));
+  }
+  throw new Error("Max retries exceeded");
+}
+```
+
+</Expandable>

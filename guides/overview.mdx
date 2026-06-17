@@ -1,0 +1,90 @@
+---
+title: Feature Overview
+description: Detailed tour of Vercel core services, AI Cloud products, security tooling, and developer workflows.
+---
+
+## Overview
+
+Vercel provides a unified platform for building, deploying, and scaling web applications. From the moment you connect a Git repository, automated pipelines handle builds and previews while Fluid Compute provisions resources on demand. AI Cloud tools add model access, safe execution environments, and agent capabilities. Security controls protect every deployment with DDoS mitigation, a web application firewall, and bot detection.
+
+## CI/CD Pipelines and Previews
+
+Every push triggers an instant build that produces a unique preview URL. Teams review changes in isolation before promotion to production.
+
+<Callout kind="info">
+  Preview URLs remain live until you delete the deployment or the branch is removed.
+</Callout>
+
+## Fluid Compute and Serverless Functions
+
+Fluid Compute automatically scales serverless functions from zero to thousands of instances. You write standard JavaScript or TypeScript without managing servers or containers.
+
+```javascript
+export default function handler(req, res) {
+  res.status(200).json({ message: "Hello from Vercel" });
+}
+```
+
+## AI-Specific Tools and Sandboxing
+
+Vercel AI Cloud supplies a single endpoint for multiple models, an isolated sandbox for code execution, and an agent that understands your project structure.
+
+<Tabs>
+  <Tab title="Gateway" icon="terminal">
+    Route requests to any supported model through one unified URL.
+  </Tab>
+  <Tab title="Sandbox" icon="lock">
+    Execute untrusted code inside secure, ephemeral containers.
+  </Tab>
+</Tabs>
+
+## Security Features
+
+Protect production traffic with built-in controls that require no additional infrastructure.
+
+<Columns cols={3}>
+  <Card title="DDoS Protection" icon="shield" href="#">
+    Automatic mitigation at the edge for all plans.
+  </Card>
+  <Card title="Web Application Firewall" icon="lock" href="#">
+    Custom rules to block malicious requests.
+  </Card>
+  <Card title="BotID" icon="user-check" href="#">
+    Invisible detection that distinguishes bots from real users.
+  </Card>
+</Columns>
+
+## Code Examples
+
+<CodeGroup tabs="JavaScript,TypeScript">
+```javascript
+import { ai } from "@vercel/ai";
+
+const result = await ai.chat({
+  model: "default",
+  messages: [{ role: "user", content: "Explain edge caching" }],
+});
+```
+```typescript
+import { ai } from "@vercel/ai";
+
+const result = await ai.chat({
+  model: "default",
+  messages: [{ role: "user", content: "Explain edge caching" }],
+});
+```
+</CodeGroup>
+
+## Best Practices
+
+<Expandable title="Optimize preview workflows" default-open="false">
+
+Limit concurrent builds by configuring branch ignore rules in your project settings. This keeps preview costs predictable while maintaining fast feedback loops.
+
+</Expandable>
+
+<Expandable title="Secure AI endpoints" default-open="false">
+
+Apply rate limits and origin checks on AI Gateway routes. Combine BotID with WAF rules to block automated abuse before it reaches your models.
+
+</Expandable>

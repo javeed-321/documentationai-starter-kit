@@ -1,0 +1,95 @@
+---
+title: Quickstart
+description: Make your first authenticated calls to the Vercel API to create deployments and query projects.
+---
+
+## Prerequisites
+
+<Callout kind="info">
+
+Create a Vercel account and generate an API token before making requests. All examples use Bearer token authentication.
+
+</Callout>
+
+## Obtain an API Token
+
+<Steps>
+  <Step title="Create a token">
+
+    Log in to your account dashboard and navigate to the tokens section. Generate a new token with deployment scope.
+
+  </Step>
+  <Step title="Store the token">
+
+    Save the token value securely. Use it in the Authorization header for every request.
+
+  </Step>
+</Steps>
+
+## Create a Project
+
+Use the projects endpoint to create a new project from a Git repository.
+
+```bash
+curl -X POST https://api.example.com/v2/projects \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "my-app",
+    "gitRepository": {
+      "url": "https://github.com/example/my-app"
+    }
+  }'
+```
+
+## Trigger a Deployment
+
+Deploy the project by creating a new deployment.
+
+<CodeGroup tabs="cURL,Node.js">
+```bash
+curl -X POST https://api.example.com/v13/deployments \
+  -H "Authorization: Bearer YOUR_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "project": "prj_abc123",
+    "target": "production"
+  }'
+```
+
+```js
+const res = await fetch("https://api.example.com/v13/deployments", {
+  method: "POST",
+  headers: {
+    Authorization: "Bearer YOUR_API_TOKEN",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    project: "prj_abc123",
+    target: "production",
+  }),
+});
+const data = await res.json();
+console.log(data);
+```
+</CodeGroup>
+
+## List AI Resources
+
+Query available AI resources attached to your account.
+
+```bash
+curl https://api.example.com/v1/ai/resources \
+  -H "Authorization: Bearer YOUR_API_TOKEN"
+```
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Projects API" icon="folder" href="#projects">
+    Manage projects and settings.
+  </Card>
+  <Card title="Deployments API" icon="rocket" href="#deployments">
+    Inspect and promote deployments.
+  </Card>
+</Columns>

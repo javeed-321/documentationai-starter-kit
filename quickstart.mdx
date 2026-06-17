@@ -1,0 +1,69 @@
+---
+title: Quickstart
+description: Deploy your first application to Vercel from Git in minutes and enable AI features.
+---
+
+## Prerequisites
+
+<Callout kind="info">
+
+You need a Git repository hosted on GitHub, GitLab, or Bitbucket and a free Vercel account.
+
+</Callout>
+
+## Deploy from Git
+
+<Steps>
+  <Step title="Import your repository">
+    Go to the Vercel dashboard and click **Add New Project**. Select the repository that contains your application.
+
+  </Step>
+  <Step title="Choose framework preset">
+    Vercel automatically detects your framework. Select the Next.js preset for instant configuration of build settings and environment variables.
+
+  </Step>
+  <Step title="Deploy">
+    Click **Deploy**. Vercel installs dependencies, builds your application, and provisions a production URL in seconds.
+
+  </Step>
+</Steps>
+
+## Enable AI features
+
+Add the AI SDK and connect to the AI Gateway with a single environment variable.
+
+<CodeGroup tabs="npm,yarn">
+```bash
+npm install ai
+```
+
+```bash
+yarn add ai
+```
+</CodeGroup>
+
+Set your AI Gateway key in the Vercel dashboard under Project Settings, then redeploy. Your application can now call any supported model through one endpoint.
+
+```typescript
+import { generateText } from "ai";
+
+const { text } = await generateText({
+  model: "openai/gpt-4o",
+  prompt: "Explain edge computing in one sentence.",
+});
+```
+
+## Preview deployments and custom domains
+
+Every push to a non-production branch creates an automatic preview deployment with its own URL. Attach a custom domain from Project Settings to route traffic through Vercel's global edge network with automatic SSL.
+
+## Next steps
+
+<Columns cols={2}>
+  <Card title="AI Gateway" icon="zap" href="#">
+    Route requests to dozens of models through a single endpoint.
+  </Card>
+  <Card title="Fluid Compute" icon="cpu" href="#">
+    Run serverless functions that scale with your workload.
+  </Card>
+</Columns>
