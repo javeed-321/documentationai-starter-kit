@@ -1,44 +1,84 @@
 ---
 title: Troubleshooting
-description: Step-by-step fixes for frequent Shopify problems such as checkout errors, app conflicts, and theme issues.
+description: Step-by-step fixes for frequent Shopify store problems.
 ---
 
-## Quick Fixes for Stuck Moments
-
-We know how frustrating it feels when something breaks right before a sale. Each section below shows the exact symptom you see, why it happens, and the fastest way to get moving again.
+## Checkout and payment issues
 
 <Expandable title="Payment declined at checkout" default-open="false">
-Problem: Customers see the message `Payment declined: Your card was declined by the issuer.`
+Problem: Customers see the message "Your payment couldn't be processed. Please try again or use a different payment method." during checkout.
 
-Cause: The payment gateway rejects the card because of mismatched billing details or temporary holds from the bank.
+Cause: The payment gateway rejects the transaction due to mismatched billing details or insufficient funds on the customer's card.
 
-Fix: Ask the customer to re-enter the card with the exact billing address on file. If the error repeats, switch the order to manual capture in the order details screen and contact the bank directly with the authorization code shown in the transaction log.
+Fix: Ask the customer to double-check their billing address matches the card issuer records. If the error persists, switch the payment method in Shopify admin under Settings > Payments and test with a different provider such as Shopify Payments.
+
 </Expandable>
 
-<Expandable title="Inventory not syncing across sales channels" default-open="false">
-Problem: Stock levels show available in one channel but sold out in another, with the message `Sync failed: Inventory update rejected.`
+<Expandable title="Checkout page fails to load" default-open="false">
+Problem: The checkout page shows a blank screen or spinner that never completes.
 
-Cause: A third-party warehouse app is overwriting Shopify's native stock count before the sync job finishes.
+Cause: A required script from an installed sales channel or app is blocked by the browser.
 
-Fix: Pause the warehouse app in the Apps section, then run a manual inventory recount from the product page. Once counts match, re-enable the app and set its sync interval to every 15 minutes instead of real time.
+Fix: In Shopify admin, go to Settings > Checkout and remove any custom scripts under Additional scripts. Save changes, then clear your browser cache and test the checkout again.
+
 </Expandable>
 
-<Expandable title="Theme images appear broken or misaligned" default-open="false">
-Problem: Product photos load as blank squares or overlap text, and the browser console shows `Failed to load resource: net::ERR_BLOCKED_BY_CLIENT`.
+## Inventory and order sync errors
 
-Cause: The theme's image compression setting conflicts with a browser extension or content blocker.
+<Expandable title="Inventory not updating after sale" default-open="false">
+Problem: Stock levels remain the same even though an order was placed and paid for.
 
-Fix: In the theme editor, open the product template, turn off automatic image optimization, save, and hard-refresh the storefront. If the issue continues, duplicate the theme, remove any custom liquid code that resizes images, and publish the copy.
+Cause: Automatic inventory tracking is disabled for the product variant.
+
+Fix: Open the product in Shopify admin, select the variant, and enable Track quantity. Save, then manually adjust the inventory count under Inventory to sync the correct number.
+
 </Expandable>
 
-<Expandable title="App fails to install with permission error" default-open="false">
-Problem: The install button shows `App could not be installed. Missing write_products scope.`
+<Expandable title="Order fails to sync to fulfillment service" default-open="false">
+Problem: New orders show the error "Unable to sync order to fulfillment service. Error code: 422".
 
-Cause: The app requests more access than your current staff account permissions allow.
+Cause: The fulfillment app lacks permission to access order data.
 
-Fix: Ask the store owner to grant you full permissions in Settings > Users and permissions. Then retry the install from the Shopify App Store page. If the error persists, contact the app developer with the exact scope name listed in the error.
+Fix: Go to Settings > Apps and sales channels, locate your fulfillment app, and click Manage permissions. Grant full access to orders and inventory, then reinstall the app if the error continues.
+
 </Expandable>
 
-<Callout kind="tip">
-Still seeing the same message after trying the steps? Reply to this page with the exact error text and we will walk through the next check together.
-</Callout>
+## Theme and customization bugs
+
+<Expandable title="Custom CSS not appearing on storefront" default-open="false">
+Problem: Changes made in the theme editor do not show on the live site.
+
+Cause: The theme is loading a cached version of the stylesheet.
+
+Fix: In the theme editor, click the three-dot menu and select Publish. Then append `?v=2` to the end of your store URL to force a cache refresh.
+
+</Expandable>
+
+<Expandable title="Section settings disappear after save" default-open="false">
+Problem: Added sections vanish from the page layout after clicking Save.
+
+Cause: The section uses an unsupported block type from a removed app.
+
+Fix: Open the theme code editor, locate the section file under Sections, and remove any references to blocks that start with `app--`. Save and reload the theme editor.
+
+</Expandable>
+
+## App and integration issues
+
+<Expandable title="App fails to connect to store" default-open="false">
+Problem: The app installation screen shows "App could not be installed. API access request denied."
+
+Cause: The app requests scopes that conflict with your current plan limits.
+
+Fix: Upgrade to a plan that supports the required API scopes, then retry the installation from the Shopify App Store.
+
+</Expandable>
+
+<Expandable title="Data not syncing from connected sales channel" default-open="false">
+Problem: Products added in a marketplace channel do not appear in Shopify admin.
+
+Cause: The channel connection uses outdated OAuth tokens.
+
+Fix: Disconnect the channel under Settings > Sales channels, then reconnect it and approve the new permission request when prompted.
+
+</Expandable>
