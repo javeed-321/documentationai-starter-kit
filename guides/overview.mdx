@@ -1,0 +1,93 @@
+---
+title: Payments Overview
+description: Core concepts for accepting payments, handling refunds, and managing transactions.
+---
+
+## Overview
+
+Stripe provides the infrastructure to accept payments across online, in-app, and in-person channels. You define the payment methods you support, choose a checkout experience, and handle post-payment events such as refunds and disputes through a single set of APIs.
+
+## Payment Methods
+
+Stripe supports dozens of payment methods in over 135 currencies. Choose the combination that matches your customers and geography.
+
+<Columns cols={3}>
+  <Card title="Cards" icon="credit-card" href="#">
+    Accept Visa, Mastercard, and local schemes worldwide.
+  </Card>
+  <Card title="Bank debits" icon="landmark" href="#">
+    ACH, Bacs, and SEPA Direct Debit for recurring billing.
+  </Card>
+  <Card title="Wallets" icon="wallet" href="#">
+    Apple Pay, Google Pay, and regional mobile wallets.
+  </Card>
+</Columns>
+
+## Checkout Flows
+
+You can present Stripe Checkout for a hosted experience or build a custom flow with Elements. Both approaches create a PaymentIntent that tracks the transaction lifecycle.
+
+<Tabs>
+  <Tab title="Hosted" icon="globe">
+    Redirect customers to a prebuilt page that handles strong customer authentication.
+
+    ```bash
+    stripe checkout sessions create \
+      --mode payment \
+      --success-url "https://example.com/success"
+    ```
+  </Tab>
+  <Tab title="Custom" icon="code">
+    Embed card fields directly in your application for full control.
+
+    <CodeGroup tabs="JavaScript,Python">
+      ```javascript
+      const {paymentMethod} = await stripe.createPaymentMethod({
+        type: 'card',
+        card: elements.getElement(CardElement),
+      });
+      ```
+      ```python
+      payment_method = stripe.PaymentMethod.create(
+          type="card",
+          card={"token": token},
+      )
+      ```
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Refunds and Disputes
+
+When a customer requests a return or questions a charge, create a refund or respond to a dispute directly from your dashboard or code.
+
+<Expandable title="Refund a payment" default-open="false">
+  Refunds return funds to the original payment method and update the PaymentIntent status.
+
+  ```bash
+  stripe refunds create \
+    --payment_intent pi_123456789 \
+    --amount 1500
+  ```
+</Expandable>
+
+<Callout kind="info">
+  Disputes require evidence submission within the deadline shown in the Dashboard to avoid automatic loss.
+</Callout>
+
+## In-Person Payments
+
+Terminal lets you accept contactless, chip, and swipe payments at physical locations while keeping the same PaymentIntent object as online payments.
+
+```mermaid
+graph LR
+    A[Create PaymentIntent] --> B[Reader collects payment]
+    B --> C[Webhook confirms success]
+    C --> D[Update order status]
+```
+
+## Best Practices
+
+- Always confirm the PaymentIntent status on your server before fulfilling orders.
+- Store only the identifiers you need; never persist raw card details.
+- Test thoroughly in test mode before activating live keys.

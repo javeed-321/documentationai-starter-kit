@@ -1,0 +1,82 @@
+---
+title: Error Codes
+description: Common Stripe API errors including declines, validation issues, and rate limits.
+---
+
+## Overview
+
+Stripe returns machine-readable error objects with an explicit `type` and `code`. Inspect the `code` field to determine the exact failure and apply the matching remediation below.
+
+<Expandable title="Card declined (generic_decline)" default-open="false">
+Problem: A payment request fails with `error.code` set to `card_declined`.
+
+Cause: The issuing bank returned a generic decline without a more specific reason.
+
+Fix: Prompt the customer to try a different card or payment method. Log the `decline_code` field for support review.
+
+```json
+{
+  "error": {
+    "code": "card_declined",
+    "decline_code": "generic_decline",
+    "message": "Your card was declined."
+  }
+}
+```
+
+</Expandable>
+
+<Expandable title="Idempotency key already used" default-open="false">
+Problem: Requests using the same `Idempotency-Key` header return `error.code` equal to `idempotency_key_already_used`.
+
+Cause: A prior request with that key succeeded or is still processing.
+
+Fix: Retrieve the original response from your logs instead of retrying. Generate a fresh key for new operations.
+
+```json
+{
+  "error": {
+    "code": "idempotency_key_already_used",
+    "message": "Keys for idempotent requests can only be used once."
+  }
+}
+```
+
+</Expandable>
+
+<Expandable title="Rate limit exceeded" default-open="false">
+Problem: The API responds with HTTP 429 and `error.code` set to `rate_limit`.
+
+Cause: Too many requests were sent in the current window.
+
+Fix: Implement exponential backoff. Respect the `Retry-After` header when present.
+
+```json
+{
+  "error": {
+    "code": "rate_limit",
+    "message": "Too many requests try again later."
+  }
+}
+```
+
+</Expandable>
+
+<Expandable title="Invalid API key supplied" default-open="false">
+Problem: Authentication fails with `error.code` equal to `invalid_request_error` and message referencing the key.
+
+Cause: The `Authorization` header contains an unknown or revoked secret key.
+
+Fix: Verify the key in the Stripe Dashboard and replace it in your environment configuration.
+
+```json
+{
+  "error": {
+    "type": "invalid_request_error",
+    "code": "invalid_request_error",
+    "message": "Invalid API Key provided: sk_test_..."
+  }
+}
+```
+
+</Expandable>

@@ -1,0 +1,88 @@
+---
+title: Quickstart
+description: Get started accepting payments and integrating Stripe APIs in minutes.
+---
+
+## Prerequisites
+
+<Callout kind="info">
+
+Create a Stripe account and obtain your API keys before proceeding. Keep your secret key secure and never expose it in client-side code.
+
+</Callout>
+
+## Obtain API keys
+
+Navigate to the Developers section of your Stripe dashboard to retrieve your publishable and secret keys. Use the publishable key in your frontend and the secret key only on your server.
+
+## Install the library
+
+<Steps>
+  <Step title="Install the package">
+
+    Add the official Stripe library to your project using your preferred package manager.
+
+    ```bash
+    npm install stripe
+    ```
+
+  </Step>
+  <Step title="Configure your key">
+
+    Load your secret key from an environment variable to keep it out of source control.
+
+    ```javascript
+    import Stripe from "stripe";
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+    ```
+
+  </Step>
+</Steps>
+
+## Create your first payment
+
+Use this minimal server-side example to create a PaymentIntent.
+
+<CodeGroup tabs="Node.js,Python">
+```javascript
+const paymentIntent = await stripe.paymentIntents.create({
+  amount: 2000,
+  currency: "usd",
+  automatic_payment_methods: { enabled: true },
+});
+console.log(paymentIntent.client_secret);
+```
+
+```python
+import stripe
+import os
+
+stripe.api_key = os.environ["STRIPE_SECRET_KEY"]
+
+intent = stripe.PaymentIntent.create(
+    amount=2000,
+    currency="usd",
+    automatic_payment_methods={"enabled": True},
+)
+print(intent.client_secret)
+```
+</CodeGroup>
+
+## Enable webhooks
+
+Register an endpoint in your dashboard under Developers > Webhooks. Stripe sends events such as `payment_intent.succeeded` to this URL. Verify signatures using your webhook secret before processing the payload.
+
+## Switch to test mode
+
+All keys and requests above run in test mode by default. Toggle to live mode only after completing integration testing with test cards such as `4242 4242 4242 4242`.
+
+## Explore further
+
+<Columns cols={2}>
+  <Card title="Accept a payment" icon="credit-card" href="#">
+    Learn how to build a complete checkout flow.
+  </Card>
+  <Card title="Handle events" icon="webhook" href="#">
+    Set up reliable webhook listeners for asynchronous events.
+  </Card>
+</Columns>

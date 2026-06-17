@@ -1,0 +1,76 @@
+---
+title: Authentication
+description: Secure your Stripe API requests using secret and publishable keys.
+---
+
+## Overview
+
+Stripe authenticates every API request using HTTP Basic Auth. Supply your secret API key as the username and leave the password empty. All requests must use HTTPS.
+
+```bash
+curl https://api.stripe.com/v1/charges \
+  -u sk_test_YourSecretKey:
+```
+
+## Authentication methods
+
+<Tabs>
+  <Tab title="Secret keys" icon="key">
+    Use secret keys for server-side requests. Keep them confidential and rotate regularly.
+
+    <ParamField body="Authorization" param-type="string" required="true">
+      Bearer token containing your secret key.
+    </ParamField>
+  </Tab>
+  <Tab title="Publishable keys" icon="eye">
+    Use publishable keys in client-side code. They are safe to expose in browser applications.
+
+    <ParamField body="Authorization" param-type="string" required="true">
+      Bearer token containing your publishable key.
+    </ParamField>
+  </Tab>
+  <Tab title="Restricted keys" icon="lock">
+    Create restricted keys with granular permissions for specific endpoints.
+
+    <ParamField body="Authorization" param-type="string" required="true">
+      Bearer token containing your restricted key.
+    </ParamField>
+  </Tab>
+</Tabs>
+
+## Implementation examples
+
+<CodeGroup tabs="cURL,JavaScript,Python">
+```bash
+curl https://api.stripe.com/v1/customers \
+  -u sk_test_YourSecretKey: \
+  -d email="customer@example.com"
+```
+
+```javascript
+const stripe = require("stripe")("sk_test_YourSecretKey");
+
+const customer = await stripe.customers.create({
+  email: "customer@example.com",
+});
+```
+
+```python
+import stripe
+stripe.api_key = "sk_test_YourSecretKey"
+
+customer = stripe.Customer.create(email="customer@example.com")
+```
+</CodeGroup>
+
+## Webhook signatures
+
+Verify webhook signatures to confirm events originate from Stripe.
+
+```bash
+Stripe-Signature: t=1492774577,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d79b,v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39
+```
+
+<Callout kind="alert">
+  Never expose secret keys in client code or public repositories. Rotate keys immediately if compromised.
+</Callout>
