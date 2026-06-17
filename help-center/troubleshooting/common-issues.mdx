@@ -1,60 +1,79 @@
 ---
 title: Troubleshooting
-description: Fix common Help Center problems such as articles not appearing or search returning no results.
+description: Fix issues with AI responses, ticket handling, automations, and Helpdesk performance.
 ---
 
 ## Common Issues
 
-We know these hiccups can stop you in your tracks. Each expandable below walks through a specific symptom, the usual cause inside Intercom, and the exact steps to get things working again.
+Use the sections below to identify symptoms quickly and apply the matching fix.
 
-<Expandable title="Messenger widget fails to load or display" default-open="false">
-Problem: The Help Center widget does not appear on your site and the browser console shows `Intercom widget failed to initialize: ERR_INTERCOM_WIDGET_TIMEOUT`.
+<Expandable title="AI answers miss key details from your knowledge base" default-open="false">
+  **Problem**
 
-Cause: The Messenger snippet is missing the correct workspace ID or is blocked by a content security policy.
+  Fin returns incomplete or off-topic replies even though the right articles exist in your Help Center.
 
-Fix: Open your site HTML and confirm the snippet contains your real workspace ID. Replace the placeholder with your value:
+  **Cause**
 
-```html
-<script>
-  window.intercomSettings = { app_id: "YOUR_WORKSPACE_ID" };
-</script>
-<script async src="https://widget.intercom.io/widget/YOUR_WORKSPACE_ID"></script>
-```
+  The articles lack clear headings or the content is not yet indexed after upload.
 
-Save the file, clear your browser cache, and reload the page. The widget should appear within 30 seconds.
+  **Fix**
+
+  1. Open the article in the Help Center editor.
+  2. Add descriptive H2 and H3 headings that match common customer questions.
+  3. Save the article, then go to Fin settings and select Reindex knowledge base.
+  4. Test the same query again after indexing completes (usually under two minutes).
+
 </Expandable>
 
-<Expandable title="Article links break after migration" default-open="false">
-Problem: Old links return a 404 page even though the articles still exist in Intercom.
+<Expandable title="Conversations route to the wrong team or queue" default-open="false">
+  **Problem**
 
-Cause: Intercom changed the article slug format during the migration.
+  Incoming messages land in the general inbox instead of the assigned support queue.
 
-Fix: In Intercom, go to Help Center > Articles, open each migrated article, and copy the new URL from the share link. Update any external references to use the new slug. For bulk fixes, export the article list from Settings > Data > Export and run a find-and-replace on your site.
+  **Cause**
+
+  Routing rules reference outdated team names or tags that no longer exist.
+
+  **Fix**
+
+  1. Go to Settings → Inbox → Routing.
+  2. Review each active rule and replace any missing team or tag references.
+  3. Use the Test routing button with a sample conversation to confirm the correct queue is selected.
+  4. Save changes and monitor the next few tickets.
+
 </Expandable>
 
-<Expandable title="Search returns no results" default-open="false">
-Problem: Typing a known article title into the Help Center search bar shows "No results found."
+<Expandable title="Integration sync shows repeated failures" default-open="false">
+  **Problem**
 
-Cause: New or updated articles have not finished indexing yet.
+  The sync status page displays repeated errors such as "Unable to fetch records from CRM" or stalled updates.
 
-Fix: Wait up to 15 minutes after publishing. Then open Help Center > Settings > Search and click "Rebuild index". Test the search again with the exact title. If results still fail to appear, add the article to a collection that is marked as searchable.
+  **Cause**
+
+  Authentication tokens have expired or required scopes were removed during a recent CRM update.
+
+  **Fix**
+
+  1. Navigate to Settings → Integrations and locate the failing connection.
+  2. Click Reconnect and follow the OAuth prompts to grant all listed permissions.
+  3. After reconnection, select Run manual sync and check the activity log for a successful status.
+
 </Expandable>
 
-<Expandable title="Styling conflicts with your theme" default-open="false">
-Problem: Help Center text overlaps or colors clash with your site's CSS.
+<Expandable title="Helpdesk feels slow when loading conversation lists" default-open="false">
+  **Problem**
 
-Cause: Your theme's stylesheet overrides Intercom's default classes.
+  The conversation view takes several seconds to load and filters respond sluggishly.
 
-Fix: In Help Center > Appearance > Custom CSS, add the following rule to restore readable contrast:
+  **Cause**
 
-```css
-.intercom-article-content {
-  color: #333333 !important;
-  font-family: inherit !important;
-}
-```
+  Too many active inboxes or saved views are being loaded at once.
 
-Publish the change and refresh the page. If the issue persists, inspect the element in your browser and add more specific selectors.
+  **Fix**
+
+  1. Go to Settings → Workspace → Performance.
+  2. Archive or hide any inboxes you no longer use.
+  3. Reduce the number of saved views pinned to your sidebar.
+  4. Clear your browser cache and reload the workspace.
+
 </Expandable>
-
-<CollectionList />
