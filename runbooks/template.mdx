@@ -1,40 +1,62 @@
 ---
 title: Runbook Template
-description: Template for creating operational runbooks stored in the Notion workspace.
+description: Standard runbook format for handling Notion workspace incidents, AI feature troubleshooting, and integration issues.
 ---
 
 ## Trigger
 
-This runbook activates when an incident affects pages or databases in the Notion workspace. Common triggers include sync failures between the desktop client and the server, permission errors on shared pages, or query timeouts when users access embedded views. Check the workspace activity log before proceeding.
+Monitor workspace health dashboards and alert channels for signs of disruption. Common triggers include failed AI agent executions, permission errors on shared databases, or degraded search indexing performance.
+
+Respond when any of the following occur:
+
+- Automated alerts indicate AI agent task failures exceeding threshold.
+- Users report inability to access or edit databases.
+- Enterprise search returns incomplete or stale results.
 
 ## Steps
 
-Open the incident page in Notion and embed the status database at the top of the page. Use the /embed command and select the "Incident Status" database view filtered to the current date.
+Follow this sequence to triage and mitigate the incident.
 
-Update the database entry to mark the incident as "In Progress". Then run the following command to force a full sync on the affected workspace:
+<Steps>
+  <Step title="Triage and classify">
+    Review alert details and recent activity logs. Identify whether the issue affects AI agents, databases, or permissions.
 
-```bash
-curl -X POST https://api.example.com/notion/sync \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -d '{"workspace_id": "ws_12345"}'
-```
+    Run the following command to gather initial diagnostics:
 
-Verify that all linked pages load without errors. If the embedded database shows stale data, refresh the view manually from the page menu.
+    ```bash
+    notion-cli diagnose --workspace ws-123 --since 1h
+    ```
+  </Step>
+  <Step title="Isolate AI agent failures">
+    Check agent execution history and restart stalled processes.
+
+    ```bash
+    notion-cli agents restart --id agent-456 --force
+    ```
+  </Step>
+  <Step title="Repair database and permissions">
+    Validate database schema and reapply access controls where needed.
+
+    ```bash
+    notion-cli db repair --id db-789
+    notion-cli permissions sync --workspace ws-123
+    ```
+  </Step>
+</Steps>
 
 ## Escalation Path
 
 <Callout kind="alert">
-If the sync command returns a 5xx error or the database embed fails to update, contact the on-call engineer at oncall@example.com or page via the internal Slack channel #notion-oncall. Provide the incident ID and the last sync timestamp from the workspace logs.
+If the issue persists after the steps above or affects production workspaces, escalate immediately to the on-call engineer. Provide the incident ID and output from all diagnostic commands.
 </Callout>
 
 ## Rollback
 
-Revert the workspace to the last known good state by restoring from the Notion page history. Select the version saved before the incident trigger time and publish the restored page. Run the sync command again with the rollback flag:
+Revert recent configuration changes or agent deployments if mitigation introduces new errors.
 
 ```bash
-curl -X POST https://api.example.com/notion/sync \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -d '{"workspace_id": "ws_12345", "rollback": true}'
+notion-cli agents rollback --id agent-456 --to previous
+notion-cli permissions restore --workspace ws-123 --timestamp 2024-10-01T12:00:00Z
 ```
 
-Confirm that the status database reflects the restored state before closing the incident.
+Confirm workspace stability before closing the incident.

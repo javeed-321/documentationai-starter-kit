@@ -1,46 +1,39 @@
 ---
 title: Process Template
-description: Standard template for documenting repeatable company processes in Notion.
+description: Reusable template for documenting team processes such as project management, content workflows, and AI agent automations in Notion.
 ---
 
 ## Purpose
 
-This template standardizes how teams record repeatable processes inside Notion. Every process page follows the same structure so readers can locate steps, owners, and review dates without searching multiple locations. Use the sections below as the required skeleton for any new process document.
+This template standardizes how teams record recurring processes inside Notion. It covers template creation, database-backed project tracking, AI-assisted reporting, and cross-team handoffs. Use the template to keep every process page consistent and searchable.
 
 ## Steps
 
-Create the process steps inside a Notion database or as a series of toggles. Each step must include a clear action, the expected output, and any linked resources.
-
 <Steps>
-  <Step title="Define the trigger" icon="play-circle">
-    Identify the event that starts the process. Record the exact condition in the page header so readers know when to follow these instructions.
+  <Step title="Create and customize the template">
+    Duplicate the base page inside your workspace. Add or remove sections to match the workflow. Lock the page once the structure is approved so contributors cannot alter headings or required fields.
+
   </Step>
-  <Step title="List required inputs" icon="list">
-    Document every piece of information or asset needed before the first action. Add a Notion database property for each input so status can be tracked.
+  <Step title="Set up project tracking with databases">
+    Link a database view that stores tasks, owners, and due dates. Configure filters so each process page surfaces only its related items. Add rollup properties to surface status at the top of the page.
+
   </Step>
-  <Step title="Execute actions in order" icon="check-circle">
-    Write each action as a numbered item or toggle. Nest sub-steps inside toggles when they contain optional branches or detailed instructions.
+  <Step title="Configure AI-assisted reporting">
+    Insert an AI summary block at the end of the page. Point the block at the linked database so it generates weekly status updates. Review the generated text before publishing to ensure accuracy.
+
   </Step>
-  <Step title="Record the output" icon="file-text">
-    State what the completed process produces. Link the output location or template inside the final step.
+  <Step title="Define cross-team handoff points">
+    Add a handoff table that lists the receiving team, required artifacts, and acceptance criteria. Tag the responsible owner in each row so notifications fire when a step is marked complete.
+
   </Step>
 </Steps>
 
 ## Owners
 
-Assign a primary owner and at least one backup for every process. Store these assignments in a Notion database property so updates appear on the process dashboard.
-
-- Primary owner: [Name], [Team]
-- Backup owner: [Name], [Team]
-- Last updated by: [Name] on [YYYY-MM-DD]
+- Primary owner: Workflow Enablement
+- Secondary owner: AI Platform team
+- Reviewer: Process council representative
 
 ## Review Cadence
 
-Schedule a recurring review so the process stays current. Add the next review date as a Notion database property and link the related runbook or policy pages in the page properties.
-
-- Review frequency: Quarterly
-- Next review date: [YYYY-MM-DD]
-- Linked runbooks: [Page title]
-- Linked policies: [Page title]
-
-Use Notion database filters to surface processes that are past their review date.
+Update the template quarterly. The primary owner collects feedback during the last week of each quarter and publishes revisions on the first Monday of the following quarter.
