@@ -1,0 +1,75 @@
+---
+title: Troubleshoot Common Store Issues
+description: Resolve frequent problems like payment declines, sync errors, and theme loading failures.
+---
+
+## Common Store Issues
+
+If your store shows unexpected errors, start here. Each section walks through the exact symptom, likely cause, and step-by-step fix.
+
+<Callout kind="info">
+  Still stuck after trying these steps? Reach out to Shopify Support with the exact error message.
+</Callout>
+
+<ExpandableGroup>
+<Expandable title="Payment declines at checkout">
+  **Problem**  
+  Customers see the message "Your payment was declined. Please try a different card." during checkout.
+
+  **Cause**  
+  Shopify Payments flagged the transaction for review or the card issuer rejected it.
+
+  **Fix**
+
+  1. Open Shopify admin and go to Orders.
+  2. Click the declined order and select "Resolve payment issue".
+  3. Ask the customer to re-enter card details or try another card.
+  4. If the decline repeats, check Payments settings and confirm your account is not on hold.
+
+</Expandable>
+<Expandable title="Inventory sync failures">
+  **Problem**  
+  Stock levels show "Sync failed: API timeout" in the Inventory section and products appear out of stock online.
+
+  **Cause**  
+  A connected sales channel or third-party app lost connection during the last sync.
+
+  **Fix**
+
+  1. Go to Products > Inventory.
+  2. Click "Sync now" on the affected location.
+  3. If the error persists, disconnect and reconnect the sales channel under Settings > Sales channels.
+  4. Wait five minutes and refresh the page.
+
+</Expandable>
+<Expandable title="Theme loading errors">
+  **Problem**  
+  The storefront shows a blank page with the console error "Theme failed to load: missing template 'sections/header.liquid'".
+
+  **Cause**  
+  A recent theme update or app edit removed a required file.
+
+  **Fix**
+
+  1. In the theme editor, click the three-dot menu and select "Duplicate" to create a backup.
+  2. Switch to the previous theme version under Online Store > Themes.
+  3. If the error remains, reinstall the theme from the Theme Store.
+  4. Re-apply any custom code changes one file at a time.
+
+</Expandable>
+<Expandable title="App conflicts after install">
+  **Problem**  
+  After installing a new app you see repeated "App conflict detected" banners and some product pages stop loading.
+
+  **Cause**  
+  Two apps are trying to modify the same checkout or product fields.
+
+  **Fix**
+
+  1. Go to Settings > Apps and sales channels.
+  2. Disable the newest app.
+  3. Test the store for five minutes.
+  4. If the issue clears, contact the app developer for a compatibility update before re-enabling it.
+
+</Expandable>
+</ExpandableGroup>

@@ -1,0 +1,97 @@
+---
+title: Add and Manage Products
+description: Learn how to upload products, set variants, inventory, and organize collections.
+---
+
+## Overview
+
+Adding products is the first step to selling on your store. You can create items one at a time or import many at once. Clear product details help customers find what they need and complete purchases faster.
+
+## Add a single product
+
+Start in your store admin and enter the basics.
+
+<Steps>
+  <Step title="Open the products section">
+    Go to the Products area and select the option to add a new item.
+
+  </Step>
+  <Step title="Fill in the details">
+    Enter a clear title, description, and price. Add at least one photo so buyers can see the item.
+
+  </Step>
+  <Step title="Save and publish">
+    Review the information, then save. The product appears in your store right away.
+
+  </Step>
+</Steps>
+
+## Set up product variants
+
+Variants let you offer the same item in different sizes or colors without creating separate listings.
+
+<Tabs>
+  <Tab title="Size options" icon="tag">
+    Add size choices such as small, medium, or large. Each variant can have its own price and stock level.
+
+  </Tab>
+  <Tab title="Color options" icon="tag">
+    Create color choices like black or blue. Upload separate images for each color so customers see the exact shade.
+
+  </Tab>
+</Tabs>
+
+## Track inventory
+
+Turn on inventory tracking to avoid selling items you do not have.
+
+<Callout kind="tip">
+  Enable tracking on each variant so the system subtracts stock automatically when an order is placed.
+
+</Callout>
+
+You can set low-stock alerts. When quantity drops below your chosen number, you receive a notification.
+
+## Organize products into collections
+
+Collections group related items so customers can browse them easily.
+
+<Card title="Manual collections" icon="folder" href="#">
+  Pick products by hand. Useful for seasonal or featured groups.
+
+</Card>
+
+<Card title="Automatic collections" icon="folder" href="#">
+  Set rules based on price, type, or tags. New matching products join the collection on their own.
+
+</Card>
+
+## Bulk import products
+
+When you have many items, import them from a spreadsheet.
+
+<Expandable title="Prepare your file" default-open="false">
+  Use a CSV file with columns for title, description, price, and inventory. Match the column names exactly to the fields in your store.
+
+</Expandable>
+
+<CodeGroup tabs="CSV example,JSON example">
+  ```csv
+  Title,Price,Inventory
+  Classic T-Shirt,25,100
+  Denim Jeans,65,50
+  ```
+
+  ```json
+  [
+    {"title": "Classic T-Shirt", "price": 25, "inventory": 100}
+  ]
+  ```
+</CodeGroup>
+
+## Best practices
+
+- Write short, clear descriptions that answer common questions.
+- Use consistent tags across products so collections stay organized.
+- Check inventory numbers weekly during busy seasons.
+- Test the checkout flow after adding new variants to confirm prices and stock display correctly.
