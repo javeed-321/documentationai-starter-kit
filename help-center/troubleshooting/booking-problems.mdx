@@ -1,0 +1,50 @@
+---
+title: Fix booking and reminder failures
+description: Troubleshoot why invitees cannot book or why notifications are not sent.
+---
+
+## Booking link problems
+
+<Expandable title="Invitees see 'This link has expired' when they try to book">
+  Calendly marks a booking link as expired after the event type is deleted or its availability window ends.
+
+  **Fix**
+
+  - Open the event type in your Calendly account.
+  - Extend the date range under Availability.
+  - Copy the new link and send it again.
+
+  Test the link in an incognito window before sharing.
+</Expandable>
+
+<Expandable title="Invitees receive 'Unable to book this event' after selecting a time">
+  The most common cause is a calendar conflict that Calendly detects only after the time slot is chosen.
+
+  **Fix**
+
+  - Ask the invitee to refresh the page and try a different slot.
+  - In your Calendly settings, increase the buffer time between meetings.
+  - Confirm that all connected calendars are set to sync every five minutes.
+</Expandable>
+
+## Reminder and notification issues
+
+<Expandable title="Confirmation or reminder emails land in spam or promotions folders">
+  Calendly sends messages from `notifications@example.com`. Some inboxes treat these as marketing mail.
+
+  **Fix**
+
+  - Tell invitees to add `notifications@example.com` to their contacts.
+  - In your Calendly account, go to Notifications and enable "Send from your own domain" if available on your plan.
+  - Check the deliverability report in your account settings for any recent blocks.
+</Expandable>
+
+<Expandable title="No reminder email arrives even though the booking succeeded">
+  Reminders are skipped when the invitee's email address fails validation or when the event is booked less than one hour before it starts.
+
+  **Fix**
+
+  - Ask the invitee to rebook using a different email address.
+  - Edit the event type and lower the minimum reminder time to fifteen minutes.
+  - Manually send a test reminder from the event page to confirm delivery.
+</Expandable>

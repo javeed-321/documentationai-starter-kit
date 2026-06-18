@@ -1,0 +1,82 @@
+---
+title: Integrate with productivity apps
+description: Link Calendly with Slack, Zapier, and CRM platforms for automated workflows.
+---
+
+## Overview
+
+Calendly removes the back-and-forth of scheduling by connecting directly to the tools you already use. When you link your account to Slack, Zapier, Salesforce, or HubSpot, you receive instant updates and keep records current without extra steps.
+
+These connections help you stay on top of bookings while you focus on the meeting itself.
+
+## Slack notifications
+
+Receive a message in Slack the moment someone books, cancels, or reschedules.
+
+<Callout kind="info">
+  You need owner or admin access in both Calendly and your Slack workspace to set this up.
+</Callout>
+
+<Tabs>
+  <Tab title="Enable notifications" icon="bell">
+    1. Open Calendly and go to Integrations.
+    2. Select Slack and click Connect.
+    3. Choose the channel that should receive updates.
+    4. Pick which events trigger a message.
+
+  </Tab>
+  <Tab title="Customize messages" icon="settings">
+    Edit the text or add fields such as invitee name and event type so the message stays clear and useful.
+
+  </Tab>
+</Tabs>
+
+## Zapier automations
+
+Zapier lets you build workflows that run when a Calendly event is created or changed.
+
+<CodeGroup tabs="Trigger,Action">
+  ```json
+  {
+    "trigger": "invitee.created",
+    "app": "calendly"
+  }
+  ```
+  ```json
+  {
+    "action": "create.record",
+    "app": "your-app"
+  }
+  ```
+</CodeGroup>
+
+<Expandable title="Common Zap examples" default-open="false">
+  - Add new bookings to a spreadsheet row.
+  - Create a follow-up task in your project tool.
+  - Send a custom thank-you email through your email platform.
+
+</Expandable>
+
+## Sync with Salesforce and HubSpot
+
+Keep contact and activity records up to date automatically.
+
+<Columns cols={2}>
+  <Card title="Salesforce" icon="users" href="#">
+    Map Calendly event types to Salesforce campaigns or leads. New bookings appear as activities on the correct record.
+  </Card>
+  <Card title="HubSpot" icon="briefcase" href="#">
+    Create or update contacts and deals when meetings are scheduled. Log every interaction in the contact timeline.
+  </Card>
+</Columns>
+
+## Examples
+
+A sales team uses Slack alerts to know the instant a prospect books a demo. The same booking creates a task in their CRM so nothing falls through the cracks.
+
+## Best practices
+
+- Test each integration with a sample booking before rolling it out to the team.
+- Limit Slack notifications to the channels that need them to avoid noise.
+- Review connected apps every quarter and remove any you no longer use.
+- Use Zapier filters so only high-value events trigger expensive actions.

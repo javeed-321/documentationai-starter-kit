@@ -1,0 +1,80 @@
+---
+title: Enterprise admin and security settings
+description: Configure SSO, user provisioning, and audit logs for large organizations.
+---
+
+## Overview
+
+Enterprise teams need reliable controls to keep scheduling secure and compliant. Calendly admin settings let you connect your identity provider, automate user access, and track every change.
+
+You can enable these features from the Admin section after upgrading to an Enterprise plan. Each setting builds on the last, so start with single sign-on.
+
+## Set up single sign-on with SAML
+
+Connect Calendly to your identity provider so teammates sign in with existing credentials.
+
+<Callout kind="info">
+  Test the connection in a staging workspace before you roll it out to everyone.
+</Callout>
+
+<Tabs>
+  <Tab title="Okta" icon="shield">
+    1. In Calendly, go to Admin then Security.
+    2. Choose SAML and copy the metadata URL.
+    3. Paste the URL into Okta and assign the Calendly app to users.
+  </Tab>
+  <Tab title="Azure AD" icon="cloud">
+    1. In Calendly, go to Admin then Security.
+    2. Choose SAML and download the service provider metadata.
+    3. Upload the file in Azure and map the required attributes.
+  </Tab>
+</Tabs>
+
+## Provision users with SCIM
+
+SCIM keeps user lists in sync so new hires get access automatically and departures lose it right away.
+
+<Expandable title="What you need before you start" default-open="false">
+  - An Enterprise plan
+  - Admin access in both Calendly and your identity provider
+  - The SCIM endpoint URL from Calendly
+</Expandable>
+
+Follow these steps:
+
+1. In Calendly, open Admin then Provisioning.
+2. Turn on SCIM and copy the token.
+3. Paste the token into your identity provider and map the user attributes.
+
+## Enable audit logging
+
+Audit logs record who changed settings, created events, or accessed data.
+
+<CodeGroup tabs="JSON,CSV">
+```json
+{
+  "timestamp": "2024-10-01T09:15:00Z",
+  "actor": "admin@example.com",
+  "action": "sso.enabled",
+  "details": "SAML connection activated"
+}
+```
+```csv
+timestamp,actor,action,details
+2024-10-01T09:15:00Z,admin@example.com,sso.enabled,SAML connection activated
+```
+</CodeGroup>
+
+## Examples
+
+A sales team at a large company used these settings to cut onboarding time from days to minutes while meeting compliance requirements.
+
+## Best practices
+
+- Rotate the SCIM token every 90 days.
+- Export logs weekly and store them outside Calendly.
+- Review the admin dashboard monthly for unexpected changes.
+
+<Card title="Need more help?" icon="help-circle" href="#">
+  Reach out to support through the in-app chat or schedule time with your account manager.
+</Card>

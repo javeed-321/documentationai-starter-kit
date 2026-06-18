@@ -1,0 +1,56 @@
+---
+title: Sync multiple calendars
+description: Connect up to six calendars and prevent double-bookings automatically.
+---
+
+## Overview
+
+Calendly checks availability across every calendar you connect. You can link up to six accounts so the system automatically blocks times that already contain events.
+
+<Callout kind="info">
+  Connect each calendar with the same email address you use to sign in to Calendly.
+</Callout>
+
+## Syncing Google, Outlook, and Exchange calendars
+
+<Tabs>
+  <Tab title="Google Calendar" icon="calendar">
+    Open your Calendly account settings and choose Add calendar account. Select Google, sign in, and grant the requested permissions. Your primary and secondary Google calendars appear in the list.
+  </Tab>
+  <Tab title="Outlook" icon="calendar">
+    Choose Add calendar account, select Microsoft Outlook, and sign in with your work or school account. Calendly requests read access so it can see busy times.
+  </Tab>
+  <Tab title="Exchange" icon="server">
+    Select Exchange as the calendar type. Enter your server URL and sign-in details. Calendly supports on-premise and Microsoft 365 Exchange environments.
+  </Tab>
+</Tabs>
+
+## How conflict detection works
+
+Once calendars are connected, Calendly reads busy times from every account before offering a slot. If an event exists in any connected calendar, that time is marked unavailable to invitees.
+
+## Sync frequency and updates
+
+Calendly refreshes calendar data every few minutes. You can also trigger an immediate refresh from the calendar settings page after you add or remove an event elsewhere.
+
+## Real-world examples
+
+<Columns cols={2}>
+  <Card title="Sales team member" icon="users" href="#">
+    Connects a personal Google calendar and a company Outlook calendar to avoid booking calls during internal meetings.
+  </Card>
+  <Card title="Recruiter" icon="briefcase" href="#">
+    Links three Exchange calendars for different hiring teams so candidate interviews never overlap.
+  </Card>
+</Columns>
+
+## Best practices
+
+<ExpandableGroup>
+  <Expandable title="Limit connected calendars to six or fewer" default-open="true">
+    Adding more than six calendars can slow sync and increase the chance of missed conflicts.
+  </Expandable>
+  <Expandable title="Review calendar permissions regularly" default-open="false">
+    Revoke access for any calendar you no longer use so your availability stays accurate.
+  </Expandable>
+</ExpandableGroup>

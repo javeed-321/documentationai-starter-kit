@@ -1,0 +1,63 @@
+---
+title: Collect payments for meetings
+description: Attach Stripe or PayPal payments to event types for consultations and services.
+---
+
+## Overview
+
+Calendly lets you attach payments to any event type so clients pay when they book. Connect Stripe or PayPal once, then choose which events require payment. You stay in control of amounts, currencies, and cancellation rules.
+
+## Collecting payments
+
+Connect your payment account first, then add a price to any event type.
+
+<Tabs>
+  <Tab title="Stripe" icon="credit-card">
+    Go to your event type settings and select Stripe. Enter the amount and currency. Calendly creates a checkout link that appears on the booking page.
+
+  </Tab>
+  <Tab title="PayPal" icon="credit-card">
+    Choose PayPal in the same menu. Paste your PayPal email and set the price. Clients see the PayPal button at checkout.
+
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+  Test with a small amount before going live.
+</Callout>
+
+## Handling refunds
+
+You control refunds from your payment dashboard.
+
+<Expandable title="How to issue a refund" default-open="false">
+  Open the booking in Calendly, click the payment row, then choose Refund. The money returns to the client within 5-10 business days.
+
+</Expandable>
+
+## Generating invoices
+
+Calendly automatically emails a receipt after every paid booking. For custom invoices:
+
+1. Connect your Stripe or PayPal account.
+2. Enable invoice generation in the payments tab.
+3. Add your logo and company details.
+
+Clients receive a branded PDF that includes the event details and payment confirmation.
+
+## Examples
+
+<Columns cols={2}>
+  <Card title="Consulting session" icon="briefcase" href="#">
+    Charge $150 for a 60-minute call. Payment is collected before the calendar invite is sent.
+  </Card>
+  <Card title="Workshop seat" icon="users" href="#">
+    Offer a $75 ticket for a group session. Spots are reserved only after payment succeeds.
+  </Card>
+</Columns>
+
+## Best practices
+
+- Set clear cancellation policies so clients know the refund window.
+- Use the same currency across all event types to avoid conversion surprises.
+- Review payout schedules in your Stripe or PayPal account each week.
