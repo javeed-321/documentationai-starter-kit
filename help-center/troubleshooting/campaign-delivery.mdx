@@ -1,0 +1,41 @@
+---
+title: Campaign Delivery and Deliverability Issues
+description: Resolve problems with emails landing in spam, low open rates, or failed sends.
+---
+
+## Common Delivery Problems
+
+Use the expanders below to match your exact symptom. Each one shows the cause and the quickest fix inside Mailchimp.
+
+<Expandable title="Campaigns land in spam or promotions tabs" default-open="false">
+  You see low open rates and complaints that messages appear in spam folders instead of the inbox.
+
+  **Cause**  
+  Sender reputation dropped after repeated spam filter triggers or missing authentication records.
+
+  **Fix**  
+  Go to Audience → Settings → Sender authentication and confirm DKIM and SPF are both active. Then run a test send from Campaigns → Create campaign and check the Spam filter score. Aim for a score under 2.0 before sending to the full list.
+
+</Expandable>
+
+<Expandable title="Hard bounces exceed 5 percent" default-open="false">
+  Your campaign report shows the error "550 5.1.1 Recipient address rejected: User unknown" for many contacts.
+
+  **Cause**  
+  Outdated or invalid email addresses remain in the audience after previous sends.
+
+  **Fix**  
+  Open the audience that failed, choose Manage contacts → Clean up, then select Remove hard bounces. After cleanup, re-import only verified addresses and enable the "Remove invalid emails automatically" setting under Audience → Settings.
+
+</Expandable>
+
+<Expandable title="Soft bounces block the entire send" default-open="false">
+  The campaign status shows "Failed" with the message "Temporary delivery failure: mailbox full" repeated across the report.
+
+  **Cause**  
+  Too many temporary mailbox issues caused Mailchimp to pause the send to protect your reputation.
+
+  **Fix**  
+  From the campaign report, select Retry soft bounces. Then reduce send frequency for that audience and add a one-click unsubscribe link at the top of future emails to lower future soft-bounce volume.
+
+</Expandable>

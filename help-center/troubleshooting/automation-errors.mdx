@@ -1,0 +1,80 @@
+---
+title: Fixing Automation and Workflow Errors
+description: Troubleshoot failed triggers, stalled journeys, and integration sync problems.
+---
+
+## Common Automation Errors
+
+We know hitting an automation error can stop your campaigns cold. Each expandable below shows a real symptom, the usual cause, and the quickest fix.
+
+<Expandable title="Trigger failed: No matching audience found" default-open="false">
+  **Problem**
+
+  Your automation shows the error "Trigger failed: No matching audience found" and never starts.
+
+  **Cause**
+
+  The trigger looks for a tag or segment that no longer exists or was renamed.
+
+  **Fix**
+
+  1. Open the automation in the builder.
+  2. Click the trigger block and choose "Edit audience."
+  3. Re-select the current tag or segment, then save.
+  4. Click "Test trigger" to confirm it fires.
+
+</Expandable>
+
+<Expandable title="Journey stalled at data mapping step" default-open="false">
+  **Problem**
+
+  The journey stops with the message "Mapping error: Required field email missing."
+
+  **Cause**
+
+  A field from your connected store or form is not mapped to the contact record.
+
+  **Fix**
+
+  1. Go to Audience → Settings → Data mapping.
+  2. Find the stalled field and map it to the correct Mailchimp merge tag.
+  3. Return to the journey and click "Retry from this step."
+  4. Check the activity log to confirm the contact now moves forward.
+
+</Expandable>
+
+<Expandable title="Integration sync failed: Retry limit reached" default-open="false">
+  **Problem**
+
+  You see "Integration sync failed: Retry limit reached" after connecting an ecommerce store.
+
+  **Cause**
+
+  The store API rate limit was hit or credentials expired.
+
+  **Fix**
+
+  1. Disconnect and reconnect the integration under Integrations.
+  2. Enter fresh API credentials.
+  3. In the automation, add a "Wait" step of 15 minutes before the next action.
+  4. Turn on "Automatic retry" in the journey settings.
+
+</Expandable>
+
+<Expandable title="Workflow paused: Invalid merge tag in email" default-open="false">
+  **Problem**
+
+  The workflow pauses and logs "Invalid merge tag *|FNAME|* in email content."
+
+  **Cause**
+
+  The tag was typed with extra spaces or the contact lacks that data.
+
+  **Fix**
+
+  1. Edit the email content inside the workflow.
+  2. Replace the tag with the exact syntax `*|FNAME|*` (no spaces).
+  3. Add a default value in the merge tag settings.
+  4. Restart the workflow for affected contacts.
+
+</Expandable>

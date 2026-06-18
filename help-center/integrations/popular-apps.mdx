@@ -1,0 +1,81 @@
+---
+title: Connecting Popular Apps and CRMs
+description: Link Mailchimp with tools like WordPress, Zapier, Salesforce, and 300+ other integrations.
+---
+
+## Overview
+
+You can connect Mailchimp to the tools you already use. This keeps your audience data consistent and saves time on manual updates. The platform supports direct API access, automated data sync, and real-time webhooks so changes flow both ways without extra steps.
+
+Start with the integrations directory inside your account. Search for the app you need, then follow the guided setup. Most connections finish in a few minutes.
+
+## API Connections
+
+Use the Mailchimp API to pull or push data from any custom system. Generate an API key in your account settings, then include it in each request header.
+
+<Callout kind="tip">
+Store the key securely and rotate it every 90 days.
+</Callout>
+
+## Data Sync
+
+Automated sync keeps lists, tags, and purchase data up to date across platforms.
+
+<Tabs>
+  <Tab title="Zapier" icon="zap">
+    Choose Mailchimp as the action app and map fields from your trigger.
+
+    No code required.
+  </Tab>
+  <Tab title="WordPress" icon="globe">
+    Install the official plugin, enter your API key, and select which forms send data to Mailchimp.
+  </Tab>
+</Tabs>
+
+## Webhooks
+
+Webhooks notify your other tools the moment an event happens in Mailchimp.
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+app.post('/webhook', (req, res) => {
+  if (req.body.type === 'subscribe') {
+    // update CRM record
+  }
+  res.sendStatus(200);
+});
+```
+
+```python
+@app.route('/webhook', methods=['POST'])
+def handle_webhook():
+    data = request.json
+    if data['type'] == 'subscribe':
+        # update CRM record
+    return '', 200
+```
+</CodeGroup>
+
+## Popular Integrations
+
+<Columns cols={3}>
+  <Card title="Salesforce" icon="users" href="#">
+    Sync leads and campaign results in both directions.
+  </Card>
+  <Card title="Zapier" icon="zap" href="#">
+    Connect to 300+ apps without writing code.
+  </Card>
+  <Card title="WordPress" icon="globe" href="#">
+    Add signup forms and sync WooCommerce orders.
+  </Card>
+</Columns>
+
+## Best Practices
+
+- Test every new connection with a small audience first.
+- Map fields carefully so no data is overwritten.
+- Monitor the activity log after setup to catch errors early.
+
+<Expandable title="Need help troubleshooting?" default-open="false">
+Check that your API key has the correct scopes. If a webhook fails, review the payload in the logs and confirm your endpoint returns a 200 status quickly.
+</Expandable>
