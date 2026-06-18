@@ -1,0 +1,94 @@
+---
+title: Optimize Checkout and Payments
+description: Configure Shopify Payments, reduce cart abandonment, and enable express checkout options.
+---
+
+## Overview
+
+You want customers to finish their purchase without friction. Shopify helps you set up reliable payments, recover lost sales, and keep taxes accurate so checkout feels smooth.
+
+Start with the basics below. Each section gives clear steps you can follow right now.
+
+## Set up Shopify Payments
+
+Connect your account so you can accept cards and other methods directly.
+
+<Steps>
+  <Step title="Connect your account">
+    Go to your Shopify admin and open Settings then Payments. Click Complete account setup and enter your business details.
+
+  </Step>
+  <Step title="Test a payment">
+    Use the test mode to place a small order. Confirm the funds appear in your balance before you switch to live mode.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Keep your bank details up to date so payouts reach you on schedule.
+</Callout>
+
+## Recover abandoned carts
+
+Many shoppers leave before paying. Shopify can send gentle reminders that bring them back.
+
+<Tabs>
+  <Tab title="Email reminders" icon="mail">
+    Turn on abandoned cart emails in Settings then Checkout. Choose timing that matches your customers.
+
+  </Tab>
+  <Tab title="Discount offers" icon="tag">
+    Add a small incentive in the recovery message. Test different amounts to see what works best.
+
+  </Tab>
+</Tabs>
+
+## Enable express checkout
+
+Let buyers skip extra steps with saved payment methods.
+
+<Columns cols={2}>
+  <Card title="Shop Pay" icon="zap" href="#">
+    One-tap checkout for returning customers.
+  </Card>
+  <Card title="Apple Pay & Google Pay" icon="credit-card" href="#">
+    Works on mobile and desktop browsers.
+  </Card>
+</Columns>
+
+## Configure taxes
+
+Accurate taxes prevent checkout surprises.
+
+<Expandable title="How to set tax rates" default-open="false">
+  Open Settings then Taxes and duties. Select your region and let Shopify calculate rates automatically. Review the list once a quarter.
+
+</Expandable>
+
+## Quick examples
+
+Here is how a simple checkout flow looks in different regions.
+
+<CodeGroup tabs="United States,Canada">
+```json
+{
+  "currency": "USD",
+  "tax_rate": 0.0725
+}
+```
+```json
+{
+  "currency": "CAD",
+  "tax_rate": 0.05
+}
+```
+</CodeGroup>
+
+## Best practices
+
+- Keep checkout pages short. Remove any fields you do not need.
+- Show clear shipping costs before the final step.
+- Send recovery emails within an hour for best results.
+- Review tax settings after any change in your product catalog.
+
+If something still feels off, check the status page first. Most issues clear up after you refresh your payment settings.
