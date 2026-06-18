@@ -1,0 +1,70 @@
+---
+title: Sync Issues and Conflicts
+description: Resolve common file sync problems and conflicting copies in Dropbox.
+---
+
+## Common Sync Problems
+
+Dropbox keeps your files updated across devices, but occasional issues can interrupt the process. The sections below describe frequent symptoms, their typical causes, and the steps to resolve them.
+
+<Callout kind="info">
+Check the Dropbox system tray or menu bar icon first. A red badge or paused status often points to the exact issue.
+</Callout>
+
+<Expandable title="Selective sync shows files as not syncing" default-open="false">
+Problem: You see the message "This folder is not syncing" or files remain grayed out after you enable selective sync.
+
+Cause: The folder was excluded in selective sync settings or a parent folder is paused.
+
+Fix:
+
+1. Open Dropbox preferences and go to the Sync tab.
+2. Click Selective sync and confirm the folder is checked.
+3. If the folder still does not appear, unlink and relink the account from the Account tab.
+
+</Expandable>
+
+<Expandable title="Conflicting copies appear after editing the same file" default-open="false">
+Problem: Dropbox creates files named "filename (John's conflicted copy)" or similar.
+
+Cause: Two devices edited the file while offline or during a sync delay.
+
+Fix:
+
+1. Open both the original file and the conflicted copy.
+2. Compare changes and merge them into one version.
+3. Delete the conflicted copy once the merged file is saved.
+
+Dropbox automatically uploads the merged version to all devices.
+
+</Expandable>
+
+<Expandable title="Sync stops due to bandwidth limits" default-open="false">
+Problem: The sync status shows "Syncing paused" or progress stalls for hours with no error message.
+
+Cause: Upload or download bandwidth is limited in preferences, or your network connection is throttled.
+
+Fix:
+
+1. Open Dropbox preferences and select the Bandwidth tab.
+2. Set both upload and download limits to "Don't limit".
+3. Click Apply and wait for the sync to resume.
+
+If the issue continues, test your connection speed at speedtest.net and contact your network administrator.
+
+</Expandable>
+
+<Expandable title="Error: 'Dropbox can't sync because the disk is full'" default-open="false">
+Problem: You receive the exact alert "Dropbox can't sync because the disk is full" even though space appears available.
+
+Cause: The local Dropbox folder has reached the operating system's storage limit or a quota is active.
+
+Fix:
+
+1. Move large files out of the Dropbox folder using Finder or File Explorer.
+2. Empty the trash or recycle bin.
+3. Restart the Dropbox desktop app from the system tray menu.
+
+The sync resumes once free space exceeds 1 GB.
+
+</Expandable>

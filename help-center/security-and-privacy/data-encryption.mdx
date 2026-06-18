@@ -1,0 +1,73 @@
+---
+title: Data Encryption and Compliance
+description: Understand how Dropbox encrypts data and meets industry compliance standards.
+---
+
+## Overview
+
+Dropbox keeps your files safe with strong protection that works in the background. You do not need to change how you work. This guide shows how encryption protects data, which standards Dropbox meets, and how admins can adjust settings.
+
+## Encryption methods
+
+Dropbox locks files both while they move and while they sit stored.
+
+<Tabs>
+  <Tab title="In transit" icon="lock">
+    Files travel over secure connections that use TLS. This stops anyone from reading content during upload or download.
+
+    Your browser or app connects only to verified Dropbox servers before sending anything.
+  </Tab>
+  <Tab title="At rest" icon="shield">
+    Stored files receive AES-256 encryption. Each file gets its own unique key that is itself encrypted and stored separately.
+
+    Even if storage hardware is accessed, the content stays unreadable without the keys.
+  </Tab>
+</Tabs>
+
+<Callout kind="info">
+  These protections run automatically. No extra steps are needed on your side.
+</Callout>
+
+## Compliance standards
+
+Dropbox follows major privacy and security rules that many teams require.
+
+<Columns cols={2}>
+  <Card title="GDPR" icon="globe" href="#">
+    Gives users in Europe control over their personal data with clear rights and quick response processes.
+  </Card>
+  <Card title="SOC 2" icon="check-circle" href="#">
+    Confirms that security controls are designed and operating effectively through regular audits.
+  </Card>
+</Columns>
+
+## Admin controls
+
+Admins can review and adjust encryption-related settings from the team dashboard.
+
+<ExpandableGroup>
+  <Expandable title="View encryption status" default-open="false">
+    Open the Admin console, go to Security, then select Encryption. You will see current status for all team folders.
+  </Expandable>
+  <Expandable title="Manage external sharing" default-open="false">
+    Set rules that require links to expire or need passwords. These options add another layer without changing core encryption.
+  </Expandable>
+</ExpandableGroup>
+
+## Best practices
+
+Follow these steps to keep your team protected:
+
+<Steps>
+  <Step title="Enable two-step verification">
+    Require it for every member. This adds a second check before anyone accesses files.
+  </Step>
+  <Step title="Review sharing links regularly">
+    Use the dashboard to find and revoke old links that are no longer needed.
+  </Step>
+  <Step title="Check compliance reports">
+    Download the latest SOC and GDPR summaries from the admin area when preparing for audits.
+  </Step>
+</Steps>
+
+If something looks off in your encryption status, contact Dropbox support right away.
