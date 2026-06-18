@@ -1,0 +1,77 @@
+---
+title: Quickstart Guide
+description: Set up your Zendesk account and launch your first AI-enhanced support channel in minutes.
+---
+
+## Overview
+
+You want fast resolutions for your customers. Zendesk lets you create an account, connect a channel, and train your first AI agent in just a few steps. Follow the sections below to get live support running today.
+
+## Account Setup
+
+<Steps>
+  <Step title="Sign up">
+    Go to the Zendesk sign-up page and enter your business email. Choose a subdomain that matches your brand.
+
+  </Step>
+  <Step title="Verify your workspace">
+    Check the confirmation email and set a secure password. Enable two-factor authentication right away for extra safety.
+
+  </Step>
+  <Step title="Add your team">
+    Invite agents from the admin panel. Assign basic roles so they can start handling tickets immediately.
+
+  </Step>
+</Steps>
+
+## Channel Configuration
+
+Choose the support channel that matches where your customers already reach you.
+
+<Tabs>
+  <Tab title="Messaging">
+    Enable the web widget on your site. Paste the provided snippet into your footer and publish.
+
+  </Tab>
+  <Tab title="Email">
+    Connect your support mailbox. Forward incoming messages to the address Zendesk supplies.
+
+  </Tab>
+  <Tab title="Voice">
+    Add a phone number from the Contact Center settings. Route calls to AI agents or live agents.
+
+  </Tab>
+</Tabs>
+
+## Initial AI Agent Training
+
+Train the AI so it understands your common questions from day one.
+
+<Expandable title="Upload sample tickets" default-open="true">
+  Import 50 recent tickets. The AI reviews them and suggests answers you can approve or edit.
+
+</Expandable>
+
+<Expandable title="Define intents">
+  List the top five customer goals, such as password reset or order status. Add sample phrases for each.
+
+</Expandable>
+
+## Quick Configuration Example
+
+Use the admin API to finish setup from the command line.
+
+````bash
+curl -X POST https://example.com/api/v2/channels \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"type":"messaging","enabled":true}'
+````
+
+## Best Practices
+
+<Callout kind="tip">
+  Start with one channel. Add more only after the first AI agent reaches 80 percent resolution accuracy.
+
+</Callout>
+
+Review resolved tickets weekly. Mark helpful answers so the AI keeps improving on its own.

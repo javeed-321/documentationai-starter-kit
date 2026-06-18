@@ -1,0 +1,72 @@
+---
+title: Messaging and Live Chat
+description: Configure website and mobile messaging with AI routing and live agent handoff.
+---
+
+## Overview
+
+Zendesk messaging lets you embed chat on websites and mobile apps so customers reach you instantly. AI agents handle common questions first, then hand off complex issues to live agents without losing context. You install a widget, set routing rules, and review every conversation in one place.
+
+## Widget Installation
+
+Add the messaging widget to your site or app in minutes. Choose the method that matches your stack.
+
+<Tabs>
+  <Tab title="Website" icon="monitor">
+    Paste the script tag into your HTML head.
+
+    ```html
+    <script src="https://static.example.com/widget.js" data-key="YOUR_ZENDESK_KEY"></script>
+    ```
+  </Tab>
+  <Tab title="Mobile" icon="smartphone">
+    Install the SDK and initialize it in your app.
+
+    <CodeGroup tabs="iOS,Android">
+      ```swift
+      Zendesk.initialize(withKey: "YOUR_ZENDESK_KEY")
+      ```
+      ```kotlin
+      Zendesk.initialize(context, "YOUR_ZENDESK_KEY")
+      ```
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+  Test the widget in a staging environment before you publish.
+</Callout>
+
+## AI Routing Rules
+
+Define simple rules that send conversations to the right AI agent or team. Rules run on first message and update as the conversation evolves.
+
+- Route by topic keywords such as billing or returns.
+- Send high-priority issues straight to live agents.
+- Let AI agents resolve routine requests and escalate only when needed.
+
+<Expandable title="Advanced routing options" default-open="false">
+  Combine multiple conditions and set fallback queues. Changes take effect immediately.
+</Expandable>
+
+## Conversation History
+
+Every message stays in the ticket timeline. Agents see the full thread, AI suggestions, and customer details without switching tools.
+
+## Examples
+
+<Columns cols={2}>
+  <Card title="E-commerce checkout help" icon="shopping-cart" href="#">
+    AI answers sizing questions then hands off payment issues to agents.
+  </Card>
+  <Card title="SaaS onboarding" icon="user-plus" href="#">
+    Bot guides new users through setup and books a live demo when asked.
+  </Card>
+</Columns>
+
+## Best Practices
+
+- Keep routing rules short and test them weekly.
+- Review AI handoff logs to improve answers over time.
+- Offer a clear "Talk to agent" option so customers never feel trapped.
+- Store transcripts for at least 90 days to meet compliance needs.

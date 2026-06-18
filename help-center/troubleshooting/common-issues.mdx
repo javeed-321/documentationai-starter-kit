@@ -1,68 +1,50 @@
 ---
-title: Troubleshooting
-description: Resolve issues with AI resolutions, ticket routing, integrations, and performance in the Zendesk platform.
+title: Common Issues
+description: Resolve frequent problems with ticket routing, AI agent responses, and channel connectivity.
 ---
 
-## Common Issues
+## AI Resolution Failures
 
-Use the sections below to identify symptoms, understand root causes, and apply targeted fixes for Zendesk Resolution Platform.
+<Expandable title="AI agent returns generic responses instead of resolving tickets">
 
-<Expandable title="AI agent fails to resolve complex tickets" default-open="false">
-Problem: The AI agent returns the error message `Agent unable to determine resolution path for ticket #45231`.
+The AI agent replies with vague messages like "I will look into that" on complex support requests.
 
-Cause: The agent lacks access to updated knowledge base articles or required custom fields that define resolution criteria.
+This happens when the agent lacks access to your specific knowledge base articles or recent ticket history.
 
-Fix: Update the agent's training data and verify field permissions.
+Update the agent's training data in the Resolution Platform settings, then retrain it on your top 50 resolved tickets. Test by creating a sample ticket with the exact phrasing from your customers.
 
-1. Navigate to AI agents settings.
-2. Select the affected agent and click Retrain.
-3. Add the missing knowledge base articles.
-4. Ensure the ticket fields `resolution_category` and `priority_level` are visible to the agent role.
-
-Test the ticket again after saving changes.
 </Expandable>
 
-<Expandable title="Ticket triggers route inquiries to the wrong queue" default-open="false">
-Problem: Tickets matching your automation rules land in the general queue instead of the specialized support queue.
+<Expandable title="Agent times out during resolution attempts">
 
-Cause: A recent change to trigger conditions conflicts with an existing automation that runs first.
+You see the error "AI agent failed to resolve ticket: Agent timeout after 30s" in the ticket audit log.
 
-Fix: Reorder triggers and refine the condition logic.
+The cause is usually an overloaded integration that the agent relies on for customer data.
 
-1. Go to Admin Center then Triggers.
-2. Locate the trigger named `Route to Tier 2`.
-3. Move it above any broader catch-all triggers.
-4. Update the condition to include `channel equals email` AND `tags contains enterprise`.
+Reduce the number of simultaneous actions in the agent's workflow to three or fewer, then restart the agent from the AI agents dashboard.
 
-Save and retest with a sample ticket.
 </Expandable>
 
-<Expandable title="Integration sync fails with external CRM" default-open="false">
-Problem: The sync status shows `Sync error: 409 Conflict on contact record update`.
+## Integration Sync Errors
 
-Cause: Duplicate contact records exist in the connected CRM due to mismatched email normalization rules.
+<Expandable title="CRM data fails to sync into tickets">
 
-Fix: Align deduplication settings and force a manual resync.
+Tickets show the message "Sync failed with error: 429 Too Many Requests from CRM" and customer details stay empty.
 
-1. Open Marketplace integrations and select your CRM connector.
-2. Choose Settings then Deduplication rules.
-3. Enable Normalize email domains.
-4. Click Resync all contacts.
+Rate limits on the connected app are being hit during high-volume periods.
 
-Monitor the sync log for successful completion.
+Lower the sync frequency to every 15 minutes in Marketplace settings and add a retry delay of 60 seconds.
+
 </Expandable>
 
-<Expandable title="Analytics dashboard shows mismatched ticket counts" default-open="false">
-Problem: The resolution analytics report displays ticket totals that differ by 12 percent from the live ticket view.
+## Channel Connectivity
 
-Cause: Cached data from a recent platform update has not refreshed for the selected date range.
+<Expandable title="Voice channel drops incoming calls">
 
-Fix: Clear the analytics cache and adjust the reporting interval.
+The Contact Center logs display "Unable to connect to voice channel: SIP registration error" and calls route to voicemail.
 
-1. Visit Reporting and analytics.
-2. Select the affected dashboard.
-3. Click the three-dot menu then choose Clear cache.
-4. Change the date range to exclude today, then refresh.
+Your SIP credentials may have expired or the firewall blocks the required ports.
 
-The numbers should align within a few minutes.
+Re-enter the SIP details under Contact Center configuration and whitelist ports 5060-5061 in your network settings.
+
 </Expandable>

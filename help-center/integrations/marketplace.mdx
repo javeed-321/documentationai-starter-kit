@@ -1,0 +1,71 @@
+---
+title: Marketplace and Apps
+description: Discover and install 1,800+ apps and partner integrations for unified workflows.
+---
+
+## Overview
+
+Zendesk Marketplace gives you access to more than 1,800 apps and partner integrations. You connect these tools directly to the Resolution Platform so tickets, chats, and calls flow into the systems your team already uses. The result is fewer manual steps and faster resolutions across every channel.
+
+## App Installation
+
+Install apps from the Marketplace in just a few clicks. Choose an app, review the permissions it needs, and confirm the connection to your Zendesk account.
+
+<Tabs>
+  <Tab title="Admin Center" icon="settings">
+    Open Admin Center, go to Marketplace, search for the app, then click Install.
+
+    <Callout kind="tip">
+      Log in as an administrator before you start so the app can request the right scopes.
+    </Callout>
+  </Tab>
+  <Tab title="Marketplace Site" icon="external-link">
+    Visit the Marketplace listing, click Install, and sign in with your Zendesk credentials.
+  </Tab>
+</Tabs>
+
+## Data Sync
+
+Once installed, most apps keep records in sync automatically. You decide which fields map between Zendesk and the connected service.
+
+<CodeGroup tabs="JSON,CSV">
+```json
+{
+  "sync": {
+    "direction": "bidirectional",
+    "fields": ["subject", "status", "custom_field_123"]
+  }
+}
+```
+```csv
+field_zendesk,field_external,mode
+subject,title,both
+status,state,import
+```
+</CodeGroup>
+
+## Custom Actions
+
+Create custom actions to trigger workflows when specific events happen in Zendesk. These actions call external APIs or run internal automations without writing full code.
+
+<Expandable title="Example: Notify Slack on high-priority ticket" default-open="false">
+  Define the trigger in Admin Center, select the Slack app, and map the ticket fields to the message template.
+</Expandable>
+
+## Examples
+
+<Columns cols={2}>
+  <Card title="Salesforce" icon="database" href="#">
+    Pull account details into tickets so agents see purchase history at a glance.
+  </Card>
+  <Card title="Jira" icon="check-circle" href="#">
+    Create linked issues from Zendesk tickets and keep status in sync.
+  </Card>
+</Columns>
+
+## Best Practices
+
+- Review every app's permission list before installation.
+- Start with one integration, test the data flow, then add the next.
+- Use the built-in audit log to track which apps touch which records.
+- Update apps regularly so you receive the latest security fixes and features.
