@@ -1,0 +1,99 @@
+---
+title: Quickstart
+description: Make your first authenticated calls to the Vercel API to list projects and trigger deployments.
+---
+
+## Prerequisites
+
+<Callout kind="info">
+  You need a Vercel account and an API token. Generate the token from your account settings before proceeding.
+</Callout>
+
+## Set up authentication
+
+<Steps>
+  <Step title="Create an API token">
+    Log in to your account dashboard and create a new token with the required scopes for projects and deployments.
+  </Step>
+
+  <Step title="Store the token">
+    Export the token as an environment variable in your shell:
+
+    ```bash
+    export VERCEL_TOKEN=your_token_here
+    ```
+  </Step>
+</Steps>
+
+## List projects
+
+Use the following examples to fetch your projects.
+
+<CodeGroup tabs="cURL,Node.js">
+```bash
+curl -H "Authorization: Bearer $VERCEL_TOKEN" \
+  https://api.example.com/v2/projects
+```
+
+```js
+const res = await fetch("https://api.example.com/v2/projects", {
+  headers: { Authorization: `Bearer ${process.env.VERCEL_TOKEN}` },
+});
+const data = await res.json();
+console.log(data);
+```
+</CodeGroup>
+
+## Trigger a deployment
+
+Send a request to start a new deployment for an existing project.
+
+<CodeGroup tabs="cURL,Node.js">
+```bash
+curl -X POST \
+  -H "Authorization: Bearer $VERCEL_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"my-app","gitSource":{"type":"github","repo":"owner/repo"}}' \
+  https://api.example.com/v13/deployments
+```
+
+```js
+const res = await fetch("https://api.example.com/v13/deployments", {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    name: "my-app",
+    gitSource: { type: "github", repo: "owner/repo" },
+  }),
+});
+const data = await res.json();
+console.log(data);
+```
+</CodeGroup>
+
+## Handle errors
+
+API responses include standard HTTP status codes. Check the response body for details on failures such as invalid tokens or missing permissions.
+
+```json
+{
+  "error": {
+    "code": "forbidden",
+    "message": "Invalid authentication token"
+  }
+}
+```
+
+## Next steps
+
+<Columns cols={2}>
+  <Card title="Projects API" href="#">
+    Explore all endpoints for managing projects.
+  </Card>
+  <Card title="Deployments API" href="#">
+    Review additional deployment options and webhooks.
+  </Card>
+</Columns>

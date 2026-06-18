@@ -1,0 +1,66 @@
+---
+title: Authentication
+description: Authenticate API requests using Vercel access tokens and OAuth2 flows.
+---
+
+## Overview
+
+Vercel API requests require authentication via access tokens. Two supported methods exist: personal access tokens for direct use and OAuth2 flows for applications. All requests must include valid credentials in the Authorization header.
+
+## Authentication Methods
+
+<Tabs>
+  <Tab title="Personal Access Tokens" icon="key">
+    Generate a personal access token from the dashboard settings. The token grants access based on assigned scopes and expires according to the configured lifetime.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Use the format `Bearer <token>`.
+    </ParamField>
+  </Tab>
+  <Tab title="OAuth2" icon="lock">
+    Register an OAuth application to obtain client credentials. Exchange the authorization code for an access token using the token endpoint. Refresh tokens support long-lived sessions.
+
+    <ParamField header="Authorization" param-type="string" required="true">
+      Use the format `Bearer <access_token>`.
+    </ParamField>
+  </Tab>
+</Tabs>
+
+## Implementation
+
+Store tokens in environment variables rather than source code.
+
+```bash
+VERCEL_TOKEN=your_token_here
+```
+
+<CodeGroup tabs="cURL,JavaScript,Python">
+```bash
+curl -H "Authorization: Bearer $VERCEL_TOKEN" \
+  https://api.example.com/v1/projects
+```
+
+```javascript
+const token = process.env.VERCEL_TOKEN;
+const res = await fetch("https://api.example.com/v1/projects", {
+  headers: { Authorization: `Bearer ${token}` },
+});
+const data = await res.json();
+```
+
+```python
+import os
+import requests
+
+token = os.environ["VERCEL_TOKEN"]
+headers = {"Authorization": f"Bearer {token}"}
+response = requests.get("https://api.example.com/v1/projects", headers=headers)
+data = response.json()
+```
+</CodeGroup>
+
+## Security Tips
+
+<Callout kind="alert">
+  Rotate tokens regularly. Limit scopes to the minimum required permissions. Never commit tokens to version control or expose them in client-side code.
+</Callout>

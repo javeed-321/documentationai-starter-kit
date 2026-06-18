@@ -1,0 +1,62 @@
+---
+title: Error Codes
+description: Reference of common Vercel API error codes and recommended remediation steps.
+---
+
+## Common API Errors
+
+<Expandable title="Rate limit exceeded">
+
+Problem: Requests return HTTP 429 with the following payload.
+
+```json
+{"error":{"code":"rate_limit_exceeded","message":"Too many requests"}}
+```
+
+Cause: The client exceeded 100 requests per minute on the `/v2/deployments` endpoint.
+
+Fix: Implement exponential backoff and respect the `Retry-After` header.
+
+```bash
+curl -H "Authorization: Bearer $VERCEL_TOKEN" \
+  https://api.vercel.com/v2/deployments
+```
+
+</Expandable>
+
+<Expandable title="Deployment failed">
+
+Problem: A Git-triggered deployment ends with status `BUILD_FAILED`.
+
+```json
+{"error":{"code":"deployment_failed","message":"Build failed with exit code 1"}}
+```
+
+Cause: The `vercel.json` rewrites reference a missing static asset.
+
+Fix: Verify the build output directory and run `vercel build` locally before pushing.
+
+```bash
+vercel build --prod
+```
+
+</Expandable>
+
+<Expandable title="Invalid authentication token">
+
+Problem: All authenticated endpoints return HTTP 401.
+
+```json
+{"error":{"code":"invalid_token","message":"The provided token is invalid"}}
+```
+
+Cause: The `Authorization` header contains an expired or revoked Vercel token.
+
+Fix: Generate a new token in the dashboard and update your CI secrets.
+
+```bash
+curl -H "Authorization: Bearer $NEW_VERCEL_TOKEN" \
+  https://api.vercel.com/v2/user
+```
+
+</Expandable>

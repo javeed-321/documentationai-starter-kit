@@ -1,0 +1,74 @@
+---
+title: Feature Overview
+description: Explore Vercel's core platform services including CI/CD, Fluid Compute, edge CDN, and AI tooling.
+---
+
+## Overview
+
+Vercel provides a unified platform for building and deploying modern web applications. From the moment you connect a repository, automated pipelines handle builds, previews, and production releases. Fluid Compute dynamically allocates resources, while the global edge network delivers content with low latency. AI tooling extends these capabilities with model access and TypeScript utilities.
+
+## CI/CD Pipelines
+
+Instant pipelines trigger on every Git push. Previews appear automatically, and production updates follow successful checks.
+
+<Callout kind="info">
+  Enable branch protection rules to require preview approval before merging.
+</Callout>
+
+## Fluid Compute
+
+Fluid Compute provisions the exact CPU, memory, and concurrency needed for each request. No manual scaling configuration is required.
+
+<Card title="Automatic Scaling" icon="zap" href="#">
+  Resources adjust in real time based on traffic patterns.
+</Card>
+
+## Content Delivery Network
+
+The edge CDN caches static assets and runs serverless functions close to users worldwide.
+
+<Tabs>
+  <Tab title="Static Assets" icon="globe">
+    Images, fonts, and scripts are served from the nearest edge location.
+  </Tab>
+  <Tab title="Dynamic Routes" icon="code">
+    API routes execute at the edge with sub-100 ms response times.
+  </Tab>
+</Tabs>
+
+## AI SDK and Gateway
+
+The AI SDK offers TypeScript helpers for model calls, while the Gateway provides unified access to multiple providers.
+
+<CodeGroup tabs="TypeScript,JavaScript">
+```typescript
+import { generateText } from '@vercel/ai';
+
+const result = await generateText({
+  model: 'openai/gpt-4o',
+  prompt: 'Summarize the deployment logs',
+});
+```
+```javascript
+import { generateText } from '@vercel/ai';
+
+const result = await generateText({
+  model: 'openai/gpt-4o',
+  prompt: 'Summarize the deployment logs',
+});
+```
+</CodeGroup>
+
+## Examples
+
+<Expandable title="Deploy a Next.js application" default-open="false">
+
+Connect your repository on the dashboard. Vercel detects the framework and creates a production deployment automatically.
+
+</Expandable>
+
+## Best Practices
+
+- Keep preview environments enabled for every pull request.
+- Use environment variables to separate development and production secrets.
+- Monitor usage through the built-in observability dashboard to optimize Fluid Compute allocations.

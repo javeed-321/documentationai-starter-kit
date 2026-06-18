@@ -1,0 +1,65 @@
+---
+title: Quickstart
+description: Deploy your first application to Vercel from a Git repository in minutes.
+---
+
+## Prerequisites
+
+<Callout kind="info">
+  You need a Git repository containing a web application and a Vercel account. Sign up at example.com if you do not have one.
+</Callout>
+
+## Connect your repository
+
+<Steps>
+  <Step title="Link your Git provider">
+    Go to the Vercel dashboard and authorize access to your Git account. Select the repository that contains your application.
+
+  </Step>
+  <Step title="Configure the project">
+    Vercel detects the framework automatically. Review the build settings and add any required environment variables.
+
+  </Step>
+  <Step title="Deploy">
+    Click Deploy. Vercel builds the project and creates an instant preview URL.
+
+  </Step>
+</Steps>
+
+## Instant previews and production
+
+Every push to your connected branch generates a unique preview URL. Merge to the production branch to trigger a production deployment on the global edge network.
+
+<CodeGroup tabs="JavaScript,TypeScript">
+```javascript
+// pages/api/hello.js
+export default function handler(req, res) {
+  res.status(200).json({ message: 'Hello from Vercel' });
+}
+```
+
+```typescript
+// pages/api/hello.ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  res.status(200).json({ message: 'Hello from Vercel' });
+}
+```
+</CodeGroup>
+
+## Add environment variables
+
+Store secrets and configuration values in the Vercel dashboard under Project Settings. They become available at build time and runtime without code changes.
+
+<Columns cols={2}>
+  <Card title="Explore AI features" icon="zap" href="#">
+    Learn how to integrate the AI SDK and AI Gateway.
+  </Card>
+  <Card title="Review security options" icon="shield" href="#">
+    Enable WAF, BotID, and DDoS protection for your deployments.
+  </Card>
+</Columns>

@@ -1,0 +1,189 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Vercel API
+  license:
+    name: MIT
+servers:
+  - url: https://api.vercel.com/v1
+paths:
+  /deployments:
+    get:
+      summary: List deployments
+      description: Retrieves a paginated list of deployments for your Vercel projects. Use the limit parameter to control page size.
+      operationId: listDeployments
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of deployments
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployments'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create deployment
+      operationId: createDeployment
+      responses:
+        201:
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /deployments/{deploymentId}:
+    get:
+      summary: Get deployment
+      description: Retrieves detailed information about a specific deployment by its unique identifier. Use this to inspect build status, runtime settings, and routing details.
+      operationId: showDeploymentById
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          description: The id of the deployment to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployments'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /ai/gateway/models:
+    get:
+      summary: List models
+      description: Retrieves the available AI models exposed through the AI Gateway. Use this endpoint to discover supported providers and model capabilities.
+      operationId: listModels
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of models
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create model
+      operationId: createModel
+      responses:
+        201:
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /ai/gateway/models/{modelId}:
+    get:
+      summary: Get model
+      description: Retrieves detailed information about a specific AI model by its unique identifier. Use this when you need provider, pricing, or compatibility details.
+      operationId: showModelById
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          description: The id of the model to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Models'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Deployment:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Deployments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Deployment'
+    Model:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Models:
+      type: array
+      items:
+        $ref: '#/components/schemas/Model'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

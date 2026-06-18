@@ -1,0 +1,34 @@
+---
+title: Roadmap
+description: Upcoming Vercel features including expanded AI tooling, observability enhancements, and workflow improvements.
+---
+<Board>
+  <BoardColumn title="Backlog">
+    <BoardCard title="Multi-model AI routing" description="Extend AI Gateway to intelligently route requests across additional providers based on cost and latency." />
+    <BoardCard title="Custom WAF rule builder" description="Add a visual editor for creating and testing security rules in the dashboard." />
+    <BoardCard title="Sandbox GPU support" description="Enable GPU-accelerated code execution inside isolated Sandbox environments." />
+    <BoardCard title="v0 collaborative editing" description="Introduce real-time multi-user editing sessions inside the v0 design tool." />
+    <BoardCard title="Edge KV global replication" description="Provide automatic multi-region replication for Edge KV stores used by Fluid Compute." />
+  </BoardColumn>
+  <BoardColumn title="Next Up">
+    <BoardCard title="AI SDK streaming helpers" description="Ship new TypeScript utilities for handling streaming responses from AI models." />
+    <BoardCard title="Workflow step retries" description="Add configurable retry policies and dead-letter queues to long-running Workflows." />
+    <BoardCard title="Observability trace export" description="Allow export of distributed traces to external monitoring platforms via OTLP." />
+    <BoardCard title="BotID challenge customization" description="Let teams configure custom challenge pages and rate limits for detected bots." />
+    <BoardCard title="Fluid Compute memory tiers" description="Introduce additional memory and CPU tiers for serverless functions beyond current defaults." />
+  </BoardColumn>
+  <BoardColumn title="In Progress">
+    <BoardCard title="Vercel Agent plugin API" description="Expose an extension API so third-party tools can register actions inside Vercel Agent." />
+    <BoardCard title="Real-time metrics dashboard" description="Build a live-updating observability view for request volume, errors, and latency." />
+    <BoardCard title="WAF managed rule sets" description="Roll out pre-built rule sets for common attack patterns with one-click enablement." />
+    <BoardCard title="AI Gateway usage analytics" description="Add detailed usage and cost dashboards inside the AI Gateway product surface." />
+    <BoardCard title="Workflow visual designer" description="Provide a drag-and-drop canvas for authoring and monitoring complex Workflows." />
+  </BoardColumn>
+  <BoardColumn title="Done">
+    <BoardCard title="AI SDK 1.0 release" description="Publish the stable TypeScript SDK with core model providers and streaming support." />
+    <BoardCard title="Fluid Compute GA" description="Make Fluid Compute generally available with automatic resource scaling from Git pushes." />
+    <BoardCard title="DDoS protection v2" description="Deploy the upgraded global DDoS mitigation layer with improved detection accuracy." />
+    <BoardCard title="Basic Workflows support" description="Launch the initial Workflows product for orchestrating long-running background jobs." />
+    <BoardCard title="Sandbox public beta" description="Open the Sandbox environment to all users for secure, isolated code execution." />
+  </BoardColumn>
+</Board>
