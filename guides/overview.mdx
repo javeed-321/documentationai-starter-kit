@@ -1,0 +1,75 @@
+---
+title: Feature Overview
+description: Explore Stripe products including Payments, Billing, Radar, Sigma, and Connect.
+---
+
+## Overview
+
+Stripe provides the financial infrastructure you need to accept payments, manage subscriptions, and issue cards. You integrate once and scale from the first transaction to high volume operations across more than 135 currencies.
+
+## Online Payments
+
+Accept payments on the web or inside applications with a single API. You control the full checkout experience while Stripe handles routing, retries, and reconciliation.
+
+<Callout kind="info">
+  Always test with test keys before switching to live mode.
+</Callout>
+
+<CodeGroup tabs="cURL,JavaScript">
+```bash
+curl https://api.example.com/v1/payment_intents \
+  -u sk_test_YourKey: \
+  -d amount=2000 \
+  -d currency=usd
+```
+
+```javascript
+const {paymentIntent} = await stripe.paymentIntents.create({
+  amount: 2000,
+  currency: 'usd',
+});
+```
+</CodeGroup>
+
+## In-Person Terminal
+
+Process card-present payments with Stripe Terminal. Connect readers over Bluetooth or internet and capture payments at physical locations.
+
+<Tabs>
+  <Tab title="Terminal API" icon="terminal">
+    Create a connection token and register your reader.
+
+    ```bash
+    curl https://api.example.com/v1/terminal/connection_tokens \
+      -u sk_test_YourKey: \
+      -X POST
+    ```
+  </Tab>
+  <Tab title="Reader Setup" icon="monitor">
+    Pair the reader and start a payment.
+
+    Follow the reader pairing flow in your point-of-sale application.
+  </Tab>
+</Tabs>
+
+## Subscription Management
+
+Create and manage recurring revenue with Billing. Define plans, handle trials, and automatically retry failed invoices.
+
+<Expandable title="Best practices for subscriptions" default-open="false">
+  - Offer multiple price points to capture different customer segments.
+  - Use webhooks to keep your database in sync with invoice status.
+  - Enable smart retries to recover involuntary churn.
+</Expandable>
+
+## Issuing Cards
+
+Issue virtual and physical cards to control spend and automate expense management. Set real-time authorization rules and receive instant transaction data.
+
+<Card title="Issuing controls" icon="shield" href="#">
+  Define spend limits per employee or team and receive webhooks on every authorization.
+</Card>
+
+## Next steps
+
+Review the full API reference and begin integration in the dashboard.

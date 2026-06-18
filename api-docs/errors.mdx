@@ -1,0 +1,98 @@
+---
+title: Error Codes
+description: Handle Stripe API errors including card declines, rate limits, and authentication failures.
+---
+
+## Common Error Responses
+
+The API returns machine-readable errors in JSON. Inspect the `type` and `code` fields to determine the cause and next action.
+
+<Expandable title="card_declined (HTTP 402)">
+Problem: A payment request fails because the card issuer rejected the transaction.
+
+Cause: The card number, expiry, or CVC is invalid, or the issuer flagged the charge for fraud, insufficient funds, or other policy reasons.
+
+Fix: Prompt the customer for updated card details or an alternate payment method. Log the `decline_code` value for support.
+
+```json
+{
+  "error": {
+    "type": "card_error",
+    "code": "card_declined",
+    "decline_code": "insufficient_funds",
+    "message": "Your card has insufficient funds."
+  }
+}
+```
+
+</Expandable>
+
+<Expandable title="rate_limit (HTTP 429)">
+Problem: The client exceeds the allowed request rate and receives a 429 response.
+
+Cause: More than 100 requests per second hit the same publishable or secret key, or the account-level burst limit was reached.
+
+Fix: Implement exponential backoff starting at 1 second. Cache responses where possible and spread retries over multiple seconds.
+
+```bash
+curl -i https://api.example.com/v1/charges \
+  -H "Authorization: Bearer sk_test_..."
+# HTTP/2 429
+# {"error":{"type":"rate_limit_error","message":"Too many requests"}}
+```
+
+</Expandable>
+
+<Expandable title="invalid_request_error (HTTP 400)">
+Problem: The request body or parameters are malformed.
+
+Cause: A required field is missing, a value has the wrong type, or an unsupported parameter was supplied.
+
+Fix: Validate all parameters against the schema before sending. Re-send only after correcting the offending field.
+
+```json
+{
+  "error": {
+    "type": "invalid_request_error",
+    "code": "parameter_unknown",
+    "param": "source",
+    "message": "Received unknown parameter: source"
+  }
+}
+```
+
+</Expandable>
+
+<Expandable title="authentication_error (HTTP 401)">
+Problem: The request lacks valid credentials.
+
+Cause: The `Authorization` header contains an expired, revoked, or nonexistent API key.
+
+Fix: Rotate the key in the dashboard and update the client configuration. Never commit keys to source control.
+
+```bash
+curl https://api.example.com/v1/customers \
+  -H "Authorization: Bearer sk_live_INVALID"
+# {"error":{"type":"authentication_error","message":"Invalid API Key provided"}}
+```
+
+</Expandable>
+
+<Expandable title="webhook signature verification failed">
+Problem: A webhook POST is rejected because the signature header does not match.
+
+Cause: The endpoint secret is incorrect or the raw request body was altered before verification.
+
+Fix: Retrieve the endpoint secret from the dashboard, compute the HMAC-SHA256 of the exact raw body, and compare it to the `Stripe-Signature` header.
+
+```bash
+# Example verification command
+stripe listen --forward-to localhost:3000/webhook \
+  --events payment_intent.succeeded
+```
+
+</Expandable>
+
+## Retry Strategy
+
+Use the `Retry-After` header when present. For all other transient errors, apply exponential backoff capped at 30 seconds and limit total attempts to five.

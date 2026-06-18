@@ -1,0 +1,157 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Stripe API
+  license:
+    name: MIT
+servers:
+  - url: https://api.stripe.com/v1
+paths:
+  /payments:
+    get:
+      summary: List payments
+      operationId: listPayments
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of payments
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payments'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create payment
+      operationId: createPayment
+      responses:
+        201:
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /payments/{paymentId}:
+    get:
+      summary: Get payment info
+      operationId: showPaymentById
+      parameters:
+        - name: paymentId
+          in: path
+          required: true
+          description: The id of the payment to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payments'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /refunds:
+    post:
+      summary: Create refund
+      operationId: createRefund
+      responses:
+        201:
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /customers/{customerId}:
+    get:
+      summary: Get customer info
+      operationId: showCustomerById
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          description: The id of the customer to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customers'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Payment:
+      required:
+        - id
+        - amount
+      properties:
+        id:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        currency:
+          type: string
+        status:
+          type: string
+    Payments:
+      type: array
+      items:
+        $ref: '#/components/schemas/Payment'
+    Customers:
+      type: array
+      items:
+        $ref: '#/components/schemas/Customer'
+    Customer:
+      required:
+        - id
+        - email
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

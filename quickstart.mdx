@@ -1,0 +1,77 @@
+---
+title: Quickstart
+description: Create an account and accept your first payment using Stripe Checkout or Elements.
+---
+
+## Prerequisites
+
+<Callout kind="info">
+Create an account at https://dashboard.example.com/register. You will need API keys and a basic understanding of your server environment.
+</Callout>
+
+## Retrieve your API keys
+
+<Steps>
+<Step title="Log in to the dashboard">
+Visit https://dashboard.example.com/login and sign in with your credentials.
+</Step>
+<Step title="Locate the keys">
+Navigate to Developers then API keys. Copy the publishable key and secret key.
+</Step>
+<Step title="Store them securely">
+Add the keys to environment variables on your server. Never commit them to source control.
+</Step>
+</Steps>
+
+## Create a Checkout session
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+import Stripe from "stripe";
+const stripe = new Stripe("YOUR_SECRET_KEY");
+
+const session = await stripe.checkout.sessions.create({
+  mode: "payment",
+  line_items: [{ price: "price_123", quantity: 1 }],
+  success_url: "https://example.com/success",
+  cancel_url: "https://example.com/cancel",
+});
+```
+```python
+import stripe
+stripe.api_key = "YOUR_SECRET_KEY"
+
+session = stripe.checkout.Session.create(
+    mode="payment",
+    line_items=[{"price": "price_123", "quantity": 1}],
+    success_url="https://example.com/success",
+    cancel_url="https://example.com/cancel",
+)
+```
+</CodeGroup>
+
+## Test the integration
+
+Switch to test mode in the dashboard. Use test card number 4242 4242 4242 4242 with any future expiry date and CVC. Complete a checkout session to verify the flow works end to end.
+
+## Set up webhooks
+
+<Steps>
+<Step title="Register an endpoint">
+In the dashboard, go to Developers then Webhooks and add your server URL.
+</Step>
+<Step title="Handle events">
+Listen for checkout.session.completed. Verify the signature using your webhook secret.
+</Step>
+</Steps>
+
+## Next steps
+
+<Columns cols={2}>
+<Card title="Checkout reference" href="#" icon="book-open">
+Explore all Checkout options and customization.
+</Card>
+<Card title="Elements guide" href="#" icon="code">
+Learn how to build custom payment forms.
+</Card>
+</Columns>
