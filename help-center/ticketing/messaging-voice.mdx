@@ -1,0 +1,50 @@
+---
+title: Messaging, Chat and Voice
+description: Manage live chat, messaging, and AI-powered voice interactions in one inbox.
+---
+
+You need live chat, messaging, and voice conversations to land in one inbox without manual forwarding. This page shows how to route them automatically, turn on AI voice agents, and build simple workflows.
+
+## Route conversations across channels
+
+Zendesk pulls messages from every channel into a single view. Choose routing rules that match your team size.
+
+| Channel     | Default routing          | Best for                     |
+|-------------|--------------------------|------------------------------|
+| Live chat   | Skill-based              | High-volume web traffic      |
+| Messaging   | Round-robin              | Social and mobile apps       |
+| Voice       | AI agent first           | After-hours and overflow     |
+
+## Turn on AI voice agents
+
+<Steps>
+  <Step title="Open the admin panel">
+    Go to Admin > Channels > Voice.
+  </Step>
+  <Step title="Enable the AI agent">
+    Toggle AI Voice Agent on and select the greeting script you want callers to hear first.
+  </Step>
+  <Step title="Set transfer rules">
+    Choose when the AI hands off to a human: after three failed answers, on explicit request, or when sentiment drops.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+Test the voice agent on a quiet line before you publish it to customers.
+</Callout>
+
+## Build conversation workflows
+
+<Expandable title="How do I create a simple workflow?">
+  1. Go to Admin > Workflows > New.
+  2. Name the workflow and pick the trigger "New conversation starts."
+  3. Add the action "Assign to AI agent" and save.
+</Expandable>
+
+<Expandable title="Can I route voice calls differently at night?">
+  Yes. Add a schedule condition to any workflow. Set the time range and choose a different AI script or queue.
+</Expandable>
+
+## Still stuck?
+
+Contact Zendesk support from the Help menu inside your account.

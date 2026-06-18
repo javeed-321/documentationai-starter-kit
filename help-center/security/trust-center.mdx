@@ -1,0 +1,71 @@
+---
+title: Security and AI Governance
+description: Configure enterprise-grade security controls and responsible AI policies.
+---
+
+You need to meet enterprise security and responsible AI requirements in Zendesk. This page shows you how to set data residency, access controls, and AI audit logs.
+
+## Choose your data residency region
+
+Zendesk stores customer data in the region you select. Pick the region that matches your compliance needs.
+
+<Steps>
+  <Step title="Open admin settings">
+    Sign in to Zendesk as an administrator. Go to Admin > Security > Data Residency.
+  </Step>
+  <Step title="Select region">
+    Choose one of the available regions from the list. Save your choice.
+
+  </Step>
+  <Step title="Confirm migration">
+    Zendesk moves existing data to the new region. This process runs in the background and may take up to 48 hours.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Test a small account first if you manage multiple brands.
+</Callout>
+
+## Set role-based access controls
+
+Limit who can view or change sensitive data and AI features.
+
+| Role | Can view tickets | Can edit AI settings | Can export logs |
+|------|------------------|----------------------|-----------------|
+| Agent | Yes | No | No |
+| Admin | Yes | Yes | Yes |
+| Auditor | Yes | No | Yes |
+
+<Steps>
+  <Step title="Create custom roles">
+    Go to Admin > People > Roles. Click Add Role and set permissions for each area.
+  </Step>
+  <Step title="Assign roles to users">
+    Open each user profile and select the new role from the dropdown.
+  </Step>
+</Steps>
+
+## Turn on AI audit logs
+
+AI audit logs record every prompt sent to AI agents and every response generated.
+
+<Expandable title="Why enable audit logs?">
+  Audit logs help you review AI decisions, meet regulatory requests, and debug unexpected agent behavior.
+</Expandable>
+
+<Steps>
+  <Step title="Enable logging">
+    Go to Admin > AI > Governance. Toggle AI Audit Logs to On.
+  </Step>
+  <Step title="Set retention period">
+    Choose how long to keep logs (30, 90, or 365 days). Click Save.
+  </Step>
+  <Step title="Download logs">
+    Return to the same page and click Export Logs when you need a copy.
+  </Step>
+</Steps>
+
+## Still stuck?
+
+Contact Zendesk Support through the Help menu in your account.

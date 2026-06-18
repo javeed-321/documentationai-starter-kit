@@ -1,80 +1,96 @@
 ---
-title: Common scheduling issues
-description: Resolve calendar sync failures, double bookings, and link errors.
+title: Common Issues
+description: Resolve frequent problems with AI agents, ticket routing, and integrations.
 ---
 
-If a scheduling problem blocks your day, start here. Each section shows the exact symptom you see, why it happens in Calendly, and the quickest fix.
+If your Zendesk AI agents give inaccurate answers, tickets fail to route, or integrations stop working, this page gives direct fixes for the three most common problems.
 
-<Expandable title="Calendar failed to sync" default-open="false">
-  **Problem**  
-  After you connect Google Calendar or Outlook, Calendly shows:  
-  `Calendar failed to sync. Please reconnect your account.`
+## AI agent accuracy
 
-  **Cause**  
-  The connected calendar revoked access or hit a temporary API limit.
+<Expandable title="Agent responses miss key details or suggest wrong solutions">
+Check the training data first.
 
-  **Fix**
+<Steps>
+  <Step title="Review recent interactions">
+    Open the agent dashboard and filter conversations from the last seven days.
 
-  1. Go to Account → Calendar Connections.
-  2. Click Reconnect next to the failing calendar.
-  3. Grant Calendly access again when prompted.
-  4. Wait two minutes, then refresh the page.
+    Look for patterns in missed details.
 
-  If the error returns, remove the calendar completely and add it again.
+  </Step>
+  <Step title="Add missing examples">
+    Go to Agent Settings > Training and upload five new examples that match the gaps you found.
 
-</Expandable>
+    Save and test with a sample ticket.
 
-<Expandable title="Events appear in the wrong time zone" default-open="false">
-  **Problem**  
-  A booking shows at 9 a.m. on your calendar but 2 p.m. for the invitee.
+  </Step>
+  <Step title="Retrain the agent">
+    Click Retrain in the same menu.
 
-  **Cause**  
-  Calendly reads the time zone from your connected calendar, but the event type still uses a different default.
+    Wait for the status to show Complete before testing again.
 
-  **Fix**
-
-  1. Open the event type → Show more settings → Time zone.
-  2. Choose "Use invitee's time zone" or set it to match your primary calendar.
-  3. Save and test with a new booking link.
-
-  The change applies to future bookings only.
-
-</Expandable>
-
-<Expandable title="Double booking occurred" default-open="false">
-  **Problem**  
-  Two people booked the same 30-minute slot even though the calendar showed it free.
-
-  **Cause**  
-  Calendly checks availability every few minutes. A last-second meeting added outside Calendly was not yet synced.
-
-  **Fix**
-
-  1. Turn on "Check for conflicts" in the event type settings.
-  2. Increase the buffer time to at least 15 minutes.
-  3. In your connected calendar, create a recurring "busy" block that matches your Calendly hours.
-
-  These steps reduce the chance of overlap while sync catches up.
-
-</Expandable>
-
-<Expandable title="Booking link shows no times available" default-open="false">
-  **Problem**  
-  Visitors see "No times available" even though your calendar is clear.
-
-  **Cause**  
-  The event type duration or buffer exceeds the remaining free blocks, or the date range is too narrow.
-
-  **Fix**
-
-  1. Edit the event type → Duration and buffers.
-  2. Shorten the meeting length or reduce buffer time.
-  3. Extend the date range under "When can people book" to at least 30 days.
-
-  Save and share the updated link.
-
-</Expandable>
+  </Step>
+</Steps>
 
 <Callout kind="tip">
-  Still stuck? Use the in-app chat and paste the exact error message. Our team can check your account sync logs directly.
+  Run a quick test ticket after each change so you see results immediately.
 </Callout>
+
+</Expandable>
+
+## Channel connectivity
+
+<Expandable title="Tickets from chat or voice do not appear">
+Confirm the channel is still connected.
+
+<Steps>
+  <Step title="Check connection status">
+    Go to Channels and look for a green checkmark next to the affected channel.
+
+  </Step>
+  <Step title="Reconnect if needed">
+    Click the channel name, then select Reconnect.
+
+    Enter your credentials again if prompted.
+
+  </Step>
+  <Step title="Test the channel">
+    Send a test message from the live chat or make a test call.
+
+    Confirm the ticket appears in your queue within one minute.
+
+  </Step>
+</Steps>
+
+</Expandable>
+
+## Integration errors
+
+<Expandable title="Data does not sync with connected apps">
+Most sync failures come from expired tokens or permission changes.
+
+<Steps>
+  <Step title="Open the integration list">
+    Go to Admin > Integrations and find the failing app.
+
+  </Step>
+  <Step title="Reauthorize the connection">
+    Click Reconnect and follow the prompts to grant fresh permissions.
+
+  </Step>
+  <Step title="Verify the sync">
+    Trigger a manual sync from the integration settings.
+
+    Check that new tickets or contacts appear in both systems.
+
+  </Step>
+</Steps>
+
+<Callout kind="info">
+  If the error persists after reauthorization, review the app's required scopes in the Zendesk Marketplace listing.
+</Callout>
+
+</Expandable>
+
+## Still stuck?
+
+Contact Zendesk support through the Help menu in your account.
