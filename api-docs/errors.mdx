@@ -1,82 +1,83 @@
 ---
 title: Error Codes
-description: Common Stripe API errors including declines, validation issues, and rate limits.
+description: Understand Stripe error codes for declines, validation failures, and rate limits.
 ---
 
-## Overview
+## API Error Responses
 
-Stripe returns machine-readable error objects with an explicit `type` and `code`. Inspect the `code` field to determine the exact failure and apply the matching remediation below.
+Stripe returns structured error objects for every failed request. Inspect the `type` and `code` fields to determine the exact failure.
 
-<Expandable title="Card declined (generic_decline)" default-open="false">
-Problem: A payment request fails with `error.code` set to `card_declined`.
+<ExpandableGroup>
+<Expandable title="card_declined with insufficient_funds">
 
-Cause: The issuing bank returned a generic decline without a more specific reason.
+Problem:  
+A charge request returns the error code `card_declined` and message `"Your card has insufficient funds."`
 
-Fix: Prompt the customer to try a different card or payment method. Log the `decline_code` field for support review.
+Cause:  
+The issuing bank rejected the authorization because the account balance is lower than the attempted amount.
 
-```json
+Fix:  
+Prompt the customer for a different card or reduce the charge amount. Example response handling:
+
+````json
 {
   "error": {
-    "code": "card_declined",
-    "decline_code": "generic_decline",
-    "message": "Your card was declined."
+    "type": "card_error",
+    "code": "insufficient_funds",
+    "message": "Your card has insufficient funds."
   }
 }
-```
+````
 
 </Expandable>
+<Expandable title="refund_failed due to already_refunded">
 
-<Expandable title="Idempotency key already used" default-open="false">
-Problem: Requests using the same `Idempotency-Key` header return `error.code` equal to `idempotency_key_already_used`.
+Problem:  
+A refund call returns `"Refund failed: charge already refunded."`
 
-Cause: A prior request with that key succeeded or is still processing.
+Cause:  
+The charge has already been fully refunded or the refund amount exceeds the remaining capturable balance.
 
-Fix: Retrieve the original response from your logs instead of retrying. Generate a fresh key for new operations.
+Fix:  
+Check the charge status with the retrieve endpoint before attempting another refund. Only request refunds on charges whose `status` is `succeeded` and `amount_refunded` is less than `amount`.
 
-```json
-{
-  "error": {
-    "code": "idempotency_key_already_used",
-    "message": "Keys for idempotent requests can only be used once."
+</Expandable>
+<Expandable title="rate_limit_error">
+
+Problem:  
+Requests begin returning HTTP 429 with code `rate_limit_error` and message `"Too many requests."`
+
+Cause:  
+The account exceeded the allowed request rate for the specific endpoint.
+
+Fix:  
+Implement exponential backoff and respect the `Retry-After` header. Example retry logic:
+
+````javascript
+const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+async function callWithBackoff(fn, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (err.status !== 429) throw err;
+      await delay(1000 * Math.pow(2, i));
+    }
   }
 }
-```
+````
 
 </Expandable>
+<Expandable title="parameter_unknown on refund metadata">
 
-<Expandable title="Rate limit exceeded" default-open="false">
-Problem: The API responds with HTTP 429 and `error.code` set to `rate_limit`.
+Problem:  
+A refund creation request fails with `"parameter_unknown: metadata[invalid_key]"`.
 
-Cause: Too many requests were sent in the current window.
+Cause:  
+The `metadata` object contains a key that is not a string or exceeds 500 characters.
 
-Fix: Implement exponential backoff. Respect the `Retry-After` header when present.
-
-```json
-{
-  "error": {
-    "code": "rate_limit",
-    "message": "Too many requests try again later."
-  }
-}
-```
+Fix:  
+Ensure every metadata value is a string and that keys follow the pattern `[a-zA-Z0-9_-]`. Re-submit the request with sanitized metadata.
 
 </Expandable>
-
-<Expandable title="Invalid API key supplied" default-open="false">
-Problem: Authentication fails with `error.code` equal to `invalid_request_error` and message referencing the key.
-
-Cause: The `Authorization` header contains an unknown or revoked secret key.
-
-Fix: Verify the key in the Stripe Dashboard and replace it in your environment configuration.
-
-```json
-{
-  "error": {
-    "type": "invalid_request_error",
-    "code": "invalid_request_error",
-    "message": "Invalid API Key provided: sk_test_..."
-  }
-}
-```
-
-</Expandable>
+</ExpandableGroup>

@@ -1,76 +1,90 @@
 ---
 title: Authentication
-description: Secure your Stripe API requests using secret and publishable keys.
+description: Authenticate requests using secret keys, publishable keys, and webhook signatures.
 ---
 
 ## Overview
 
-Stripe authenticates every API request using HTTP Basic Auth. Supply your secret API key as the username and leave the password empty. All requests must use HTTPS.
-
-```bash
-curl https://api.stripe.com/v1/charges \
-  -u sk_test_YourSecretKey:
-```
+Stripe authenticates every API request with credentials that identify your account and control access. Use secret keys for server-side calls, publishable keys for client-side requests, and signatures to verify webhook events. OAuth enables delegated access for Connect platforms.
 
 ## Authentication methods
 
 <Tabs>
   <Tab title="Secret keys" icon="key">
-    Use secret keys for server-side requests. Keep them confidential and rotate regularly.
+    Send your secret key in the Authorization header for all server-to-server requests. Keep this value private and rotate it regularly.
 
-    <ParamField body="Authorization" param-type="string" required="true">
+    <ParamField header="Authorization" param-type="string" required="true">
       Bearer token containing your secret key.
     </ParamField>
   </Tab>
-  <Tab title="Publishable keys" icon="eye">
-    Use publishable keys in client-side code. They are safe to expose in browser applications.
+  <Tab title="Publishable keys" icon="globe">
+    Use publishable keys in browser or mobile code to create tokens or confirm payments. These keys are safe to expose publicly.
 
-    <ParamField body="Authorization" param-type="string" required="true">
+    <ParamField header="Authorization" param-type="string" required="true">
       Bearer token containing your publishable key.
     </ParamField>
   </Tab>
-  <Tab title="Restricted keys" icon="lock">
-    Create restricted keys with granular permissions for specific endpoints.
+  <Tab title="Webhook signatures" icon="shield">
+    Verify that webhook payloads originate from Stripe by checking the signature header against your endpoint secret.
 
-    <ParamField body="Authorization" param-type="string" required="true">
-      Bearer token containing your restricted key.
+    <ParamField header="Stripe-Signature" param-type="string" required="true">
+      HMAC signature generated with your webhook secret.
+    </ParamField>
+  </Tab>
+  <Tab title="OAuth for Connect" icon="link">
+    Request access tokens on behalf of connected accounts using the OAuth flow. Exchange the authorization code for an access token.
+
+    <ParamField query="code" param-type="string" required="true">
+      Temporary authorization code returned after the user approves access.
     </ParamField>
   </Tab>
 </Tabs>
 
 ## Implementation examples
 
-<CodeGroup tabs="cURL,JavaScript,Python">
+Store credentials in environment variables and load them at runtime.
+
 ```bash
-curl https://api.stripe.com/v1/customers \
-  -u sk_test_YourSecretKey: \
-  -d email="customer@example.com"
+STRIPE_SECRET_KEY=sk_test_YOUR_SECRET_KEY
+STRIPE_PUBLISHABLE_KEY=pk_test_YOUR_PUBLISHABLE_KEY
+STRIPE_WEBHOOK_SECRET=whsec_YOUR_WEBHOOK_SECRET
 ```
 
-```javascript
-const stripe = require("stripe")("sk_test_YourSecretKey");
-
-const customer = await stripe.customers.create({
-  email: "customer@example.com",
-});
+<CodeGroup tabs="cURL,Python,Node.js">
+```bash
+curl https://api.example.com/v1/charges \
+  -u sk_test_YOUR_SECRET_KEY: \
+  -d amount=2000 \
+  -d currency=usd \
+  -d source=tok_visa
 ```
 
 ```python
 import stripe
-stripe.api_key = "sk_test_YourSecretKey"
+import os
 
-customer = stripe.Customer.create(email="customer@example.com")
+stripe.api_key = os.environ["STRIPE_SECRET_KEY"]
+
+charge = stripe.Charge.create(
+    amount=2000,
+    currency="usd",
+    source="tok_visa",
+)
+```
+
+```javascript
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+const charge = await stripe.charges.create({
+  amount: 2000,
+  currency: "usd",
+  source: "tok_visa",
+});
 ```
 </CodeGroup>
 
-## Webhook signatures
-
-Verify webhook signatures to confirm events originate from Stripe.
-
-```bash
-Stripe-Signature: t=1492774577,v1=5257a869e7ecebeda32affa62cdca3fa51cad7e77a0e56ff536d0ce8e108d79b,v0=6ffbb59b2300aae63f272406069a9788598b792a944a07aba816edb039989a39
-```
+## Security recommendations
 
 <Callout kind="alert">
-  Never expose secret keys in client code or public repositories. Rotate keys immediately if compromised.
+Never commit secret keys to source control. Rotate keys immediately if they are exposed. Always verify webhook signatures before processing event data.
 </Callout>

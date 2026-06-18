@@ -1,87 +1,60 @@
 ---
 title: Quickstart
-description: Make your first API call to create a charge or customer with Stripe.
+description: Create a charge or subscription with a few lines of code using the Stripe API.
 ---
 
 ## Prerequisites
 
 <Callout kind="info">
-
-Obtain a set of API keys from your Stripe account dashboard before making requests. Use the secret key only on the server.
-
+Obtain a secret key from your account dashboard before making requests. Replace `YOUR_API_KEY` in examples with that value.
 </Callout>
 
-## Set up your environment
+## Server-side integration
 
 <Steps>
-  <Step title="Install a client library">
-
-    Choose a language and install the official library.
-
-    ```bash
-    npm install stripe
-    ```
-
-  </Step>
-  <Step title="Configure your key">
-
-    Store the secret key in an environment variable.
-
-    ```bash
-    export STRIPE_SECRET_KEY=sk_test_YOUR_KEY
-    ```
-
-  </Step>
+<Step title="Prepare the request">
+Send an authenticated POST request to the charges endpoint. Include an amount, currency, and source token.
+</Step>
+<Step title="Add an idempotency key">
+Pass the `Idempotency-Key` header to ensure the operation executes only once even if the request is retried.
+</Step>
 </Steps>
 
-## Create a charge
-
-Use the following examples to create a test charge.
-
-<CodeGroup tabs="cURL,Node.js">
+<CodeGroup tabs="cURL">
 ```bash
-curl https://api.stripe.com/v1/charges \
-  -u $STRIPE_SECRET_KEY: \
+curl https://api.example.com/v1/charges \
+  -u YOUR_API_KEY: \
+  -H "Idempotency-Key: key_123" \
   -d amount=2000 \
   -d currency=usd \
-  -d source=tok_visa \
-  -d description="Test charge"
-```
-```js
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
-const charge = await stripe.charges.create({
-  amount: 2000,
-  currency: "usd",
-  source: "tok_visa",
-  description: "Test charge",
-});
+  -d source=tok_visa
 ```
 </CodeGroup>
 
-## Use test data
+## Client-side tokenization
 
-All requests above use test card tokens such as `tok_visa`. No real funds move.
+Collect card details on the client and exchange them for a single-use token before sending the token to your server.
 
-## Handle errors
-
-Inspect the returned error object for details.
-
-```js
-try {
-  const charge = await stripe.charges.create({...});
-} catch (err) {
-  console.error(err.type, err.message);
-}
+<CodeGroup tabs="cURL">
+```bash
+curl https://api.example.com/v1/tokens \
+  -u YOUR_API_KEY: \
+  -d "card[number]"=4242424242424242 \
+  -d "card[exp_month]"=12 \
+  -d "card[exp_year]"=2025 \
+  -d "card[cvc]"=123
 ```
+</CodeGroup>
 
-## Next steps
+## Idempotency keys
+
+Use the same key for retries of the same logical operation. Keys remain valid for 24 hours.
 
 <Columns cols={2}>
-  <Card title="Customers API" href="#">
-    Create and manage customer records.
-  </Card>
-  <Card title="Error reference" href="#">
-    Full list of error codes and types.
-  </Card>
+<Card title="Charges" href="#server-side-integration">
+Learn how to create one-time payments.
+</Card>
+<Card title="Subscriptions" href="#server-side-integration">
+Create recurring billing with a subscription object.
+</Card>
 </Columns>

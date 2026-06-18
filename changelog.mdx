@@ -1,26 +1,38 @@
 ---
 title: Changelog
-description: Latest updates to Stripe APIs, new payment methods, and product features.
+description: Recent updates to the Stripe API, new payment methods, and product features.
 ---
 
 ## Recent updates
 
-<Update label="2024-10-15" description="2024-10-15" tags={["feature", "api"]}>
+<Update label="2024-10-15" description="v2024-10-01" tags={["feature"]}>
 
-- Added support for instant bank verification in the Payment Intents API.
-- Introduced new Radar rules for crypto on-ramp transactions.
-- Deprecated legacy tokenization endpoints scheduled for removal in 2025.
+## New payment rails
+
+- Added support for real-time bank transfers in additional regions.
+- Introduced new instant payout methods for marketplaces.
+
+## API version changes
+
+- Released API version 2024-10-01 with updated error handling.
+- Deprecated legacy token endpoints.
 
 </Update>
-<Update label="2024-09-20" description="2024-09-20" tags={["feature"]}>
 
-- Launched beta for embedded checkout with custom branding options.
-- Expanded billing support for usage-based pricing in 12 additional currencies.
+<Update label="2024-09-20" description="v2024-09-01" tags={["feature"]}>
+
+## Radar updates
+
+- Enhanced fraud detection with new machine learning models.
+- Added configurable rules for high-risk transactions.
 
 </Update>
-<Update label="2024-08-12" description="2024-08-12" tags={["bugfix", "api"]}>
 
-- Fixed an issue with webhook signature verification for Connect accounts.
-- Resolved timeout errors during high-volume subscription updates.
+<Update label="2024-08-10" description="v2024-08-01" tags={["feature", "bugfix"]}>
+
+## Billing updates
+
+- Improved subscription proration calculations.
+- Fixed invoice generation for multi-currency plans.
 
 </Update>

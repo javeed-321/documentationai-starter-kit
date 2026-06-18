@@ -1,37 +1,37 @@
 ---
 title: Introduction
-description: Explore Stripe's REST API for payments, billing, Connect, and financial operations.
+description: Introduction to the Stripe API for building payments and financial services.
 ---
 
 <Image src="https://blob-cdn.documentation.ai/org-2ebb2ef5-dd91-493f-9938-283fbdb14c81/doc-d2a73d2e-4391-4446-a5c8-2d0b41b7c4c1/1774416392648-tsntejft5od-Image-9.png?q=85&fm=auto&auto=compress%2Cformat" alt="Stripe documentation" width="800" height="400" />
 
 ## Welcome
 
-Stripe provides a REST API for payments, billing, Connect, and financial operations. Use standard HTTP methods to create and manage resources with consistent JSON request and response formats.
+The Stripe REST API lets you accept payments, manage billing, and handle financial operations. It supports over 135 currencies and dozens of payment methods through standard HTTP requests.
 
 <Columns cols={2}>
-  <Card title="API endpoints" icon="terminal" href="#">
-    Access endpoints for charges, customers, invoices, and payouts using predictable URL patterns.
+  <Card title="REST endpoints" icon="code" href="#">
+    Use POST, GET, and DELETE on resources such as PaymentIntent and Customer.
   </Card>
-  <Card title="Request formats" icon="code" href="#">
-    Submit requests with JSON bodies. Required fields and data types are documented per endpoint.
+  <Card title="Payment methods" icon="credit-card" href="#">
+    Accept cards, bank transfers, wallets, and local methods in one integration.
   </Card>
-  <Card title="Idempotency" icon="shield" href="#">
-    Supply an Idempotency-Key header to safely retry requests without duplicate side effects.
+  <Card title="Currency support" icon="globe" href="#">
+    Process transactions in 135 currencies with automatic conversion.
   </Card>
-  <Card title="Versioning" icon="git-branch" href="#">
-    Pin your integration to a specific API version for consistent behavior across releases.
+  <Card title="Idempotency keys" icon="key" href="#">
+    Supply an Idempotency-Key header to safely retry requests.
   </Card>
 </Columns>
 
-<Card title="Billing API" icon="credit-card" href="#" horizontal={true}>
-  Create subscriptions, manage invoices, and automate recurring revenue.
+<Card title="Payments" horizontal={true} href="#">
+  Create and confirm payments with the Payment Intents API.
 </Card>
 
-<Card title="Connect API" icon="users" href="#" horizontal={true}>
-  Onboard platforms and handle payouts for connected accounts.
+<Card title="Billing" horizontal={true} href="#">
+  Manage subscriptions and invoices through the Billing API.
 </Card>
 
 <Callout kind="tip">
-  Start with the reference for your first integration and test requests in the dashboard.
+  Review the authentication section before making your first request.
 </Callout>

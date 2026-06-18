@@ -1,88 +1,63 @@
 ---
 title: Quickstart
-description: Get started accepting payments and integrating Stripe APIs in minutes.
+description: Get up and running with Stripe by creating an account and accepting your first payment.
 ---
 
 ## Prerequisites
 
 <Callout kind="info">
 
-Create a Stripe account and obtain your API keys before proceeding. Keep your secret key secure and never expose it in client-side code.
+Before you begin, create a free account at the dashboard and confirm your email address. You will also need a valid business email and basic company details.
 
 </Callout>
 
-## Obtain API keys
-
-Navigate to the Developers section of your Stripe dashboard to retrieve your publishable and secret keys. Use the publishable key in your frontend and the secret key only on your server.
-
-## Install the library
+## Create your first test payment
 
 <Steps>
-  <Step title="Install the package">
+<Step title="Obtain API keys">
 
-    Add the official Stripe library to your project using your preferred package manager.
+Log in to the dashboard. Navigate to Developers then API keys. Copy the publishable key and secret key shown for test mode. Store the secret key securely and never commit it to source control.
 
-    ```bash
-    npm install stripe
-    ```
+</Step>
+<Step title="Create a test payment">
 
-  </Step>
-  <Step title="Configure your key">
+Use the secret key to authenticate an API request that creates a payment intent. The example below shows the minimal call required.
 
-    Load your secret key from an environment variable to keep it out of source control.
-
-    ```javascript
-    import Stripe from "stripe";
-    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-    ```
-
-  </Step>
+</Step>
 </Steps>
 
-## Create your first payment
-
-Use this minimal server-side example to create a PaymentIntent.
-
-<CodeGroup tabs="Node.js,Python">
-```javascript
-const paymentIntent = await stripe.paymentIntents.create({
-  amount: 2000,
-  currency: "usd",
-  automatic_payment_methods: { enabled: true },
-});
-console.log(paymentIntent.client_secret);
-```
-
-```python
-import stripe
-import os
-
-stripe.api_key = os.environ["STRIPE_SECRET_KEY"]
-
-intent = stripe.PaymentIntent.create(
-    amount=2000,
-    currency="usd",
-    automatic_payment_methods={"enabled": True},
-)
-print(intent.client_secret)
+<CodeGroup tabs="cURL">
+```bash
+curl https://api.example.com/v1/payment_intents \
+  -u sk_test_YOUR_SECRET_KEY: \
+  -d amount=2000 \
+  -d currency=usd \
+  -d "payment_method_types[]"=card
 ```
 </CodeGroup>
 
-## Enable webhooks
+## Configure webhooks
 
-Register an endpoint in your dashboard under Developers > Webhooks. Stripe sends events such as `payment_intent.succeeded` to this URL. Verify signatures using your webhook secret before processing the payload.
+<Steps>
+<Step title="Register an endpoint">
 
-## Switch to test mode
+In the dashboard, go to Developers then Webhooks. Add an endpoint URL that listens for events such as payment_intent.succeeded. Stripe sends signed requests to this URL.
 
-All keys and requests above run in test mode by default. Toggle to live mode only after completing integration testing with test cards such as `4242 4242 4242 4242`.
+</Step>
+<Step title="Verify signatures">
 
-## Explore further
+Add the webhook signing secret from the dashboard to your handler. Verify each incoming request before processing the event payload.
+
+</Step>
+</Steps>
+
+## Next steps
 
 <Columns cols={2}>
-  <Card title="Accept a payment" icon="credit-card" href="#">
-    Learn how to build a complete checkout flow.
-  </Card>
-  <Card title="Handle events" icon="webhook" href="#">
-    Set up reliable webhook listeners for asynchronous events.
-  </Card>
+<Card title="Accept live payments" icon="credit-card" href="#">
+Switch from test mode to live mode after completing account verification and adding a bank account.
+</Card>
+<Card title="Explore billing" icon="repeat" href="#">
+Set up subscriptions and invoices for recurring revenue.
+</Card>
 </Columns>
