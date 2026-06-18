@@ -25,33 +25,117 @@
             "pages": [
               {
                 "title": "Help Center",
-                "path": "help-center"
+                "path": "help-center",
+                "show-sidebar": false
               }
             ]
           },
           {
-            "group": "FAQs",
-            "icon": "help-circle",
-            "expandable": false,
+            "group": "Getting Started",
+            "icon": "rocket",
             "pages": [
               {
-                "title": "FAQ",
-                "path": "help-center/faq/getting-started"
+                "title": "Quickstart",
+                "path": "help-center/getting-started/quickstart",
+                "show-sidebar": false
               },
               {
-                "title": "Contact & Support",
-                "path": "help-center/contact"
+                "group": "Account Setup",
+                "icon": "user-plus",
+                "pages": [
+                  {
+                    "title": "Create your account",
+                    "path": "help-center/getting-started/create-account",
+                    "show-sidebar": false
+                  },
+                  {
+                    "title": "Invite your team",
+                    "path": "help-center/getting-started/invite-team",
+                    "show-sidebar": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Using the Product",
+            "icon": "book-open",
+            "pages": [
+              {
+                "group": "Workspace",
+                "icon": "layout-grid",
+                "pages": [
+                  {
+                    "title": "Managing members",
+                    "path": "help-center/product/managing-members",
+                    "show-sidebar": false
+                  },
+                  {
+                    "group": "Channels",
+                    "icon": "message-square",
+                    "pages": [
+                      {
+                        "title": "Email channel",
+                        "path": "help-center/product/channels/email",
+                        "show-sidebar": false
+                      },
+                      {
+                        "title": "Chat channel",
+                        "path": "help-center/product/channels/chat",
+                        "show-sidebar": false
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Automation",
+                "icon": "zap",
+                "pages": [
+                  {
+                    "title": "Workflows",
+                    "path": "help-center/product/automation/workflows",
+                    "show-sidebar": false
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Billing & Plans",
+            "icon": "credit-card",
+            "pages": [
+              {
+                "title": "Plans overview",
+                "path": "help-center/billing/plans",
+                "show-sidebar": false
+              },
+              {
+                "title": "Invoices",
+                "path": "help-center/billing/invoices",
+                "show-sidebar": false
               }
             ]
           },
           {
             "group": "Troubleshooting",
             "icon": "alert-triangle",
-            "expandable": false,
             "pages": [
               {
-                "title": "Troubleshooting",
-                "path": "help-center/troubleshooting/common-issues"
+                "title": "Common issues",
+                "path": "help-center/troubleshooting/common-issues",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Support",
+            "icon": "life-buoy",
+            "pages": [
+              {
+                "title": "Contact & Support",
+                "path": "help-center/contact",
+                "show-sidebar": false
               }
             ]
           }

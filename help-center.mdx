@@ -1,14 +1,47 @@
 ---
-title: He lp C enter
+title: Help Center
 description: >-
-  Explore Intercom's help resources for setting up messaging, automating
-  support, and managing customer conversations.
+  Find answers, browse guides by topic, and get help setting up your workspace,
+  integrations, and billing.
+show-sidebar: false
+show-toc: false
+show-page-navigation: false
+show-parent-label: false
+content-width: wide
 ---
-Need a quick fix for your workspace or Messenger? Start here.
 
-<CollectionList node="tabs:Help Center" cols="3" />
+<Columns cols={3}>
+  <Card
+    title="Getting started"
+    icon="rocket"
+    cta="Start here"
+    href="help-center/faq/getting-started"
+  >
+    Set up your account, create your first workspace, and ship in minutes.
+  </Card>
+  <Card
+    title="Product guides"
+    icon="book-open"
+    cta="Explore guides"
+    href="help-center/faq/getting-started"
+  >
+    Deep dives on messaging, automation, themes, and publishing.
+  </Card>
+  <Card
+    title="Support & policies"
+    icon="life-buoy"
+    cta="Get support"
+    href="help-center/contact"
+  >
+    Billing, account recovery, security, and our service commitments.
+  </Card>
+</Columns>
 
-<Callout kind="info" collapsed="false">
-  Still stuck? Reach out to our support team from inside your Intercom workspace.
+<CollectionList node="tabs:Help Center" layout="cards" cols={3} />
+
+<CollectionContent node="tabs:Help Center" default-expanded="true" />
+
+<Callout kind="tip" collapsed="false">
+  **Still stuck?** Reach out to our support team and we'll typically reply within
+  a few hours. [Contact support →](help-center/contact)
 </Callout>
-
