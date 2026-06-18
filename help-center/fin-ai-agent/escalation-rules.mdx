@@ -1,0 +1,76 @@
+---
+title: Escalation to Humans
+description: Configure when Fin hands off conversations to your support team for complex issues.
+---
+
+When Fin reaches the limit of what it can handle, it hands the conversation to a human agent. This page shows how to set the triggers, pass along full context, and measure satisfaction after the hand-off.
+
+## Set hand-off triggers
+
+Define the exact conditions that cause Fin to escalate.
+
+<Steps>
+  <Step title="Open the rules editor">
+    In the Fin settings, go to Escalation rules and click New rule.
+
+  </Step>
+  <Step title="Choose trigger conditions">
+    Select one or more conditions from the list below.
+
+    | Condition              | What it means                              |
+    |------------------------|--------------------------------------------|
+    | Unresolved after N turns | Conversation reaches a set number of replies |
+    | Specific intent detected | User asks about billing, refunds, or legal issues |
+    | Sentiment drops         | User expresses frustration or anger        |
+    | Custom keyword          | Message contains words you list            |
+
+  </Step>
+  <Step title="Save and test">
+    Click Save, then use the test chat to confirm the rule fires.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Start with one or two triggers. Too many rules can cause unnecessary hand-offs.
+
+</Callout>
+
+## Share context with your team
+
+Fin automatically includes the full conversation history and any data it collected.
+
+To add extra details:
+
+<Steps>
+  <Step title="Attach custom attributes">
+    In the rule editor, turn on Include custom attributes and choose the fields your team needs.
+
+  </Step>
+  <Step title="Add a summary note">
+    Toggle Add AI summary. Fin writes a short note that appears at the top of the ticket.
+
+  </Step>
+</Steps>
+
+## Track satisfaction after hand-off
+
+Measure how well the hand-off worked.
+
+1. Enable post-escalation surveys in Settings > Satisfaction.
+2. Choose the survey that appears once a human takes over.
+3. Review results in the Escalation reports dashboard.
+
+## Common questions
+
+<Expandable title="Can I stop Fin from escalating a certain topic?">
+  Yes. Create a rule with the condition "Intent equals X" and set the action to "Stay with Fin."
+
+</Expandable>
+
+<Expandable title="How long does context sharing take?">
+  Context is sent instantly when the hand-off occurs.
+
+</Expandable>
+
+Still stuck? Contact Intercom support from the Help Center.

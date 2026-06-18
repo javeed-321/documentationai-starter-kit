@@ -1,0 +1,61 @@
+---
+title: Troubleshooting Fin
+description: Resolve common problems with AI responses and integrations.
+---
+
+If Fin gives incorrect answers or fails to escalate conversations, this page shows the quickest fixes.
+
+## Incorrect answers
+
+Check these settings first.
+
+<Expandable title="Fin cites the wrong source">
+Update your knowledge base with the latest articles, then retrain Fin on those pages.
+
+</Expandable>
+
+<Expandable title="Answers feel generic or off-topic">
+Add more specific product details and examples to your help content. Test one new article at a time.
+
+</Expandable>
+
+## Escalation failures
+
+Use these steps when Fin does not hand off to a human.
+
+<Steps>
+  <Step title="Verify escalation rules">
+    Open Settings > Fin > Escalation and confirm at least one rule matches your current conditions.
+
+  </Step>
+  <Step title="Check team availability">
+    Make sure agents are online and the correct inbox is selected in the rule.
+
+  </Step>
+  <Step title="Test the handoff">
+    Start a new test conversation and type a phrase that should trigger escalation.
+
+  </Step>
+</Steps>
+
+<Callout kind="info">
+Rules run in the order listed. Move the most important rule to the top.
+
+</Callout>
+
+## Performance tuning
+
+Adjust these options to improve speed and accuracy.
+
+| Setting              | Recommended value       | Effect                              |
+|----------------------|-------------------------|-------------------------------------|
+| Response length      | Medium                  | Faster replies, fewer tokens used   |
+| Knowledge scope      | Latest 30 days only     | Reduces outdated citations          |
+| Confidence threshold | 75%                     | Fewer low-quality answers           |
+
+<Callout kind="warning">
+Lowering the threshold too far increases incorrect answers.
+
+</Callout>
+
+Still stuck? Contact Intercom support from the Help Center.

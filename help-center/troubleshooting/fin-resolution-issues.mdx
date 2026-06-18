@@ -1,0 +1,66 @@
+---
+title: Fin Resolution Issues
+description: Diagnose why Fin isn't answering correctly and improve its performance over time.
+---
+
+If Fin isn't resolving conversations at the expected rate or is giving incorrect answers, this page helps you find the cause and improve results quickly.
+
+## Low resolution rate
+
+Fin may fail to close conversations when it lacks clear guidance or when your sources are incomplete.
+
+Follow these steps to raise the rate:
+
+<Steps>
+  <Step title="Review recent unresolved conversations">
+    Open the Helpdesk and filter for conversations where Fin handed off to a human.
+
+    Note the topics that appear most often.
+  </Step>
+  <Step title="Add missing answers to your knowledge sources">
+    Create or update articles that directly answer those topics.
+
+    Keep each article short and specific.
+  </Step>
+  <Step title="Test Fin on the same questions">
+    Use the test chat in the Fin settings panel.
+
+    Confirm that Fin now resolves the issue without handing off.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Aim for at least 70 % of common questions to have a matching article before expecting a high resolution rate.
+</Callout>
+
+## Incorrect answers
+
+When Fin gives the wrong information, it usually pulls from outdated or conflicting sources.
+
+<Expandable title="Check source freshness">
+  Open the knowledge sources list and sort by last updated date.
+
+  Replace or archive any article older than 90 days that Fin has cited in the last week.
+</Expandable>
+
+<Expandable title="Remove conflicting content">
+  Search your knowledge base for duplicate answers on the same topic.
+
+  Keep only the most recent version and delete the rest.
+</Expandable>
+
+## Knowledge gaps
+
+Fin cannot answer questions that have no matching content in your sources.
+
+Use this table to decide what to add next:
+
+| Symptom                    | Likely gap                        | Quick fix                              |
+| -------------------------- | --------------------------------- | -------------------------------------- |
+| Fin says "I don't know"    | No article on the topic           | Write a short answer article           |
+| Fin gives partial answers  | Article exists but is too broad   | Split the article into specific cases  |
+| Fin repeats the same reply | Single article used for many cases| Add follow-up articles for each case   |
+
+## Still stuck?
+
+Contact Intercom support with the conversation IDs where Fin performed poorly.

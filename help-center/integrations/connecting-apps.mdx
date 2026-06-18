@@ -1,0 +1,83 @@
+---
+title: Connecting Apps
+description: Link your CRM, billing, and other tools to give Fin and agents full customer context.
+---
+
+Connecting apps gives Fin and your agents complete customer details from your CRM, billing tools, and other systems. This page walks you through the three main ways to link them.
+
+## Native integrations
+
+Intercom connects directly to common tools so data flows in automatically.
+
+| Tool       | Data synced              | Typical setup time |
+|------------|--------------------------|--------------------|
+| Salesforce | Contacts, deals, tickets | 5 minutes          |
+| Stripe     | Payments, subscriptions  | 3 minutes          |
+| HubSpot    | Contacts, companies      | 5 minutes          |
+| Zendesk    | Tickets, users           | 4 minutes          |
+
+## Set up a native integration
+
+<Steps>
+  <Step title="Open the integrations page">
+    In Intercom, go to Settings > Integrations and search for the tool you want to connect.
+  </Step>
+  <Step title="Authorize the connection">
+    Click Connect and sign in with your account for that tool. Grant the requested permissions.
+  </Step>
+  <Step title="Choose what to sync">
+    Select the objects and fields you want Fin and agents to see, then save.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Start with the default fields. You can add more later without breaking anything.
+</Callout>
+
+## Custom data sync
+
+When a native integration does not exist, push data through the Intercom API.
+
+<Steps>
+  <Step title="Create an API key">
+    Go to Settings > Developers > API keys and generate a new key with read/write access.
+  </Step>
+  <Step title="Map your fields">
+    Decide which fields in your system match Intercom contact or company attributes.
+  </Step>
+  <Step title="Send the data">
+    Use the Contacts or Companies API endpoint to push updates on a schedule or when records change.
+  </Step>
+</Steps>
+
+## Webhook setup
+
+Webhooks let you receive real-time updates when events happen in Intercom.
+
+<Steps>
+  <Step title="Create the endpoint">
+    Build or choose a URL in your system that can accept POST requests from Intercom.
+  </Step>
+  <Step title="Register the webhook">
+    In Intercom, go to Settings > Developers > Webhooks and add your endpoint URL.
+  </Step>
+  <Step title="Select events">
+    Choose the events you need, such as conversation started or contact updated, then save.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  Keep your webhook endpoint secure. Validate the signature Intercom sends with each request.
+</Callout>
+
+## Common questions
+
+<Expandable title="How long does data take to appear?">
+  Native integrations usually update within a few minutes. API and webhook data appears in seconds once the connection is live.
+</Expandable>
+
+<Expandable title="Can I connect more than one CRM?">
+  Yes. Each integration runs independently, so you can link multiple tools at the same time.
+</Expandable>
+
+Still stuck? Contact Intercom support from the Help menu inside your workspace.
