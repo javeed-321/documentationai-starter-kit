@@ -1,0 +1,59 @@
+---
+title: Voice & Video Troubleshooting
+description: Resolve issues with voice chat, screen sharing, and video calls in Discord servers.
+---
+
+## Voice Issues
+
+Use the tabs below to switch between voice and video troubleshooting steps.
+
+<Tabs>
+  <Tab title="Voice" icon="mic">
+
+<Expandable title="Microphone not detected in voice channels" default-open="false">
+  Discord shows "No input device found" when you join a voice channel.
+
+  **Cause**  
+  Your operating system has not granted Discord microphone access or the device is disabled in system settings.
+
+  **Fix**
+
+  1. Open Discord settings and go to Voice & Video.
+  2. Click the Input Device dropdown and select your microphone.
+  3. If the device is missing, open your system sound settings and enable the microphone.
+  4. Restart Discord and test by speaking in a voice channel.
+
+</Expandable>
+
+<Expandable title="RTC Connecting error persists" default-open="false">
+  The voice status stays stuck on "RTC Connecting" for more than 30 seconds.
+
+  **Cause**  
+  UDP ports required by Discord are blocked by your network or firewall.
+
+  **Fix**
+
+  1. Try switching servers in Voice & Video settings to a different region.
+  2. Disable any VPN temporarily.
+  3. Add Discord as an allowed app in your firewall settings.
+  4. Contact your network admin if you are on a school or work network.
+
+</Expandable>
+
+<Expandable title="High latency and robotic audio" default-open="false">
+  Other users report choppy or robotic sound from you.
+
+  **Cause**  
+  Packet loss or high ping on your current voice server.
+
+  **Fix**
+
+  1. In Voice & Video settings, enable "Enable Quality of Service High Packet Priority".
+  2. Change the voice server region to one closer to your location.
+  3. Close bandwidth-heavy apps running in the background.
+  4. Test again in the same voice channel.
+
+</Expandable>
+
+  </Tab>
+</Tabs>
