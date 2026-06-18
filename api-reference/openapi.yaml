@@ -10,6 +10,7 @@ paths:
   /deployments:
     get:
       summary: List deployments
+      description: Retrieves a paginated list of deployments for your Vercel projects. Use the limit parameter to control page size.
       operationId: listDeployments
       parameters:
         - name: limit
@@ -52,6 +53,7 @@ paths:
   /deployments/{deploymentId}:
     get:
       summary: Get deployment
+      description: Retrieves detailed information about a specific deployment by its unique identifier. Use this to inspect build status, runtime settings, and routing details.
       operationId: showDeploymentById
       parameters:
         - name: deploymentId
@@ -73,9 +75,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /ai-gateway/models:
+  /ai/gateway/models:
     get:
       summary: List models
+      description: Retrieves the available AI models exposed through the AI Gateway. Use this endpoint to discover supported providers and model capabilities.
       operationId: listModels
       parameters:
         - name: limit
@@ -104,8 +107,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      summary: Create model access
-      operationId: createModelAccess
+      summary: Create model
+      operationId: createModel
       responses:
         201:
           description: Null response
@@ -115,15 +118,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /projects/{projectId}:
+  /ai/gateway/models/{modelId}:
     get:
-      summary: Get project
-      operationId: showProjectById
+      summary: Get model
+      description: Retrieves detailed information about a specific AI model by its unique identifier. Use this when you need provider, pricing, or compatibility details.
+      operationId: showModelById
       parameters:
-        - name: projectId
+        - name: modelId
           in: path
           required: true
-          description: The id of the project to retrieve
+          description: The id of the model to retrieve
           schema:
             type: string
       responses:
@@ -132,7 +136,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Projects'
+                $ref: '#/components/schemas/Models'
         default:
           description: unexpected error
           content:
@@ -147,10 +151,11 @@ components:
         - name
       properties:
         id:
-          type: string
+          type: integer
+          format: int64
         name:
           type: string
-        status:
+        tag:
           type: string
     Deployments:
       type: array
@@ -162,30 +167,16 @@ components:
         - name
       properties:
         id:
-          type: string
+          type: integer
+          format: int64
         name:
           type: string
-        provider:
+        tag:
           type: string
     Models:
       type: array
       items:
         $ref: '#/components/schemas/Model'
-    Project:
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        gitRepository:
-          type: string
-    Projects:
-      type: array
-      items:
-        $ref: '#/components/schemas/Project'
     Error:
       required:
         - code

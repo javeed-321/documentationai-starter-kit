@@ -1,72 +1,72 @@
 ---
 title: Quickstart
-description: Make your first authenticated calls to the Vercel API to create deployments and query projects.
+description: Make your first authenticated calls to the Vercel API to list projects and trigger deployments.
 ---
 
 ## Prerequisites
 
 <Callout kind="info">
-
-Create a Vercel account and generate an API token before making requests. All examples use Bearer token authentication.
-
+  You need a Vercel account and an API token. Generate the token from your account settings before proceeding.
 </Callout>
 
-## Obtain an API Token
+## Set up authentication
 
 <Steps>
-  <Step title="Create a token">
-
-    Log in to your account dashboard and navigate to the tokens section. Generate a new token with deployment scope.
-
+  <Step title="Create an API token">
+    Log in to your account dashboard and create a new token with the required scopes for projects and deployments.
   </Step>
+
   <Step title="Store the token">
+    Export the token as an environment variable in your shell:
 
-    Save the token value securely. Use it in the Authorization header for every request.
-
+    ```bash
+    export VERCEL_TOKEN=your_token_here
+    ```
   </Step>
 </Steps>
 
-## Create a Project
+## List projects
 
-Use the projects endpoint to create a new project from a Git repository.
-
-```bash
-curl -X POST https://api.example.com/v2/projects \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "my-app",
-    "gitRepository": {
-      "url": "https://github.com/example/my-app"
-    }
-  }'
-```
-
-## Trigger a Deployment
-
-Deploy the project by creating a new deployment.
+Use the following examples to fetch your projects.
 
 <CodeGroup tabs="cURL,Node.js">
 ```bash
-curl -X POST https://api.example.com/v13/deployments \
-  -H "Authorization: Bearer YOUR_API_TOKEN" \
+curl -H "Authorization: Bearer $VERCEL_TOKEN" \
+  https://api.example.com/v2/projects
+```
+
+```js
+const res = await fetch("https://api.example.com/v2/projects", {
+  headers: { Authorization: `Bearer ${process.env.VERCEL_TOKEN}` },
+});
+const data = await res.json();
+console.log(data);
+```
+</CodeGroup>
+
+## Trigger a deployment
+
+Send a request to start a new deployment for an existing project.
+
+<CodeGroup tabs="cURL,Node.js">
+```bash
+curl -X POST \
+  -H "Authorization: Bearer $VERCEL_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{
-    "project": "prj_abc123",
-    "target": "production"
-  }'
+  -d '{"name":"my-app","gitSource":{"type":"github","repo":"owner/repo"}}' \
+  https://api.example.com/v13/deployments
 ```
 
 ```js
 const res = await fetch("https://api.example.com/v13/deployments", {
   method: "POST",
   headers: {
-    Authorization: "Bearer YOUR_API_TOKEN",
+    Authorization: `Bearer ${process.env.VERCEL_TOKEN}`,
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    project: "prj_abc123",
-    target: "production",
+    name: "my-app",
+    gitSource: { type: "github", repo: "owner/repo" },
   }),
 });
 const data = await res.json();
@@ -74,22 +74,26 @@ console.log(data);
 ```
 </CodeGroup>
 
-## List AI Resources
+## Handle errors
 
-Query available AI resources attached to your account.
+API responses include standard HTTP status codes. Check the response body for details on failures such as invalid tokens or missing permissions.
 
-```bash
-curl https://api.example.com/v1/ai/resources \
-  -H "Authorization: Bearer YOUR_API_TOKEN"
+```json
+{
+  "error": {
+    "code": "forbidden",
+    "message": "Invalid authentication token"
+  }
+}
 ```
 
-## Next Steps
+## Next steps
 
 <Columns cols={2}>
-  <Card title="Projects API" icon="folder" href="#projects">
-    Manage projects and settings.
+  <Card title="Projects API" href="#">
+    Explore all endpoints for managing projects.
   </Card>
-  <Card title="Deployments API" icon="rocket" href="#deployments">
-    Inspect and promote deployments.
+  <Card title="Deployments API" href="#">
+    Review additional deployment options and webhooks.
   </Card>
 </Columns>

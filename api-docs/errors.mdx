@@ -1,106 +1,62 @@
 ---
 title: Error Codes
-description: Common Vercel API error responses, status codes, and guidance for handling deployment or AI failures.
+description: Reference of common Vercel API error codes and recommended remediation steps.
 ---
 
-## Deployment and Build Errors
+## Common API Errors
 
-<Expandable title="Error: Deployment failed with code BUILD_FAILED">
-Problem: A deployment returns status `400` with message `BUILD_FAILED`.
+<Expandable title="Rate limit exceeded">
 
-Cause: The build step encountered an unrecoverable error such as missing environment variables or invalid configuration in `vercel.json`.
-
-Fix: Inspect the build logs for the exact failing command, then add any required variables under Project Settings and redeploy.
-
-```bash
-vercel env add DATABASE_URL
-vercel deploy --prod
-```
-
-</Expandable>
-
-<Expandable title="Error: Fluid Compute timeout after 300s">
-Problem: Long-running serverless functions return `504` with `FUNCTION_TIMEOUT`.
-
-Cause: The workflow exceeded the default 300-second limit on Fluid Compute instances.
-
-Fix: Split the task into smaller steps or enable Workflow orchestration for tasks that require extended execution.
+Problem: Requests return HTTP 429 with the following payload.
 
 ```json
-{
-  "functions": {
-    "api/workflow.ts": {
-      "maxDuration": 900
-    }
-  }
-}
+{"error":{"code":"rate_limit_exceeded","message":"Too many requests"}}
 ```
 
-</Expandable>
+Cause: The client exceeded 100 requests per minute on the `/v2/deployments` endpoint.
 
-## Authentication and Permission Errors
-
-<Expandable title="Error: Unauthorized request">
-Problem: API calls return HTTP `401` with body `{"error":"UNAUTHORIZED"}`.
-
-Cause: The `Authorization` header is missing or contains an invalid Vercel access token.
-
-Fix: Generate a new token from the dashboard and include it correctly.
+Fix: Implement exponential backoff and respect the `Retry-After` header.
 
 ```bash
-curl -H "Authorization: Bearer YOUR_VERCEL_TOKEN" \
+curl -H "Authorization: Bearer $VERCEL_TOKEN" \
   https://api.vercel.com/v2/deployments
 ```
 
 </Expandable>
 
-<Expandable title="Error: Insufficient scope for operation">
-Problem: Requests fail with `403` and message `INSUFFICIENT_SCOPE`.
+<Expandable title="Deployment failed">
 
-Cause: The token lacks the required scopes for the attempted action such as creating AI Gateway keys.
+Problem: A Git-triggered deployment ends with status `BUILD_FAILED`.
 
-Fix: Create a new token with at least `ai:write` and `deployment:write` scopes.
+```json
+{"error":{"code":"deployment_failed","message":"Build failed with exit code 1"}}
+```
 
-</Expandable>
+Cause: The `vercel.json` rewrites reference a missing static asset.
 
-## AI Gateway Rate-Limit Responses
+Fix: Verify the build output directory and run `vercel build` locally before pushing.
 
-<Expandable title="Error: Rate limit exceeded">
-Problem: AI model requests return `429` with header `Retry-After: 60`.
-
-Cause: The project exceeded the AI Gateway per-minute quota for the chosen model.
-
-Fix: Implement exponential backoff or request a higher quota through the dashboard.
-
-```javascript
-const res = await fetch("https://api.vercel.com/v1/ai/generate", {
-  headers: { Authorization: "Bearer YOUR_TOKEN" },
-});
-if (res.status === 429) {
-  await new Promise(r => setTimeout(r, 60000));
-}
+```bash
+vercel build --prod
 ```
 
 </Expandable>
 
-## Retry Strategies and Debugging
+<Expandable title="Invalid authentication token">
 
-<Expandable title="Recommended retry logic">
-Problem: Transient network or rate-limit errors interrupt client code.
+Problem: All authenticated endpoints return HTTP 401.
 
-Cause: Client does not respect `Retry-After` or exponential backoff.
+```json
+{"error":{"code":"invalid_token","message":"The provided token is invalid"}}
+```
 
-Fix: Use the following pattern for all Vercel API calls.
+Cause: The `Authorization` header contains an expired or revoked Vercel token.
 
-```javascript
-async function withRetry(fn, retries = 3) {
-  for (let i = 0; i < retries; i++) {
-    const res = await fn();
-    if (res.status < 500 && res.status !== 429) return res;
-    await new Promise(r => setTimeout(r, 1000 * 2 ** i));
-  }
-  throw new Error("Max retries exceeded");
-}
+Fix: Generate a new token in the dashboard and update your CI secrets.
+
+```bash
+curl -H "Authorization: Bearer $NEW_VERCEL_TOKEN" \
+  https://api.vercel.com/v2/user
 ```
 
 </Expandable>
