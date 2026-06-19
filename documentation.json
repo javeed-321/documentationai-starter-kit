@@ -21,7 +21,6 @@
     "tabs": [
       {
         "tab": "Help Center",
-        "icon": "help-circle",
         "groups": [
           {
             "group": "Overview",
