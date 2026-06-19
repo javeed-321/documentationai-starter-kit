@@ -9,7 +9,6 @@
   max-width: 960px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  background-color:red;
 }
 
 /* ── Title — centered, large ── */
@@ -38,21 +37,16 @@
   line-height: 1.6 !important;
 }
 
-/* ── Hide breadcrumbs only on this page ── */
+/* ── Hide breadcrumbs and tabs only on this page ── */
 
 .dai-page:has(.help-center-layout) .dai-breadcrumbs {
   display: none !important;
 }
 
-/* ── Hide heading IDs (user preference) ── */
-
-.help-center-layout #featured-guides {
+.dai-layout:has(.help-center-layout) .dai-navbar-tabs {
   display: none !important;
 }
 
-.help-center-layout #all-guides {
-  display: none !important;
-}
 
 /* ── Section headings — centered with divider ── */
 
@@ -61,17 +55,11 @@
   margin-top: 3rem !important;
   margin-bottom: 1rem !important;
   font-size: 1.25rem !important;
+
 }
 
-.help-center-layout h2::before {
-  content: "";
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  height: 1px;
-  background: var(--border-muted);
-  margin: 0 auto 2rem auto;
-}
+
+
 
 /* ── Cards grid — centered ── */
 
@@ -111,7 +99,7 @@
 /* ── All guides — CollectionContent centered ── */
 
 .help-center-layout [data-component="CollectionContent"] {
-  max-width: 560px !important;
+  max-width: 900px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
