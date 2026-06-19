@@ -1,0 +1,162 @@
+---
+title: Actions and Automation
+description: Create no-code workflows that trigger resolutions across ticketing, chat, and external systems.
+---
+
+## Set up actions and automation
+
+Use this page when you want to trigger a workflow in Zendesk, send data to another system, or troubleshoot an action that is not running as expected. It covers trigger setup, webhook configuration, unified data flows, and the most common error checks.
+
+## Before you start
+
+Make sure you have:
+
+- Admin access to the workspace where you create triggers
+- The target URL for your webhook, if you send data outside Zendesk
+- A clear rule for when the action should run
+- Sample ticket, chat, or employee service data to test with
+
+<Callout kind="tip">
+  Start with one simple trigger first. Once it works, add more conditions and follow-up actions.
+</Callout>
+
+## Create a trigger
+
+Use a trigger when you want Zendesk to run an action automatically after something happens, such as a ticket update or a new message.
+
+<Steps>
+  <Step title="Choose the event">
+    Pick the event that should start the workflow, such as ticket creation, ticket update, or a chat event.
+
+  </Step>
+  <Step title="Add conditions">
+    Narrow the trigger so it runs only when the right records match. Use conditions that are specific enough to avoid unwanted actions.
+
+  </Step>
+  <Step title="Set the action">
+    Choose what Zendesk should do, such as update a field, route the ticket, add a tag, or call a webhook.
+
+  </Step>
+  <Step title="Test the trigger">
+    Save the trigger and run a test record through it. Confirm that the action fires only when the conditions are met.
+
+  </Step>
+</Steps>
+
+### Common trigger checks
+
+| What to check | Why it matters |
+| --- | --- |
+| Event type | The trigger only runs on the event you selected. |
+| Conditions | Too many conditions can block the trigger from running. |
+| Action order | Actions run in the order you set them. |
+| Test record | A clean test helps you confirm the rule is working. |
+
+## Configure a webhook
+
+Use a webhook when you want Zendesk to send data to another system. Webhooks are useful for updating records, starting external processes, or syncing status changes.
+
+<Steps>
+  <Step title="Create the webhook">
+    Add the destination URL and choose the request method required by the receiving system.
+
+  </Step>
+  <Step title="Map the payload">
+    Include the fields you need, such as ticket ID, status, requester, or custom field values.
+
+  </Step>
+  <Step title="Add authentication">
+    If the endpoint needs a token or secret, add it in the webhook settings and keep the value secure.
+
+  </Step>
+  <Step title="Run a test call">
+    Send a test request and confirm the receiving system returns a success response.
+
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  Do not place sensitive values directly in plain text payloads. Use the secure settings available in Zendesk for secrets and authentication.
+</Callout>
+
+### Webhook options
+
+| Option | Use it when |
+| --- | --- |
+| POST | You need to create or send data to another system. |
+| PUT | You need to update an existing record. |
+| PATCH | You need to update part of a record. |
+| Authentication token | The receiving system requires a secure header or token. |
+| Custom payload | You want to send only the fields the target system needs. |
+
+## Build unified data flows
+
+A unified data flow keeps ticketing, chat, and external systems aligned. The goal is to pass the same record details through each step so teams see the same status and context.
+
+### Recommended flow
+
+| Step | What happens |
+| --- | --- |
+| Capture | Zendesk receives the event from ticketing, chat, or another channel. |
+| Enrich | Zendesk adds fields, tags, or routing details. |
+| Act | A trigger sends the record to a webhook or updates the case. |
+| Confirm | Zendesk records the outcome so agents can see what happened. |
+
+### Tips for cleaner data flow
+
+- Keep field names consistent across systems
+- Use unique IDs so records stay matched
+- Pass only the data the next step needs
+- Log the final outcome back into Zendesk when possible
+
+## Handle errors
+
+If a workflow fails, check where it stopped: trigger, webhook, or receiving system. Most issues come from missing conditions, bad field values, or an unreachable endpoint.
+
+<Steps>
+  <Step title="Check whether the trigger ran">
+    Open the record and confirm the trigger conditions were true. If the event does not match, the workflow will not start.
+
+  </Step>
+  <Step title="Check the webhook response">
+    Review the response from the target system. A timeout, authentication failure, or validation error usually points to the receiving endpoint.
+
+  </Step>
+  <Step title="Review field values">
+    Confirm the payload uses valid values and includes required fields. Empty or mismatched fields often cause failures.
+
+  </Step>
+  <Step title="Retest after one change">
+    Fix one issue at a time, then test again so you know which change resolved the problem.
+
+  </Step>
+</Steps>
+
+<Expandable title="Why did my action not run?">
+  The most common causes are:
+
+  - The trigger conditions were too narrow
+  - The event type did not match the record update
+  - A required field was empty
+  - The webhook endpoint returned an error
+</Expandable>
+
+<Expandable title="How do I know the payload is correct?">
+  Compare the data in your test record with the fields you send in the webhook. If a required value is missing or formatted differently, the receiving system may reject it.
+</Expandable>
+
+<Expandable title="What should I do if the endpoint times out?">
+  Check the endpoint status, confirm the URL is reachable, and retry with a smaller payload. If the timeout continues, the receiving system may be too slow or temporarily unavailable.
+</Expandable>
+
+## Best practices
+
+- Start with a single trigger and one webhook
+- Use clear naming so you can identify each workflow later
+- Keep conditions specific but not overly restrictive
+- Add one test case for each channel you support
+- Review failed runs regularly so you can spot patterns early
+
+## Still stuck?
+
+If the action still does not run, contact Zendesk support with the trigger name, webhook details, test record, and the exact error message you see.

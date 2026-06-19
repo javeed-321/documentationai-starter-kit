@@ -1,0 +1,123 @@
+---
+title: Quality Assurance Issues
+description: Fix problems with automated scoring, QA reports, and workforce management forecasts.
+---
+
+## Fix QA scoring, reports, and forecast issues
+
+If your automated scoring looks off, QA reports do not match what you expect, or workforce management forecasts seem wrong, use this page to find the most common fixes. You can also check AI evaluation rules and schedule settings that affect how scores and forecasts are calculated.
+
+<Callout kind="tip">
+  Make one change at a time, then re-run the score or refresh the report. That makes it easier to spot what fixed the issue.
+</Callout>
+
+## Check scoring calibration
+
+If automated scores are too strict, too lenient, or inconsistent across reviewers, start by reviewing calibration settings.
+
+<Steps>
+  <Step title="Confirm the scoring rubric">
+    Make sure each question, weight, and pass or fail rule matches the behavior you want to measure.
+
+    - Check that required questions are still enabled
+    - Confirm each score uses the right scale
+    - Review any recent rubric edits
+  </Step>
+  <Step title="Review calibration samples">
+    Compare a few scored interactions from different reviewers. If the same interaction gets different results, your calibration may be too broad or too narrow.
+  </Step>
+  <Step title="Recalibrate thresholds">
+    Adjust score thresholds only after you review multiple examples. Small changes usually work better than large ones.
+  </Step>
+  <Step title="Re-score a test set">
+    Run a small batch of known interactions again and confirm the results are closer to what you expect.
+  </Step>
+</Steps>
+
+## Fix schedule conflicts in workforce management
+
+Forecasts and staffing plans can look wrong when schedules overlap, shifts are missing, or time off is counted incorrectly.
+
+<Steps>
+  <Step title="Check agent availability">
+    Confirm each agent has the correct working hours, role, and time zone.
+  </Step>
+  <Step title="Look for overlapping shifts">
+    Review any shifts that start before a previous shift ends. Overlaps can cause coverage and forecast problems.
+  </Step>
+  <Step title="Verify time off and exceptions">
+    Make sure approved time off, holidays, and training blocks are included in the schedule.
+  </Step>
+  <Step title="Refresh the forecast">
+    After you fix the schedule, refresh the forecast so it uses the latest staffing data.
+  </Step>
+</Steps>
+
+## Review report accuracy
+
+If QA reports do not match the records you expect, the issue is usually caused by filters, date ranges, or incomplete data.
+
+| Check | What to verify | Why it matters |
+| --- | --- | --- |
+| Date range | The report uses the correct start and end dates | A narrow range can hide valid records |
+| Filters | Agent, team, channel, or score filters are set correctly | Filters can exclude the right interactions |
+| Sample size | The report includes enough interactions to be meaningful | Small samples can create misleading averages |
+| Data freshness | The report has finished syncing | Recent changes may not appear right away |
+
+<Callout kind="info">
+  If a report looks correct in one view but wrong in another, compare the filters first. Different saved views often use different defaults.
+</Callout>
+
+## Apply AI evaluation rules correctly
+
+AI evaluation rules control what the system scores and how it interprets interactions. If scores seem random or missing, review the rules first.
+
+<Steps>
+  <Step title="Check rule scope">
+    Confirm the rule applies to the right channels, teams, or interaction types.
+  </Step>
+  <Step title="Review match conditions">
+    Make sure the rule uses clear conditions. If the rule is too broad, it may score the wrong interactions.
+  </Step>
+  <Step title="Confirm exclusions">
+    Check whether any tags, categories, or exceptions are preventing scoring.
+  </Step>
+  <Step title="Test with a known example">
+    Use one interaction you already understand and confirm the rule returns the expected result.
+  </Step>
+</Steps>
+
+## Common causes and fixes
+
+| Problem | Likely cause | Fix |
+| --- | --- | --- |
+| Scores are too low | Rubric weights are too strict | Lower the weight or adjust the threshold |
+| Scores vary by reviewer | Calibration is inconsistent | Recalibrate using shared examples |
+| Forecasts miss coverage gaps | Shifts or time off are not included | Review availability and schedule blocks |
+| QA totals do not match | Filters or date range are different | Match the report settings |
+| AI rules do not fire | Scope or conditions are too narrow | Broaden the rule or test the match logic |
+
+## When to re-run and when to wait
+
+| Situation | What to do |
+| --- | --- |
+| You changed a rubric or rule | Re-score a small test set right away |
+| You changed a schedule | Refresh the forecast after the update saves |
+| You changed a report filter | Reload the report and compare totals |
+| You changed multiple settings | Test one change at a time so you can isolate the issue |
+
+<Expandable title="Why do automated scores change after I edit a rule?" default-open="false">
+  Scores can change because the rule now matches different interactions or applies different weights. Re-run a small test set after every rule change so you can confirm the new result is intentional.
+</Expandable>
+
+<Expandable title="Why does the forecast not match the schedule?" default-open="false">
+  The forecast usually reflects availability, time off, and shift rules. If any of those are missing or out of date, the forecast can drift from the schedule you expect.
+</Expandable>
+
+<Expandable title="Why do QA reports show different totals in different views?" default-open="false">
+  Different views often use different filters, date ranges, or saved settings. Compare every filter before you assume the data is wrong.
+</Expandable>
+
+## Still stuck?
+
+If the issue continues after you check calibration, schedules, reports, and AI evaluation rules, contact Zendesk support with a screenshot, the affected date range, and one example interaction.
