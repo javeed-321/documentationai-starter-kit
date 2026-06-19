@@ -1,26 +1,14 @@
-/* ─── Help Center: Mintlify-style centered layout ─── */
+/* ─────────────────────────────────────────────────────
+   Help Center page styles — scoped to .help-center-layout
+   Only affects pages that use <div className="help-center-layout">
+────────────────────────────────────────────────────── */
 
-/* ── Hide elements not in Mintlify's help center ── */
+/* ── Title & description centering ──
+   These target the page-title/description that sit ABOVE the MDX content.
+   We use :has() to apply styles only when the page contains .help-center-layout.
+───────────────────────────────────────────────────── */
 
-.dai-breadcrumbs {
-  display: none !important;
-}
-
-.dai-page-nav {
-  display: none !important;
-}
-
-.dai-navbar-tabs {
-  display: none !important;
-}
-
-.dai-footer {
-  display: none !important;
-}
-
-/* ── Page title — big, centered ── */
-
-.dai-article .page-title {
+.dai-article:has(.help-center-layout) .page-title {
   text-align: center !important;
   font-size: 2.5rem !important;
   line-height: 3rem !important;
@@ -28,77 +16,37 @@
   margin-bottom: 0.5rem !important;
 }
 
-/* ── Description — centered, muted ── */
-
-.dai-article .page-description {
+.dai-article:has(.help-center-layout) .page-description {
   text-align: center !important;
   max-width: 560px;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-.dai-article .page-description p {
+.dai-article:has(.help-center-layout) .page-description p {
   color: var(--body) !important;
   opacity: 0.7;
   font-size: 1.05rem !important;
   line-height: 1.6 !important;
 }
 
-/* ── Article container — centered, wide ── */
+/* ── Hide breadcrumbs, page nav, footer only on this page ── */
 
-.dai-article {
-  max-width: 1000px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
+.dai-article:has(.help-center-layout) ~ .dai-page-aside,
+.dai-page:has(.help-center-layout) .dai-breadcrumbs {
+  display: none !important;
 }
 
-/* ── Section headings — centered with spacing ── */
+/* ── Section headings — centered with divider ── */
 
-.dai-article h2 {
+.help-center-layout h2 {
   text-align: center !important;
   margin-top: 3rem !important;
   margin-bottom: 1rem !important;
   font-size: 1.25rem !important;
 }
 
-/* ── Featured guides — centered grid ── */
-
-[data-component="Columns"] {
-  margin-top: 1.5rem !important;
-  margin-bottom: 2rem !important;
-  max-width: 900px;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Cards — centered text, clean look */
-
-[data-component="Card"] {
-  text-align: center !important;
-  border-radius: 12px !important;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
-}
-
-[data-component="Card"]:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-}
-
-[data-component="Card"] .dai-card-title {
-  text-align: center !important;
-}
-
-[data-component="Card"] .dai-card-description {
-  text-align: center !important;
-}
-
-[data-component="Card"] svg {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* ── Divider between sections ── */
-
-.dai-article h2::before {
+.help-center-layout h2::before {
   content: "";
   display: block;
   width: 100%;
@@ -108,21 +56,56 @@
   margin: 0 auto 2rem auto;
 }
 
+/* ── Cards grid — centered, capped width ── */
+
+.help-center-layout [data-component="Columns"] {
+  max-width: 900px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Card — centered text */
+
+.help-center-layout [data-component="Card"] {
+  text-align: center !important;
+  border-radius: 12px !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.help-center-layout [data-component="Card"]:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.help-center-layout [data-component="Card"] .dai-card-title {
+  text-align: center !important;
+}
+
+.help-center-layout [data-component="Card"] .dai-card-description {
+  text-align: center !important;
+}
+
+.help-center-layout [data-component="Card"] svg {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /* ── All guides — CollectionContent centered ── */
 
-[data-component="CollectionContent"] {
+.help-center-layout [data-component="CollectionContent"] {
   max-width: 560px;
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
-.dai-collection-node {
+.help-center-layout .dai-collection-node {
   text-align: left;
 }
 
 /* ── Callout — centered, constrained width ── */
 
-[data-component="Callout"] {
+.help-center-layout [data-component="Callout"] {
   max-width: 560px !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -130,14 +113,8 @@
   margin-top: 2.5rem !important;
 }
 
-/* ── Feedback widget — centered ── */
+/* ── Dark mode card hover ── */
 
-.dai-feedback {
-  display: none !important;
-}
-
-/* ── Dark mode adjustments ── */
-
-.dark [data-component="Card"]:hover {
+.dark .help-center-layout [data-component="Card"]:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
