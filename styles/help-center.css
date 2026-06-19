@@ -1,0 +1,60 @@
+/* ─── Help Center: Mintlify-style centered layout ─── */
+
+/* Center the page title */
+.dai-article .page-title {
+  text-align: center;
+  font-size: 2.25rem;
+  line-height: 2.75rem;
+}
+
+/* Center the page description */
+.dai-article .page-description {
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--body);
+  opacity: 0.8;
+}
+
+/* Center all h2 headings inside the article */
+.dai-article h2 {
+  text-align: center;
+}
+
+/* Center the main article content area */
+.dai-article {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Center card grid within Columns */
+[data-component="Columns"] {
+  justify-content: center;
+}
+
+/* Center CollectionContent list */
+[data-component="CollectionContent"] {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Center callouts */
+[data-component="Callout"] {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+/* Hide breadcrumbs */
+.dai-breadcrumbs {
+  display: none !important;
+}
+
+/* Hide the "Next / Previous" page navigation on overview page */
+.dai-page-nav {
+  display: none;
+}
