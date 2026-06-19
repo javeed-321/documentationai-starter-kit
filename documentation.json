@@ -32,7 +32,10 @@
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "book-open",
-                "show-sidebar": false
+                "show-sidebar": false,
+                "show-toc": false,
+                "show-parent-label": false,
+                "content-width": "wide"
               }
             ]
           },
