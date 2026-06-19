@@ -29,10 +29,6 @@
             "expandable": false,
             "pages": [
               {
-                "title": "hai",
-                "path": "hai"
-              },
-              {
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "help-circle",
