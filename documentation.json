@@ -29,7 +29,8 @@
                 "path": "help-center",
                 "icon": "help-circle",
                 "show-sidebar": false,
-                "show-toc": false
+                "show-toc": false,
+                "show-navigation-header": false
               }
             ]
           },
