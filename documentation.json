@@ -29,7 +29,7 @@
                 "path": "help-center",
                 "icon": "help-circle",
                 "show-sidebar": false,
-                "show-toc-sidebar": false
+                "show-toc": false
               }
             ]
           },
@@ -42,13 +42,15 @@
                 "title": "Quickstart Guide",
                 "path": "help-center/getting-started/quickstart",
                 "icon": "rocket",
-                "show-sidebar": false
+                "show-sidebar": false,
+                "show-toc-sidebar": false
               },
               {
                 "title": "Configuring AI Agents",
                 "path": "help-center/getting-started/ai-agents",
                 "icon": "cpu",
-                "show-sidebar": false
+                "show-sidebar": false,
+                "show-toc-sidebar": false
               }
             ]
           },
@@ -61,13 +63,15 @@
                 "title": "FAQ",
                 "path": "help-center/faq/getting-started",
                 "icon": "help-circle",
-                "show-sidebar": false
+                "show-sidebar": false,
+                "show-toc-sidebar": false
               },
               {
                 "title": "AI Copilot Questions",
                 "path": "help-center/faq/ai-copilot",
                 "icon": "message-circle",
-                "show-sidebar": false
+                "show-sidebar": false,
+                "show-toc-sidebar": false
               }
             ]
           },
