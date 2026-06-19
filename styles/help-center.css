@@ -39,6 +39,10 @@
 
 /* ── Section headings — centered with divider ── */
 
+.help-center-layout #featured-guides {
+  display: none !important;
+}
+
 .help-center-layout h2 {
   text-align: center !important;
   margin-top: 3rem !important;
@@ -117,4 +121,9 @@
 
 .dark .help-center-layout [data-component="Card"]:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+
+.help-center-layout #all-guides {
+  display: none !important;
 }
