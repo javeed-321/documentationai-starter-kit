@@ -57,15 +57,6 @@
   font-size: 1.25rem !important;
 }
 
-.help-center-layout h2::before {
-  content: "";
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  height: 1px;
-  background: var(--border-muted);
-  margin: 0 auto 2rem auto;
-}
 
 /* ── Cards grid — centered ── */
 
