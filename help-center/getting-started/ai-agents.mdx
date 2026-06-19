@@ -1,0 +1,171 @@
+---
+title: Configuring AI Agents
+description: Train and deploy autonomous AI agents that resolve issues across messaging, voice, and email.
+---
+
+## Overview
+
+Use this guide when your AI agent is not resolving issues the way you expect, or when you need to set one up with the right training, workflow, and governance settings. It walks you through the key checks for training, resolution paths, continuous learning, and safe deployment.
+
+## Before you start
+
+Make sure you have access to the agent configuration area and the permissions needed to edit AI settings.
+
+<Callout kind="tip">
+If you are testing a new agent, start with a small set of common requests before you turn it on for all channels.
+</Callout>
+
+## Configure the agent
+
+<Steps>
+  <Step title="Define the agent’s scope" icon="settings">
+
+  Decide what the agent should handle first.
+
+  - Common questions
+  - Simple account updates
+  - Status checks
+  - Basic triage and handoff
+
+  Keep the first version narrow. You can expand it after you confirm good resolution quality.
+
+  </Step>
+  <Step title="Train with approved content" icon="book-open">
+
+  Add the knowledge the agent uses to answer and act.
+
+  - Help center articles
+  - Internal runbooks
+  - Policy guidance
+  - Workflow instructions
+
+  Use clear, current content. Remove outdated instructions so the agent does not learn the wrong answer.
+
+  </Step>
+  <Step title="Set resolution workflows" icon="arrow-right">
+
+  Map each intent to a clear outcome.
+
+  - Answer directly when the request is simple
+  - Gather missing details before taking action
+  - Route to a human agent when confidence is low
+  - Close the loop with a summary after resolution
+
+  Make sure each workflow has a fallback path if the agent cannot complete the task.
+
+  </Step>
+  <Step title="Apply governance settings" icon="shield">
+
+  Turn on the controls that keep responses safe and consistent.
+
+  - Limit what the agent can do on its own
+  - Require approval for sensitive actions
+  - Restrict access to approved data sources
+  - Review policy settings for regulated workflows
+
+  These settings help the agent stay within your support rules and approval process.
+
+  </Step>
+  <Step title="Test and launch" icon="rocket">
+
+  Test the agent with real examples before full rollout.
+
+  - Check resolution accuracy
+  - Confirm handoff behavior
+  - Verify voice, messaging, and email flows
+  - Review failed or low-confidence cases
+
+  Launch in stages so you can fix issues before they affect more customers.
+
+  </Step>
+</Steps>
+
+## Training best practices
+
+| What to do | Why it matters |
+| --- | --- |
+| Use short, specific examples | The agent learns patterns more reliably |
+| Keep policies and articles current | Outdated content creates wrong answers |
+| Cover common and edge cases | The agent performs better across real requests |
+| Review failed conversations regularly | You can improve training where it matters most |
+
+## Resolution workflows
+
+A strong workflow tells the agent what to do after it understands the request.
+
+### Common workflow patterns
+
+| Scenario | Recommended action |
+| --- | --- |
+| Password reset | Collect verification details, then provide the reset path |
+| Order status | Check the current status and summarize the result |
+| Billing question | Explain the policy or route to a specialist |
+| Account change request | Confirm details and require approval if needed |
+| Unknown intent | Ask a clarifying question or hand off to a human agent |
+
+<Callout kind="info">
+If the agent is resolving the wrong issue, review the intent mapping first. Most routing problems come from a weak or overlapping workflow.
+</Callout>
+
+## Governance settings to review
+
+Before you expand the agent to more channels, check the controls below.
+
+| Setting | What it controls | When to tighten it |
+| --- | --- | --- |
+| Data access | Which sources the agent can use | When content includes private or sensitive data |
+| Action limits | What the agent can do without approval | When actions affect accounts, billing, or service changes |
+| Handoff rules | When the agent sends a case to a human | When confidence is low or policy blocks the action |
+| Audit review | How you track agent activity | When you need stronger oversight or compliance checks |
+
+## Continuous learning
+
+AI agents improve when you review what they did and feed that back into training.
+
+### What to review regularly
+
+- Unresolved conversations
+- Incorrect answers
+- Missed handoffs
+- Repeated follow-up questions
+- Requests that should have been automated but were not
+
+### How to improve the agent
+
+1. Update the source content it uses.
+2. Fix intent and workflow gaps.
+3. Add examples for common failures.
+4. Re-test the same scenarios.
+5. Recheck the results after each change.
+
+<Expandable title="Why is the agent giving outdated answers?" default-open="false">
+
+The agent usually reflects the content it was trained on. Check for old help articles, stale workflow notes, or duplicated guidance that points to the wrong answer.
+
+</Expandable>
+
+<Expandable title="When should I hand off to a human agent?" default-open="false">
+
+Hand off when the request is sensitive, the confidence is low, the user is blocked, or the workflow needs approval before it can continue.
+
+</Expandable>
+
+<Expandable title="How often should I review agent performance?" default-open="false">
+
+Review it on a regular schedule, and also after any major content update, workflow change, or launch to a new channel.
+
+</Expandable>
+
+## If the agent still is not performing well
+
+Check these quick fixes:
+
+- Confirm the agent has the right training content
+- Review the workflow for missing steps
+- Tighten or relax governance settings as needed
+- Look at failed conversations for repeated patterns
+- Test the same request again after each change
+
+## Still stuck?
+
+Contact Zendesk support and include the agent name, the channel, the failing example, and the workflow or governance setting you changed most recently.

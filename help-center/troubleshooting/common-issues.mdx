@@ -1,50 +1,149 @@
 ---
-title: Common Issues
-description: Resolve frequent problems with ticket routing, AI agent responses, and channel connectivity.
+title: Troubleshooting
+description: Resolve common problems with ticket routing, AI agent responses, and channel integrations.
 ---
 
-## AI Resolution Failures
+## Troubleshooting common issues
 
-<Expandable title="AI agent returns generic responses instead of resolving tickets">
+If your routing, AI agent replies, integrations, or voice quality are not working as expected, use the sections below to find the most common fixes fast.
 
-The AI agent replies with vague messages like "I will look into that" on complex support requests.
+## Card declines
 
-This happens when the agent lacks access to your specific knowledge base articles or recent ticket history.
+Use these steps when a payment fails, a billing update does not go through, or your account stays in a past-due state.
 
-Update the agent's training data in the Resolution Platform settings, then retrain it on your top 50 resolved tickets. Test by creating a sample ticket with the exact phrasing from your customers.
+<Steps>
+  <Step title="Check the card details" icon="credit-card">
+    Confirm the card number, expiration date, security code, and billing address match the cardholder records.
+
+  </Step>
+  <Step title="Verify the card can be charged" icon="check-circle">
+    Make sure the card is active, has enough funds or available credit, and allows online or recurring payments.
+
+  </Step>
+  <Step title="Try the payment again" icon="arrow-right">
+    Re-enter the payment method carefully and retry the charge. If the issue continues, use a different supported card.
+
+  </Step>
+  <Step title="Contact your bank or card issuer" icon="help-circle">
+    Ask whether the transaction was blocked for fraud, international use, or subscription billing.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  If you updated the card, wait a few minutes and refresh the billing page before trying again.
+</Callout>
+
+## AI agent responses are wrong or off-topic
+
+If an AI agent gives a response that sounds made up, misses your policy, or answers the wrong question, tighten the knowledge and routing inputs first.
+
+<Steps>
+  <Step title="Review the source content" icon="book-open">
+    Check the help articles, macros, or approved content the agent uses. Remove outdated or conflicting instructions.
+
+  </Step>
+  <Step title="Narrow the allowed answers" icon="settings">
+    Limit the agent to approved topics, required handoff rules, and the exact tone you want.
+
+  </Step>
+  <Step title="Test with real customer questions" icon="play-circle">
+    Send a few common prompts and compare the replies to your expected answer.
+
+  </Step>
+  <Step title="Add a handoff rule" icon="users">
+    If the question is sensitive, ambiguous, or requires account access, route the conversation to a human agent.
+
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  AI agents can still produce incorrect answers if the source content is unclear or incomplete. Keep approved answers current and specific.
+</Callout>
+
+### Quick checks for hallucination fixes
+
+| Symptom | What to check |
+| --- | --- |
+| Invented policy details | Remove unsupported content from the training source |
+| Wrong product or plan details | Update the knowledge article to match the current setup |
+| Repeatedly vague answers | Add a more specific prompt or fallback rule |
+| Unsafe or sensitive reply | Block the topic and route to a human |
+
+<Expandable title="How do I reduce bad AI answers?" default-open="false">
+  Tighten the source content, remove duplicates, and test the agent again with short, specific prompts.
 
 </Expandable>
 
-<Expandable title="Agent times out during resolution attempts">
+## Integration sync errors
 
-You see the error "AI agent failed to resolve ticket: Agent timeout after 30s" in the ticket audit log.
+Sync issues usually come from expired access, changed permissions, or a failed field mapping. Start with the connection, then check the data.
 
-The cause is usually an overloaded integration that the agent relies on for customer data.
+<Steps>
+  <Step title="Confirm the integration is connected" icon="cloud">
+    Open the integration settings and verify the connection is active and authorized.
 
-Reduce the number of simultaneous actions in the agent's workflow to three or fewer, then restart the agent from the AI agents dashboard.
+  </Step>
+  <Step title="Check permissions and scopes" icon="lock">
+    Make sure the connected account still has permission to read and write the data Zendesk needs.
+
+  </Step>
+  <Step title="Review field mapping" icon="database">
+    Confirm required fields still map correctly after any schema changes.
+
+  </Step>
+  <Step title="Resync the data" icon="refresh-cw">
+    Run a manual sync after reconnecting or updating permissions.
+
+  </Step>
+</Steps>
+
+| Sync error | Likely cause | Fix |
+| --- | --- | --- |
+| Authorization failed | Token expired or was revoked | Reconnect the integration |
+| Missing records | Field mapping changed | Update the mapping and resync |
+| Duplicate updates | Two systems are editing the same data | Choose one source of truth |
+| Delayed sync | Large queue or temporary outage | Wait and try again later |
+
+<Callout kind="info">
+  After you reconnect, give the sync a few minutes to finish before checking the final result.
+</Callout>
+
+## Voice quality issues
+
+If calls sound choppy, delayed, or distorted, check network quality and device settings first. Voice quality problems often come from low bandwidth, packet loss, or audio hardware issues.
+
+<Steps>
+  <Step title="Check your network" icon="wifi">
+    Use a stable connection and avoid heavy downloads or video streams during calls.
+
+  </Step>
+  <Step title="Test the headset or microphone" icon="mic">
+    Try a different device and confirm the microphone is not muted or blocked by system settings.
+
+  </Step>
+  <Step title="Close extra apps" icon="x-circle">
+    Shut down apps that may use bandwidth, camera, or microphone resources.
+
+  </Step>
+  <Step title="Retest on another device" icon="monitor">
+    If the problem disappears, the issue is likely local to the original device or browser.
+
+  </Step>
+</Steps>
+
+| Voice symptom | Common cause | What to try |
+| --- | --- | --- |
+| Choppy audio | Weak network | Move to a stronger connection |
+| Echo | Open speakers or multiple audio devices | Use headphones |
+| Delay or lag | High latency | Reduce network load |
+| Muffled sound | Bad mic position or hardware issue | Reposition or replace the headset |
+
+<Expandable title="What should I check first for voice problems?" default-open="false">
+  Start with the network, then test the headset, then try the call on another device.
 
 </Expandable>
 
-## Integration Sync Errors
+## Still stuck?
 
-<Expandable title="CRM data fails to sync into tickets">
-
-Tickets show the message "Sync failed with error: 429 Too Many Requests from CRM" and customer details stay empty.
-
-Rate limits on the connected app are being hit during high-volume periods.
-
-Lower the sync frequency to every 15 minutes in Marketplace settings and add a retry delay of 60 seconds.
-
-</Expandable>
-
-## Channel Connectivity
-
-<Expandable title="Voice channel drops incoming calls">
-
-The Contact Center logs display "Unable to connect to voice channel: SIP registration error" and calls route to voicemail.
-
-Your SIP credentials may have expired or the firewall blocks the required ports.
-
-Re-enter the SIP details under Contact Center configuration and whitelist ports 5060-5061 in your network settings.
-
-</Expandable>
+If you still cannot resolve the issue, contact Zendesk support with the exact error message, a short description of what you tried, and the time the problem occurred.
