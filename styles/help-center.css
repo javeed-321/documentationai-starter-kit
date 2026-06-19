@@ -1,10 +1,17 @@
-/* Help Center page styles — scoped to .help-center-layout */
+/* ─────────────────────────────────────────────────────
+   Help Center page styles — scoped to .help-center-layout
+   Only affects pages that use <div className="help-center-layout">
+────────────────────────────────────────────────────── */
+
+/* ── Article container — constrain width so margin:auto centers it ── */
 
 .dai-article:has(.help-center-layout) {
   max-width: 960px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+/* ── Title — centered, large ── */
 
 .dai-article:has(.help-center-layout) .page-title {
   text-align: center !important;
@@ -13,6 +20,8 @@
   margin-top: 3rem !important;
   margin-bottom: 0.5rem !important;
 }
+
+/* ── Description — centered, muted ── */
 
 .dai-article:has(.help-center-layout) .page-description {
   text-align: center !important;
@@ -28,6 +37,8 @@
   line-height: 1.6 !important;
 }
 
+/* ── Hide breadcrumbs and tabs only on this page ── */
+
 .dai-page:has(.help-center-layout) .dai-breadcrumbs {
   display: none !important;
 }
@@ -36,43 +47,22 @@
   display: none !important;
 }
 
+
+/* ── Section headings — centered with divider ── */
+
 .help-center-layout h2 {
   text-align: center !important;
   margin-top: 3rem !important;
   margin-bottom: 1rem !important;
   font-size: 1.25rem !important;
+
 }
 
-.help-center-layout [data-component="Columns"] {
-  max-width: 900px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 0.5rem !important;
-}
 
-.help-center-layout [data-component="Card"] {
-  text-align: center !important;
-  border-radius: 12px !important;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
-}
 
-.help-center-layout [data-component="Card"]:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
-}
 
-.help-center-layout [data-component="Card"] .dai-card-title {
-  text-align: center !important;
-}
 
-.help-center-layout [data-component="Card"] .dai-card-description {
-  text-align: center !important;
-}
-
-.help-center-layout [data-component="Card"] svg {
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
+/* ── All guides — CollectionContent centered ── */
 
 .help-center-layout [data-component="CollectionContent"] {
   max-width: 900px !important;
@@ -84,6 +74,8 @@
   text-align: left !important;
 }
 
+/* ── Callout — centered ── */
+
 .help-center-layout [data-component="Callout"] {
   max-width: 560px !important;
   margin-left: auto !important;
@@ -92,6 +84,13 @@
   margin-top: 2.5rem !important;
 }
 
-.dark .help-center-layout [data-component="Card"]:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+
+.help-center-layout [data-component="CollectionList"] {
+  max-width: 900px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.help-center-layout [data-component="CollectionList"] > div {
+  grid-template-columns: repeat(3, 1fr) !important;
 }
