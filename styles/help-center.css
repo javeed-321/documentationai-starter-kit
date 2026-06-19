@@ -1,17 +1,10 @@
-/* ─────────────────────────────────────────────────────
-   Help Center page styles — scoped to .help-center-layout
-   Only affects pages that use <div className="help-center-layout">
-────────────────────────────────────────────────────── */
-
-/* ── Article container — constrain width so margin:auto centers it ── */
+/* Help Center page styles — scoped to .help-center-layout */
 
 .dai-article:has(.help-center-layout) {
   max-width: 960px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
-
-/* ── Title — centered, large ── */
 
 .dai-article:has(.help-center-layout) .page-title {
   text-align: center !important;
@@ -20,8 +13,6 @@
   margin-top: 3rem !important;
   margin-bottom: 0.5rem !important;
 }
-
-/* ── Description — centered, muted ── */
 
 .dai-article:has(.help-center-layout) .page-description {
   text-align: center !important;
@@ -37,8 +28,6 @@
   line-height: 1.6 !important;
 }
 
-/* ── Hide breadcrumbs and tabs only on this page ── */
-
 .dai-page:has(.help-center-layout) .dai-breadcrumbs {
   display: none !important;
 }
@@ -47,21 +36,12 @@
   display: none !important;
 }
 
-
-/* ── Section headings — centered with divider ── */
-
 .help-center-layout h2 {
   text-align: center !important;
   margin-top: 3rem !important;
   margin-bottom: 1rem !important;
   font-size: 1.25rem !important;
-
 }
-
-
-
-
-/* ── Cards grid — centered ── */
 
 .help-center-layout [data-component="Columns"] {
   max-width: 900px !important;
@@ -70,8 +50,6 @@
   margin-top: 1.5rem !important;
   margin-bottom: 0.5rem !important;
 }
-
-/* ── Card — centered text ── */
 
 .help-center-layout [data-component="Card"] {
   text-align: center !important;
@@ -96,8 +74,6 @@
   margin-right: auto !important;
 }
 
-/* ── All guides — CollectionContent centered ── */
-
 .help-center-layout [data-component="CollectionContent"] {
   max-width: 900px !important;
   margin-left: auto !important;
@@ -108,8 +84,6 @@
   text-align: left !important;
 }
 
-/* ── Callout — centered ── */
-
 .help-center-layout [data-component="Callout"] {
   max-width: 560px !important;
   margin-left: auto !important;
@@ -117,8 +91,6 @@
   text-align: left !important;
   margin-top: 2.5rem !important;
 }
-
-/* ── Dark mode ── */
 
 .dark .help-center-layout [data-component="Card"]:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;

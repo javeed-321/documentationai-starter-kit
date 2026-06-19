@@ -1,13 +1,13 @@
 {
-  "name": "Calendly",
+  "name": "Discord",
   "colors": {
     "light": {
-      "brand": "#107ff1",
+      "brand": "#141cbc",
       "heading": "#1B1F24",
       "text": "#1B1F24"
     },
     "dark": {
-      "brand": "#5DA6F1",
+      "brand": "#6269E9",
       "heading": "#FFFFFF",
       "text": "#E5E7EB"
     }
@@ -26,67 +26,64 @@
               {
                 "title": "Help Center",
                 "path": "help-center",
-                "icon": "book-open",
-                "show-sidebar": false,
-                "show-toc": false,
-                "show-parent-label": false,
-                "content-width": "wide"
+                "icon": "book",
+                "show-sidebar": false
               }
             ]
           },
           {
             "group": "Getting Started",
-            "icon": "rocket",
+            "icon": "book-open",
             "expandable": false,
             "pages": [
               {
-                "title": "Quickstart Guide",
-                "path": "help-center/getting-started/quickstart",
+                "title": "Getting Started",
+                "path": "help-center/getting-started/basics",
                 "icon": "rocket",
                 "show-sidebar": false
               },
               {
-                "title": "Creating Event Types",
-                "path": "help-center/getting-started/event-types",
-                "icon": "calendar-plus",
+                "title": "Creating Servers",
+                "path": "help-center/getting-started/servers",
+                "icon": "plus-circle",
                 "show-sidebar": false
               }
             ]
           },
           {
-            "group": "Scheduling",
-            "icon": "calendar",
+            "group": "Account",
+            "icon": "user",
             "expandable": false,
             "pages": [
               {
-                "title": "Managing Availability",
-                "path": "help-center/scheduling/availability",
-                "icon": "clock",
+                "title": "Discord Nitro",
+                "path": "help-center/account/nitro",
+                "icon": "zap",
                 "show-sidebar": false
               },
               {
-                "title": "Automating Reminders",
-                "path": "help-center/scheduling/reminders",
-                "icon": "bell",
+                "title": "Billing & Subscriptions",
+                "path": "help-center/account/billing",
+                "icon": "credit-card",
                 "show-sidebar": false
               }
             ]
           },
           {
-            "group": "Integrations",
-            "icon": "plug",
+            "group": "Safety",
+            "icon": "shield",
             "expandable": false,
             "pages": [
               {
-                "title": "Calendar Integrations",
-                "path": "help-center/integrations/calendar-sync",
-                "icon": "calendar",
+                "title": "Privacy & Safety Settings",
+                "path": "help-center/safety/privacy",
+                "icon": "shield",
                 "show-sidebar": false
               },
               {
-                "title": "Video Conferencing Tools",
-                "path": "help-center/integrations/video-tools",
-                "icon": "video",
+                "title": "Family Center",
+                "path": "help-center/safety/family-center",
+                "icon": "users",
                 "show-sidebar": false
               }
             ]
@@ -99,62 +96,24 @@
               {
                 "title": "Common Issues",
                 "path": "help-center/troubleshooting/common-issues",
-                "icon": "alert-circle",
+                "icon": "alert-triangle",
                 "show-sidebar": false
               },
               {
-                "title": "Payments & Invoices",
-                "path": "help-center/troubleshooting/payments",
-                "icon": "credit-card",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Account Billing",
-            "icon": "credit-card",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Choosing a Plan",
-                "path": "help-center/account-billing/plans",
-                "icon": "list",
-                "show-sidebar": false
-              },
-              {
-                "title": "Billing & Subscriptions",
-                "path": "help-center/account-billing/billing",
-                "icon": "repeat",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Security",
-            "icon": "shield",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Admin Controls & SSO",
-                "path": "help-center/security/admin-controls",
-                "icon": "lock",
-                "show-sidebar": false
-              },
-              {
-                "title": "Security & Compliance",
-                "path": "help-center/security/compliance",
-                "icon": "shield-check",
+                "title": "Voice & Video Problems",
+                "path": "help-center/troubleshooting/voice",
+                "icon": "video",
                 "show-sidebar": false
               }
             ]
           },
           {
             "group": "Support",
-            "icon": "message-circle",
+            "icon": "mail",
             "expandable": false,
             "pages": [
               {
-                "title": "Contact Support",
+                "title": "Contact & Support",
                 "path": "help-center/support/contact",
                 "icon": "mail",
                 "show-sidebar": false
