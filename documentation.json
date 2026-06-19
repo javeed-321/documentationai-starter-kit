@@ -1,6 +1,6 @@
 {
   "name": "Zendesk",
-  "css": ".content-container { display: flex; flex-direction: column; align-items: center; text-align: center; } .content-container .columns { justify-content: center; } .content-container .card { text-align: left; } .content-container h2 { text-align: center; width: 100%; } .content-container .callout { text-align: left; max-width: 700px; margin-left: auto; margin-right: auto; }", 
+  "css": ".content-container { display: flex; flex-direction: column; align-items: center; text-align: center; } .content-container .columns { justify-content: center; } .content-container .card { text-align: left; } .content-container h2 { text-align: center; width: 100%; } .content-container .callout { text-align: left; max-width: 700px; margin-left: auto; margin-right: auto; }",
   "colors": {
     "light": {
       "brand": "#040404",
@@ -28,7 +28,8 @@
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "help-circle",
-                "show-sidebar": false
+                "show-sidebar": false,
+                "show-toc-sidebar": false
               }
             ]
           },
