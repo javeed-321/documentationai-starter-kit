@@ -30,7 +30,7 @@
                 "icon": "help-circle",
                 "show-sidebar": false,
                 "show-toc": false,
-                "show-navigation-header": false,
+  "show-parent-label": false,
                 "content-width": "wide"
               }
             ]
