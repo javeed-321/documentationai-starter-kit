@@ -20,7 +20,8 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "",
+        "tab": "Help Center",
+        "icon": "help-circle",
         "groups": [
           {
             "group": "Overview",
