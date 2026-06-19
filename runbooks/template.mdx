@@ -1,0 +1,218 @@
+---
+title: Runbook Template
+description: Operational runbook template covering AI feature troubleshooting, integration maintenance, and security best practices for Notion.
+---
+
+## Trigger
+
+Use this runbook when a Notion AI feature, workspace integration, or connected service shows signs of degradation. Typical triggers include slow or incorrect responses from AI agents, missing results in Enterprise Search, broken Meeting Notes capture, Mail delivery or sync issues, Calendar connection failures, or unexpected access changes in a connected app.
+
+A trigger should be specific enough that you can verify it. For example, note the user, workspace, affected feature, start time, and the first observed error. If the issue affects multiple teams or regions, treat it as a broader incident rather than a single-user problem.
+
+### Common trigger examples
+
+- An AI agent stops answering a recurring request or returns stale data.
+- Enterprise Search no longer returns content from recently updated docs.
+- Meeting Notes are created, but the transcript is incomplete or delayed.
+- Notion Mail stops syncing new messages for a connected inbox.
+- Calendar events stop appearing in Notion Calendar after a connection change.
+- A permission or compliance review shows a connection that no longer matches policy.
+
+<Columns cols={3}>
+  <Card title="AI agent incident" href="#">
+    Use this path when a custom agent or built-in agent returns wrong, partial, or no output.
+  </Card>
+  <Card title="Search or Mail issue" href="#">
+    Use this path when Enterprise Search, Mail, or indexing appears delayed or incomplete.
+  </Card>
+  <Card title="Calendar or connection health" href="#">
+    Use this path when a linked calendar or external connection stops updating.
+  </Card>
+</Columns>
+
+## Steps
+
+Follow the steps in order. Collect evidence as you go so escalation is faster if you need it.
+
+<Steps>
+  <Step title="Confirm scope" icon="info">
+    Verify whether the problem affects one person, one workspace, or multiple workspaces.
+
+    Capture the following details in your incident note:
+
+    - Feature name
+    - Workspace name
+    - First seen time
+    - User impact
+    - Recent changes to connections, permissions, or content sources
+
+  </Step>
+  <Step title="Check service and account state" icon="shield">
+    Confirm the workspace is healthy and that the affected user still has access to the relevant content and connection.
+
+    Run these sample checks from a terminal or admin workstation:
+
+    ````bash
+    curl -s https://api.example.com/health/notion-ai
+    curl -s https://api.example.com/health/notion-search
+    curl -s https://api.example.com/health/notion-mail
+    ````
+
+    If a health check is not available in your environment, verify the same signal through your internal monitoring dashboard and recent workspace audit events.
+
+  </Step>
+  <Step title="Inspect AI agent behavior" icon="zap">
+    Reproduce the issue with a known prompt and a known source document.
+
+    Use a short test prompt that references recent workspace content, then compare the response to the underlying source. Check for:
+
+    - Missing context
+    - Stale index data
+    - Permission-limited answers
+    - Incorrect routing to the wrong agent
+
+    If the agent appears to be using the wrong source, confirm the connected pages, databases, or tools are still in scope.
+
+  </Step>
+  <Step title="Validate Enterprise Search" icon="search">
+    Test search with a query that should return a recent doc, a project page, and a related meeting note.
+
+    If results are missing or delayed:
+
+    - Confirm the content exists and is shared with the expected audience
+    - Confirm the source was indexed after the last update
+    - Check whether the query depends on a connection that is temporarily unavailable
+    - Re-run the query after a short wait to rule out indexing lag
+
+    Example check:
+
+    ````bash
+    curl -s "https://api.example.com/search?q=weekly%20planning"
+    ````
+
+  </Step>
+  <Step title="Check Mail and Calendar connections" icon="settings">
+    Review whether the connected inbox or calendar was recently reauthorized, revoked, or renamed.
+
+    For Mail, verify:
+
+    - The inbox is still connected
+    - Sync has not been paused
+    - New mail arrives in the source system
+
+    For Calendar, verify:
+
+    - The calendar account is still linked
+    - Events are visible in the source provider
+    - The affected event has not been moved to a different calendar
+
+    Reconnect only after you confirm the issue is not caused by a broader workspace permission change.
+
+  </Step>
+  <Step title="Review security and compliance signals" icon="lock">
+    Check for unexpected connection changes, permission drift, or content exposure outside the approved audience.
+
+    Validate the following:
+
+    - The affected page or database still has the intended access rules
+    - The connected app is approved for the workspace
+    - No recent policy change blocks the integration
+    - Audit logs show expected changes only
+
+    If the issue touches regulated content, pause further changes until Security reviews the workspace state.
+
+  </Step>
+  <Step title="Record resolution evidence" icon="check-circle">
+    Document the outcome even if the issue resolves before escalation.
+
+    Include:
+
+    - What changed
+    - What you rechecked
+    - Whether the problem was reproducible
+    - The exact time service returned to normal
+    - Any follow-up work for indexing, permissions, or connection repair
+
+  </Step>
+</Steps>
+
+### Investigation notes
+
+Use these example commands and adapt them to your environment:
+
+```bash
+# Check a workspace health endpoint
+curl -s https://api.example.com/health/notion
+
+# Inspect recent connection events
+curl -s https://api.example.com/audit/events?source=notion
+
+# Re-run a query against Enterprise Search
+curl -s "https://api.example.com/search?q=meeting%20notes%20Q1"
+```
+
+When you test fixes, change one variable at a time. If you reconnect Mail, do not also edit permissions and reindex content in the same pass. That makes the result harder to interpret.
+
+<Callout kind="tip">
+Keep a copy of the failing prompt, search query, or calendar event ID in the incident record. That makes later reproduction much easier.
+</Callout>
+
+## Escalation Path
+
+<Callout kind="alert">
+Escalate immediately if you see widespread data exposure, repeated authentication failures, or evidence that a connection now has broader access than expected.
+</Callout>
+
+Escalate in this order:
+
+1. Workspace owner or on-call admin
+2. Security reviewer if permissions, compliance, or access scope are involved
+3. The team that owns the affected integration or content source
+4. Incident commander if the issue impacts many users or multiple features
+
+Provide a concise handoff that includes the trigger, the affected feature, what you already checked, and whether the issue affects AI agents, Enterprise Search, Mail, Calendar, or connected apps. Include timestamps and the exact reproduction steps.
+
+### Escalation checklist
+
+- State whether the issue is active or intermittent.
+- List the exact workspace and feature names.
+- Include the latest known-good time.
+- Attach any relevant audit or health output.
+- Note whether you paused any connection changes.
+
+## Rollback
+
+Rollback should restore the last known good state without expanding access or changing unrelated settings. Prefer the smallest possible revert.
+
+### Rollback options
+
+| Situation | Rollback action |
+| --- | --- |
+| AI agent returns incorrect answers after a prompt, source, or routing change | Revert the last agent configuration change and retest with the same prompt |
+| Enterprise Search misses recent content after a source update | Revert the latest source or permission change, then wait for indexing to settle |
+| Mail sync fails after reauthorization | Reconnect the inbox using the previous approved account state |
+| Calendar events disappear after a connection change | Restore the previous calendar linkage and confirm event visibility |
+| Security review finds unexpected access scope | Remove the unauthorized connection and reapply the approved access rules |
+
+### Sample rollback sequence
+
+```bash
+# Revert the last known configuration change
+curl -X POST https://api.example.com/rollback/notion \
+  -H "Content-Type: application/json" \
+  -d '{"scope":"last-known-good"}'
+
+# Recheck health after rollback
+curl -s https://api.example.com/health/notion
+```
+
+After rollback, verify the original trigger is gone and the workspace is stable for at least one observation window. If the issue returns, stop retrying the same change and escalate with the rollback evidence attached.
+
+<ExpandableGroup>
+  <Expandable title="What counts as a successful rollback?" default-open="false">
+    A rollback is successful when the user-facing symptom stops, health checks return to normal, and the same prompt, query, or connection no longer reproduces the problem.
+  </Expandable>
+  <Expandable title="When should you avoid rollback?" default-open="false">
+    Avoid rollback when it would remove approved security controls, invalidate a compliance review, or make the incident harder to contain.
+  </Expandable>
+</ExpandableGroup>
