@@ -1,1 +1,170 @@
-{"name":"Calendly","colors":{"light":{"brand":"#107ff1","heading":"#1B1F24","text":"#1B1F24"},"dark":{"brand":"#5DA6F1","heading":"#FFFFFF","text":"#E5E7EB"}},"navigation":{"tabs":[{"tab":"Help Center","icon":"help-circle","groups":[{"group":"Overview","icon":"home","expandable":false,"pages":[{"title":"Help Center","path":"help-center","icon":"book-open","show-sidebar":false}]},{"group":"Getting Started","icon":"rocket","expandable":false,"pages":[{"title":"Quickstart Guide","path":"help-center/getting-started/quickstart","icon":"rocket","show-sidebar":false},{"title":"Creating Event Types","path":"help-center/getting-started/event-types","icon":"calendar-plus","show-sidebar":false}]},{"group":"Scheduling","icon":"calendar","expandable":false,"pages":[{"title":"Managing Availability","path":"help-center/scheduling/availability","icon":"clock","show-sidebar":false},{"title":"Automating Reminders","path":"help-center/scheduling/reminders","icon":"bell","show-sidebar":false}]},{"group":"Integrations","icon":"plug","expandable":false,"pages":[{"title":"Calendar Integrations","path":"help-center/integrations/calendar-sync","icon":"calendar","show-sidebar":false},{"title":"Video Conferencing Tools","path":"help-center/integrations/video-tools","icon":"video","show-sidebar":false}]},{"group":"Troubleshooting","icon":"alert-triangle","expandable":false,"pages":[{"title":"Common Issues","path":"help-center/troubleshooting/common-issues","icon":"alert-circle","show-sidebar":false},{"title":"Payments & Invoices","path":"help-center/troubleshooting/payments","icon":"credit-card","show-sidebar":false}]},{"group":"Account Billing","icon":"credit-card","expandable":false,"pages":[{"title":"Choosing a Plan","path":"help-center/account-billing/plans","icon":"list","show-sidebar":false},{"title":"Billing & Subscriptions","path":"help-center/account-billing/billing","icon":"repeat","show-sidebar":false}]},{"group":"Security","icon":"shield","expandable":false,"pages":[{"title":"Admin Controls & SSO","path":"help-center/security/admin-controls","icon":"lock","show-sidebar":false},{"title":"Security & Compliance","path":"help-center/security/compliance","icon":"shield-check","show-sidebar":false}]},{"group":"Support","icon":"message-circle","expandable":false,"pages":[{"title":"Contact Support","path":"help-center/support/contact","icon":"mail","show-sidebar":false}]}]}]}}
+{
+  "name": "Calendly",
+  "customCss": [
+    {
+      "src": "styles/help-center.css"
+    }
+  ],
+  "colors": {
+    "light": {
+      "brand": "#107ff1",
+      "heading": "#1B1F24",
+      "text": "#1B1F24"
+    },
+    "dark": {
+      "brand": "#5DA6F1",
+      "heading": "#FFFFFF",
+      "text": "#E5E7EB"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Help Center",
+        "icon": "help-circle",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "home",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Help Center",
+                "path": "help-center",
+                "icon": "book-open",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Getting Started",
+            "icon": "rocket",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Quickstart Guide",
+                "path": "help-center/getting-started/quickstart",
+                "icon": "rocket",
+                "show-sidebar": false
+              },
+              {
+                "title": "Creating Event Types",
+                "path": "help-center/getting-started/event-types",
+                "icon": "calendar-plus",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Scheduling",
+            "icon": "calendar",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Managing Availability",
+                "path": "help-center/scheduling/availability",
+                "icon": "clock",
+                "show-sidebar": false
+              },
+              {
+                "title": "Automating Reminders",
+                "path": "help-center/scheduling/reminders",
+                "icon": "bell",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Integrations",
+            "icon": "plug",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Calendar Integrations",
+                "path": "help-center/integrations/calendar-sync",
+                "icon": "calendar",
+                "show-sidebar": false
+              },
+              {
+                "title": "Video Conferencing Tools",
+                "path": "help-center/integrations/video-tools",
+                "icon": "video",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "icon": "alert-triangle",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Common Issues",
+                "path": "help-center/troubleshooting/common-issues",
+                "icon": "alert-circle",
+                "show-sidebar": false
+              },
+              {
+                "title": "Payments & Invoices",
+                "path": "help-center/troubleshooting/payments",
+                "icon": "credit-card",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Account Billing",
+            "icon": "credit-card",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Choosing a Plan",
+                "path": "help-center/account-billing/plans",
+                "icon": "list",
+                "show-sidebar": false
+              },
+              {
+                "title": "Billing & Subscriptions",
+                "path": "help-center/account-billing/billing",
+                "icon": "repeat",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Security",
+            "icon": "shield",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Admin Controls & SSO",
+                "path": "help-center/security/admin-controls",
+                "icon": "lock",
+                "show-sidebar": false
+              },
+              {
+                "title": "Security & Compliance",
+                "path": "help-center/security/compliance",
+                "icon": "shield-check",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Support",
+            "icon": "message-circle",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Contact Support",
+                "path": "help-center/support/contact",
+                "icon": "mail",
+                "show-sidebar": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
