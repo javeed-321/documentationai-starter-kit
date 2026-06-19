@@ -1,7 +1,9 @@
 {
   "name": "Zendesk",
   "customCss": [
-    { "src": "styles/help-center.css" }
+    {
+      "src": "styles/help-center.css"
+    }
   ],
   "colors": {
     "light": {
@@ -27,12 +29,16 @@
             "expandable": false,
             "pages": [
               {
+                "title": "hai",
+                "path": "hai"
+              },
+              {
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "help-circle",
                 "show-sidebar": false,
                 "show-toc": false,
-      "show-parent-label": false,
+                "show-parent-label": false,
                 "content-width": "wide"
               }
             ]
