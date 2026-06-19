@@ -9,7 +9,6 @@
   max-width: 960px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  background-color:red;
 }
 
 /* ── Title — centered, large ── */
@@ -38,21 +37,16 @@
   line-height: 1.6 !important;
 }
 
-/* ── Hide breadcrumbs only on this page ── */
+/* ── Hide breadcrumbs and tabs only on this page ── */
 
 .dai-page:has(.help-center-layout) .dai-breadcrumbs {
   display: none !important;
 }
 
-/* ── Hide heading IDs (user preference) ── */
-
-.help-center-layout #featured-guides {
+.dai-layout:has(.help-center-layout) .dai-navbar-tabs {
   display: none !important;
 }
 
-.help-center-layout #all-guides {
-  display: none !important;
-}
 
 /* ── Section headings — centered with divider ── */
 
