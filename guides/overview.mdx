@@ -1,68 +1,160 @@
 ---
 title: Feature Overview
-description: Explore core Notion capabilities including AI meeting notes, enterprise search, docs, and project management.
+description: Explore Notion's core capabilities including AI agents, wikis, docs, projects, and integrations.
 ---
 
 ## Overview
 
-Notion unifies notes, documents, projects, and AI agents in one workspace. You interact with built-in intelligence that automates routine work, surfaces answers instantly, and keeps projects moving without switching tools.
+Notion is an AI-powered workspace that brings notes, docs, projects, calendars, mail, and connected apps into one place. You use it to centralize knowledge, coordinate work, and reduce context switching across your team. Its AI features help you draft, summarize, search, and route work so your workspace stays active even when you are offline.
 
-## Notion AI Writing and Summarization
-
-Notion AI helps you draft, rewrite, and summarize content directly inside pages. Meeting Notes captures discussions automatically and turns them into action items and summaries.
-
-<Tabs>
-  <Tab title="Meeting Notes" icon="calendar">
-    Record a call inside Notion. AI generates a structured summary with attendees, decisions, and follow-ups.
-
-  </Tab>
-  <Tab title="Writing Assistant" icon="edit">
-    Highlight any text block and ask AI to tighten, expand, or change tone while staying inside your current page.
-
-  </Tab>
-</Tabs>
-
-## Enterprise Search Across Workspaces
-
-Enterprise Search finds information across every page, database, and connected app you have access to.
+This guide gives you a practical tour of the core capabilities. It is written for new and evaluating users, so each section focuses on what the feature does, when to use it, and how it fits into a shared workspace.
 
 <Callout kind="info">
-  Search respects permissions, so you only see results you are allowed to read.
+  Start with one workspace structure, then add AI, databases, and integrations as your team needs them. That keeps setup simple and adoption easier.
 </Callout>
 
-## Project and Task Management
-
-Use databases to track tasks, milestones, and owners. Views switch between boards, calendars, and timelines without extra setup.
-
-<Columns cols={2}>
-  <Card title="Projects" icon="briefcase" href="#">
-    Group tasks by initiative and link related docs in one place.
+<Columns cols={3}>
+  <Card title="AI Agents" icon="zap" href="#">
+    Automate repetitive tasks, answer questions, and keep work moving.
   </Card>
-  <Card title="Tasks" icon="check-circle" href="#">
-    Assign owners, set due dates, and receive updates inside the same workspace.
+  <Card title="Knowledge Base" icon="book-open" href="#">
+    Organize docs and wikis in one searchable source of truth.
+  </Card>
+  <Card title="Projects" icon="bar-chart" href="#">
+    Track tasks, owners, and status in shared views.
   </Card>
 </Columns>
 
-## Custom Agents and Connections
+## AI agents and writing support
 
-Create agents that watch specific pages or databases and perform actions when conditions are met. Connect external tools to bring data into Notion automatically.
+AI agents are the automation layer in Notion. You can use them to summarize notes, route requests, generate first drafts, and answer questions from your workspace content. For a new team, that usually means fewer manual handoffs and less time spent repeating the same updates.
 
-```mermaid
-graph LR
-    A[External tool] --> B[Notion database]
-    B --> C[Custom agent]
-    C --> D[Notification or update]
-```
+The same AI layer also supports meeting notes, enterprise search, and writing assistance. Meeting notes capture action items from discussions. Enterprise search helps you find answers across your workspace. Writing assistance helps you turn rough notes into clearer docs, updates, and plans.
+
+<Tabs>
+  <Tab title="Automation" icon="zap">
+    AI agents can handle recurring work such as summarizing a status update, creating follow-up tasks, or drafting a team announcement.
+
+    Use them when a task follows a clear pattern and depends on information already in Notion.
+  </Tab>
+  <Tab title="Search" icon="search">
+    Enterprise search helps you locate relevant pages, decisions, and project context without manually browsing folders.
+
+    Use it when you need a fast answer from shared knowledge.
+  </Tab>
+  <Tab title="Writing" icon="code">
+    Writing Assistant helps you shape notes into a polished draft, tighten wording, or reformat content for a specific audience.
+
+    Use it when you have raw material but need a cleaner first version.
+  </Tab>
+</Tabs>
+
+## Knowledge bases and documentation
+
+Notion works well as a shared knowledge base because pages, databases, and linked views live in the same workspace. You can keep team policies, product decisions, onboarding notes, and how-to docs in one location, then make them easy to search and maintain.
+
+For documentation, the main benefit is consistency. You can create a structure that keeps background, process, and references together, then reuse that structure across teams. That makes it easier for people to find the latest version of a page and understand where to make updates.
+
+<CodeGroup tabs="Docs,Wiki">
+  ```markdown
+  ## Release process
+
+  1. Draft the change.
+  2. Review the content.
+  3. Publish the final page.
+  ```
+  ```markdown
+  ## Team handbook
+
+  - Mission and goals
+  - Ways of working
+  - Links to key resources
+  ```
+</CodeGroup>
+
+## Projects and task management
+
+Projects in Notion help you coordinate work with shared databases, task lists, and status views. You can track owners, deadlines, dependencies, and progress in a way that is easy for the whole team to follow. This is useful when you want planning and documentation to live together instead of in separate tools.
+
+A practical setup is to keep one project database and connect it to team pages, meeting notes, and documentation. That gives you one source of truth for both the work itself and the context behind it.
+
+<Expandable title="What to include in a project setup" default-open="false">
+  
+  A good starter project view usually includes:
+
+  - task name
+  - owner
+  - status
+  - due date
+  - linked brief or spec
+  - notes from review or approval
+  
+</Expandable>
+
+## Calendar, mail, and external connections
+
+Notion also helps you manage the operational side of work. Calendar keeps your schedule visible alongside projects and notes. Mail supports communication without forcing you to leave your workspace. Connections let you link external tools so information flows into the same system you use for planning and documentation.
+
+This matters when your team depends on multiple systems. Instead of copying context between apps, you can connect the tools you already use and keep the important information close to the work.
+
+<Tabs>
+  <Tab title="Calendar" icon="calendar">
+    Use Calendar to see time-bound work, meetings, and milestones in one view.
+  </Tab>
+  <Tab title="Mail" icon="mail">
+    Use Mail to keep communication aligned with your workspace content and priorities.
+  </Tab>
+  <Tab title="Connections" icon="link">
+    Use connections to bring external apps into Notion so your team can work from shared context.
+  </Tab>
+</Tabs>
 
 ## Examples
 
-<Expandable title="Sample agent workflow" default-open="false">
-  An agent monitors a project database. When a task status changes to "Blocked", it posts a summary in the team channel and creates a follow-up page.
+Use these examples as starting points for your own workspace design. They show how the core features fit together in day-to-day work.
 
-</Expandable>
+<Steps>
+  <Step title="Set up a team home" icon="book-open">
+    Create a home page with links to your docs, project database, and key policies.
 
-## Best Practices
+    Add a short overview so new users can understand where to start.
+  </Step>
+  <Step title="Add AI to repeatable work" icon="zap">
+    Identify tasks that follow a clear pattern, such as meeting summaries or weekly updates.
 
-- Keep one source of truth by linking related pages instead of duplicating content.
-- Use clear database properties so AI and search return accurate results.
-- Review agent permissions regularly to maintain workspace security.
+    Use AI agents to handle the first draft or the routing step.
+  </Step>
+  <Step title="Connect the workflow" icon="link">
+    Link related pages, databases, and external tools so context stays attached to the work.
+
+    Review the setup regularly and remove anything your team no longer needs.
+  </Step>
+</Steps>
+
+## Best practices
+
+Keep your workspace simple at the start. Define one place for docs, one place for projects, and one place for operational updates. Then add AI features and connections where they save time instead of creating extra noise.
+
+Review permissions, naming, and page ownership early. A clean structure makes enterprise search more effective and helps AI agents work from reliable content. If you expect a page to be reused, write it like a template with clear headings and short, direct language.
+
+<Callout kind="tip">
+  The best Notion setup is the one your team can maintain. Start small, standardize the essentials, and expand after people are using it consistently.
+</Callout>
+
+<ExpandableGroup>
+  <Expandable title="When should you use a wiki instead of a doc?" default-open="false">
+    
+    Use a wiki for stable team knowledge that many people need to reference over time. Use a doc for work in progress, meeting notes, or one-time collaboration.
+    
+  </Expandable>
+  <Expandable title="How do you keep projects and docs aligned?" default-open="false">
+    
+    Link project pages to the related spec, brief, or decision log. That keeps the context with the task and reduces duplicate updates.
+    
+  </Expandable>
+  <Expandable title="What should you automate first?" default-open="false">
+    
+    Start with repetitive work such as summaries, follow-up notes, and status updates. Those tasks are predictable and deliver quick value.
+    
+  </Expandable>
+</ExpandableGroup>
