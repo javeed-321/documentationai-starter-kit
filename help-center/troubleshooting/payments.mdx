@@ -1,0 +1,70 @@
+---
+title: Payments & Invoices
+description: Resolve payment collection errors and refund processing problems.
+---
+
+Calendly may fail to collect payments for paid events or process refunds. This page shows the fastest fixes for those errors.
+
+## Fix payment collection failures
+
+Most payment errors happen when your Stripe or PayPal connection is outdated or your event type settings conflict with the payment provider.
+
+<Steps>
+  <Step title="Check your payment connection">
+    Go to Account Settings and open Integrations. Reconnect Stripe or PayPal if you see a red warning.
+
+  </Step>
+  <Step title="Verify the event type">
+    Open the paid event type and confirm the price, currency, and payment provider are still correct.
+
+  </Step>
+  <Step title="Test with a new booking">
+    Create a test event and complete checkout. If the payment still fails, move to the next step.
+
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  Do not change your Stripe account ID while active bookings exist. This can cancel pending payments.
+</Callout>
+
+## Request a refund
+
+<Steps>
+  <Step title="Find the booking">
+    Go to your Event Types page and open the scheduled event that needs a refund.
+
+  </Step>
+  <Step title="Issue the refund">
+    Click the three-dot menu next to the payment and select Issue refund. Choose full or partial amount.
+
+  </Step>
+  <Step title="Confirm with the invitee">
+    Calendly emails the invitee automatically. Check your email to confirm the refund went through.
+
+  </Step>
+</Steps>
+
+## Generate an invoice
+
+<Expandable title="How do I download an invoice for a paid booking?">
+  Open the booking from your dashboard, click the payment line item, then select Download invoice. The PDF appears in your downloads folder.
+
+</Expandable>
+
+<Expandable title="Why is my invoice missing tax details?">
+  Tax information pulls from your Stripe account. Update your tax settings in Stripe, then regenerate the invoice in Calendly.
+
+</Expandable>
+
+## Payment error codes
+
+| Code | Meaning | Quick fix |
+| ---- | ------- | --------- |
+| 1001 | Card declined | Ask the invitee to try a different card |
+| 2003 | Provider disconnected | Reconnect Stripe or PayPal in Account Settings |
+| 3002 | Currency mismatch | Edit the event type and match the currency to your payment account |
+
+## Still stuck?
+
+Contact Calendly support through the Help button in your dashboard.

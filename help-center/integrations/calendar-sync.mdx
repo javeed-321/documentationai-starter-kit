@@ -1,0 +1,70 @@
+---
+title: Calendar Integrations
+description: Connect Google, Outlook, iCloud and other calendars to Calendly.
+---
+
+Calendly cannot detect your availability until you connect at least one calendar. This guide shows how to link Google, Outlook, iCloud and other calendars, enable multi-calendar sync, and turn on conflict detection.
+
+## Connect your first calendar
+
+<Steps>
+  <Step title="Open calendar settings">
+    In Calendly, go to Account Settings and select Calendar Connections.
+  </Step>
+  <Step title="Choose your provider">
+    Click Connect next to Google Calendar, Microsoft Outlook, iCloud, or Exchange.
+  </Step>
+  <Step title="Sign in and grant access">
+    Follow the prompts to sign in. Calendly requests read-only access to events and free/busy information.
+  </Step>
+  <Step title="Select the calendars to sync">
+    Choose up to six calendars. Calendly checks all selected calendars for conflicts.
+  </Step>
+</Steps>
+
+<Callout kind="info">
+  You must grant Calendly permission to read events. Without this scope, conflict detection will not work.
+</Callout>
+
+## Permission scopes explained
+
+Calendly asks for the smallest set of permissions needed:
+
+| Provider       | Required scope                  | What it allows                              |
+|----------------|---------------------------------|---------------------------------------------|
+| Google         | See and download calendar events| Read events to find free time               |
+| Outlook        | Read calendars                  | View availability and event details         |
+| iCloud         | Read calendars                  | Check busy times only                       |
+| Exchange       | Read free/busy                  | Detect conflicts without full event access  |
+
+## Turn on conflict detection
+
+After you connect calendars, conflict detection runs automatically. To confirm it is active:
+
+1. Go to your event type.
+2. Open the Availability section.
+3. Make sure "Check for conflicts" is toggled on.
+
+Calendly now blocks times that appear busy on any connected calendar.
+
+## Multi-calendar sync limits
+
+- You can connect up to six calendars per user.
+- All connected calendars are checked together for conflicts.
+- Changes made in Calendly appear only on the primary calendar you choose during setup.
+
+## Common questions
+
+<Expandable title="Why does Calendly need read access to my calendar?">
+  Calendly reads your events to know when you are busy. It never creates or edits events without your explicit approval.
+</Expandable>
+
+<Expandable title="What happens if two calendars show the same meeting?">
+  Calendly treats overlapping events as a single conflict and blocks the time slot.
+</Expandable>
+
+<Expandable title="Can I sync more than six calendars?">
+  No. The limit is six per user. Remove an unused calendar before adding another.
+</Expandable>
+
+Still stuck? Contact Calendly support from the Help menu in your account.
