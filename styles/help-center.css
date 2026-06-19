@@ -99,7 +99,7 @@
 /* ── All guides — CollectionContent centered ── */
 
 .help-center-layout [data-component="CollectionContent"] {
-  max-width: 560px !important;
+  max-width: 900px !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
