@@ -61,21 +61,14 @@
   font-size: 1.25rem !important;
 }
 
-/* ── Featured guides — flexbox to center partial rows ── */
+/* ── Featured guides — centered grid ── */
 
 [data-component="Columns"] {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 16px !important;
-  justify-content: center !important;
   margin-top: 1.5rem !important;
   margin-bottom: 2rem !important;
-}
-
-[data-component="Columns"] > * {
-  flex: 0 0 calc(33.333% - 12px) !important;
-  min-width: 260px !important;
-  max-width: 320px !important;
+  max-width: 900px;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* Cards — centered text, clean look */
