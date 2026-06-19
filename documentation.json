@@ -1,10 +1,5 @@
 {
   "name": "Calendly",
-  "customCss": [
-    {
-      "src": "styles/help-center.css"
-    }
-  ],
   "colors": {
     "light": {
       "brand": "#107ff1",
@@ -169,5 +164,10 @@
         ]
       }
     ]
-  }
+  },
+  "customCss": [
+    {
+      "src": "styles/help-center.css"
+    }
+  ]
 }
