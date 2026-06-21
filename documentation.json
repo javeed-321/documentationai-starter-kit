@@ -27,8 +27,7 @@
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "book",
-                "show-sidebar": false,
-                "show-toc": false
+                "show-sidebar": false
               }
             ]
           },
