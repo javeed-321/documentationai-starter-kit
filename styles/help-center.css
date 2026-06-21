@@ -1,3 +1,4 @@
+/* ─────────────────────────────────────────────────────
    Help Center page styles — scoped to .help-center-layout
    Only affects pages that use <div className="help-center-layout">
 ────────────────────────────────────────────────────── */
@@ -94,3 +95,4 @@
   margin-left: auto !important;
   margin-right: auto !important;
 }
+

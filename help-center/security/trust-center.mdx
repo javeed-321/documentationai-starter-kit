@@ -1,0 +1,55 @@
+---
+title: Security & Trust
+description: Learn about enterprise-grade security, AI governance, and compliance for Zendesk deployments.
+---
+
+You need clear details on how Zendesk protects your data and AI systems. This page shows the controls, certifications, and steps you can take right now.
+
+## Data Protection
+
+Zendesk encrypts data at rest and in transit. You control where your data is stored through region settings.
+
+<Callout kind="tip">
+  Enable data residency in your account settings to keep information in your chosen region.
+</Callout>
+
+## AI Governance
+
+Zendesk AI agents learn only from your approved interactions. You decide what data the models can access.
+
+<Steps>
+  <Step title="Review AI data sources">
+    Go to Admin Center and open the AI section.
+  </Step>
+  <Step title="Set governance rules">
+    Choose which ticket fields and customer data the agents may use.
+  </Step>
+  <Step title="Monitor usage">
+    Check the AI activity log weekly to confirm only allowed data is processed.
+  </Step>
+</Steps>
+
+## Compliance Certifications
+
+Zendesk holds the following certifications. You can download the latest reports from the Trust Center.
+
+| Certification | Scope | Renewal |
+| ------------- | ----- | ------- |
+| ISO 27001 | All products | Annual |
+| SOC 2 Type II | Customer Service, AI Copilot | Annual |
+| GDPR | Global data processing | Continuous |
+| HIPAA | Health data in Employee Service | Annual |
+
+## Access Controls
+
+You manage who can reach your Zendesk instance with these options.
+
+<Expandable title="How do I enforce single sign-on?">
+  Turn on SSO in Admin Center under Security. Choose SAML or OpenID Connect and map your identity provider groups to Zendesk roles.
+</Expandable>
+
+<Expandable title="Can I limit IP addresses?">
+  Yes. Add allowed IP ranges in the Network Access settings. Requests from other addresses are blocked automatically.
+</Expandable>
+
+Still stuck? Contact Zendesk Support through the Help menu in your account.

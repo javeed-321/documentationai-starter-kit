@@ -1,13 +1,13 @@
 {
-  "name": "Discord",
+  "name": "Zendesk",
   "colors": {
     "light": {
-      "brand": "#141cbc",
+      "brand": "#040404",
       "heading": "#1B1F24",
       "text": "#1B1F24"
     },
     "dark": {
-      "brand": "#6269E9",
+      "brand": "#C98282",
       "heading": "#FFFFFF",
       "text": "#E5E7EB"
     }
@@ -20,71 +20,77 @@
         "groups": [
           {
             "group": "Overview",
-            "icon": "home",
+            "icon": "book-open",
             "expandable": false,
             "pages": [
               {
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "book",
-                "show-sidebar": false,
-                "show-toc": false
+                "show-sidebar": false
               }
             ]
           },
           {
             "group": "Getting Started",
-            "icon": "book-open",
+            "icon": "rocket",
             "expandable": false,
             "pages": [
               {
-                "title": "Getting Started",
-                "path": "help-center/getting-started/basics",
+                "title": "Quickstart Guide",
+                "path": "help-center/getting-started/quickstart",
                 "icon": "rocket",
                 "show-sidebar": false
               },
               {
-                "title": "Creating Servers",
-                "path": "help-center/getting-started/servers",
-                "icon": "plus-circle",
+                "title": "Setting Up Channels",
+                "path": "help-center/getting-started/setup-channels",
+                "icon": "settings",
                 "show-sidebar": false
               }
             ]
           },
           {
-            "group": "Account",
-            "icon": "user",
+            "group": "AI Agents",
+            "icon": "bot",
             "expandable": false,
             "pages": [
               {
-                "title": "Discord Nitro",
-                "path": "help-center/account/nitro",
-                "icon": "zap",
+                "title": "Creating AI Agents",
+                "path": "help-center/ai-agents/creating-agents",
+                "icon": "bot",
                 "show-sidebar": false
               },
               {
-                "title": "Billing & Subscriptions",
-                "path": "help-center/account/billing",
-                "icon": "credit-card",
+                "title": "Using Copilot",
+                "path": "help-center/ai-agents/copilot",
+                "icon": "message-square",
                 "show-sidebar": false
               }
             ]
           },
           {
-            "group": "Safety",
+            "group": "Integrations",
+            "icon": "package",
+            "expandable": false,
+            "pages": [
+              {
+                "title": "Marketplace & Apps",
+                "path": "help-center/integrations/marketplace",
+                "icon": "shopping-cart",
+                "show-sidebar": false
+              }
+            ]
+          },
+          {
+            "group": "Security",
             "icon": "shield",
             "expandable": false,
             "pages": [
               {
-                "title": "Privacy & Safety Settings",
-                "path": "help-center/safety/privacy",
+                "title": "Security & Trust",
+                "path": "help-center/security/trust-center",
                 "icon": "shield",
-                "show-sidebar": false
-              },
-              {
-                "title": "Family Center",
-                "path": "help-center/safety/family-center",
-                "icon": "users",
                 "show-sidebar": false
               }
             ]
@@ -95,27 +101,21 @@
             "expandable": false,
             "pages": [
               {
-                "title": "Common Issues",
+                "title": "Troubleshooting",
                 "path": "help-center/troubleshooting/common-issues",
                 "icon": "alert-triangle",
-                "show-sidebar": false
-              },
-              {
-                "title": "Voice & Video Problems",
-                "path": "help-center/troubleshooting/voice",
-                "icon": "video",
                 "show-sidebar": false
               }
             ]
           },
           {
-            "group": "Support",
-            "icon": "mail",
+            "group": "Contact",
+            "icon": "help-circle",
             "expandable": false,
             "pages": [
               {
                 "title": "Contact & Support",
-                "path": "help-center/support/contact",
+                "path": "help-center/contact/support-options",
                 "icon": "mail",
                 "show-sidebar": false
               }
