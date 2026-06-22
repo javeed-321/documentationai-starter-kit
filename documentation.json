@@ -1,5 +1,5 @@
 {
-  "name": "Mailchimp-1",
+  "name": "Mailchimp",
   "colors": {
     "light": {
       "brand": "#241c14",
@@ -26,10 +26,9 @@
               {
                 "title": "Help Center",
                 "path": "help-center",
-                "icon": "book-open",
+                "icon": "help-circle",
                 "show-sidebar": false,
-                "show-toc": false,
-                "content-width": "wide"
+                "show-toc": false
               }
             ]
           },
@@ -41,32 +40,32 @@
               {
                 "title": "Quickstart Guide",
                 "path": "help-center/getting-started/quickstart",
-                "icon": "play",
+                "icon": "rocket",
                 "show-sidebar": false
               },
               {
-                "title": "Using AI Marketing Tools",
-                "path": "help-center/getting-started/ai-tools",
-                "icon": "sparkles",
+                "title": "Building Your Audience",
+                "path": "help-center/getting-started/audience",
+                "icon": "users",
                 "show-sidebar": false
               }
             ]
           },
           {
-            "group": "Email Marketing",
+            "group": "Campaigns",
             "icon": "mail",
             "expandable": false,
             "pages": [
               {
                 "title": "Creating Email Campaigns",
-                "path": "help-center/email-marketing/creating-campaigns",
-                "icon": "edit-3",
+                "path": "help-center/campaigns/creating",
+                "icon": "edit",
                 "show-sidebar": false
               },
               {
-                "title": "SMS Marketing Campaigns",
-                "path": "help-center/email-marketing/sms-campaigns",
-                "icon": "smartphone",
+                "title": "Multichannel Campaigns",
+                "path": "help-center/campaigns/multichannel",
+                "icon": "share-2",
                 "show-sidebar": false
               }
             ]
@@ -77,9 +76,9 @@
             "expandable": false,
             "pages": [
               {
-                "title": "Building Marketing Automations",
+                "title": "Marketing Automations",
                 "path": "help-center/automations/workflows",
-                "icon": "git-branch",
+                "icon": "zap",
                 "show-sidebar": false
               }
             ]
@@ -96,8 +95,8 @@
                 "show-sidebar": false
               },
               {
-                "title": "Connecting Popular Apps",
-                "path": "help-center/integrations/popular-apps",
+                "title": "Popular App Integrations",
+                "path": "help-center/integrations/popular",
                 "icon": "grid",
                 "show-sidebar": false
               }
@@ -109,28 +108,35 @@
             "expandable": false,
             "pages": [
               {
-                "title": "Troubleshooting Common Issues",
+                "title": "Troubleshooting",
                 "path": "help-center/troubleshooting/common-issues",
-                "icon": "alert-circle",
+                "icon": "alert-triangle",
                 "show-sidebar": false
-              },
+              }
+            ]
+          },
+          {
+            "group": "Billing",
+            "icon": "credit-card",
+            "expandable": false,
+            "pages": [
               {
-                "title": "Audience & Contact Issues",
-                "path": "help-center/troubleshooting/audience-problems",
-                "icon": "users",
+                "title": "Billing & Plans",
+                "path": "help-center/billing/subscription",
+                "icon": "credit-card",
                 "show-sidebar": false
               }
             ]
           },
           {
             "group": "Support",
-            "icon": "headset",
+            "icon": "message-circle",
             "expandable": false,
             "pages": [
               {
-                "title": "Contact Support & Experts",
+                "title": "Contact & Support",
                 "path": "help-center/support/contact",
-                "icon": "phone",
+                "icon": "message-circle",
                 "show-sidebar": false
               }
             ]
@@ -138,10 +144,5 @@
         ]
       }
     ]
-  },
-  "customCss": [
-    {
-      "src": "styles/help-center.css"
-    }
-  ]
+  }
 }

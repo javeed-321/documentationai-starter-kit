@@ -1,0 +1,75 @@
+---
+title: Troubleshooting
+description: Resolve common problems with email delivery, bounces, and campaign performance.
+---
+
+If your campaigns are not reaching inboxes or you see high bounce rates, this page shows the fastest fixes for delivery, spam filters, and bounce handling in Mailchimp.
+
+## Improve email delivery
+
+Follow these steps to raise your delivery rate.
+
+<Steps>
+  <Step title="Verify your domain">
+    Go to Audience and confirm your sending domain has proper DNS records.
+
+    Add the SPF, DKIM, and DMARC entries shown in Mailchimp.
+
+  </Step>
+  <Step title="Clean your list">
+    Remove addresses that have not engaged in the last six months.
+
+    Use the list health tools to flag inactive contacts before you send.
+
+  </Step>
+  <Step title="Test before sending">
+    Send a test campaign to a few real inboxes.
+
+    Check the preview and spam-score report inside Mailchimp.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Warm up new domains slowly. Start with small sends and increase volume over several days.
+</Callout>
+
+## Handle bounces
+
+Mailchimp separates bounces into two types. Use the table below to decide what to do.
+
+| Bounce type | What it means | Action |
+|-------------|---------------|--------|
+| Hard bounce | Permanent failure such as invalid address | Remove the address from your audience |
+| Soft bounce | Temporary issue such as full inbox | Mailchimp retries automatically; monitor after 72 hours |
+
+<Expandable title="How do I remove bounced addresses?">
+  Open the audience that received the bounce.
+
+  Filter by bounce status and delete the contacts in bulk.
+
+</Expandable>
+
+<Expandable title="Can I resend to soft bounces?">
+  Yes. Wait at least three days, then create a segment that excludes hard bounces only.
+
+  Send a short re-engagement campaign to that segment.
+
+</Expandable>
+
+## Avoid spam filters
+
+Spam filters block campaigns that look suspicious. Apply these checks before every send.
+
+- Keep subject lines under 50 characters and avoid all caps or excessive punctuation.
+- Include a physical mailing address and one-click unsubscribe link.
+- Do not use spammy words such as "free money" or "act now."
+- Maintain a spam complaint rate below 0.1 percent.
+
+<Callout kind="alert">
+  Repeated spam complaints can suspend your account. Review the abuse reports in your dashboard weekly.
+</Callout>
+
+## Still stuck?
+
+Contact Mailchimp support through the Help menu in your account.
