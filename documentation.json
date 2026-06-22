@@ -28,7 +28,8 @@
                 "path": "help-center",
                 "icon": "book-open",
                 "show-sidebar": false,
-                "show-toc": false
+                "show-toc": false,
+                "content-width": "wide"
               }
             ]
           },
