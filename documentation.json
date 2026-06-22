@@ -1,148 +1,100 @@
 {
-  "name": "Mailchimp",
-  "colors": {
-    "light": {
-      "brand": "#241c14",
-      "heading": "#1B1F24",
-      "text": "#1B1F24"
-    },
-    "dark": {
-      "brand": "#C9A682",
-      "heading": "#FFFFFF",
-      "text": "#E5E7EB"
+  "tabs": [
+    {
+      "tab": "User Documentation",
+      "groups": [
+        {
+          "group": "Entities Management",
+          "pages": [
+            {
+              "title": "Entities Management",
+              "path": "docs/data-entities",
+              "pages": [
+                {
+                  "title": "Customer entity",
+                  "path": "docs/customer_entity"
+                },
+                {
+                  "title": "Setup Store hierarchy",
+                  "path": "docs/store-hierarchy"
+                },
+                {
+                  "title": "Setup Transactions",
+                  "path": "docs/set-transactions"
+                },
+                {
+                  "title": "Handling of rejected transactions",
+                  "path": "docs/handling-of-rejected-transactions"
+                },
+                {
+                  "title": "Setup Behavioral events",
+                  "path": "docs/setup-test-behavioral-events"
+                },
+                {
+                  "title": "Setup Cards",
+                  "path": "docs/card"
+                },
+                {
+                  "title": "Setup User Groups",
+                  "path": "docs/user-group"
+                },
+                {
+                  "title": "Setup Customer Hierarchy",
+                  "path": "docs/hierarchy"
+                },
+                {
+                  "title": "Set up Data Fields",
+                  "path": "docs/data-fields",
+                  "pages": [
+                    {
+                      "title": "Standard Fields",
+                      "path": "docs/standard-fields"
+                    },
+                    {
+                      "title": "Extended Fields",
+                      "path": "docs/extended-fields"
+                    },
+                    {
+                      "title": "Custom Fields",
+                      "path": "docs/entity-management-custom-fields"
+                    }
+                  ]
+                },
+                {
+                  "title": "Create Search Filter for Entities",
+                  "path": "docs/create-search-filter",
+                  "pages": [
+                    {
+                      "title": "Use Cases",
+                      "path": "docs/use-case-search-filter"
+                    },
+                    {
+                      "title": "Overview",
+                      "path": "docs/overview-search-filter"
+                    },
+                    {
+                      "title": "Create a Search Filter",
+                      "path": "docs/create-search-filter-"
+                    },
+                    {
+                      "title": "Perform Search",
+                      "path": "docs/performing-search-"
+                    },
+                    {
+                      "title": "FAQs",
+                      "path": "docs/search-filter-faq"
+                    }
+                  ]
+                },
+                {
+                  "title": "Product",
+                  "path": "docs/product"
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
-  },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Help Center",
-        "icon": "help-circle",
-        "groups": [
-          {
-            "group": "Overview",
-            "icon": "home",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Help Center",
-                "path": "help-center",
-                "icon": "help-circle",
-                "show-sidebar": false,
-                "show-toc": false
-              }
-            ]
-          },
-          {
-            "group": "Getting Started",
-            "icon": "rocket",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Quickstart Guide",
-                "path": "help-center/getting-started/quickstart",
-                "icon": "rocket",
-                "show-sidebar": false
-              },
-              {
-                "title": "Building Your Audience",
-                "path": "help-center/getting-started/audience",
-                "icon": "users",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Campaigns",
-            "icon": "mail",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Creating Email Campaigns",
-                "path": "help-center/campaigns/creating",
-                "icon": "edit",
-                "show-sidebar": false
-              },
-              {
-                "title": "Multichannel Campaigns",
-                "path": "help-center/campaigns/multichannel",
-                "icon": "share-2",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Automations",
-            "icon": "zap",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Marketing Automations",
-                "path": "help-center/automations/workflows",
-                "icon": "zap",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Integrations",
-            "icon": "plug",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Shopify Integration",
-                "path": "help-center/integrations/shopify",
-                "icon": "shopping-cart",
-                "show-sidebar": false
-              },
-              {
-                "title": "Popular App Integrations",
-                "path": "help-center/integrations/popular",
-                "icon": "grid",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Troubleshooting",
-            "icon": "alert-triangle",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Troubleshooting",
-                "path": "help-center/troubleshooting/common-issues",
-                "icon": "alert-triangle",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Billing",
-            "icon": "credit-card",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Billing & Plans",
-                "path": "help-center/billing/subscription",
-                "icon": "credit-card",
-                "show-sidebar": false
-              }
-            ]
-          },
-          {
-            "group": "Support",
-            "icon": "message-circle",
-            "expandable": false,
-            "pages": [
-              {
-                "title": "Contact & Support",
-                "path": "help-center/support/contact",
-                "icon": "message-circle",
-                "show-sidebar": false
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+  ]
 }
