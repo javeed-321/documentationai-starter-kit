@@ -1,0 +1,52 @@
+---
+title: Transform (CSV to JSON) block
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Transform (CSV to JSON) block
+
+The `convert_csv_to_json` block transforms CSV files into JSON format with optional sorting and grouping. It acts as a transformation block in a Connect+ dataflow, sitting between the source and destination blocks to convert ingested CSV data into structured JSON. The block supports header-based sorting, alphabetical ordering, record grouping by a specified field, and configurable grouping limits to manage payload size for downstream processing.
+
+### When to use this block
+
+Use this block when your dataflow ingests CSV files and needs to convert them to JSON before posting to a Capillary API or another destination.
+
+### Prerequisites
+
+Before configuring this block, make sure you have:
+
+* A clear understanding of the CSV column headers and the desired output structure
+* Identified whether records need to be grouped and by which field
+
+### Standard properties
+
+| Field name | Required | Description |
+| --- | --- | --- |
+| **Block name** | No | A name for the block instance. The name must be alphanumeric. There is no character limit. |
+| **File Type (Record Reader Controller Service)** | Yes | The record reader controller service used to parse the source file. Default value: `csv`. |
+| **Sort Headers** | No | A comma-separated list of header names that defines the order in which rows are sorted. For example, `bill ID,itemID`. |
+| **Alphabetical sort?** | No | When set to `true`, sorts headers alphabetically. Select `true` to enable or `false` to disable. Default value: `false`. |
+| **Grouping Limit** | No | The maximum number of records per group. Accepts values between 1 and 1000. Default value: `1`. |
+| **Group By** | No | A comma-separated list of fields to group records by. For example, `bill ID`. |
+| **JsonPath Expression Json expression** | No | A JSONPath expression that specifies which elements to extract from the JSON structure. The default value $.[*] selects all elements in the root array. Use this when you want to split the response. |
+| **Split Response** | No | Determines whether the block splits the JSON array into individual objects before passing them to the next block. Select `true` to send each element as a separate message. Select `false` to pass the entire array as a single message. |
+
+### Advanced properties
+
+⚠️ Make changes to advanced properties only if you know what you are doing.
+
+| Field name | Required | Description |
+| --- | --- | --- |
+| **attribution type** | No | The type of attribution to apply to the records. For example, `TILL`. |
+| **attribution code** | No | The code associated with the attribution type. For example, `store_till_001`. |
+| **header value to pass** | No | The header value to pass along with the request. |
+| **child org till** | No | The till identifier for the child organisation. |
+| **child org Id** | No | The ID of the child organisation. |
+| **lineNo parsing** | No | The expression used to parse the line number from the source record. Default value: `$[0].LINE_NO`. |
+| **JsonPath Expression** | No | The JSONPath expression used to extract records from the JSON output. Default value: `$.[*]`. |
+| **Split Response** | No | Splits the output when the block produces an array of objects. Select `true` to split each array element into individual responses, or `false` to keep the response as a single array. Default value: `false`. |
+
+<Image src="https://files.readme.io/5a11bbdcd992bce37de14c67adbdaf46ac0a863107a017e316141dd907933f4d-Untitled_design_1.gif" width="1920" height="1080" alt="" />

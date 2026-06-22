@@ -1,0 +1,68 @@
+---
+title: Data Ingestion
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Data Ingestion
+
+Templates for ingesting customer, transaction, event, and user data into the Capillary platform.
+
+Data ingestion templates let you bring customer, transaction, event, and user data into the Capillary platform from FTP or SFTP locations on a schedule. Each template provides a pre-configured block sequence for a specific ingestion use case. You select a template, configure the block details for your environment, and deploy the dataflow.
+
+The following templates are available for data ingestion.
+
+### Force generate barcode
+
+Use this template to generate barcodes in bulk for existing customers. The template reads customer identifiers from a source file and calls the Capillary barcode generation API for each record.
+
+**Use case**
+
+A brand migrating customers from a legacy system needs to generate barcodes in bulk for existing loyalty members who do not yet have one in the Capillary platform. The customer identifiers are provided in a file and the template runs the generation API for each record in a single scheduled operation.
+
+#### Block configuration
+
+The following table lists the blocks in the Force generate barcode template, describes what each block does, and provides the configured values for each field.
+
+| Block Name | Configuration Field | Configured Value |
+| --- | --- | --- |
+| **[Connect-to-source](https://docs.capillarytech.com/docs/sftp-read-block)**Type: `sftp_read` | Hostname | `data.capillarydata.com` |
+|  | Username | `null` |
+|  | Source directory | `/tmp/` |
+|  | Filename pattern | `.*.csv`. Matches all CSV files. |
+|  | Processed directory | `null` |
+|  | Unzip files | `false` |
+|  | API error file path | `null` |
+|  | Search directory recursively | `false` |
+|  | Port | `22` |
+|  | File delimiter | `,` |
+|  | Report status code | `all` |
+| **[Decrypt-data](https://docs.capillarytech.com/docs/pgp-decrypt-block)**Type: `decrypt_content` | Encryption algorithm | `PGP` |
+|  | Private key file | Redacted |
+|  | Private passphrase | Redacted |
+|  | Is enabled | `false` |
+| **[Ok-file](https://docs.capillarytech.com/docs/ok-file-block)**Type: `ok_file_3` | — | — |
+| **Transform-data**Type: `barocde_generate` | — | — |
+| **[Filter-data](https://docs.capillarytech.com/docs/filter_on_condition_hidden-block)**Type: `filter_on_condition_hidden` | Filter condition | `${"${header_value:equals('true'): or(${header_value:isEmpty()})}"}` |
+| **[Connect-to-destination](https://docs.capillarytech.com/docs/api-request-http_write-block)**Type: `http_write` | Client key | `null` |
+|  | Client secret | Redacted |
+|  | API endpoint | `/v2/customers/barcode/forceGenerate?source=INSTORE&format=json` |
+|  | API base URL | `https://crm-nightly-new.cc.capillarytech.com` |
+|  | API method | `POST` |
+|  | OAuth base URL | `https://crm-nightly-new.cc.capillarytech.com` |
+|  | Parse response | `true` |
+|  | Bulk support | `false` |
+|  | Request split path | `$` |
+|  | Response split path | `$` |
+|  | Recoverable error codes | `502,504,520,521` |
+|  | Parse path map | `{"status_code": "$.['errors']._.code", "error_message": "$.['errors']._.message"}` |
+|  | Yielding error codes | `429` |
+|  | Maximum retries | `3` |
+|  | Additional headers | `null` |
+|  | Rate | `1000` |
+|  | Period | `1` |
+|  | Time unit | `MINUTES` |
+
+<br />

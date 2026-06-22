@@ -1,0 +1,89 @@
+---
+title: JSLT block
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## JSLT block
+
+The `jslt_transform` block applies a JSLT transformation to JSON data as a transformation block in a Connect+ dataflow. JSLT is an open-source query and transformation language for JSON. The block accepts a JSLT expression that defines how the input JSON is restructured or mapped before being passed to downstream blocks. The block name must be alphanumeric.
+
+**When to use this block**
+
+Use this block when your dataflow needs to restructure, filter, or remap a JSON payload before it is passed to the destination, for example, renaming fields, extracting nested values, or reshaping the payload structure.
+
+**Prerequisites**
+
+Before configuring this block, make sure you have a JSLT transformation expression prepared for your use case
+
+### Configuration fields
+
+| Field name              | Required | Description                                                                                                      |
+| :---------------------- | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| **Block name**          | No       | A name for the block instance. The name must be alphanumeric. There is no character limit.                       |
+| **JSLT Transformation** | Yes      | The JSLT expression used to transform the input JSON data. Enter the transformation template in the code editor. |
+
+For details on writing the JSLT expression for different use cases, refer to the [Use cases](https://docs.capillarytech.com/docs/connectplus-use-cases).
+
+### Choose the right expression structure
+
+The structure of the JSLT expression depends on what the target API endpoint expects in the request body.
+
+**When the API expects a single object**
+
+Write a direct mapping. The expression maps one flat JSON input to the required nested structure and produces a single output object. Use this for endpoints like `/v2/customers`, which accept one record per request.
+
+```json
+{
+  "profiles": [
+    {
+      "firstName": .firstname,
+      "lastName": .lastname,
+      "source": .source,
+      "identifiers": [
+        {
+          "type": .identifierType,
+          "value": .value
+        }
+      ]
+    }
+  ]
+}
+````
+
+**When the API expects an array of objects**
+
+Use `for (.)` at the beginning of the expression. The loop iterates over every row in the input batch and produces one output object per row, wrapping all results into an array. Use this for endpoints like `/v2/customers/bulk`, which accept multiple records in a single request.
+
+```json
+[
+  for (.)
+  {
+    "profiles": [
+      {
+        "firstName": .firstname,
+        "lastName": .lastname,
+        "source": .source,
+        "identifiers": [
+          {
+            "type": .identifierType,
+            "value": .value
+          }
+        ]
+      }
+    ]
+  }
+]
+````
+
+<Callout kind="info">
+
+  **Note**
+
+When `for (.)` is used, the output is an array. In the `http_write` block, set **Request split path** to `$.*` to split the array into individual API calls.
+
+</Callout>
+
+Connect+ does not support query parameters in JSLT expressions. If your API requires query parameters, create a Neo dataflow to build the payload for the target API, call it using an API request block, then call the target API using a second API request block.

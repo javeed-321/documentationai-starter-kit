@@ -1,0 +1,30 @@
+---
+title: Cron block
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Cron block
+
+The `cron_trigger` block schedules a dataflow to run automatically at defined time intervals using a cron expression in a Connect+ dataflow. It acts as the trigger that initiates the dataflow pipeline at the configured schedule.
+
+### When to use this block
+
+Use this block in every dataflow that should run on a recurring schedule, for example, polling an SFTP server every five minutes or running a nightly data sync.
+
+### Prerequisites
+
+Before configuring this block, make sure you have:
+
+* A valid cron expression that defines your desired schedule
+
+### Configuration fields
+
+| Field name | Required | Description |
+| --- | --- | --- |
+| **Block name** | No | A name for the block instance. The name must be alphanumeric. There is no character limit. |
+| **Cron Trigger Schedule** | No | The cron expression that defines when the dataflow is triggered. Default value: `0 0/5 * * * ?`. |
+
+<Image src="https://files.readme.io/859266eee9bb4d2608351963143fab94b9a6b53c3a55ef6e67660957ad239a2e-Screenshot_2026-04-20_at_5.48.05_PM.png" width="1920" height="1080" alt="" />

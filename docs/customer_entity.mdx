@@ -1,9 +1,9 @@
 ---
 title: Customer entity
 ---
+
 > ## Documentation Index
->
-> Fetch the complete documentation index at: [https://docs.capillarytech.com/llms.txt](https://docs.capillarytech.com/llms.txt)
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
 > Use this file to discover all available pages before exploring further.
 
 ## Customer entity
@@ -34,35 +34,24 @@ Data integration involves collecting information from different sources, includi
 
 On Member Care, within the customer profile, you can view all the sources from which the customer registered.
 
-<Image src="https://files.readme.io/afc70c0-Customer_source.png" width="NaN" height="NaN" alt="" style="width: NaNpx; height: auto; cursor: pointer;" />
+<Image src="https://files.readme.io/afc70c0-Customer_source.png" width="35%" height="1080" alt="" />
 
 ### Supported data sources
 
 The entity supports the following data sources:
 
 1. Facebook
-
-2. Web\_engage
-
+2. Web_engage
 3. WeChat
-
 4. Instore
-
 5. E-Commerce
-
 6. Website
-
 7. Line
-
 8. Mobile-APp
-
 9. Linkedin
-
 10. Mpush-FCM
-
-11. Mapp\_SDK
-
-12. OAuth\_External
+11. Mapp_SDK
+12. OAuth_External
 
 ## Understanding communication channels
 
@@ -74,19 +63,12 @@ Some sources may act as both a source and a communication channel. For instance,
 The entity supports the following communication channels:
 
 1. WeChat
-
 2. Mobile
-
 3. iOS
-
 4. Line
-
 5. Email
-
 6. WhatsApp
-
 7. Android
-
 8. Postmail
 
 ## Managing customer lifecycle with customer status
@@ -108,17 +90,11 @@ On enabling the customer status, the existing fraud status will be replaced by t
 The various customer statuses available in the Capillary platform that you can configure are:
 
 1. Active
-
 2. Suspended
-
 3. Deleted
-
 4. Fraud suspected
-
 5. Fraud confirmed
-
 6. Internal
-
 7. Pending deletion
 
 ### Creating a custom label
@@ -131,30 +107,31 @@ You can click the **Create new label** option in the customer label and enter a 
 
 The active status can be used to indicate that the customer is active.
 
-<Callout kind="info" collapsed="false">
-  - There are no restrictions for customers with Active status.
+<Callout kind="info" title="NOTES:">
 
-  - All customers are marked Active by default.
+* There are no restrictions for customers with Active status.
+* All customers are marked Active by default.
+
 </Callout>
 
 ### Suspended, Fraud suspected, Fraud confirmed, and Internal customer status
 
 You can restrict the following operations for users with Suspended, Fraud Suspected, Fraud Confirmed, or Internal status.
 
-| Restriction                               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Block communications                      | When block communication is active for a customer's status label, all outbound messages are suppressed. This includes transactional messages, promotional messages, OTPs, goodwill notifications, and subscription notifications. There is no exception by message type. Block communication operates independently of a customer's subscription preferences. A customer can be opted in to all channels and still have all communications suppressed if their status label has block communication enabled. For the list of APIs on which communication will be blocked, see [here](https://docs.capillarytech.com/docs/customer_entity#request-apis). |
-| Block coupons redemption                  | Restrict from redeeming coupons.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Block issual of loyalty promotions        | Restrict from receiving points.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Block identifier change and account merge | Restrict from account merging and identifier change requests.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Block issual of badges                    | This is a future development feature.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Block issual of coupons                   | Restrict from providing coupons.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Block enrollment into loyalty promotions  | This is a future development feature.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Block points allocation                   | Restrict from providing points. When this restriction is added on any label, then the points allocation from any points-related action (like transaction point allocation, allocation points, target point allocation, issue to the referrer, issue to referee, goodwill points, import profile) will be blocked for the customer.                                                                                                                                                                                                                                                                                                                      |
-| Block points redemption                   | Restrict from redeeming points.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Block tier upgrade                        | Restrict from tier upgrade.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Block transaction                         | Restrict future transactions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Mark transaction outlier                  | Mark the transactions made by the selected label(s) as outliers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Restriction | Description |
+| --- | --- |
+| Block communications | When block communication is active for a customer's status label, all outbound messages are suppressed. This includes transactional messages, promotional messages, OTPs, goodwill notifications, and subscription notifications. There is no exception by message type. Block communication operates independently of a customer's subscription preferences. A customer can be opted in to all channels and still have all communications suppressed if their status label has block communication enabled. For the list of APIs on which communication will be blocked, see [here](https://docs.capillarytech.com/docs/customer_entity#request-apis). |
+| Block coupons redemption | Restrict from redeeming coupons. |
+| Block issual of loyalty promotions | Restrict from receiving points. |
+| Block identifier change and account merge | Restrict from account merging and identifier change requests. |
+| Block issual of badges | This is a future development feature. |
+| Block issual of coupons | Restrict from providing coupons. |
+| Block enrollment into loyalty promotions | This is a future development feature. |
+| Block points allocation | Restrict from providing points. When this restriction is added on any label, then the points allocation from any points-related action (like transaction point allocation, allocation points, target point allocation, issue to the referrer, issue to referee, goodwill points, import profile) will be blocked for the customer. |
+| Block points redemption | Restrict from redeeming points. |
+| Block tier upgrade | Restrict from tier upgrade. |
+| Block transaction | Restrict future transactions. |
+| Mark transaction outlier | Mark the transactions made by the selected label(s) as outliers. |
 
 To restrict access, select the individual status labels or all the created status labels from the desired restriction drop-down. Click **Select**, and then click **Update**.
 
@@ -162,39 +139,29 @@ To restrict access, select the individual status labels or all the created statu
 
 ### Request APIs
 
-- `POST /v1.1/request/add` — change mobile SMS, change email, goodwill SMS/email
-
-- `POST /v1.1/request/approve` — same, on approval
-
-- `POST /v2/customer/{customerId}/changeRequest` — change mobile SMS, change email
-
-- `PUT /v2/changeRequest/{id}` — change identifier approval
-
-- `POST /v2/customer/{customerId}/goodwillRequest` — goodwill SMS/email
-
-- `PUT /v2/goodwillRequest/{id}` — goodwill approval
+* `POST /v1.1/request/add` — change mobile SMS, change email, goodwill SMS/email
+* `POST /v1.1/request/approve` — same, on approval
+* `POST /v2/customer/{customerId}/changeRequest` — change mobile SMS, change email
+* `PUT /v2/changeRequest/{id}` — change identifier approval
+* `POST /v2/customer/{customerId}/goodwillRequest` — goodwill SMS/email
+* `PUT /v2/goodwillRequest/{id}` — goodwill approval
 
 ### Direct Communication APIs
 
-- `POST /v1.1/communications/email`
-
-- `POST /v1.1/communications/sms`
-
-- `POST /v2/communications/email`
-
-- `POST /v2/communications/sendMessage`
-
-- `POST /v2/communications/wechat`
+* `POST /v1.1/communications/email`
+* `POST /v1.1/communications/sms`
+* `POST /v2/communications/email`
+* `POST /v2/communications/sendMessage`
+* `POST /v2/communications/wechat`
 
 ### OTP APIs
 
-- `POST /v2/otp/generate`
-
-- `POST /v2/otp/validate`
+* `POST /v2/otp/generate`
+* `POST /v2/otp/validate`
 
 ### Subscription API
 
-- `POST /v2/internal/subscription/configuration`
+* `POST /v2/internal/subscription/configuration`
 
 ### Deleted customer status
 
@@ -202,29 +169,29 @@ The deleted status allows you to block every action for customers with this stat
 
 <Image src="https://files.readme.io/a198377-Delete_customer_status.png" width="35%" height="1080" alt="" />
 
-<Callout kind="alert" collapsed="false">
+<Callout kind="alert">
+
   **Deleted status and PII deletion**
 
-  If `CONF_ENABLE_PII_DELETION` is enabled for your organization, you cannot change a customer's status to Deleted using the standard status update API or the Membercare status-change UI. Attempting to do so returns error code `UPDATECUSTOMERSTATUS_1032` with the message: "Customer update with pending deletion or deleted status not allowed."
+If `CONF_ENABLE_PII_DELETION` is enabled for your organization, you cannot change a customer's status to Deleted using the standard status update API or the Membercare status-change UI. Attempting to do so returns error code `UPDATECUSTOMERSTATUS_1032` with the message: "Customer update with pending deletion or deleted status not allowed."
 
-  When PII deletion is enabled, the Deleted status is a reserved system state. The platform sets it automatically only after a PII deletion request is raised and approved through the proper flow.
+When PII deletion is enabled, the Deleted status is a reserved system state. The platform sets it automatically only after a PII deletion request is raised and approved through the proper flow.
 
-  To move a customer to Deleted status, use the PII deletion flow:
+To move a customer to Deleted status, use the PII deletion flow:
 
-  1. In Membercare, open the customer's profile and click the three-dots menu.
+1. In Membercare, open the customer's profile and click the three-dots menu.
+2. From the ID change request dropdown, select **Delete member's account** and submit the request.
+3. A user with approver access must approve the request.
 
-  2. From the ID change request dropdown, select **Delete member's account** and submit the request.
+Once approved, the customer's status moves to Pending Deletion, and then to Deleted after the configured waiting period lapses.
 
-  3. A user with approver access must approve the request.
+For full details, see [Performing Data Deletion](https://docs.capillarytech.com/docs/performing-data-deletion).
 
-  Once approved, the customer's status moves to Pending Deletion, and then to Deleted after the configured waiting period lapses.
-
-  For full details, see [Performing Data Deletion](https://docs.capillarytech.com/docs/performing-data-deletion).
 </Callout>
 
 ### Pending deletion customer status
 
-This status is used to indicate the status of customers for whom a deletion request is raised. For **Pending Deletion**, whenever a PII deletion request is triggered, a label Deletion\_pending is automatically created and assigned to the customer, regardless of any other label that may have been created and set as default.
+This status is used to indicate the status of customers for whom a deletion request is raised. For **Pending Deletion**, whenever a PII deletion request is triggered, a label Deletion_pending is automatically created and assigned to the customer, regardless of any other label that may have been created and set as default.
 
 ## Managing subscription
 
@@ -250,8 +217,10 @@ The customer list is split into a test and control group. Customers in the test 
 
 You can configure the fraud management and the statuses as per your requirements. For more information on fraud management, refer to the [Fraud management documentation](https://docs.capillarytech.com/docs/fraud-detection).
 
-<Callout kind="info" collapsed="false">
-  If customer status is enabled, the fraud status will be superseded by the customer status.
+<Callout kind="info" title="Note">
+
+If customer status is enabled, the fraud status will be superseded by the customer status.
+
 </Callout>
 
 ## Getting started
@@ -269,43 +238,44 @@ Standard fields, Extended fields and Custom fields are the fields that are appli
 To configure customer registration, follow these steps.
 
 1. On the InTouch home page, navigate to **Profile > Organization Settings > Miscellaneous > Registration Configuration**.
-
 2. Configure the required fields based on the description provided in the following table.
 
-| OPTION                                             | DESCRIPTION                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CONF\_REGISTRATION\_PRIMARY\_KEY                   | Choose the primary identifier of the customer. This is the unique identifier of the customer required for registration.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| CONF\_ALLOW\_REGISTRATION\_FROM\_ANY\_IDENTIFIERS  | Select this to allow the registration of customers using any of the identifiers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| CONF\_USERS\_IS\_EMAIL\_REQUIRED                   | Check this if email id is a mandatory parameter to register a customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| CONF\_USERS\_IS\_EMAIL\_UNIQUE                     | Check this to make the email ID a unique identifier. If any registered email ID is registered the accounts will be merged automatically.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| CONF\_USERS\_USE\_EXTERNAL\_ID                     | Check this to capture the external ID of customers while registering.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| CONF\_USERS\_IS\_EXTERNAL\_ID\_REQUIRED            | Check this to make the external ID mandatory to register a customer. Not applicable if the external ID is the primary identifier.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| CONF\_USERS\_IS\_MOBILE\_REQUIRED                  | Check this to make the mobile number mandatory to register a customer. Not applicable if mobile is the primary identifier.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| CONF\_ALLOW\_MOBILE\_UPDATE                        | Check this to allow updating registered mobile numbers of customers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| CONF\_ALLOW\_EMAIL\_UPDATE                         | Check this to allow updating registered email IDs of customers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| CONF\_LOYALTY\_ALLOW\_EXTERNAL\_ID\_UPDATE         | Check this to allow updating registered external IDs of customers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| CONF\_PRIMARY\_IDENTIFIER\_STRICT\_CHECK           | Check this to verify if the primary identifier is already registered in a different account. An error message will be displayed that the secondary identifier match is found in a different account but not the primary identifier.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| CONF\_SKIP\_SECONDARY\_ID\_ON\_PRIMARY\_MISMATCH   | Check this to skip account merging if only secondary identifiers match but primary identifiers are different. A new customer will be created with the provided primary identifier. The secondary identifier will be ignored automatically.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| USE\_CRM\_REGISTRATION\_INFO\_FROM\_BASE\_STORE    | NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| CONF\_GIFT\_CARD\_ENABLED                          | Check this to enable gift card                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| CONF\_ORG\_CURRENCY\_CODE                          | Set the ISO currency code of the org.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| CONF\_ORG\_CURRENCY\_SYMBOL                        | Set the currency symbol of the org as per the currency code.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| CONF\_MIN\_REGISTRATION\_DATE                      | Set the minimum date and time from which the registration is valid. Registration fails if the registration date and time is prior to the value set herein ( especially through API or Data Import).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| SERVER\_VALIDATION\_PIN\_SMS                       | Configure the verification SMS that will be sent to customers to validate the registered mobile numbers. Use the tag \{\{pin}} to insert the verification PIN in the message. For example, Please use the code \{\{pin}} to verify your mobile number.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| SERVER\_VALIDATION\_PIN\_EMAIL                     | Configure the verification email that will be sent to customers to validate the registered email ID. Use the tag \{\{pin}} to insert the verification PIN in the message. For example, Please use the code \{\{pin}} to verify your email ID.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| CONF\_LOYALTY\_REGISTER\_CUSTOMER\_GENDER          | Choose the custom field for gender from the drop-down.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| CONF\_LOYALTY\_REGISTER\_CUSTOMER\_AGE             | Choose the custom field for age from the drop-down.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| CONF\_CLIENT\_V2\_API\_ENABLED                     | Check this if sources other than InStore are supported for the org.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| CONF\_GEN\_CARD\_NUMBER\_AS\_EXTERNAL\_ID\_ENABLED | Check this to enable generating external IDs automatically from the Capillary end.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| SOURCE\_ACCOUNTS\_EXTERNALID\_ENABLED              | Check this to enable support for external ID capture.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| CONF\_CARD\_NUMBER\_GENERATION\_ENABLED            | Check this to enable generating card numbers automatically from the Capillary end.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| CONF\_CARD\_NUMBER\_SUFFIX                         | Specify the suffix you want to have for the external card (supports alphanumeric value).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| CONF\_CARD\_NUMBER\_PREFIX                         | Specify the prefix for the external card (supports alphanumeric value). For example, BRAND20.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| CONF\_CARD\_NUMBER\_LENGTH                         | Specify the length of the external card. You can have up to 50 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| CONF\_CARD\_NUMBER\_OFFSET                         | Specify the card sequence numbers that you want to ignore from the top. For example, if you set 10, the first 10 cards will be considered invalid.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-|                                                    | Check this to enable primary identifier checks when registering or updating customers.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| CONF\_IDENTIFIERS\_SYNC\_ENABLED                   | Check this to synchronize identifiers such as mobile numbers, email addresses, and external IDs between Instore profiles and V2 profiles (external profiles such as WebEngage) within the system. \* *-*\* When the identifier change request is made from Membercare, any changes to identifiers (mobile/email, externalId) will update both the Instore profile and the corresponding V2 profile identifiers. \* \*Note: \*\*The Customer Unique Identifier (CUID) will not change in V2 profiles if this identifier exists. \* \*- \*\* To make changes to the external profile CUID, the following steps are performed after the identifier change request on Membercare: \* -Creation of a new payload with updated identifiers and pushing it to an S3 bucket. --Execution of` v2/integrations/customer/upsert API` with the source set to `WEB_ENGAGE `and the new payload. The upsert API ensures that the changes are reflected in all instances of the profile, including updating the CUID and communication channels. \* \*Default value: \*\*False. |
-| -CONF\_CLIENT\_DEFAULT\_COUNTRYCODE\_PASSED        | Check this to auto select country code to the mobile number entered on the registration screen. The validation sequence will be as follows. validates initial letters of mobile numbers for base or supported currency codes. inserts each country code and validates the number. First with base country code, followed by supported country codes.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+<br />
+
+| OPTION | DESCRIPTION |
+| --- | --- |
+| CONF_REGISTRATION_PRIMARY_KEY | Choose the primary identifier of the customer. This is the unique identifier of the customer required for registration. |
+| CONF_ALLOW_REGISTRATION_FROM_ANY_IDENTIFIERS | Select this to allow the registration of customers using any of the identifiers. |
+| CONF_USERS_IS_EMAIL_REQUIRED | Check this if email id is a mandatory parameter to register a customer. |
+| CONF_USERS_IS_EMAIL_UNIQUE | Check this to make the email ID a unique identifier. If any registered email ID is registered the accounts will be merged automatically. |
+| CONF_USERS_USE_EXTERNAL_ID | Check this to capture the external ID of customers while registering. |
+| CONF_USERS_IS_EXTERNAL_ID_REQUIRED | Check this to make the external ID mandatory to register a customer. Not applicable if the external ID is the primary identifier. |
+| CONF_USERS_IS_MOBILE_REQUIRED | Check this to make the mobile number mandatory to register a customer. Not applicable if mobile is the primary identifier. |
+| CONF_ALLOW_MOBILE_UPDATE | Check this to allow updating registered mobile numbers of customers. |
+| CONF_ALLOW_EMAIL_UPDATE | Check this to allow updating registered email IDs of customers. |
+| CONF_LOYALTY_ALLOW_EXTERNAL_ID_UPDATE | Check this to allow updating registered external IDs of customers. |
+| CONF_PRIMARY_IDENTIFIER_STRICT_CHECK | Check this to verify if the primary identifier is already registered in a different account. An error message will be displayed that the secondary identifier match is found in a different account but not the primary identifier. |
+| CONF_SKIP_SECONDARY_ID_ON_PRIMARY_MISMATCH | Check this to skip account merging if only secondary identifiers match but primary identifiers are different. A new customer will be created with the provided primary identifier. The secondary identifier will be ignored automatically. |
+| USE_CRM_REGISTRATION_INFO_FROM_BASE_STORE | NA |
+| CONF_GIFT_CARD_ENABLED | Check this to enable gift card |
+| CONF_ORG_CURRENCY_CODE | Set the ISO currency code of the org. |
+| CONF_ORG_CURRENCY_SYMBOL | Set the currency symbol of the org as per the currency code. |
+| CONF_MIN_REGISTRATION_DATE | Set the minimum date and time from which the registration is valid. Registration fails if the registration date and time is prior to the value set herein ( especially through API or Data Import). |
+| SERVER_VALIDATION_PIN_SMS | Configure the verification SMS that will be sent to customers to validate the registered mobile numbers. Use the tag \{\{pin\}\} to insert the verification PIN in the message. For example, Please use the code \{\{pin\}\} to verify your mobile number. |
+| SERVER_VALIDATION_PIN_EMAIL | Configure the verification email that will be sent to customers to validate the registered email ID. Use the tag \{\{pin\}\} to insert the verification PIN in the message. For example, Please use the code \{\{pin\}\} to verify your email ID. |
+| CONF_LOYALTY_REGISTER_CUSTOMER_GENDER | Choose the custom field for gender from the drop-down. |
+| CONF_LOYALTY_REGISTER_CUSTOMER_AGE | Choose the custom field for age from the drop-down. |
+| CONF_CLIENT_V2_API_ENABLED | Check this if sources other than InStore are supported for the org. |
+| CONF_GEN_CARD_NUMBER_AS_EXTERNAL_ID_ENABLED | Check this to enable generating external IDs automatically from the Capillary end. |
+| SOURCE_ACCOUNTS_EXTERNALID_ENABLED | Check this to enable support for external ID capture. |
+| CONF_CARD_NUMBER_GENERATION_ENABLED | Check this to enable generating card numbers automatically from the Capillary end. |
+| CONF_CARD_NUMBER_SUFFIX | Specify the suffix you want to have for the external card (supports alphanumeric value). |
+| CONF_CARD_NUMBER_PREFIX | Specify the prefix for the external card (supports alphanumeric value). For example, BRAND20. |
+| CONF_CARD_NUMBER_LENGTH | Specify the length of the external card. You can have up to 50 characters. |
+| CONF_CARD_NUMBER_OFFSET | Specify the card sequence numbers that you want to ignore from the top. For example, if you set 10, the first 10 cards will be considered invalid. |
+|  | Check this to enable primary identifier checks when registering or updating customers. |
+| CONF_IDENTIFIERS_SYNC_ENABLED | Check this to synchronize identifiers such as mobile numbers, email addresses, and external IDs between Instore profiles and V2 profiles (external profiles such as WebEngage) within the system. * _-_* When the identifier change request is made from Membercare, any changes to identifiers (mobile/email, externalId) will update both the Instore profile and the corresponding V2 profile identifiers. * *Note: **The Customer Unique Identifier (CUID) will not change in V2 profiles if this identifier exists. * *- ** To make changes to the external profile CUID, the following steps are performed after the identifier change request on Membercare: * -Creation of a new payload with updated identifiers and pushing it to an S3 bucket. --Execution of` v2/integrations/customer/upsert API` with the source set to `WEB_ENGAGE `and the new payload. The upsert API ensures that the changes are reflected in all instances of the profile, including updating the CUID and communication channels. * *Default value: **False. |
+| -CONF_CLIENT_DEFAULT_COUNTRYCODE_PASSED | Check this to auto select country code to the mobile number entered on the registration screen. The validation sequence will be as follows. validates initial letters of mobile numbers for base or supported currency codes. inserts each country code and validates the number. First with base country code, followed by supported country codes. |
 
 #### Mobile number validation
 
@@ -313,31 +283,27 @@ The platform validates mobile numbers based on the country configured during reg
 
 **India**: If the selected country is India, the system accepts only valid Indian mobile numbers. A valid number must follow one of these rules:
 
-- 10 digits and starts with 6, 7, 8, or 9
-
-- 12 digits and starts with 91
+* 10 digits and starts with 6, 7, 8, or 9
+* 12 digits and starts with 91
 
 If you enter 10 digits, the system automatically prefixes 91 and validates again.
 
 **India and Other**: If the supported country list includes India and Other, the validation follows a two-step sequence:
 
-- Validate using Indian rules
-
-- If India rules fail, apply generic international rules
+* Validate using Indian rules
+* If India rules fail, apply generic international rules
 
 **Generic international rules:**
 
-- Number must start with 1–9
-
-- Number must be 9 to 15 digits long
+* Number must start with 1–9
+* Number must be 9 to 15 digits long
 
 This allows international numbers only when the number does not meet Indian validation rules.
 
 **Important:**
 
-- If you disable mobile number validation, the system still enforces mobile number length checks when a base country is configured. Disabling validation does not bypass length validation. The system checks that the mobile number matches the expected length for the configured country.
-
-- You can use the append country config to automatically add the country code to mobile numbers during import. When enabled, this configuration appends the appropriate country code to numbers that do not already include it, based on the base country or supported country list. This helps ensure that imported numbers meet length and format requirements.
+* If you disable mobile number validation, the system still enforces mobile number length checks when a base country is configured. Disabling validation does not bypass length validation. The system checks that the mobile number matches the expected length for the configured country.
+* You can use the append country config to automatically add the country code to mobile numbers during import. When enabled, this configuration appends the appropriate country code to numbers that do not already include it, based on the base country or supported country list. This helps ensure that imported numbers meet length and format requirements.
 
 ## External ID configuration
 
@@ -345,27 +311,31 @@ You can use the below configurations to enable the generation of a customised ex
 
 > **Important**
 >
-> The system strictly enforces both the prefix and length for External IDs during customer import and API operations. These requirements are set in Org Settings > Registration. Only External IDs that match the configured prefix (for example, LM\*) and the exact length (for example, 10 digits) are accepted. If an External ID does not meet these requirements, the system rejects the record during both import and API workflows. Rejected records are not processed, which can impact event processing and eligibility updates for those customers. Ensure that all External IDs, whether imported or submitted via API, meet the required prefix and length to avoid data loss or processing failures.
+> The system strictly enforces both the prefix and length for External IDs during customer import and API operations. These requirements are set in Org Settings > Registration. Only External IDs that match the configured prefix (for example, LM*) and the exact length (for example, 10 digits) are accepted. If an External ID does not meet these requirements, the system rejects the record during both import and API workflows. Rejected records are not processed, which can impact event processing and eligibility updates for those customers. Ensure that all External IDs, whether imported or submitted via API, meet the required prefix and length to avoid data loss or processing failures.
 
-<Callout kind="danger" collapsed="false">
-  There is no UI to enable this configuration. You need to raise a JIRA ticket ([sample ticket](https://capillarytech.atlassian.net/browse/CAP-97635)) to the sustenance team to enable these configurations. Turn around time is five days.
+<Callout kind="danger" title="️ Attention">
+
+There is no UI to enable this configuration. You need to raise a JIRA ticket ([sample ticket](https://capillarytech.atlassian.net/browse/CAP-97635)) to the sustenance team to enable these configurations. Turn around time is five days.
+
 </Callout>
 
-| Configuration and Description                                                                                                                                                                                                                                                                                                                                                                | Value                                                                                                                                                                                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| CONF\_CARD\_NUMBER\_GENERATION\_ENABLED (Mandatory) Enables external ID number generation.                                                                                                                                                                                                                                                                                                   | 0 - Disable 1 - Enable                                                                                                                                                                                                                |
-| SOURCE\_ACCOUNTS\_EXTERNALID\_ENABLED (Mandatory) Enables external ID generation only for the defined source account in the Customer ADD API.                                                                                                                                                                                                                                                | \["INSTORE:"] - Instore \["web\_engage:1234"]\["web\_engage:1234"] - Webengage where 1234 is the account id \["INSTORE:", "web\_engage:1234"]\["INSTORE:", "web\_engage:1234"] - Both Instore and webengage where 1234 is account id. |
-| CONF\_CARD\_CHECKSUM\_DIGIT\_ALGO (Mandatory) Defines the algorithm to generate the checksum. The checksum is added as the last digit of the external ID.                                                                                                                                                                                                                                    | LUHN\_ALGO (MOD10), MOD7\_ALGO, AUTO\_INC, RANDOM, RANDOM\_LUHN, RANDOM\_MOD7                                                                                                                                                         |
-| CONF\_CARD\_NUMBER\_LENGTH (Mandatory) Defines the external ID length. This is the total length of the external id including prefix, suffix, and checksum. Example: If card number length = 12, Prefix = 1234, Suffix = 3401, Offset = 3000, and algorithm = AUTO\_INC, then card number can be 123430003401. **Note:** Suffix is not applicable for MOD7 and LUHN\_ALGO (MOD10) algorithms. | Integers ranging from 1-50.                                                                                                                                                                                                           |
-| CONF\_CARD\_NUMBER\_OFFSET (Optional) Defines the offset value for the external ID. For example for a card number series with offset value 3000, can be 111200000030004, 111200000030015 etc.                                                                                                                                                                                                | Any integer value                                                                                                                                                                                                                     |
-| CONF\_CARD\_NUMBER\_PREFIX (Optional) Defines the prefix for the external ID number.                                                                                                                                                                                                                                                                                                         | Any integer value but prefix + suffix + system-generated number should not be more than 50.                                                                                                                                           |
-| CONF\_CARD\_NUMBER\_SUFFIX (Optional) Defines the SUFFIX for the external ID number. This is only applicable for AUTO\_INC alogrithm.                                                                                                                                                                                                                                                        | Any integer value but prefix + suffix + system-generated number should not be more than 50.                                                                                                                                           |
-| CONF\_VALUES\_TO\_INCLUDE\_FOR\_CHECKSUM\_DIGIT (Optional) Specifies whether the prefix should be considered when generating the checksum value.                                                                                                                                                                                                                                             | PREFIX - Prefix is considered NONE - Prefix is not considered                                                                                                                                                                         |
+| Configuration and Description | Value |
+| --- | --- |
+| CONF_CARD_NUMBER_GENERATION_ENABLED (Mandatory) Enables external ID number generation. | 0 - Disable 1 - Enable |
+| SOURCE_ACCOUNTS_EXTERNALID_ENABLED (Mandatory) Enables external ID generation only for the defined source account in the Customer ADD API. | ["INSTORE:"] - Instore ["web_engage:1234"]["web_engage:1234"] - Webengage where 1234 is the account id ["INSTORE:", "web_engage:1234"]["INSTORE:", "web_engage:1234"] - Both Instore and webengage where 1234 is account id. |
+| CONF_CARD_CHECKSUM_DIGIT_ALGO (Mandatory) Defines the algorithm to generate the checksum. The checksum is added as the last digit of the external ID. | LUHN_ALGO (MOD10), MOD7_ALGO, AUTO_INC, RANDOM, RANDOM_LUHN, RANDOM_MOD7 |
+| CONF_CARD_NUMBER_LENGTH (Mandatory) Defines the external ID length. This is the total length of the external id including prefix, suffix, and checksum. Example: If card number length = 12, Prefix = 1234, Suffix = 3401, Offset = 3000, and algorithm = AUTO_INC, then card number can be 123430003401. **Note:** Suffix is not applicable for MOD7 and LUHN_ALGO (MOD10) algorithms. | Integers ranging from 1-50. |
+| CONF_CARD_NUMBER_OFFSET (Optional) Defines the offset value for the external ID. For example for a card number series with offset value 3000, can be 111200000030004, 111200000030015 etc. | Any integer value |
+| CONF_CARD_NUMBER_PREFIX (Optional) Defines the prefix for the external ID number. | Any integer value but prefix + suffix + system-generated number should not be more than 50. |
+| CONF_CARD_NUMBER_SUFFIX (Optional) Defines the SUFFIX for the external ID number. This is only applicable for AUTO_INC alogrithm. | Any integer value but prefix + suffix + system-generated number should not be more than 50. |
+| CONF_VALUES_TO_INCLUDE_FOR_CHECKSUM_DIGIT (Optional) Specifies whether the prefix should be considered when generating the checksum value. | PREFIX - Prefix is considered NONE - Prefix is not considered |
 
 ## Customer ingestion restriction configuration
 
-<Callout kind="danger" collapsed="false">
-  There is no UI to enable this configuration. You need to raise a JIRA ticket ([sample ticket](https://capillarytech.atlassian.net/browse/CAP-97635)) to the sustenance team to enable these configurations. Turn around time is five days.
+<Callout kind="danger" title="️ Warning">
+
+There is no UI to enable this configuration. You need to raise a JIRA ticket ([sample ticket](https://capillarytech.atlassian.net/browse/CAP-97635)) to the sustenance team to enable these configurations. Turn around time is five days.
+
 </Callout>
 
 `CONF_RESTRICT_ORPHAN_V2_PROFILE` - This configuration prevents the ingestion of a WebEngage profile into the Capillary platform for a specific customer if they do not already have an existing Instore profile.
@@ -382,44 +352,39 @@ The Dual Eligibility feature allows you to register multiple users with the same
 
 **Notes:**
 
-- For the users registered with Dual Eligibility, the information about the user can be retrieved only using the primary identifier.
+* For the users registered with Dual Eligibility, the information about the user can be retrieved only using the primary identifier.
 
 ### Use Case
 
 **User John**:
 
-- Works for **Employer A** and registers on the employer’s healthcare App with:
-
-  - **Email**: [john@example.com](mailto:john@example.com)
-
-  - **Mobile**: 123-456-7890
+* Works for **Employer A** and registers on the employer’s healthcare App with:
+  * **Email**: [john@example.com](mailto:john@example.com)
+  * **Mobile**: 123-456-7890
 
 **John’s Spouse, Jane**:
 
-- Works for **Employer B** and registers her family on the healthcare App. During registration:
-
-  - She adds John as a dependent using the **same email (**[**john@example.com**](mailto:john@example.com)**)** but a different **mobile number 456-123-123)**.
+* Works for **Employer B** and registers her family on the healthcare App. During registration:
+  * She adds John as a dependent using the **same email ([john@example.com](mailto:john@example.com))** but a different **mobile number 456-123-123)**.
 
 **Outcome**:
 
-- Two **unique profiles** are created for John:
-
-  - One is associated with **Employer A** (where John is the primary user).
-
-  - Another is associated with **Employer B** (where John is a dependent under Jane’s profile).
+* Two **unique profiles** are created for John:
+  * One is associated with **Employer A** (where John is the primary user).
+  * Another is associated with **Employer B** (where John is a dependent under Jane’s profile).
 
 ### Enabling dual eligibility
 
-To enable dual eligibility for an organization, create a JIRA ticket to the Product Support team and enable the configuration CONF\_INSTORE\_V2\_ENABLED.
+To enable dual eligibility for an organization, create a JIRA ticket to the Product Support team and enable the configuration CONF_INSTORE_V2_ENABLED.
 
 In addition, make sure that the below configurations are configured as per the table:
 
 | **Configuration Name**                                | **Configuration**              |
 | ----------------------------------------------------- | ------------------------------ |
-| **CONF\_REGISTRATION\_PRIMARY\_KEY**                  | External ID or mobile or email |
-| **CONF\_REGISTRATION\_PRIMARY\_KEY\_REQUIRED**        | 1 - Enable                     |
-| **CONF\_ALLOW\_REGISTRATION\_FROM\_ANY\_IDENTIFIERS** | 0 - Disable                    |
-| **CONF\_USERS\_IS\_MOBILE\_REQUIRED**                 | 0 - Not required               |
+| **CONF_REGISTRATION_PRIMARY_KEY**                  | External ID or mobile or email |
+| **CONF_REGISTRATION_PRIMARY_KEY_REQUIRED**        | 1 - Enable                     |
+| **CONF_ALLOW_REGISTRATION_FROM_ANY_IDENTIFIERS** | 0 - Disable                    |
+| **CONF_USERS_IS_MOBILE_REQUIRED**                 | 0 - Not required               |
 
 ### FAQs
 

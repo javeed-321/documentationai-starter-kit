@@ -1,0 +1,457 @@
+---
+title: Data Import
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Data Import
+
+The Data Import framework lets you load large volumes of data directly into the Capillary Data Platform. It is designed for data teams that need to migrate historical data into Capillary. Data loaded through this framework is written directly to the Capillary database and does not trigger loyalty programs, making it the right choice when you need to load data without affecting live loyalty processes.
+
+### What you can import
+
+The framework is organised around profiles. Each profile corresponds to a specific type of data and defines the fields, validations, and rules that apply when loading that data into the platform.
+
+The framework currently supports the Customer profile, which lets you load all customer-related data in a single import job. Support for additional profiles covering transactions, cards, and inventory will be available in subsequent releases.
+
+| Profile      | What can be loaded                                                                                                                                                                                                                                                                                                                        |
+| :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Customer     | [Standard fields](https://docs.capillarytech.com/docs/standard-fields) (name, identifiers, registration date), [custom fields](https://docs.capillarytech.com/docs/entity-management-custom-fields), [extended fields](https://docs.capillarytech.com/docs/extended-fields), loyalty type, loyalty slab, and slab expiry, customer status |
+| Transactions | (coming soon) Standard fields, custom fields, extended fields, line-item fields                                                                                                                                                                                                                                                           |
+| Cards        | (coming soon) Standard fields, custom fields, extended fields                                                                                                                                                                                                                                                                             |
+| Inventory    | (coming soon) Standard fields, attributes, category, hierarchy                                                                                                                                                                                                                                                                            |
+
+### Supported data sources
+
+Once you know the profile and the data you want to import, you connect it to a source. The framework supports the following data sources:
+
+* **Databricks:** Connect directly to a table in your organisation's [Databricks workspace](https://docs.capillarytech.com/docs/getting-started-databricks). This is the recommended source for large-scale migrations.
+
+<Callout kind="info">
+
+**Note**
+
+When you select Databricks as your data source, the system connects to your organisation's `import_<orgid>` database, a dedicated namespace in your Databricks workspace that holds all import-ready tables for your organisation, where `<orgid>` is your organisation's unique ID in Capillary. For example, if your organisation ID is `1234`, your Databricks database name will be `import_1234`
+
+</Callout>
+
+<Image src="https://files.readme.io/e156d2191681077c797e8f5bece63fa103afe5c642e58769f622bb67af4a7ed1-data-import-google-docs.png" width="1920" height="1080" alt="" />
+
+### Import methods
+
+After selecting a profile and a source, you choose how records should be written to the platform. Three methods are available:
+
+| Method     | Description                                                                        |
+| :--------- | :--------------------------------------------------------------------------------- |
+| **Insert** | Creates new records only. If a matching record already exists, it is skipped.      |
+| **Update** | Updates existing records only. If no matching record is found, no action is taken. |
+| **Upsert** | Updates a record if it already exists; creates a new one if it does not.           |
+
+The mandatory fields required for the import vary depending on the method you select. For example, when using the Insert method for the Customer profile, the mandatory fields are the primary customer identifier, registration date, loyalty type, and the store or till code associated with the registration.
+
+<Callout kind="info">
+
+**Note**
+
+You can run multiple import jobs simultaneously. There is no restriction on the number of import jobs that can run at the same time.
+
+</Callout>
+
+### Prerequisite
+
+Before creating an import job, ensure the following:
+
+* The source table is available in Databricks under the `import_<org_id>` database. Newly created tables may take up to 10 minutes to appear in the selection list.
+* The appropriate profile and import method for the data have been identified.
+* All mandatory fields required for the selected profile and import method are present in the source table.
+* Access to Databricks and the Graviton Import Cluster is enabled. This access allows visibility of the `import_<org_id>`database.  For access raise a ticket to the Capillary Access mangement team (ACM).
+
+## **Creating an Import Job**
+
+To import data into the Capillary Database, you go through a four-step process:
+
+#### **i. Step 1: Navigate to data import**
+
+sample ur: [https://eu.intouch.capillarytech.com/import/ui/jobs](https://eu.intouch.capillarytech.com/import/ui/jobs "https://eu.intouch.capillarytech.com/import/ui/jobs")
+
+#### **ii.&#x20;**[Step 2: Data to Import](https://docs.capillarytech.com/docs/data-import-new#step-1-data-to-import)
+
+Select the data source and the table you want to import.
+
+#### **iii.&#x20;**[Step 3: Profile and method](https://docs.capillarytech.com/docs/data-import-new#step-2-profile-and-method)
+
+Choose the import profile and how records should be written to the platform.
+
+#### **iv.&#x20;**[Step 4: Fields mapping](https://docs.capillarytech.com/docs/data-import-new#step-3-fields-mapping)
+
+Map the fields from your source data to the corresponding profile fields in the platform.
+
+#### **v.&#x20;**[Step 5: Review and proceed](https://docs.capillarytech.com/docs/data-import-new#step-4-review-and-proceed)
+
+Review the full configuration summary and trigger the import job for validation before the data is written to the platform.
+
+Once you proceed, the system runs a validation pass on your data before writing anything to the platform. You can track validation progress in real time on the [https://docs.capillarytech.com/docs/data-import-new#view-data-import-status](https://docs.capillarytech.com/docs/data-import-new#view-data-import-status). After validation completes, the job moves to an approval stage. Only after you approve is the data written to the Capillary database.
+
+***
+
+### Step 2: Data to import
+
+Select the data source and the table you want to import from your Databricks workspace.
+
+1. On the imports listing page, click **+ New import job**.
+
+2. Under **Data source**, click **Databricks**. This connects the import job to your organisation's [Databricks workspace](https://docs.capillarytech.com/docs/getting-started-databricks) as the source of the data. Once selected, the screen confirms: Databricks connection established.
+
+   <Image src="https://files.readme.io/e3e72778c898fc9cc5d22ba5c2e97c0746b7eb468770b6cc388b307fc30bc48f-data-import-google-docs_1.png" width="85%" height="1080" alt="" />
+
+3. Under **Table name**, click the **Select the table** dropdown. The list displays tables that are already created in Databricks under the `import_<orgid>` database, a dedicated namespace in Databricks that holds all import-ready tables for your organisation.
+
+   **Note:** Newly created tables may take up to 10 minutes to appear in the list.
+
+<Image src="https://files.readme.io/55c539ab208b8ec7e4550a515d9c60bebdbeed7aae80f274830117eb139484f5-data-import-google-docs_2.png" width="85%" height="1080" alt="" />
+
+4. After selecting a table, the system automatically displays a preview of the data so you can verify the contents before proceeding.
+
+**Example:** Selecting `customer_registration_10k` shows:
+
+* Total records: 10,000
+
+* Fields: 18
+
+* A preview of the top 50 records
+
+<Image src="https://files.readme.io/15f6a38a6629c3ef2b3031195fe7c33304df60ccd1d3bc56b229162cb88c3d5f-data-import-google-docs_3.png" width="85%" height="1080" alt="" />
+
+5. Once you have reviewed the preview, do one of the following:
+
+   * Select **Save as draft** to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Click **Save** to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.
+   * Click **Next** to proceed to [Step 2: Profile and method](#step-2-profile-and-method).
+
+### Step 3: Profile and method
+
+Define the import profile that matches your data type and select how the records should be written to the Capillary database.
+
+1. Under **Import profile**, click the dropdown and select the profile that matches the type of data you are importing. The profile tells the system what entity the data belongs to and how it should be validated and processed.
+
+   The following profiles are available:
+
+   * **Customer:** For importing customer registration or profile data.
+
+<Image src="https://files.readme.io/9fe953c93df77e0a61da75102a67dd03f8ddf8ce84fa9b788a6c5413cf93a49c-data-import-google-docs_4.png" width="85%" height="1080" alt="" />
+
+2. Under **Import method**, select how the records from your table should be written to the Capillary database. Three methods are available:
+
+| Method | Description                                                         |
+| :----- | :------------------------------------------------------------------ |
+| Insert | Inserts new records only; skips if an existing record is found      |
+| Update | Updates existing records if found; does not insert new records      |
+| Upsert | Updates existing records if found; otherwise inserts as new records |
+
+**Note:** The Upsert method is supported even when [https://docs.capillarytech.com/docs/customer_entity#setup-customer-configs](https://docs.capillarytech.com/docs/customer_entity#setup-customer-configs) is enabled for the organization.
+
+<Image src="https://files.readme.io/5fbcac8c7db8655610b06f89de4bfb8d7bb39e534bb4acd65b04e252277dfb51-data-import-google-docs_5.png" width="85%" height="1080" alt="" />
+
+3. Under **Additional configurations**, set the **Unique ID**. This defines the identifier the system uses to distinguish between customer accounts during the import.
+
+   Select one of the following:
+
+   * **MOBILE**
+
+   * **EXTERNAL_ID**
+
+   * **USER_ID**
+
+   * **EMAIL**
+
+<Image src="https://files.readme.io/8faa34677a95dc2227de28967d61c3749f5b7deb72a09492770d05f50c439baf-data-import-google-docs_6.png" width="85%" height="1080" alt="" />
+
+4. Once you have configured the profile, method, and Unique ID, do one of the following:
+
+   * Select **Previous step** to go back to [Step 1: Data to import](#step-1-data-to-import).
+   * Select **Save as draft** to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Click **Save** to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.
+   * Select **Next** to proceed to [Step 3: Fields mapping](#step-3-fields-mapping).
+
+### Step 4: Fields mapping
+
+Map the fields from your source data to the corresponding customer profile fields to ensure accurate data import.
+
+1. In the **Fields mapping** section, review the list of source fields displayed under **Fields of source data to be imported**. The banner at the top shows how many mandatory profile fields still need to be mapped, for example: 0/4 mandatory profile fields mapped.
+
+<Image src="https://files.readme.io/04da8f68c9d6946902534ef4e5563e0bba255f886604c03c8da71ebcef3dabc3-data-import-google-docs_7.png" width="85%" height="1080" alt="" />
+
+2. Click **View mandatory fields** to see which fields are required for the selected profile. The modal lists all mandatory fields marked with `*`.
+
+<Image src="https://files.readme.io/d3dce7b6fe6ecd13a31f849a0acb197c3d7e403bcd0be27859994aed095b585c-data-import-google-docs_8.png" width="85%" height="1080" alt="" />
+
+3. For each source field, click **Select profile field** under **Customer profile fields** and select the appropriate field. Fields are organised into the following categories:
+
+* [Standard fields](https://docs.capillarytech.com/docs/standard-fields)
+
+* [https://docs.capillarytech.com/docs/dimension-tables#customer-slab](https://docs.capillarytech.com/docs/dimension-tables#customer-slab)
+
+* [https://docs.capillarytech.com/docs/customer_entity#managing-customer-lifecycle-with-customer-status](https://docs.capillarytech.com/docs/customer_entity#managing-customer-lifecycle-with-customer-status)
+
+* [Custom fields](https://docs.capillarytech.com/docs/entity-management-custom-fields)
+
+* [Extended fields](https://docs.capillarytech.com/docs/extended-fields)
+
+<Image src="https://files.readme.io/b859871aec4b731d06dd1cc4167286fc53e03a8388d2b6417cea1d0845badfe7-data-import-google-docs_9.png" width="85%" height="1080" alt="" />
+
+**Note:** When you map a field that is mandatory for the selected profile, the Mark as mandatory checkbox is automatically selected.
+
+4. Track your mapping progress using the banner at the top, for example: 3/4 mandatory profile fields mapped. The Customer profile fields column header also shows a running count.
+
+5. Optionally, select the **Mark as mandatory** checkbox next to any additional field to enforce it as mandatory for this import. Fields marked as mandatory must have valid values; otherwise, the record is marked as invalid during import.
+
+   **Note -** If you selected the **Update** import method, identifier fields such as mobile, email, and external ID cannot be updated. Mapping these fields has no effect. Only non-identifier fields are updated.
+
+6. Once mapping is complete, do one of the following:
+
+   * Select **Next** to proceed to [Step 4: Review and proceed](#step-4-review-and-proceed).
+   * Select **Save as draft** to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Click **Save** to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.
+   * Click **Previous step** to go back to [Step 2: Profile and method](#step-2-profile-and-method).
+
+### Step 5: Review and proceed
+
+Review the complete configuration of your import job and submit it for validation.
+
+To review and proceed, follow the steps given below.
+
+1. Enter a **Job name** to help identify the job later.
+
+2. Optionally, enter a **Description** for this job.
+
+   <Image src="https://files.readme.io/cfc61b9b043e042a34b6bffab6fe153d0ee30f8f692a5aeac6f836be9543791d-data-import-google-docs_10.png" width="85%" height="1080" alt="" />
+
+3. Review the **Configuration summary**. This section provides an overview of all settings configured across the previous steps. Verify each section before proceeding.
+
+   <Image src="https://files.readme.io/68057efb5318107a63c05167a123633a162f079e38f205da61e537a4c0e9e860-data-import-google-docs_11.png" width="85%" height="1080" alt="" />
+
+4. Navigate to the **Profile and method** section and click **Show additional configurations** to expand and view the additional settings configured in [Step 2](#step-2-profile-and-method). Click **Hide additional configurations** to collapse the section.
+
+   <Image src="https://files.readme.io/d97f694aec80edc0d57b68724c22760952dfa61cdf20d184a37049b5a9cd5c3a-data-import-google-docs_12.png" width="1920" height="1080" alt="" />
+
+5. Navigate to the **Fields mapping** section and click **Show mapping** to expand and view the complete field mapping. Fields marked with `*` and a green checkmark under Required indicate mandatory fields that have been mapped. Select **Hide mapping** to collapse the mapping table.
+
+<Image src="https://files.readme.io/75765708cb17e46f18c44e0e54ddc905778dff45061a7b5751c743ace0f9424e-data-import-google-docs_13.png" width="85%" height="1080" alt="" />
+
+6. Once you have reviewed the configuration, do one of the following:
+
+   * Select **Previous step** to go back to [Step 3: Fields mapping](#step-3-fields-mapping).
+
+   * Select **Save as draft** to save the current configuration and continue later. A modal appears prompting you to enter a Job name and an optional Description. Click **Save** to store the draft. The job appears on the imports listing page, where you can return to edit and complete it later.
+
+   * Select **Proceed to validate** to submit the import job for validation. A confirmation modal appears. Click **Yes, validate** to confirm.
+
+***
+
+## View Data Import Status
+
+The Job status page lets you view the current status of your import job and track validation progress in real time.
+
+#### Job details
+
+The following details are displayed at the top of the page:
+
+| Field       | Description                                                                                  |
+| :---------- | :------------------------------------------------------------------------------------------- |
+| Job name    | The name entered for the import job during configuration.                                    |
+| Status      | The current state of the job. Displays *Validation in progress* while validation is running. |
+| Job ID      | A unique system-generated identifier for the import job.                                     |
+| Description | The description entered during configuration, if provided.                                   |
+
+#### Tabs
+
+The page has two tabs:
+
+* **Job status:** Shows the current progress of the validation job.
+* **Configuration summary:** Shows the complete configuration of the import job as set up across the [four steps](#creating-an-import-job).
+
+#### Job status tab
+
+The Job status tab displays the following during validation:
+
+**Data validation**
+
+* **Started by:** The name of the user who triggered the validation.
+* **Started at:** The date and time when validation began.
+
+**Data validation in progress...**
+
+* **Estimated time for validation:** The approximate time the validation is expected to take, for example, 10–15 minutes.
+* **Time elapsed:** The time that has passed since validation started, displayed in `HH:MM:SS` format.
+
+<Image src="https://files.readme.io/2a65f8058e33584bb98bc2bb7d3663ae25205c87997cf7d9be684d8eb0f43b41-data-import-google-docs_15.png" width="85%" height="1080" alt="" />
+
+### What Happens During Validation
+
+The system validates every record in your source table against the rules defined for the profile and method you selected. Validation runs field by field and record by record. Records that pass all checks are marked as valid. Records that fail one or more checks are marked as invalid and are not written to the database.
+
+You do not need to take any action during this stage. The system processes the data automatically.
+
+Once validation is complete, the job status page shows a summary of the results:
+
+* **Duration** — how long the validation took to complete
+* **Records validated** — the total number of records processed
+* **Valid records** — the number of records that passed all checks and are ready to be imported
+* **Invalid records** — the number of records that failed one or more checks
+
+<Image src="https://files.readme.io/6b13b44342e6249a8460a8afe89620460c6ae1d6ad43fe0ba45873f8b1ccc1fb-data-import-google-docs_16.png" width="85%" height="1080" alt="" />
+
+To check error details in Databricks, navigate to the **Error** section and select **Details**. You will be redirected to the Databricks page.
+
+<Image src="https://files.readme.io/11a53d36ef76bd780cbf51a898a95b66050b8a90b6999de1b0d82f2b4e537b95-data-import-google-docs_17.png" width="85%" height="1080" alt="" />
+
+#### Validation Result Table in Databricks
+
+After validation completes, the system automatically creates a result table in your organisation's Databricks workspace. This table contains every record from your source along with its validation status and, for records that failed, the specific error message logged against it.
+
+The result table is created under the `import_<orgId>` database and follows this naming format:
+
+```
+import_{orgId}.report_{profileType}_{job_name}_validate_{suffix}
+```
+
+For example, a customer import job named **testing** would create a table like:
+
+```
+import_1001.report_customer_testing_validate_08kar5z
+```
+
+<Image src="https://files.readme.io/a011d998efb40db3038bdd508bb84a92101b09f5659b97dce0b93e74bbbe7bf5-data-import-google-docs_18.png" width="85%" height="1080" alt="" />
+
+### What happens after validation
+
+Once validation is complete, the job moves to an approval stage before the actual import runs.
+
+On the job status page, you can do one of the following:
+
+* **If there are no invalid records**, Select **Approve and run job**. The system will import all valid records into the Capillary Database. Any invalid records are skipped and not imported.
+* **If the validation results are not acceptable**  for example, too many records failed or the errors indicate a problem with the source data. Select **Reject**. The job is cancelled and no data is written. You can go back, fix the issues in your source table, and create a new import job.
+
+<Image src="https://files.readme.io/ac7ad8e458dc6290d53976078ad4cf2352694b2a9ed571e9defffa3ff5f4b260-image.png" width="85%" height="1080" alt="" />
+
+**Note:** Selecting **Approve and run job** imports only the records that passed validation. Invalid records are never written to the database, regardless of approval.
+
+#### What Happens After Approval
+
+Once you approve the job, the system begins writing the valid records to the Capillary Database. The job status page updates in real time to reflect the progress of the import.
+
+When the import is complete, the page shows a summary of the run:
+
+* **Duration** - how long the import took to complete
+* **Records processed** - the total number of records the system attempted to write
+* **Records added** - the number of new records successfully created in the database
+* **Records updated** - the number of existing records successfully updated in the database
+* **Failed records** - the number of records that could not be written, shown in red
+
+If some records failed during the import, the page shows the message **Import completed partially, some records failed**. This means the import ran but not all records were written to the database successfully. The records that were processed are already in the database. For the ones that failed, download the error report, fix the data in your source table, and run a new import job for those records.
+
+<Image src="https://files.readme.io/2828b9352eb207592a3eee08abbd9aedfb48f6e8689bbd1bcd8b7e6d348a0324-image.png" width="85%" height="1080" alt="" />
+
+#### Ingest Result Table in Databricks
+
+After the import run completes, the system creates a second result table in Databricks — separate from the validation table. This ingest table captures the outcome of the actual write operation, including which records were written successfully and which failed at the database level.
+
+The ingest table follows this naming format:
+
+```
+import_{orgId}.report_{profileType}_{job_name}_ingest_{suffix}
+```
+
+For example:
+
+```
+import_1001.report_customer_testing_ingest_08kar5z
+```
+
+<Image src="https://files.readme.io/33ec7725d88f8f1597b38deba90b0e98a59ba4d0735d51995c0da3915fd37a26-data-import-google-docs_19.png" width="85%" height="1080" alt="" />
+
+Together, the validate table and the ingest table give you a complete audit trail for every import job what was validated, what passed, and what was actually written to the database.
+
+#### Databricks Tables Summary
+
+| Table                                               | When it is created             | What it contains                                                             |
+| :-------------------------------------------------- | :----------------------------- | :--------------------------------------------------------------------------- |
+| `report_{profileType}_{job_name}_validate_{suffix}` | After validation completes     | Every record has its validation status and error messages for failed records |
+| `report_{profileType}_{job_name}_ingest_{suffix}`   | After the import run completes | Each record along with its status and error details for failed entries.      |
+
+***
+
+### Troubleshooting
+
+This section helps identify and resolve issues encountered during the import process. The following table lists common validation errors, their meaning, and the steps to fix them.
+
+#### Records failed validation
+
+After validation completes, the import job details page shows the total records processed, records successfully written, and records marked as invalid. If records failed, download the error report and use the table below to identify and fix the issue.
+
+| Error message                                     | What it means                                                                                                                                           | How to fix                                                                                                       |
+| :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------- |
+| `At least one identifier required`                | The record has no mobile, email, or external ID.                                                                                                        | Add at least one valid identifier to the record in your source table.                                            |
+| `mobile already exists`                           | The mobile number is already registered to another customer.                                                                                            | Remove the duplicate or use the Update method to modify the existing customer.                                   |
+| `email already exists`                            | The email is already registered to another customer.                                                                                                    | Remove the duplicate or use the Update method to modify the existing customer.                                   |
+| `external_id already exists`                      | The external ID is already in use by another customer.                                                                                                  | Remove the duplicate or use the Update method to modify the existing customer.                                   |
+| `slab name is invalid`                            | The slab name does not match any slab in the [loyalty program](https://docs.capillarytech.com/docs/create-tiers-and-configure-tier-upgrade-conditions). | Verify the slab name against your loyalty program configuration and correct the value in your source table.      |
+| `slab cannot be attached to non loyalty customer` | A slab was provided for a customer whose loyalty type is Non-Loyalty.                                                                                   | Remove the slab value for non-loyalty customers, or correct the loyalty type in your source table.               |
+| `no slab change found`                            | The slab name provided is the same as the customer's current slab.                                                                                      | No action needed if this is expected. Remove the record from the import if no change is required.                |
+| `status label is invalid`                         | The status label is null or does not match any status configured for your organisation.                                                                 | Check your organisation's configured status labels and correct the value in your source table.                   |
+| `Deleted status cannot be changed`                | The customer's current status is Deleted. This status cannot be updated through import.                                                                 | Remove this record from the import. Deleted customer status cannot be changed through the Data Import framework. |
+| `Pending Deletion status cannot be changed`       | The customer's current status is Pending Deletion. This status cannot be updated through import.                                                        | Remove this record from the import. Pending Deletion status cannot be changed through the Data Import framework. |
+| `no status change found`                          | The status provided is the same as the customer's current status.                                                                                       | No action needed if this is expected. Remove the record from the import if no change is required.                |
+| `USER_INSERTION_FAILED`                           | The record passed all validation checks but could not be written to the database.                                                                       | See [USER_INSERTION_FAILED](#user_insertion_failed) below.                                                     |
+
+***
+
+### Scenarios
+
+#### Table not appearing in the dropdown
+
+**Symptom:** A table you created in Databricks does not appear in the Select the table dropdown in Step 1.
+
+**What to check:**
+
+1. Confirm the table exists in Databricks under the `import_<orgid>` database. Tables in other databases or schemas are not listed.
+2. Wait up to 10 minutes after table creation.
+3. Refresh the page and check again.
+
+**When to escalate:** If the table does not appear after 10 minutes and you have confirmed it exists under the correct database, raise a ticket with the Capillary support team and provide the org ID and table name.
+
+***
+
+#### Upsert method not available
+
+**Symptom:** The Upsert method is greyed out or not selectable in Step 2.
+
+**What to check:**
+
+1. Upsert is disabled when Identifier Flexibility is enabled for your organisation. These two configurations are mutually exclusive.
+2. Check with your organisation administrator to confirm whether Identifier Flexibility is active.
+
+**When to escalate:** If you need Upsert enabled and Identifier Flexibility disabled (or vice versa), raise a ticket with the Capillary support team. Provide the org ID and the required configuration.
+
+**[PLACEHOLDER — CSM + PSV]:** Add the specific ticket type or team name to contact for Identifier Flexibility configuration changes.
+
+***
+
+#### USER_INSERTION_FAILED
+
+**Symptom:** One or more records show `USER_INSERTION_FAILED` in the error report after validation completes.
+
+**What it means:** The record passed all validation checks but could not be written to the database at the write stage.
+
+**What to check:**
+
+1. Check whether the error affects a small number of isolated records or the majority of the batch. Isolated failures may indicate a data issue; bulk failures may indicate a system-level problem.
+2. Retry the import for the affected records as a separate job before escalating.
+
+**When to escalate:** If the error persists after a retry, raise a ticket with the Capillary support team. Include the following information:
+
+* Job ID
+* Org ID
+* Number of affected records
+* Whether the error is isolated or affects the majority of the batch
+
+<br />

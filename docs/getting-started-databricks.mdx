@@ -1,0 +1,273 @@
+---
+title: Getting Started
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Getting Started
+
+Databricks is Capillary's data warehouse which provides solutions like working on SQL queries, scheduling data exports on FTP, and visualizing data with the help of notebooks. Along with this databricks allow users to connect and share data across BI tools and different databases.
+
+## Notebooks in Databricks
+
+Notebooks are a common tool in data science and machine learning for developing code and presenting results. In Databricks, notebooks are the primary tool for creating data science and machine learning workflows and collaborating with colleagues. Databricks notebooks provide real-time coauthoring in multiple languages, automatic versioning, and built-in data visualizations.
+
+## Introduction to various tables in Databricks
+
+The tables in Databricks are grouped into the following categories:
+
+* Source tables
+
+* Fact tables
+
+* Dimension tables
+
+* Read API databases
+
+* Admin Read API databases
+
+The following table summarises each category, its data type, purpose, visibility, scope, and whether it contains personally identifiable information (PII):
+
+| Category          | Data type           | Purpose         | Visibility   | Scope          | Contains Personally Identifiable Information |
+| ----------------- | ------------------- | --------------- | ------------ | -------------- | -------------------------------------------- |
+| Source tables     | Raw OLTP copy       | Ingestion layer | Internal     | Cluster scoped | Yes                                          |
+| Fact tables       | Event metrics       | Reporting       | Read API     | Org scoped     | No (typically)                               |
+| Dimension tables  | Descriptive context | Reporting joins | Read API     | Org scoped     | Some (user dim)                              |
+| Read API DB       | Processed analytics | Consumer access | User visible | Org scoped     | Masked                                       |
+| Admin Read API DB | Secure storage      | PII control     | Restricted   | Org scoped     | Unmasked                                     |
+
+### **Source tables**
+
+Source tables are a near-exact copy of operational product databases. They act as the raw ingestion layer.
+
+#### **Characteristics**
+
+* Direct copy of OLTP tables (loyalty, coupons, transactions, etc.)
+
+* Minimal or no transformation
+
+* Cluster-scoped; region-based
+
+* Includes organization identifiers to separate organization/brand-level data
+
+* Used as input for downstream transformations
+
+* Not optimized for reporting
+
+#### **Refresh behavior**
+
+* Synced once daily after business hours
+
+* Not real-time
+
+<Callout kind="info">
+
+OLTP and OLAP
+
+* **OLTP (Online Transaction Processing)**
+  Handles day-to-day application operations such as API requests, imports, and user actions. OLTP systems process many small read and write operations and use highly normalized schemas to ensure data accuracy and fast single-record transactions. This represents the **production database where live data is first written**.
+* **OLAP (Online Analytical Processing)**
+  Supports analytics and reporting workloads. OLAP systems run fewer but heavier queries that scan large datasets. These systems often use aggregated structures to make analysis faster. In this architecture, the **Databricks environment (for example, Read API tables and Source tables)** serves as the OLAP layer where processed data becomes queryable for analysis.
+
+</Callout>
+
+### **Fact tables**
+
+Fact tables store measurable events. They represent transactions or activities that occur in the system.
+
+**Characteristics**
+
+* Event-driven records (sales, redemptions, earn events, etc.)
+
+* Large volume
+
+* Optimized for aggregation and reporting
+
+* Linked to dimension tables via keys
+
+* Created through transformation workflows
+
+  **Examples**
+
+* Transaction events
+
+* Points issuance/redemption
+
+* Coupon usage
+
+* Bill line items
+
+  **Use cases**
+
+* Reporting metrics
+
+* Aggregations
+
+* KPIs
+
+* Dashboards
+
+### **Dimension tables**
+
+Dimension tables describe entities related to facts. They provide context to events.
+
+**Characteristics**
+
+* Denormalized descriptive data
+
+* Lower volume than fact tables
+
+* Frequently joined with facts
+
+* Designed for analytical queries
+
+**Examples**
+
+* User/customer profile
+
+* Store/location
+
+* Product
+
+* Date/time
+
+* Vendor
+
+The user dimension contains personally identifiable information (PII) and is subject to masking.
+
+### **Read API databases**
+
+Read API databases are organization-specific analytical environments that expose processed fact and dimension tables.
+
+**Characteristics**
+
+* One database per organization (org-scoped)
+
+* Contains transformed data only
+
+* Used by reporting and analytics consumers
+
+* Naming convention: read*api*`<org_id>`
+
+A Read API database is not a table type. It is a container that stores fact and dimension tables for a single organization.
+
+### **Admin Read API databases**
+
+Admin databases store tables that contain sensitive PII in a secure location.
+
+**Characteristics**
+
+* Stores the real unmasked version of sensitive tables
+
+* Primarily affects user/customer dimension tables
+
+* Access restricted via permissions
+
+* Invisible to most users
+
+* Supports data masking workflows
+
+### History-tracking user dimension table
+
+This is applicable for the **USHC cluster** and is implemented in the **user dimension table**.
+
+The table stores user attribute changes as historical records instead of overwriting previous values. For selected user attributes, each update creates a new record with a timestamp while preserving the earlier values.
+
+This approach maintains the full change history for a user.
+
+You can use this table to:
+
+* Reconstruct what a user’s data looked like at any point in time.
+* Audit how user attributes changed over time.
+* Run **“as-of date” analysis** for reporting and investigations.
+
+Because earlier values are retained, analytics queries can evaluate user attributes based on their value at a specific historical moment instead of only the latest state.
+
+## Timezone handling
+
+Timezone handling in Databricks is driven by the configuration `ENABLE_INSIGHTS_TIMEZONE_CONVERSION` . Once enabled, Insights stores all event timestamps in the **server timezone**, regardless of the store or region where the event originated. This applies consistently across all fact tables in Databricks, such as transactions, points awards, redemptions, slab upgrades, and more.
+
+***
+
+### Key concepts
+
+#### Time dimension keys
+
+Each event in a fact table is associated with two time-based dimension keys that power all time-based analysis — for example, daily trend reports, time-of-day breakdowns, and chronological sequencing of customer journeys.
+
+| Field               | What it represents                                                               |
+| :------------------ | :------------------------------------------------------------------------------- |
+| `dim_event_date_id` | Date of the event in `YYYYMMDD` format (e.g., `20240611` for 11 June 2024)       |
+| `dim_event_time_id` | Minute of the day when the event occurred (e.g., `478` = 7:58 AM, `808` = 13:28) |
+
+Both fields always reflect **server time**, making cross-store and cross-region comparisons reliable.
+
+***
+
+### How timezone is determined for each event
+
+Every event in Insights is associated with a **till** — the point-of-sale terminal where the event was recorded. The timezone for that event is resolved by starting at the till level and working upward through the hierarchy until a timezone is found.
+
+| Priority | Level                | Description                                                          |
+| :------- | :------------------- | :------------------------------------------------------------------- |
+| 1        | Till                 | Timezone configured directly on the till                             |
+| 2        | Store                | Timezone configured at the store                                     |
+| 3        | Zone                 | Timezone of the zone above the store (supports multiple zone levels) |
+| 4        | Organisation default | Org-level default timezone, used as the final fallback               |
+
+If a till has no timezone configured, it inherits from its parent store, then from the zone above the store, and finally from the organisation default.
+
+***
+
+### What this means for your data
+
+When an event is recorded, Insights converts the raw timestamp from the till's resolved local timezone into the server timezone before storing the event date and time keys.
+
+This ensures that:
+
+* All events across stores in different geographies are recorded on a single, consistent timeline.
+* Sequential events, such as a points earn followed by a redemption, always appear in the correct chronological order, even when they happen across stores in different timezones.
+* The `dim_event_date_id` and `dim_event_time_id` values always reflect server time, making cross-store and cross-region comparisons reliable.
+
+***
+
+### Availability and configuration
+
+Timezone handling in Insights is **config-driven** and not enabled by default for existing organisations. Contact Capillary Product Support team to enable this.
+
+<Callout kind="alert" title="**Important:**">
+
+Enabling this config applies to **new data only**. Existing historical data in Databricks is not automatically updated. If you need historical data to reflect the corrected timezone values, a **full re-sync** is required. Discuss this with your Capillary account team before enabling, especially if you sync Databricks data to an external data warehouse.
+
+</Callout>
+
+#### Source column timezone config
+
+Not every fact table requires timezone conversion - only tables and columns where timestamps are stored in a local timezone rather than the server timezone. This is managed through a per-column configuration maintained by Capillary.
+
+When onboarding a new data source, Capillary identifies which columns need timezone conversion and registers them in this configuration. You do not need to manage this directly.
+
+<Callout kind="info" title="**Notes**">
+
+* New organisations onboarded to Insights after this feature was introduced will have timezone handling configured from the start. A re-sync is only relevant for existing organisations enabling the feature on pre-existing data.
+* Timezone handling will be extended in a future phase to additional fact tables that do not currently have `till_id` directly available. These tables will be enriched with store and till information before timezone conversion is applied.
+
+</Callout>
+
+<br />
+
+## Accessing Databricks
+
+* To get access to databricks, contact Capillary access team.
+* For databricks org access, contact your manager.
+
+**Links:**
+
+* [India databrick](https://capillary-notebook-incrm.cloud.databricks.com/login.html?o=7354890886070942)
+* [EU databrick](https://capillary-notebook-eucrm.cloud.databricks.com)
+* [SG/Asia-2 databrick](https://capillary-notebook-asiacrm.cloud.databricks.com/)
+* [US databrick](https://capillary-notebook-uscrm.cloud.databricks.com/?o=893212941337564#)
+
+<br />
