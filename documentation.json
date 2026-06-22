@@ -1,5 +1,6 @@
 {
-  "tabs": [
+  "navigation": {
+    "tabs": [
     {
       "tab": "User Documentation",
       "groups": [
@@ -100,5 +101,6 @@
         }
       ]
     }
-  ]
+    ]
+  }
 }
