@@ -1,0 +1,76 @@
+---
+title: Troubleshooting Common Issues
+description: Resolve problems with email delivery, bounces, and campaign performance.
+---
+
+## Email not reaching inboxes
+
+Many users see their Mailchimp campaigns land in spam folders or fail to deliver. This page shows quick fixes for spam delivery, bounce handling, and low open rates.
+
+## Fix spam folder delivery
+
+Follow these steps to improve inbox placement.
+
+<Steps>
+  <Step title="Check your sender reputation">
+    Review your domain and IP reputation in Mailchimp's dashboard. Low scores often trigger spam filters.
+
+  </Step>
+  <Step title="Verify authentication">
+    Confirm DKIM and SPF records are active for your sending domain.
+
+    - Log in to your domain provider.
+    - Add the records Mailchimp provides.
+    - Wait up to 48 hours for propagation.
+
+  </Step>
+  <Step title="Clean your list">
+    Remove inactive or invalid addresses before the next send.
+
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Warm up new domains gradually. Start with small sends and increase volume over days.
+</Callout>
+
+## Handle bounces
+
+Bounces reduce deliverability. Mailchimp classifies them automatically.
+
+| Bounce type | What it means | Action |
+|-------------|---------------|--------|
+| Hard bounce | Permanent failure (invalid address) | Mailchimp removes the address |
+| Soft bounce | Temporary issue (full inbox) | Mailchimp retries a few times |
+
+<Expandable title="How do I view bounce reports?">
+  Go to Reports, select your campaign, then click the Bounces tab. Export the list to review details.
+
+</Expandable>
+
+## Improve low open rates
+
+Low opens often point to subject lines or timing.
+
+<Steps>
+  <Step title="Test subject lines">
+    Use Mailchimp's subject line helper to compare options and pick the strongest.
+
+  </Step>
+  <Step title="Segment your audience">
+    Send only to engaged contacts who opened recent campaigns.
+
+  </Step>
+  <Step title="Check send time">
+    Review the time report and reschedule for when your audience is active.
+
+  </Step>
+</Steps>
+
+<Callout kind="info">
+  Avoid all-caps subjects or excessive punctuation. These lower engagement.
+</Callout>
+
+## Still stuck?
+
+Contact Mailchimp support through the Help menu in your account.

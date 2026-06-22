@@ -1,0 +1,61 @@
+---
+title: Audience & Contact Issues
+description: Fix problems importing contacts, managing segments, and list hygiene.
+---
+
+## Audience import and contact problems
+
+Mailchimp flags invalid emails, duplicate contacts, and hygiene issues during import. This page shows the fastest fixes for import errors, unsubscribe handling, and GDPR compliance.
+
+## Remove invalid emails before import
+
+Clean your list first to avoid bounces and blocks.
+
+<Steps>
+  <Step title="Export and review your list">
+    Open your source file in a spreadsheet and sort by email address.
+  </Step>
+  <Step title="Delete obvious errors">
+    Remove rows with missing @ symbols, spaces, or domains like example.com.
+  </Step>
+  <Step title="Run a validation check">
+    Use a free email checker tool on the remaining addresses.
+  </Step>
+  <Step title="Import the cleaned file">
+    In Mailchimp, go to Audience, click Import Contacts, and upload the file.
+  </Step>
+</Steps>
+
+<Callout kind="warning">
+  Never import purchased or rented lists. Mailchimp may suspend accounts that send to them.
+</Callout>
+
+## Handle unsubscribes correctly
+
+Unsubscribes must be processed immediately to stay compliant.
+
+<Expandable title="What happens when someone unsubscribes?">
+  Mailchimp automatically adds the address to the audience's unsubscribe list and stops all future sends to that contact.
+</Expandable>
+
+<Expandable title="Can I re-add an unsubscribed contact?">
+  No. Re-adding the address violates anti-spam rules. Ask the person to resubscribe through your signup form instead.
+</Expandable>
+
+## Meet GDPR requirements
+
+<Callout kind="info">
+  GDPR applies if you collect data from people in the EU. Always use double opt-in and keep clear records.
+</Callout>
+
+Use this table to choose the right setting:
+
+| Setting | Recommended choice | Reason |
+| ------- | ------------------ | ------ |
+| Signup form | Double opt-in | Creates proof of consent |
+| Data retention | 24 months or less | Limits stored personal data |
+| Export audience | Include consent fields | Shows audit trail when requested |
+
+## Still stuck?
+
+Contact Mailchimp support through the Help menu in your account.
