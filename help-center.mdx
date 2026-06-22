@@ -3,138 +3,288 @@ title: "Help Center"
 description: "Find guides, tutorials, and answers for using Mailchimp's AI-powered email marketing and automation platform."
 ---
 
-<div
-  style="text-align: center; background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%); padding: 60px 20px; border-radius: 24px; margin-bottom: 48px;"
->
-  <div style="max-width: 760px; margin: 0 auto;">
-    <div style="font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: #111827;">
-      How can we help you?
-    </div>
-    <div style="font-size: 1.1rem; line-height: 1.7; color: #4b5563; margin-bottom: 32px;">
-      Find guides, tutorials, and answers for using Mailchimp's AI-powered email and multichannel marketing platform.
-    </div>
-    <div
-      style="max-width: 480px; margin: 0 auto; background: rgba(255, 255, 255, 0.95); box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08); border-radius: 999px; padding: 16px 22px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #6b7280; font-size: 1rem;"
-    >
-      <span aria-hidden="true">🔍</span>
-      <span style="font-style: italic;">Search for guides, topics, answers…</span>
+{/* ── HERO ─────────────────────────────────────────────────── */}
+<div className="hc-hero">
+  <div className="hc-hero-inner">
+    <h1 className="hc-hero-title">How can we help you?</h1>
+    <p className="hc-hero-sub">
+      Find guides, tutorials, and answers for Mailchimp's AI-powered email and multichannel marketing platform.
+    </p>
+    <div className="hc-search-bar">
+      <span className="hc-search-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <span className="hc-search-placeholder">Search for guides, topics, answers…</span>
+      <span className="hc-search-kbd">⌘ K</span>
     </div>
   </div>
 </div>
 
-<div style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; color: #111827;">
-  Browse by Topic
-</div>
-<div style="text-align: center; font-size: 0.95rem; color: #6b7280; margin-bottom: 32px;">
-  Explore our categories to find exactly what you need
-</div>
-
-<div className="hc-collection-list-wrap">
-  <CollectionList node="tabs:Help Center" cols={3} />
-</div>
-
-<div style="text-align: center; font-size: 1.5rem; font-weight: 700; margin-top: 56px; margin-bottom: 8px; color: #111827;">
-  All Articles
-</div>
-<div style="text-align: center; font-size: 0.95rem; color: #6b7280; margin-bottom: 32px;">
-  Every guide and tutorial, organised by section
-</div>
-
-<div className="hc-content-section">
-  <div className="hc-content-group">
-    <div className="hc-group-label">🚀 Getting Started</div>
-    <CollectionContent node="tabs:Help Center/groups:Getting Started" />
-  </div>
-  <div className="hc-content-group">
-    <div className="hc-group-label">📧 Email Marketing</div>
-    <CollectionContent node="tabs:Help Center/groups:Email Marketing" />
-  </div>
-  <div className="hc-content-group">
-    <div className="hc-group-label">⚡ Automations</div>
-    <CollectionContent node="tabs:Help Center/groups:Automations" />
-  </div>
-  <div className="hc-content-group">
-    <div className="hc-group-label">🔌 Integrations</div>
-    <CollectionContent node="tabs:Help Center/groups:Integrations" />
-  </div>
-  <div className="hc-content-group">
-    <div className="hc-group-label">🛠️ Troubleshooting</div>
-    <CollectionContent node="tabs:Help Center/groups:Troubleshooting" />
-  </div>
-  <div className="hc-content-group">
-    <div className="hc-group-label">🎧 Support</div>
-    <CollectionContent node="tabs:Help Center/groups:Support" />
+{/* ── BROWSE BY TOPIC (CollectionList) ─────────────────────── */}
+<div className="hc-section">
+  <p className="hc-section-label">Browse by topic</p>
+  <div className="hc-list-wrap">
+    <CollectionList node="tabs:Help Center" cols={3} />
   </div>
 </div>
 
-<div
-  style="text-align: center; background: linear-gradient(135deg, #fff8ee 0%, #fff3e0 100%); border-radius: 20px; padding: 48px 24px; margin-top: 56px; border: 1.5px solid #fde8bc;"
->
-  <div style="font-size: 1.75rem; font-weight: 700; color: #111827; margin-bottom: 12px;">
-    Still need help?
+{/* ── ALL ARTICLES (CollectionContent 2-col grid) ──────────── */}
+<div className="hc-section">
+  <p className="hc-section-label">All articles</p>
+  <div className="hc-articles-grid">
+    <div className="hc-articles-col">
+      <div className="hc-col-group">
+        <div className="hc-col-heading">🚀 Getting Started</div>
+        <CollectionContent node="tabs:Help Center/groups:Getting Started" />
+      </div>
+      <div className="hc-col-group">
+        <div className="hc-col-heading">⚡ Automations</div>
+        <CollectionContent node="tabs:Help Center/groups:Automations" />
+      </div>
+      <div className="hc-col-group">
+        <div className="hc-col-heading">🛠️ Troubleshooting</div>
+        <CollectionContent node="tabs:Help Center/groups:Troubleshooting" />
+      </div>
+    </div>
+    <div className="hc-articles-col">
+      <div className="hc-col-group">
+        <div className="hc-col-heading">📧 Email Marketing</div>
+        <CollectionContent node="tabs:Help Center/groups:Email Marketing" />
+      </div>
+      <div className="hc-col-group">
+        <div className="hc-col-heading">🔌 Integrations</div>
+        <CollectionContent node="tabs:Help Center/groups:Integrations" />
+      </div>
+      <div className="hc-col-group">
+        <div className="hc-col-heading">🎧 Support</div>
+        <CollectionContent node="tabs:Help Center/groups:Support" />
+      </div>
+    </div>
   </div>
-  <div style="font-size: 1rem; color: #4b5563; margin-bottom: 28px;">
-    Our support team is ready to help you get the most out of Mailchimp.
-  </div>
-  <a
-    href="/help-center/support/contact"
-    style="display: inline-block; background: #f4a325; color: #ffffff; text-decoration: none; border-radius: 999px; padding: 13px 36px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 14px rgba(244,163,37,0.35);"
-  >
-    Contact Support →
-  </a>
+</div>
+
+{/* ── CTA BANNER ───────────────────────────────────────────── */}
+<div className="hc-cta">
+  <div className="hc-cta-icon">💬</div>
+  <div className="hc-cta-title">Still need help?</div>
+  <div className="hc-cta-sub">Our support team is ready to help you get the most out of Mailchimp.</div>
+  <a href="/help-center/support/contact" className="hc-cta-btn">Contact Support</a>
 </div>
 
 <style>{`
-  .hc-collection-list-wrap {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  .hc-collection-list-wrap > div,
-  .hc-collection-list-wrap [class*="collection"] {
-    justify-content: center !important;
-  }
 
-  .hc-content-section {
-    max-width: 860px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
+/* ── PAGE WRAPPER ── */
+.hc-hero,
+.hc-section,
+.hc-cta {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ── HERO ── */
+.hc-hero {
+  text-align: center;
+  padding: 72px 24px 56px;
+}
+.hc-hero-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.hc-hero-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #0f172a;
+  margin: 0 0 14px;
+}
+.hc-hero-sub {
+  font-size: 1.05rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin: 0 0 32px;
+}
+.hc-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 440px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 11px 16px;
+  box-shadow: 0 1px 4px rgba(15,23,42,0.06);
+  cursor: text;
+}
+.hc-search-icon {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.hc-search-placeholder {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  text-align: left;
+}
+.hc-search-kbd {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-family: monospace;
+  flex-shrink: 0;
+}
+
+/* ── SECTIONS ── */
+.hc-section {
+  padding: 0 24px 56px;
+}
+.hc-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0 0 20px;
+}
+
+/* ── COLLECTION LIST ── */
+.hc-list-wrap > div,
+.hc-list-wrap [class*="collection"],
+.hc-list-wrap [class*="grid"] {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px !important;
+}
+.hc-list-wrap [class*="card"],
+.hc-list-wrap a[class*="group"],
+.hc-list-wrap > div > a {
+  border-radius: 12px !important;
+  border: 1.5px solid #e2e8f0 !important;
+  padding: 20px !important;
+  background: #ffffff !important;
+  transition: box-shadow 0.15s, border-color 0.15s !important;
+}
+.hc-list-wrap [class*="card"]:hover,
+.hc-list-wrap a[class*="group"]:hover,
+.hc-list-wrap > div > a:hover {
+  box-shadow: 0 4px 16px rgba(15,23,42,0.08) !important;
+  border-color: #c7d2e0 !important;
+}
+
+/* ── ARTICLES GRID ── */
+.hc-articles-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.hc-articles-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.hc-col-group {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.hc-col-heading {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f172a;
+  padding: 14px 18px;
+  border-bottom: 1.5px solid #f1f5f9;
+  background: #f8fafc;
+  letter-spacing: 0.01em;
+}
+.hc-col-group a,
+.hc-col-group [class*="item"],
+.hc-col-group [class*="link"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 11px 18px !important;
+  font-size: 0.875rem !important;
+  color: #374151 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  transition: background 0.12s, color 0.12s !important;
+}
+.hc-col-group a:last-child,
+.hc-col-group [class*="item"]:last-child {
+  border-bottom: none !important;
+}
+.hc-col-group a::after {
+  content: "→";
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  flex-shrink: 0;
+}
+.hc-col-group a:hover {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+}
+.hc-col-group a:hover::after {
+  color: #64748b;
+}
+
+/* ── CTA BANNER ── */
+.hc-cta {
+  text-align: center;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 48px 24px;
+  margin: 0 24px 64px;
+}
+.hc-cta-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.hc-cta-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+.hc-cta-sub {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.hc-cta-btn {
+  display: inline-block;
+  background: #0f172a;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  border-radius: 8px;
+  padding: 11px 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.15s;
+}
+.hc-cta-btn:hover {
+  background: #1e293b !important;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .hc-hero-title { font-size: 1.9rem; }
+  .hc-articles-grid { grid-template-columns: 1fr; }
+  .hc-list-wrap > div,
+  .hc-list-wrap [class*="grid"] {
+    grid-template-columns: 1fr !important;
   }
-  .hc-content-group {
-    background: #ffffff;
-    border: 1.5px solid #e5e7eb;
-    border-radius: 16px;
-    padding: 24px 28px 16px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  }
-  .hc-group-label {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1.5px solid #f3f4f6;
-    letter-spacing: 0.01em;
-  }
-  .hc-content-group a,
-  .hc-content-group [class*="page-link"],
-  .hc-content-group [class*="item"] {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    padding: 10px 4px !important;
-    border-bottom: 1px solid #f3f4f6 !important;
-    font-size: 0.95rem !important;
-    color: #374151 !important;
-    text-decoration: none !important;
-    transition: color 0.15s;
-  }
-  .hc-content-group a:last-child,
-  .hc-content-group [class*="item"]:last-child {
-    border-bottom: none !important;
-  }
-  .hc-content-group a:hover {
-    color: #111827 !important;
-  }
+}
+
 `}</style>
