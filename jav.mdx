@@ -1,6 +1,30 @@
 ---
 title: Welcome to Capillary Documentation
 ---
+
+<style>{`
+  /* ── Hide breadcrumb / top filepath on this page ── */
+  nav[aria-label="breadcrumb"],
+  .dai-breadcrumb,
+  [class*="breadcrumb"],
+  [class*="Breadcrumb"],
+  [class*="page-path"],
+  [class*="filePath"],
+  [data-testid="breadcrumb"] {
+    display: none !important;
+  }
+
+  /* ── Center the navbar content ── */
+  nav[class*="navbar"] > *,
+  header[class*="navbar"] > *,
+  [class*="navbar__inner"],
+  [class*="NavbarContent"],
+  [class*="navbar-inner"] {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-content: center !important;
+  }
+`}</style>
 # Welcome to Capillary Documentation
 
 Everything you need to integrate Capillary's loyalty, engagement, analytics, and data platforms — from your first API call to production.

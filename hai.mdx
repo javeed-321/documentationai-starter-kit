@@ -3,7 +3,9 @@ title: Daily Till Summary - SVG Test
 ---
 **ERD Test with Mermaid (clickable links)**
 
+````mermaid wrap="true"
 ```mermaid wrap="true"
+
 graph LR
     subgraph Fact Table
         FACT["daily_till_summary\n30 columns"]
@@ -16,12 +18,9 @@ graph LR
     FACT -->|dim_event_zone_till_id| DIM_ZONE
     click DIM_DATE "https://docs.capillarytech.com/docs/dimension-tables#date" "View date dimension table"
     click DIM_ZONE "https://docs.capillarytech.com/docs/dimension-tables#zone-till" "View zone_till dimension table"
+
 ```
+````
 
-
-
-
-<Iframe src="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782220534839-nim1fb5kfp-coupons-erd.svg" width={800} height={1050} 
-  sandbox="allow-scripts allow-same-origin allow-popups" 
-  title="Daily Till Summary ERD" />
+<Iframe src="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782220534839-nim1fb5kfp-coupons-erd.svg" title="Daily Till Summary ERD" width="800" height="1050" allow-full-screen="true" frame-border="0" loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups" display-mode="fixed" />
 
