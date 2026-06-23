@@ -1,109 +1,83 @@
----
-title: Daily Till Summary - SVG Test
----
-**ERD Test with Mermaid (clickable links)**
-
-\---
-
-title: Daily Till Summary Fact Table
-
-\---
-
-This facts table captures the daily transactions conducted at a specific point of sale (POS) terminal (till). It captures the information such as sales, points redeemed, returns, and loyalty activities, allowing businesses to analyze POS-specific performance.
-
-**Databricks Table Name:** daily\_till\_summary
-
-**Daily Till Summary - Entity Relationship Diagram (ERD)**
-
-Zoom in the table for more clarity. Click the table title to view its details.
-
-\`\`\`mermaid
-
-flowchart LR
-
-&#x20;   FACT\_daily\_till\_summary\["daily\_till\_summary"]:::factStyle
-
-&#x20;   DIM\_date\["date"]:::dimStyle
-
-&#x20;   DIM\_zone\_till\["zone\_till"]:::dimStyle
-
-&#x20;   FACT\_daily\_till\_summary -- "dim\_event\_date\_id" --> DIM\_date
-
-&#x20;   FACT\_daily\_till\_summary -- "dim\_event\_zone\_till\_id" --> DIM\_zone\_till
-
-&#x20;   click DIM\_date "/docs/dimension-tables#date" \_blank
-
-&#x20;   click DIM\_zone\_till "/docs/dimension-tables#zone-till" \_blank
-
-&#x20;   classDef factStyle fill:#1B4F72,stroke:#1B4F72,color:#fff,font-weight:bold
-
-&#x20;   classDef dimStyle fill:#E8F8F5,stroke:#1E8449,color:#1E8449,font-weight:bold
-
-\`\`\`
-
-**Daily Till Summary Fact Table**
-
-\| Column Name | Data Type | Description | Linked Table |
-
-\| --- | --- | --- | --- |
-
-\| dim\_event\_date\_id | bigint | Date of the transaction. It is the primary key of the table. | \[date]\(<a href="https://docs.capillarytech.com/docs/dimension-tables#date" target="_blank" rel="noopener noreferrer">https\://docs.capillarytech.com/docs/dimension-tables#date</a>) |
-
-\| dim\_event\_zone\_till\_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. It is the primary key of the table. | \[zone\_till]\(<a href="https://docs.capillarytech.com/docs/dimension-tables#zone-till" target="_blank" rel="noopener noreferrer">https\://docs.capillarytech.com/docs/dimension-tables#zone-till</a>) |
-
-\| not\_interested\_bill\_count | bigint | Number of bills generated from purchases of not-interested customers. | \_ |
-
-\| points\_redeemed | double | Total points redeemed by the transactions made through the till (Point of sale counter). | \_ |
-
-\| total\_bills | bigint | Total number of bills generated through the till. | \_ |
-
-\| member\_returns | bigint | Total count of returns from members. | \_ |
-
-\| points\_returned | double | Total points reverted because of return transactions. | \_ |
-
-\| total\_sales | double | Total sales generated at the till including taxes and discounts. | \_ |
-
-\| non\_loyalty\_sales | double | Sales generated from non-loyalty customers. | \_ |
-
-\| non\_member\_returns | bigint | Count of returns made by non-members. | \_ |
-
-\| extra\_sales | double | The total sales amount generated from bills where points were redeemed at the till. | \_ |
-
-\| number\_of\_non\_loyalty\_bills | bigint | Number of bills generated for non-loyalty customers. | \_ |
-
-\| non\_loyalty\_sales\_from\_lineitem | double | Total sales from all the line items purchased by non-loyalty customers. | \_ |
-
-\| number\_of\_loyal\_repeat\_customers | bigint | Total number of loyalty customers who have made more than one purchase. | \_ |
-
-\| points\_redeemers | bigint | Number of customers who redeemed points. | \_ |
-
-\| test\_responder\_sales | double | Sales generated from customers who responded to campaign messages (test group). | \_ |
-
-\| loyalty\_sales | double | Sales generated from transactions made by loyalty customers. | \_ |
-
-\| number\_of\_non\_loyal\_repeat\_customers | bigint | Number of non-loyalty customers who made repeated transactions. | \_ |
-
-\| new\_non\_loyal\_transacted\_customers | bigint | Count of customers who are not part of any loyalty program and have made their initial purchases. | \_ |
-
-\| non\_member\_sales | double | Sales generated from purchases done by non-loyalty members. | \_ |
-
-\| not\_interested\_sales | double | Sales generated from not-interested customers. | \_ |
-
-\| loyalty\_sales\_from\_lineitem | double | Total sales from all the line items purchased by loyalty customers. | \_ |
-
-\| coupons\_issued | bigint | Total number of coupons issued through the till. | \_ |
-
-\| coupons\_redeemed | bigint | Total number of coupons redeemed through the till. | \_ |
-
-\| points\_expired | double | The total points that expired on a given date, which were originally awarded from the same till in the past. | \_ |
-
-\| member\_sales | double | Sales generated from loyalty customers. | \_ |
-
-\| new\_loyal\_transacted\_customers | bigint | Count of customers who have newly enrolled in a loyalty program and have made their initial purchases. | \_ |
-
-\| number\_of\_loyalty\_bills | bigint | Number of bills generated by loyalty customers. | \_ |
-
-\| points\_issued | double | Total points issued through transactions made at the particular till. | \_ |
-
-\| year | int | Year of the transaction. | \_ |
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 724" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="724" fill="#fafbfc" rx="8"/>
+<path d="M 400 60.0 C 460 60.0, 560 313.0, 620 313.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,313.0 614,310.0 614,316.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 80.0 C 460 80.0, 560 361.0, 620 361.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,361.0 614,358.0 614,364.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="634" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="634" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40.0" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">daily_till_summary</text>
+<text x="30" y="64.0" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="60.0" r="3" fill="#E67E22"/>
+<rect x="21" y="70" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="84.0" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="80.0" r="3" fill="#E67E22"/>
+<text x="30" y="104.0" fill="#2C3E50" fontSize="11" fontWeight="normal">not_interested_bill_count: bigint</text>
+<rect x="21" y="110" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="124.0" fill="#2C3E50" fontSize="11" fontWeight="normal">points_redeemed: double</text>
+<text x="30" y="144.0" fill="#2C3E50" fontSize="11" fontWeight="normal">total_bills: bigint</text>
+<rect x="21" y="150" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="164.0" fill="#2C3E50" fontSize="11" fontWeight="normal">member_returns: bigint</text>
+<text x="30" y="184.0" fill="#2C3E50" fontSize="11" fontWeight="normal">points_returned: double</text>
+<rect x="21" y="190" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="204.0" fill="#2C3E50" fontSize="11" fontWeight="normal">total_sales: double</text>
+<text x="30" y="224.0" fill="#2C3E50" fontSize="11" fontWeight="normal">non_loyalty_sales: double</text>
+<rect x="21" y="230" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="244.0" fill="#2C3E50" fontSize="11" fontWeight="normal">non_member_returns: bigint</text>
+<text x="30" y="264.0" fill="#2C3E50" fontSize="11" fontWeight="normal">extra_sales: double</text>
+<rect x="21" y="270" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="284.0" fill="#2C3E50" fontSize="11" fontWeight="normal">number_of_non_loyalty_bills: bigint</text>
+<text x="30" y="304.0" fill="#2C3E50" fontSize="11" fontWeight="normal">non_loyalty_sales_from_lineitem: double</text>
+<rect x="21" y="310" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="324.0" fill="#2C3E50" fontSize="11" fontWeight="normal">number_of_loyal_repeat_customers: bigint</text>
+<text x="30" y="344.0" fill="#2C3E50" fontSize="11" fontWeight="normal">points_redeemers: bigint</text>
+<rect x="21" y="350" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="364.0" fill="#2C3E50" fontSize="11" fontWeight="normal">test_responder_sales: double</text>
+<text x="30" y="384.0" fill="#2C3E50" fontSize="11" fontWeight="normal">loyalty_sales: double</text>
+<rect x="21" y="390" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="404.0" fill="#2C3E50" fontSize="11" fontWeight="normal">number_of_non_loyal_repeat_customers: bigint</text>
+<text x="30" y="424.0" fill="#2C3E50" fontSize="11" fontWeight="normal">new_non_loyal_transacted_customers: bigint</text>
+<rect x="21" y="430" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="444.0" fill="#2C3E50" fontSize="11" fontWeight="normal">non_member_sales: double</text>
+<text x="30" y="464.0" fill="#2C3E50" fontSize="11" fontWeight="normal">not_interested_sales: double</text>
+<rect x="21" y="470" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="484.0" fill="#2C3E50" fontSize="11" fontWeight="normal">loyalty_sales_from_lineitem: double</text>
+<text x="30" y="504.0" fill="#2C3E50" fontSize="11" fontWeight="normal">coupons_issued: bigint</text>
+<rect x="21" y="510" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="524.0" fill="#2C3E50" fontSize="11" fontWeight="normal">coupons_redeemed: bigint</text>
+<text x="30" y="544.0" fill="#2C3E50" fontSize="11" fontWeight="normal">points_expired: double</text>
+<rect x="21" y="550" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="564.0" fill="#2C3E50" fontSize="11" fontWeight="normal">member_sales: double</text>
+<text x="30" y="584.0" fill="#2C3E50" fontSize="11" fontWeight="normal">new_loyal_transacted_customers: bigint</text>
+<rect x="21" y="590" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="604.0" fill="#2C3E50" fontSize="11" fontWeight="normal">number_of_loyalty_bills: bigint</text>
+<text x="30" y="624.0" fill="#2C3E50" fontSize="11" fontWeight="normal">points_issued: double</text>
+<rect x="21" y="630" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="644.0" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="297.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="295.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="295.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="295.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="295.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="318.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer", textDecoration: "underline"}}>date</text>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="345.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="343.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="343.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="343.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="343.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="366.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer", textDecoration: "underline"}}>zone_till</text>
+</a>
+<rect x="20" y="684" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="694" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="706" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="694" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="706" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="701" x2="395" y2="701" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="701" r="3" fill="#E67E22"/>
+<text x="403" y="706" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
