@@ -24,9 +24,12 @@
             "pages": [
               {
                 "group": "Entities Management",
-                "path": "docs/data-entities",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Entities Management",
+                    "path": "docs/data-entities"
+                  },
                   {
                     "title": "Customer entity",
                     "path": "docs/customer_entity"
@@ -61,9 +64,12 @@
                   },
                   {
                     "group": "Set up Data Fields",
-                    "path": "docs/data-fields",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Set up Data Fields",
+                        "path": "docs/data-fields"
+                      },
                       {
                         "title": "Standard Fields",
                         "path": "docs/standard-fields"
@@ -80,9 +86,12 @@
                   },
                   {
                     "group": "Create Search Filter for Entities",
-                    "path": "docs/create-search-filter",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Create Search Filter for Entities",
+                        "path": "docs/create-search-filter"
+                      },
                       {
                         "title": "Use Cases",
                         "path": "docs/use-case-search-filter"
@@ -113,9 +122,12 @@
               },
               {
                 "group": "Member Care (Old UI)",
-                "path": "docs/member-care",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Member Care (Old UI)",
+                    "path": "docs/member-care"
+                  },
                   {
                     "title": "Register customers",
                     "path": "docs/register-customers"
@@ -152,9 +164,12 @@
               },
               {
                 "group": "Member Care",
-                "path": "docs/member-care-new-ui",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Member Care",
+                    "path": "docs/member-care-new-ui"
+                  },
                   {
                     "title": "Customer overview",
                     "path": "docs/customer_overview"
@@ -207,9 +222,12 @@
               },
               {
                 "group": "Connect+ (Old)",
-                "path": "docs/connectplus_overview",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Connect+ (Old)",
+                    "path": "docs/connectplus_overview"
+                  },
                   {
                     "title": "Getting started",
                     "path": "docs/connectplus_getting_started"
@@ -220,9 +238,12 @@
                   },
                   {
                     "group": "Configure blocks",
-                    "path": "docs/configure-blocks-connectplus",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Configure blocks",
+                        "path": "docs/configure-blocks-connectplus"
+                      },
                       {
                         "title": "Connect to Source",
                         "path": "docs/connect-to-source"
@@ -307,9 +328,12 @@
                   },
                   {
                     "group": "Explore templates",
-                    "path": "docs/explore-templates",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Explore templates",
+                        "path": "docs/explore-templates"
+                      },
                       {
                         "title": "Test and control template",
                         "path": "docs/test_and_control"
@@ -440,9 +464,12 @@
               },
               {
                 "group": "Connect+",
-                "path": "docs/connect-plus",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Connect+",
+                    "path": "docs/connect-plus"
+                  },
                   {
                     "title": "Overview",
                     "path": "docs/connectplus-overview"
@@ -477,9 +504,12 @@
                   },
                   {
                     "group": "Explore Templates",
-                    "path": "docs/connect-explore-templates",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Explore Templates",
+                        "path": "docs/connect-explore-templates"
+                      },
                       {
                         "title": "Data Ingestion",
                         "path": "docs/data-ingestion"
@@ -500,9 +530,12 @@
                   },
                   {
                     "group": "Building Block Configuration",
-                    "path": "docs/connect-building-block-configuration",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Building Block Configuration",
+                        "path": "docs/connect-building-block-configuration"
+                      },
                       {
                         "title": "Trigger block",
                         "path": "docs/trigger-block"
@@ -645,9 +678,12 @@
               },
               {
                 "group": "Data import",
-                "path": "docs/data-import-",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Data import",
+                    "path": "docs/data-import-"
+                  },
                   {
                     "title": "Transactions profiles",
                     "path": "docs/transactions-profiles"
@@ -712,9 +748,12 @@
               },
               {
                 "group": "Event notification",
-                "path": "docs/configure_event_notification",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Event notification",
+                    "path": "docs/configure_event_notification"
+                  },
                   {
                     "title": "Overview",
                     "path": "docs/overview-2"
@@ -741,9 +780,12 @@
                   },
                   {
                     "group": "Event schema (Payload)",
-                    "path": "docs/event-schema-payload",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Event schema (Payload)",
+                        "path": "docs/event-schema-payload"
+                      },
                       {
                         "title": "Customer and User Group",
                         "path": "docs/event-schema-customer"
@@ -794,9 +836,12 @@
               },
               {
                 "group": "(New) Request Workflow",
-                "path": "docs/new-request-workflow",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "(New) Request Workflow",
+                    "path": "docs/new-request-workflow"
+                  },
                   {
                     "title": "Introduction",
                     "path": "docs/new-request-flow-introduction"
@@ -829,9 +874,12 @@
               },
               {
                 "group": "Timezone Management",
-                "path": "docs/timezone-management",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Timezone Management",
+                    "path": "docs/timezone-management"
+                  },
                   {
                     "title": "Understanding Timezone Management in the UI",
                     "path": "docs/understanding-timezone-management-in-the-ui"
@@ -854,9 +902,12 @@
             "pages": [
               {
                 "group": "Introduction to Loyalty+",
-                "path": "docs/loyalty-overview",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Introduction to Loyalty+",
+                    "path": "docs/loyalty-overview"
+                  },
                   {
                     "title": "Features of loyalty+",
                     "path": "docs/features-of-loyalty"
@@ -881,9 +932,12 @@
               },
               {
                 "group": "Loyalty Settings",
-                "path": "docs/loyalty-settings-2",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Loyalty Settings",
+                    "path": "docs/loyalty-settings-2"
+                  },
                   {
                     "title": "Points Promotion",
                     "path": "docs/points-promotion"
@@ -900,9 +954,12 @@
               },
               {
                 "group": "Advanced Loyalty Features",
-                "path": "docs/create-a-multi-loyalty-program",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Advanced Loyalty Features",
+                    "path": "docs/create-a-multi-loyalty-program"
+                  },
                   {
                     "title": "Behavioral Loyalty",
                     "path": "docs/behavioral-loyalty"
@@ -933,9 +990,12 @@
                   },
                   {
                     "group": "Streaks",
-                    "path": "docs/streaks",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Streaks",
+                        "path": "docs/streaks"
+                      },
                       {
                         "title": "Overview",
                         "path": "docs/overview-streaks"
@@ -958,9 +1018,12 @@
               },
               {
                 "group": "Loyalty+ Reporting",
-                "path": "docs/point-conditions",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Loyalty+ Reporting",
+                    "path": "docs/point-conditions"
+                  },
                   {
                     "title": "Loyalty Standard Report",
                     "path": "docs/loyalty-standard-report"
@@ -997,14 +1060,20 @@
               },
               {
                 "group": "Strategies",
-                "path": "docs/building-blocks-of-loyalty",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Strategies",
+                    "path": "docs/building-blocks-of-loyalty"
+                  },
+                  {
                     "group": "Tiers",
-                    "path": "docs/strategies_tiers",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Tiers",
+                        "path": "docs/strategies_tiers"
+                      },
                       {
                         "title": "Tier Upgrade",
                         "path": "docs/tier-upgrade"
@@ -1063,9 +1132,12 @@
               },
               {
                 "group": "Workflows",
-                "path": "docs/workflows",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Workflows",
+                    "path": "docs/workflows"
+                  },
                   {
                     "title": "Customer Activities",
                     "path": "docs/activities"
@@ -1090,14 +1162,20 @@
               },
               {
                 "group": "Profiles and Attributes",
-                "path": "docs/profiles",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Profiles and Attributes",
+                    "path": "docs/profiles"
+                  },
+                  {
                     "group": "Profile : Current Customer",
-                    "path": "docs/avgbasket-size",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile : Current Customer",
+                        "path": "docs/avgbasket-size"
+                      },
                       {
                         "title": "Attributes - Customer Identity",
                         "path": "docs/attributes-namefirst-namelast-name"
@@ -1142,9 +1220,12 @@
                   },
                   {
                     "group": "Profile : Current Transaction",
-                    "path": "docs/profile-current-transactioncurrenttxn",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile : Current Transaction",
+                        "path": "docs/profile-current-transactioncurrenttxn"
+                      },
                       {
                         "title": "Attributes - KPI (Basket)",
                         "path": "docs/a"
@@ -1181,9 +1262,12 @@
                   },
                   {
                     "group": "Profile : Current Line Item",
-                    "path": "docs/profile-current-line-item",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile : Current Line Item",
+                        "path": "docs/profile-current-line-item"
+                      },
                       {
                         "title": "Attribute - Line Item Information",
                         "path": "docs/attribute-line-item-information"
@@ -1200,9 +1284,12 @@
                   },
                   {
                     "group": "Profile : Current Event",
-                    "path": "docs/current-event",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile : Current Event",
+                        "path": "docs/current-event"
+                      },
                       {
                         "title": "Attribute - Target Based",
                         "path": "docs/attribute-target-based"
@@ -1219,9 +1306,12 @@
                   },
                   {
                     "group": "Profile : Current Store",
-                    "path": "docs/profile-current-store",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile : Current Store",
+                        "path": "docs/profile-current-store"
+                      },
                       {
                         "title": "Attribute : Code",
                         "path": "docs/attribute-code"
@@ -1230,9 +1320,12 @@
                   },
                   {
                     "group": "Profile : Current Tracker",
-                    "path": "docs/profile-currenttracker",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile : Current Tracker",
+                        "path": "docs/profile-currenttracker"
+                      },
                       {
                         "title": "Attributes - Tracker",
                         "path": "docs/attributes-tracker"
@@ -1241,9 +1334,12 @@
                   },
                   {
                     "group": "Profile: Current Card",
-                    "path": "docs/profile-current-card",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile: Current Card",
+                        "path": "docs/profile-current-card"
+                      },
                       {
                         "title": "Attributes - Custom and Extended Fields",
                         "path": "docs/attributes-custom-and-extended-fields"
@@ -1252,9 +1348,12 @@
                   },
                   {
                     "group": "Profile: Current User Group",
-                    "path": "docs/profile-current-user-group",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Profile: Current User Group",
+                        "path": "docs/profile-current-user-group"
+                      },
                       {
                         "title": "Attributes - Group Identity",
                         "path": "docs/attributes-group-identity"
@@ -1277,9 +1376,12 @@
               },
               {
                 "group": "Loyalty Promotions",
-                "path": "docs/loyalty-promotions",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Loyalty Promotions",
+                    "path": "docs/loyalty-promotions"
+                  },
                   {
                     "title": "Introduction",
                     "path": "docs/loyalty-promotions-introduction"
@@ -1290,9 +1392,12 @@
                   },
                   {
                     "group": "Building Blocks of Loyalty Promotions",
-                    "path": "docs/building-blocks-of-loyalty-promotions",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Building Blocks of Loyalty Promotions",
+                        "path": "docs/building-blocks-of-loyalty-promotions"
+                      },
                       {
                         "title": "Member Actions",
                         "path": "docs/loyalty-promotions-member-actions"
@@ -1317,9 +1422,12 @@
                   },
                   {
                     "group": "Create and Manage Loyalty Promotions",
-                    "path": "docs/loyalty-promotions-creating-and-managing-loyalty-promotions",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Create and Manage Loyalty Promotions",
+                        "path": "docs/loyalty-promotions-creating-and-managing-loyalty-promotions"
+                      },
                       {
                         "title": "Create a Loyalty Promotion",
                         "path": "docs/loyalty-promotions-creating-a-loyalty-promotion"
@@ -1352,9 +1460,12 @@
                   },
                   {
                     "group": "Configure Reports and Event Notifications",
-                    "path": "docs/reporting-and-event-notifications",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Configure Reports and Event Notifications",
+                        "path": "docs/reporting-and-event-notifications"
+                      },
                       {
                         "title": "Configure a Loyalty Promotion Report",
                         "path": "docs/loyalty-promotions-reporting"
@@ -1381,9 +1492,12 @@
               },
               {
                 "group": "Workflow simulation",
-                "path": "docs/cart-event-simulation",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Workflow simulation",
+                    "path": "docs/cart-event-simulation"
+                  },
                   {
                     "title": "Transaction Add",
                     "path": "docs/simulate-transaction-add"
@@ -1392,9 +1506,12 @@
               },
               {
                 "group": "Rewards Catalog",
-                "path": "docs/incentives-rewards-catalog",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Rewards Catalog",
+                    "path": "docs/incentives-rewards-catalog"
+                  },
                   {
                     "title": "Introduction",
                     "path": "docs/introduction-rewards-catalog"
@@ -1427,9 +1544,12 @@
               },
               {
                 "group": "Badges",
-                "path": "docs/customer_badges",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Badges",
+                    "path": "docs/customer_badges"
+                  },
                   {
                     "title": "Introduction to Badges",
                     "path": "docs/introduction-to-badges"
@@ -1440,9 +1560,12 @@
                   },
                   {
                     "group": "Getting Started",
-                    "path": "docs/getting-started-badges",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Getting Started",
+                        "path": "docs/getting-started-badges"
+                      },
                       {
                         "title": "Enabling & Creating a Badge",
                         "path": "docs/enabling-creating-a-badge"
@@ -1459,9 +1582,12 @@
                   },
                   {
                     "group": "Configuration for Badges",
-                    "path": "docs/configuration-for-badges",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Configuration for Badges",
+                        "path": "docs/configuration-for-badges"
+                      },
                       {
                         "title": "Custom Field Information for Badges",
                         "path": "docs/custom-field-information-for-badges"
@@ -1474,9 +1600,12 @@
                   },
                   {
                     "group": "Managing Badges",
-                    "path": "docs/managing-badges",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Managing Badges",
+                        "path": "docs/managing-badges"
+                      },
                       {
                         "title": "Deactivating and Activating Badges",
                         "path": "docs/activating-and-deactivating-badges"
@@ -1519,9 +1648,12 @@
               },
               {
                 "group": "Rewards Catalog",
-                "path": "docs/rewards-catalog",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Rewards Catalog",
+                    "path": "docs/rewards-catalog"
+                  },
                   {
                     "title": "Getting Started with Rewards Catalog",
                     "path": "docs/getting-started-with-rewards-catalog"
@@ -1594,9 +1726,12 @@
               },
               {
                 "group": "Games",
-                "path": "docs/games_overview",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Games",
+                    "path": "docs/games_overview"
+                  },
                   {
                     "title": "CataBoom games",
                     "path": "docs/cataboom-games"
@@ -1613,9 +1748,12 @@
               },
               {
                 "group": "User Group Loyalty",
-                "path": "docs/user-group-loyalty",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "User Group Loyalty",
+                    "path": "docs/user-group-loyalty"
+                  },
                   {
                     "title": "Introduction",
                     "path": "docs/introduction-to-user-groups"
@@ -1666,9 +1804,12 @@
             "pages": [
               {
                 "group": "Introduction to Engage+",
-                "path": "docs/introduction-to-engage",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Introduction to Engage+",
+                    "path": "docs/introduction-to-engage"
+                  },
                   {
                     "title": "Engage+ Overview",
                     "path": "docs/engage-overview"
@@ -1681,18 +1822,24 @@
               },
               {
                 "group": "Audience Management",
-                "path": "docs/audience-management",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Audience Management",
+                    "path": "docs/audience-management"
+                  },
                   {
                     "title": "Overview",
                     "path": "docs/overview-audience"
                   },
                   {
                     "group": "About Audience Group Filters",
-                    "path": "docs/about-audience-group-filters",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "About Audience Group Filters",
+                        "path": "docs/about-audience-group-filters"
+                      },
                       {
                         "title": "Loyalty Based Filters",
                         "path": "docs/loyalty-information-based-filter"
@@ -1755,18 +1902,24 @@
               },
               {
                 "group": "Campaign Management",
-                "path": "docs/campaign-management",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Campaign Management",
+                    "path": "docs/campaign-management"
+                  },
                   {
                     "title": "Introduction",
                     "path": "docs/introduction-campaign"
                   },
                   {
                     "group": "Create Campaign",
-                    "path": "docs/create-campaign",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Create Campaign",
+                        "path": "docs/create-campaign"
+                      },
                       {
                         "title": "Referral Campaign",
                         "path": "docs/referral-campaign"
@@ -1799,9 +1952,12 @@
                   },
                   {
                     "group": "Manage Campaign",
-                    "path": "docs/manage-campaign",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Manage Campaign",
+                        "path": "docs/manage-campaign"
+                      },
                       {
                         "title": "Archive campaigns",
                         "path": "docs/archive-campaign"
@@ -1834,9 +1990,12 @@
                   },
                   {
                     "group": "Manage Campaign Message",
-                    "path": "docs/manage-campaign-message",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Manage Campaign Message",
+                        "path": "docs/manage-campaign-message"
+                      },
                       {
                         "title": "Create Message",
                         "path": "docs/create-message"
@@ -1867,18 +2026,24 @@
               },
               {
                 "group": "Journey",
-                "path": "docs/journey-management",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Journey",
+                    "path": "docs/journey-management"
+                  },
                   {
                     "title": "Overview",
                     "path": "docs/overview-journey"
                   },
                   {
                     "group": "Create Journey",
-                    "path": "docs/create-journey",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Create Journey",
+                        "path": "docs/create-journey"
+                      },
                       {
                         "title": "Configure Journey",
                         "path": "docs/configure-journey"
@@ -1895,9 +2060,12 @@
                   },
                   {
                     "group": "Building Blocks of a Journey",
-                    "path": "docs/building-blocks-of-a-journey",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Building Blocks of a Journey",
+                        "path": "docs/building-blocks-of-a-journey"
+                      },
                       {
                         "title": "Overview",
                         "path": "docs/overview-building-blocks-of-a-journey"
@@ -1918,9 +2086,12 @@
                   },
                   {
                     "group": "Manage Journey",
-                    "path": "docs/manage-journey",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Manage Journey",
+                        "path": "docs/manage-journey"
+                      },
                       {
                         "title": "Archive journeys",
                         "path": "docs/archive-journey"
@@ -1955,18 +2126,24 @@
               },
               {
                 "group": "Engagement Channels",
-                "path": "docs/engagement-channels",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Engagement Channels",
+                    "path": "docs/engagement-channels"
+                  },
                   {
                     "title": "Introduction",
                     "path": "docs/introduction-engagement-channels"
                   },
                   {
                     "group": "SMS",
-                    "path": "docs/sms",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "SMS",
+                        "path": "docs/sms"
+                      },
                       {
                         "title": "Configure SMS Settings",
                         "path": "docs/configure-sms-settings"
@@ -1987,9 +2164,12 @@
                   },
                   {
                     "group": "Email",
-                    "path": "docs/email",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Email",
+                        "path": "docs/email"
+                      },
                       {
                         "title": "Configure Email Settings",
                         "path": "docs/configure-email-settings"
@@ -2010,9 +2190,12 @@
                   },
                   {
                     "group": "Call Task",
-                    "path": "docs/call-task",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Call Task",
+                        "path": "docs/call-task"
+                      },
                       {
                         "title": "Configure Call Task Settings",
                         "path": "docs/configure-call-task"
@@ -2033,9 +2216,12 @@
                   },
                   {
                     "group": "WhatsApp",
-                    "path": "docs/whatsapp",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "WhatsApp",
+                        "path": "docs/whatsapp"
+                      },
                       {
                         "title": "Configure WhatsApp Settings",
                         "path": "docs/configure-whatsapp-settings"
@@ -2060,9 +2246,12 @@
                   },
                   {
                     "group": "Wechat",
-                    "path": "docs/wechat",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Wechat",
+                        "path": "docs/wechat"
+                      },
                       {
                         "title": "Create Wechat Template",
                         "path": "docs/create-wechat-template-"
@@ -2075,9 +2264,12 @@
                   },
                   {
                     "group": "Viber",
-                    "path": "docs/viber",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Viber",
+                        "path": "docs/viber"
+                      },
                       {
                         "title": "Configure Viber Settings",
                         "path": "docs/configure-viber-settings"
@@ -2094,9 +2286,12 @@
                   },
                   {
                     "group": "Push Notification",
-                    "path": "docs/push-notifications",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Push Notification",
+                        "path": "docs/push-notifications"
+                      },
                       {
                         "title": "Configure Push Notification Settings",
                         "path": "docs/getting-started-with-push"
@@ -2137,9 +2332,12 @@
                   },
                   {
                     "group": "RCS",
-                    "path": "docs/rcs",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "RCS",
+                        "path": "docs/rcs"
+                      },
                       {
                         "title": "Configure RCS Settings",
                         "path": "docs/configure-rcs-settings"
@@ -2156,9 +2354,12 @@
                   },
                   {
                     "group": "Zalo",
-                    "path": "docs/zalo",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Zalo",
+                        "path": "docs/zalo"
+                      },
                       {
                         "title": "Configure Zalo Settings",
                         "path": "docs/configure-zalo-settings"
@@ -2175,9 +2376,12 @@
                   },
                   {
                     "group": "In-app Message",
-                    "path": "docs/in-app-message-",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "In-app Message",
+                        "path": "docs/in-app-message-"
+                      },
                       {
                         "title": "Configure In-app Settings",
                         "path": "docs/configuring-in-app-message"
@@ -2206,9 +2410,12 @@
                   },
                   {
                     "group": "LINE",
-                    "path": "docs/line",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "LINE",
+                        "path": "docs/line"
+                      },
                       {
                         "title": "Configure LINE Settings",
                         "path": "docs/configure-line-settings"
@@ -2251,14 +2458,20 @@
               },
               {
                 "group": "Personalisation",
-                "path": "docs/personalisation",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Personalisation",
+                    "path": "docs/personalisation"
+                  },
+                  {
                     "group": "Labels",
-                    "path": "docs/labels",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Labels",
+                        "path": "docs/labels"
+                      },
                       {
                         "title": "Supported Labels across Engage+",
                         "path": "docs/supported-labels-for-engagement-channels"
@@ -2281,14 +2494,20 @@
               },
               {
                 "group": "Incentive Management",
-                "path": "docs/incentive-management",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Incentive Management",
+                    "path": "docs/incentive-management"
+                  },
+                  {
                     "group": "Cart Promotions",
-                    "path": "docs/cart-promotions",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Cart Promotions",
+                        "path": "docs/cart-promotions"
+                      },
                       {
                         "title": "Overview",
                         "path": "docs/overview-"
@@ -2313,9 +2532,12 @@
                   },
                   {
                     "group": "Create and Manage Cart Promotions",
-                    "path": "docs/creating-a-cart-promotion-",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Create and Manage Cart Promotions",
+                        "path": "docs/creating-a-cart-promotion-"
+                      },
                       {
                         "title": "Create a Cart Promotion",
                         "path": "docs/create-a-cart-promotions"
@@ -2348,9 +2570,12 @@
                   },
                   {
                     "group": "Gift Vouchers",
-                    "path": "docs/introduction-giftvoucher",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Gift Vouchers",
+                        "path": "docs/introduction-giftvoucher"
+                      },
                       {
                         "title": "Configure Gift Voucher",
                         "path": "docs/configure-a-gift-voucher"
@@ -2371,9 +2596,12 @@
                   },
                   {
                     "group": "Offers (coupons)",
-                    "path": "docs/offer-",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Offers (coupons)",
+                        "path": "docs/offer-"
+                      },
                       {
                         "title": "Introduction to Offers",
                         "path": "docs/introduction-to-offers"
@@ -2422,9 +2650,12 @@
             "pages": [
               {
                 "group": "Getting started",
-                "path": "docs/insights-plus-overview",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Getting started",
+                    "path": "docs/insights-plus-overview"
+                  },
                   {
                     "title": "Product navigation",
                     "path": "docs/insights-product-navigation"
@@ -2437,14 +2668,20 @@
               },
               {
                 "group": "KPI and dimensions",
-                "path": "docs/kpi-and-dimensions",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "KPI and dimensions",
+                    "path": "docs/kpi-and-dimensions"
+                  },
+                  {
                     "group": "List of KPIs and Dimensions",
-                    "path": "docs/list-of-kpis-and-dimesions",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "List of KPIs and Dimensions",
+                        "path": "docs/list-of-kpis-and-dimesions"
+                      },
                       {
                         "title": "Create Concept Hierarchy on Insights+",
                         "path": "docs/create-concept-hierarchy-on-insights"
@@ -2455,9 +2692,12 @@
               },
               {
                 "group": "Charts",
-                "path": "docs/create-normal-migration-charts",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Charts",
+                    "path": "docs/create-normal-migration-charts"
+                  },
                   {
                     "title": "Create Chart",
                     "path": "docs/create-chart"
@@ -2482,9 +2722,12 @@
               },
               {
                 "group": "Reporting",
-                "path": "docs/reports-and-charts",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Reporting",
+                    "path": "docs/reports-and-charts"
+                  },
                   {
                     "title": "Types of Reports",
                     "path": "docs/overview-1"
@@ -2495,9 +2738,12 @@
                   },
                   {
                     "group": "Custom Report",
-                    "path": "docs/reporting-custom-report",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Custom Report",
+                        "path": "docs/reporting-custom-report"
+                      },
                       {
                         "title": "Overview",
                         "path": "docs/custom-reports-overview"
@@ -2522,9 +2768,12 @@
                   },
                   {
                     "group": "Managing Reports",
-                    "path": "docs/managing-reports",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Managing Reports",
+                        "path": "docs/managing-reports"
+                      },
                       {
                         "title": "View or Access Report",
                         "path": "docs/view-or-access-report"
@@ -2563,9 +2812,12 @@
               },
               {
                 "group": "Filters",
-                "path": "docs/date-range-filter-comparison-with-previous-period-1",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Filters",
+                    "path": "docs/date-range-filter-comparison-with-previous-period-1"
+                  },
                   {
                     "title": "Apply filters in report",
                     "path": "docs/apply-filters-in-report-1"
@@ -2578,14 +2830,20 @@
               },
               {
                 "group": "Fact & Dimension Tables",
-                "path": "docs/fact-dimension-tables",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Fact & Dimension Tables",
+                    "path": "docs/fact-dimension-tables"
+                  },
+                  {
                     "group": "Fact tables",
-                    "path": "docs/fact-tables",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Fact tables",
+                        "path": "docs/fact-tables"
+                      },
                       {
                         "title": "Bill Line Items Fact Table",
                         "path": "docs/bill-line-items-fact-table"
@@ -2744,9 +3002,12 @@
               },
               {
                 "group": "Use case based schema explain",
-                "path": "docs/1-points-awardeddeducted-scenarios",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Use case based schema explain",
+                    "path": "docs/1-points-awardeddeducted-scenarios"
+                  },
                   {
                     "title": "Return after redemption scenarios",
                     "path": "docs/return-after-redemption-scenarios"
@@ -2755,9 +3016,12 @@
               },
               {
                 "group": "Customer Segmentation",
-                "path": "docs/customer-segmentation",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Customer Segmentation",
+                    "path": "docs/customer-segmentation"
+                  },
                   {
                     "title": "Introduction to customer segmentation",
                     "path": "docs/introduction-to-customer-segmentation"
@@ -2782,18 +3046,24 @@
               },
               {
                 "group": "Data export",
-                "path": "docs/export",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Data export",
+                    "path": "docs/export"
+                  },
                   {
                     "title": "Introduction to Export Templates UI",
                     "path": "docs/navigation-of-standard-and-custom-templates"
                   },
                   {
                     "group": "Standard Templates",
-                    "path": "docs/standard_templates",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Standard Templates",
+                        "path": "docs/standard_templates"
+                      },
                       {
                         "title": "Return Transactions Standard Export Template",
                         "path": "docs/return-transactions-standard-export-template"
@@ -2878,9 +3148,12 @@
                   },
                   {
                     "group": "Custom Templates",
-                    "path": "docs/custom-templates",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Custom Templates",
+                        "path": "docs/custom-templates"
+                      },
                       {
                         "title": "Dimensions & attributes",
                         "path": "docs/dimensions-attributes"
@@ -2893,9 +3166,12 @@
                   },
                   {
                     "group": "Schedule an Export Job & Fetch Details",
-                    "path": "docs/schedule-an-export-job-fetch-details",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Schedule an Export Job & Fetch Details",
+                        "path": "docs/schedule-an-export-job-fetch-details"
+                      },
                       {
                         "title": "Create an export job (Step 1 of 3)",
                         "path": "docs/create-an-export-job-step-1-of-3"
@@ -2942,9 +3218,12 @@
               },
               {
                 "group": "Fraud Management",
-                "path": "docs/fraud-management-insights",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Fraud Management",
+                    "path": "docs/fraud-management-insights"
+                  },
                   {
                     "title": "Fraud Detection Rules",
                     "path": "docs/fraud-detection-rules"
@@ -2965,9 +3244,12 @@
               },
               {
                 "group": "BI Tool Connector",
-                "path": "docs/bi-tool-connector",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "BI Tool Connector",
+                    "path": "docs/bi-tool-connector"
+                  },
                   {
                     "title": "Connect Power BI and Tableau Desktop to Databricks",
                     "path": "docs/steps-to-connect-to-bi-tool-powerbi-tableau"
@@ -2984,9 +3266,12 @@
               },
               {
                 "group": "Databricks",
-                "path": "docs/getting-started-databricks",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Databricks",
+                    "path": "docs/getting-started-databricks"
+                  },
                   {
                     "title": "Mask Data in Databricks",
                     "path": "docs/mask-data-in-databricks"
@@ -3055,18 +3340,24 @@
             "pages": [
               {
                 "group": "Neo Extension",
-                "path": "docs/extension",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Neo Extension",
+                    "path": "docs/extension"
+                  },
                   {
                     "title": "Quickstart for Neo Extension",
                     "path": "docs/neo-quick-start"
                   },
                   {
                     "group": "Use Cases",
-                    "path": "docs/neo-use-cases",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Use Cases",
+                        "path": "docs/neo-use-cases"
+                      },
                       {
                         "title": "Customer Name Validation for Loyalty Point Allocation",
                         "path": "docs/name-validation-for-loyalty-point-allocation"
@@ -3083,9 +3374,12 @@
                   },
                   {
                     "group": "Introduction",
-                    "path": "docs/introduction-to-extension-platform",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Introduction",
+                        "path": "docs/introduction-to-extension-platform"
+                      },
                       {
                         "title": "Overview",
                         "path": "docs/overview-neo"
@@ -3102,9 +3396,12 @@
                   },
                   {
                     "group": "Core Concepts",
-                    "path": "docs/core-concepts",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Core Concepts",
+                        "path": "docs/core-concepts"
+                      },
                       {
                         "title": "Dataflow & Building Blocks",
                         "path": "docs/dataflows"
@@ -3117,9 +3414,12 @@
                   },
                   {
                     "group": "Configuration & Setup",
-                    "path": "docs/configuration-setup",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Configuration & Setup",
+                        "path": "docs/configuration-setup"
+                      },
                       {
                         "title": "Configuring Conditions",
                         "path": "docs/configuring-conditions"
@@ -3136,9 +3436,12 @@
                   },
                   {
                     "group": "Building Block Configuration",
-                    "path": "docs/building-block-configuration-neo",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Building Block Configuration",
+                        "path": "docs/building-block-configuration-neo"
+                      },
                       {
                         "title": "Trigger Block",
                         "path": "docs/trigger"
@@ -3203,9 +3506,12 @@
                   },
                   {
                     "group": "Manage Dataflow",
-                    "path": "docs/manage-dataflow",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Manage Dataflow",
+                        "path": "docs/manage-dataflow"
+                      },
                       {
                         "title": "Composing a Dataflow",
                         "path": "docs/composing-a-neo_dataflow"
@@ -3242,9 +3548,12 @@
                   },
                   {
                     "group": "Organize Dataflows",
-                    "path": "docs/organize-dataflows",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Organize Dataflows",
+                        "path": "docs/organize-dataflows"
+                      },
                       {
                         "title": "Organizing Dataflows using Tags & Filters",
                         "path": "docs/tags-filters-in-dataflow"
@@ -3261,9 +3570,12 @@
                   },
                   {
                     "group": "Advanced Features",
-                    "path": "docs/advanced-features",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Advanced Features",
+                        "path": "docs/advanced-features"
+                      },
                       {
                         "title": "Access Sensitive Data in Neo Dataflows Using Configuration Manager",
                         "path": "docs/configuration-manager"
@@ -3276,9 +3588,12 @@
                   },
                   {
                     "group": "AI-Assisted Dataflow Creation in Neo using Aira Coder",
-                    "path": "docs/ai-neo-dataflow",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "AI-Assisted Dataflow Creation in Neo using Aira Coder",
+                        "path": "docs/ai-neo-dataflow"
+                      },
                       {
                         "title": "Overview",
                         "path": "docs/overview-neo-ai"
@@ -3317,9 +3632,12 @@
               },
               {
                 "group": "Dev Console",
-                "path": "docs/dev-console",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Dev Console",
+                    "path": "docs/dev-console"
+                  },
                   {
                     "title": "Introduction",
                     "path": "docs/introduction-dev-console"
@@ -3364,14 +3682,20 @@
               },
               {
                 "group": "Vulcan",
-                "path": "docs/vulcan",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Vulcan",
+                    "path": "docs/vulcan"
+                  },
+                  {
                     "group": "Examples",
-                    "path": "docs/examples-of-ui-creation",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Examples",
+                        "path": "docs/examples-of-ui-creation"
+                      },
                       {
                         "title": "Creating a Microsite Using Vulcan",
                         "path": "docs/creating-a-microsite-using-vulcan"
@@ -3410,14 +3734,20 @@
               },
               {
                 "group": "SDKs",
-                "path": "docs/sdks",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "SDKs",
+                    "path": "docs/sdks"
+                  },
+                  {
                     "group": "Android SDK",
-                    "path": "docs/android-sdk",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Android SDK",
+                        "path": "docs/android-sdk"
+                      },
                       {
                         "title": "Getting Started",
                         "path": "docs/android-sdk-getting-started"
@@ -3466,9 +3796,12 @@
                   },
                   {
                     "group": "iOS SDK",
-                    "path": "docs/ios-sdk",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "iOS SDK",
+                        "path": "docs/ios-sdk"
+                      },
                       {
                         "title": "Getting Started",
                         "path": "docs/ios-sdk-getting-started"
@@ -3517,9 +3850,12 @@
                   },
                   {
                     "group": "React Native SDK",
-                    "path": "docs/setting-up-react-native-project-for-hydra-sdk",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "React Native SDK",
+                        "path": "docs/setting-up-react-native-project-for-hydra-sdk"
+                      },
                       {
                         "title": "Getting Started",
                         "path": "docs/react-native-sdk-getting-started"
@@ -3552,9 +3888,12 @@
                   },
                   {
                     "group": "Flutter SDK",
-                    "path": "docs/flutter-sdk",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Flutter SDK",
+                        "path": "docs/flutter-sdk"
+                      },
                       {
                         "title": "Getting Started",
                         "path": "docs/flutter-sdk-getting-started"
@@ -3599,9 +3938,12 @@
             "pages": [
               {
                 "group": "Organization",
-                "path": "docs/organisation",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Organization",
+                    "path": "docs/organisation"
+                  },
                   {
                     "title": "Independent organization",
                     "path": "docs/organization-management"
@@ -3612,9 +3954,12 @@
                   },
                   {
                     "group": "Connected Organizations",
-                    "path": "docs/connected-organizations",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Connected Organizations",
+                        "path": "docs/connected-organizations"
+                      },
                       {
                         "title": "Entity-specific Behaviour in a Connected Organization",
                         "path": "docs/entity-specific-behaviour-in-a-connected-organization"
@@ -3629,9 +3974,12 @@
               },
               {
                 "group": "(New) User Management",
-                "path": "docs/new-user-management",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "(New) User Management",
+                    "path": "docs/new-user-management"
+                  },
                   {
                     "title": "Overview",
                     "path": "docs/new-user-management-overview"
@@ -3642,9 +3990,12 @@
                   },
                   {
                     "group": "Managing Permissions for the Users",
-                    "path": "docs/managing-permissions",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Managing Permissions for the Users",
+                        "path": "docs/managing-permissions"
+                      },
                       {
                         "title": "List of Standard Permission Sets",
                         "path": "docs/list-of-standard-permission-sets"
@@ -3695,9 +4046,12 @@
               },
               {
                 "group": "API Security",
-                "path": "docs/api-access",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "API Security",
+                    "path": "docs/api-access"
+                  },
                   {
                     "title": "Authentication",
                     "path": "docs/api-client"
@@ -3710,9 +4064,12 @@
               },
               {
                 "group": "Data Privacy",
-                "path": "docs/subscription_management",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Data Privacy",
+                    "path": "docs/subscription_management"
+                  },
                   {
                     "title": "Unified Subscription",
                     "path": "docs/setup-unified-subscription"
@@ -3727,9 +4084,12 @@
                   },
                   {
                     "group": "Data Deletion",
-                    "path": "docs/pii-configuration",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Data Deletion",
+                        "path": "docs/pii-configuration"
+                      },
                       {
                         "title": "Introduction",
                         "path": "docs/introduction-data-deletion"
@@ -3754,9 +4114,12 @@
                   },
                   {
                     "group": "Data Masking",
-                    "path": "docs/data-masking",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Data Masking",
+                        "path": "docs/data-masking"
+                      },
                       {
                         "title": "Overview of Data Masking",
                         "path": "docs/introduction-datamasking"
@@ -3787,18 +4150,24 @@
               },
               {
                 "group": "Identity Access Management",
-                "path": "docs/identity-access-management",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Identity Access Management",
+                    "path": "docs/identity-access-management"
+                  },
                   {
                     "title": "Overview",
                     "path": "docs/overview-iam"
                   },
                   {
                     "group": "Customer IAM (CIAM) for end customers",
-                    "path": "docs/customer-iam-ciam-for-end-customers",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Customer IAM (CIAM) for end customers",
+                        "path": "docs/customer-iam-ciam-for-end-customers"
+                      },
                       {
                         "title": "Auth for First-Party Apps",
                         "path": "docs/auth-for-first-party-apps"
@@ -3815,9 +4184,12 @@
                   },
                   {
                     "group": "Machine-to-machine (M2M) IAM for services",
-                    "path": "docs/machine-to-machine-m2m-iam-for-services",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Machine-to-machine (M2M) IAM for services",
+                        "path": "docs/machine-to-machine-m2m-iam-for-services"
+                      },
                       {
                         "title": "OAuth2 Client Credentials Flow",
                         "path": "docs/oauth2-client-credentials-flow"
@@ -3830,9 +4202,12 @@
                   },
                   {
                     "group": "Workforce IAM for Employees",
-                    "path": "docs/workforce-iam-for-employees",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Workforce IAM for Employees",
+                        "path": "docs/workforce-iam-for-employees"
+                      },
                       {
                         "title": "Single Sign On (SSO) Using Okta",
                         "path": "docs/single-sign-on-sso-using-okta"
@@ -3853,9 +4228,12 @@
             "pages": [
               {
                 "group": "Product Highlights",
-                "path": "docs/product-highlights",
                 "expandable": true,
                 "pages": [
+                  {
+                    "title": "Product Highlights",
+                    "path": "docs/product-highlights"
+                  },
                   {
                     "title": "✈️ Is it a layover or a loyalty stop?",
                     "path": "docs/️-is-it-a-layover-or-a-loyalty-stop"
@@ -4236,14 +4614,20 @@
               },
               {
                 "group": "Release Notes",
-                "path": "docs/2026",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Release Notes",
+                    "path": "docs/2026"
+                  },
+                  {
                     "group": "2026",
-                    "path": "docs/january-februar-march-2026",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "2026",
+                        "path": "docs/january-februar-march-2026"
+                      },
                       {
                         "title": "April - May - June 2026",
                         "path": "docs/april-may-june-2026"
@@ -4252,9 +4636,12 @@
                   },
                   {
                     "group": "2025",
-                    "path": "docs/january-february-march-2025",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "2025",
+                        "path": "docs/january-february-march-2025"
+                      },
                       {
                         "title": "April - May - June 2025",
                         "path": "docs/april-may-june-2025"
@@ -4271,9 +4658,12 @@
                   },
                   {
                     "group": "2024",
-                    "path": "docs/january-february-march24",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "2024",
+                        "path": "docs/january-february-march24"
+                      },
                       {
                         "title": "April-May-June 2024",
                         "path": "docs/april-may-june24"
@@ -4290,9 +4680,12 @@
                   },
                   {
                     "group": "2023",
-                    "path": "docs/january-february-march23",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "2023",
+                        "path": "docs/january-february-march23"
+                      },
                       {
                         "title": "April-May-June 2023",
                         "path": "docs/april-may-june23"
@@ -4309,9 +4702,12 @@
                   },
                   {
                     "group": "2022",
-                    "path": "docs/january-february-march22",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "2022",
+                        "path": "docs/january-february-march22"
+                      },
                       {
                         "title": "April-May-June 2022",
                         "path": "docs/april-may-june22"
@@ -4328,9 +4724,12 @@
                   },
                   {
                     "group": "2021",
-                    "path": "docs/january-february-march21",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "2021",
+                        "path": "docs/january-february-march21"
+                      },
                       {
                         "title": "April-May-June 2021",
                         "path": "docs/april-may-june21"
@@ -4385,14 +4784,20 @@
               },
               {
                 "group": "Engagement Channels",
-                "path": "docs/email-1",
                 "expandable": true,
                 "pages": [
                   {
+                    "title": "Engagement Channels",
+                    "path": "docs/email-1"
+                  },
+                  {
                     "group": "Email",
-                    "path": "docs/sendgrid",
                     "expandable": true,
                     "pages": [
+                      {
+                        "title": "Email",
+                        "path": "docs/sendgrid"
+                      },
                       {
                         "title": "Vendor Integration other than SendGrid",
                         "path": "docs/vendor-integration-other-than-sendgrid"
