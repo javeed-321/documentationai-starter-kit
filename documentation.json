@@ -13,6 +13,14 @@
             "group": "Data Fields",
             "pages": [
               {
+                "title": "badges-fact-table",
+                "path": "badges-fact-table"
+              },
+              {
+                "title": "coupuns-fact-table",
+                "path": "coupuns-fact-table"
+              },
+              {
                 "title": "hello",
                 "path": "hello"
               },
