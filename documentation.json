@@ -13,6 +13,10 @@
             "group": "Data Fields",
             "pages": [
               {
+                "title": "check",
+                "path": "check"
+              },
+              {
                 "title": "badges-fact-table",
                 "path": "badges-fact-table"
               },
