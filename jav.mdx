@@ -1,184 +1,297 @@
 ---
+title: "Welcome to Capillary Documentation"
 ---
 
 <style>{`
-  /* ─── Hide page chrome ─── */
+  /* ═══════════════════════════════════════════════════════════
+     HOME PAGE — Datafiniti-style layout, Capillary brand (#1341A9)
+     All page CSS scoped under .cap-home to avoid global bleed.
+     Tokens (--brand, --card-border, etc.) come from global styles.
+  ═══════════════════════════════════════════════════════════ */
+
+  /* ─── Hide page chrome on THIS page only (defensive selectors) ─── */
   nav[aria-label="breadcrumb"],
   [class*="breadcrumb"],
   [class*="Breadcrumb"],
   [data-testid="breadcrumb"],
+  [data-testid*="breadcrumb"],
   [class*="page-feedback"],
   [class*="pageFeedback"],
+  [class*="PageFeedback"],
   [data-testid*="feedback"],
   [class*="page-nav"],
   [class*="pageNav"],
-  [class*="next-prev"] {
+  [class*="PageNav"],
+  [class*="next-prev"],
+  [class*="nextPrev"],
+  [class*="NextPrev"] {
     display: none !important;
   }
 
-  /* ─── Hero — Mintlify style centered ─── */
-  .cap-hero {
-    text-align: center;
-    padding: 3rem 1rem 2.5rem;
+  /* ─── Hero (LEFT-aligned, normal content column) ─── */
+  .cap-home .cap-hero {
+    margin: 0 0 2.25rem;
   }
-  .cap-hero h1 {
-    font-size: 2.6rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.03em !important;
-    line-height: 1.15 !important;
-    color: var(--text-primary, #111827) !important;
-    margin-bottom: 0.6rem !important;
-  }
-  .cap-hero-sub {
-    font-size: 1.05rem;
-    color: var(--text-secondary, #6b7280);
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.65;
-  }
-
-  /* ─── Product cards — image top, text below ─── */
-  .cap-cards .dai-card {
-    background: var(--card-bg, #fff);
-    border: 1px solid var(--card-border, #e5e8f0);
-    border-radius: var(--card-radius, 14px);
-    box-shadow: var(--card-shadow, 0 1px 3px rgba(19,65,169,0.04));
-    overflow: hidden;
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
-  }
-  .cap-cards .dai-card:hover {
-    box-shadow: var(--card-shadow-hover, 0 8px 24px rgba(19,65,169,0.10));
-    border-color: var(--card-border-hover, #c7cee0);
-  }
-  .cap-cards .dai-card-image {
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    width: 100%;
-    border-radius: var(--card-img-radius, 13px 13px 0 0);
-    display: block;
-  }
-  .cap-cards .dai-card-body {
-    padding: 1rem 1.15rem 1.15rem;
-  }
-  .cap-cards .dai-card-title {
-    font-size: 1.05rem;
-    font-weight: 650;
-    color: var(--text-primary, #111827);
-    letter-spacing: -0.01em;
-  }
-  .cap-cards .dai-card-description {
-    font-size: 0.875rem;
-    color: var(--text-secondary, #6b7280);
-    line-height: 1.6;
-  }
-  .cap-cards .dai-card-cta,
-  .cap-cards .dai-card-icon {
-    display: none !important;
-  }
-
-  /* ─── Divider ─── */
-  .cap-divider {
-    border: none;
-    height: 1px;
-    background: var(--divider, #e5e7eb);
-    margin: 2.5rem 0;
-  }
-
-  /* ─── Section heading ─── */
-  .cap-section h2 {
-    font-size: 1.3rem !important;
+  .cap-home .cap-hero h1,
+  .cap-home h1.cap-hero-title {
+    font-size: 2rem !important;
     font-weight: 700 !important;
     letter-spacing: -0.02em !important;
+    line-height: 1.2 !important;
     color: var(--text-primary, #111827) !important;
-    margin-top: 0 !important;
-    margin-bottom: 0.25rem !important;
-    border: none !important;
+    margin: 0 0 0.6rem !important;
   }
-  .cap-desc {
-    font-size: 0.88rem;
+  .cap-home .cap-hero-sub {
+    font-size: 1rem;
     color: var(--text-secondary, #6b7280);
-    line-height: 1.55;
-    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0;
   }
 
-  /* ─── Migration cards — use global horizontal card tokens ─── */
-  .cap-migration .dai-card-horizontal {
-    background: var(--card-bg, #fff);
+  /* ════════════════════════════════════════════
+     PRIMARY CARDS — gradient banner image on top
+     ════════════════════════════════════════════ */
+  .cap-home .cap-primary .dai-card {
+    background: var(--card-bg, #ffffff);
     border: 1px solid var(--card-border, #e5e8f0);
-    border-radius: 10px;
-    box-shadow: var(--card-shadow, 0 1px 3px rgba(19,65,169,0.04));
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    border-radius: var(--card-radius, 14px);
+    /* ring-free shadow so it doesn't double-edge with the border */
+    box-shadow: 0 1px 3px rgba(19, 65, 169, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* SIMPLE transitions only — no translateY / no scale */
+    transform: none !important;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
   }
-  .cap-migration .dai-card-horizontal:hover {
-    box-shadow: var(--card-shadow-hover, 0 8px 24px rgba(19,65,169,0.10));
+  .cap-home .cap-primary .dai-card:hover {
+    transform: none !important;
+    box-shadow: 0 8px 24px rgba(19, 65, 169, 0.10);
     border-color: var(--card-border-hover, #c7cee0);
   }
-  .cap-migration .dai-card-horizontal .dai-card-icon {
-    background: var(--brand-light, #eef2fb);
+
+  /* Banner image: 16/10, cover, rounded TOP corners only */
+  .cap-home .cap-primary .dai-card-image {
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 13px 13px 0 0;
+    display: block;
+    /* override global hover zoom */
+    transform: none !important;
+    transition: none !important;
+  }
+  .cap-home .cap-primary .dai-card:hover .dai-card-image {
+    transform: none !important;
+  }
+
+  .cap-home .cap-primary .dai-card-body {
+    padding: 1rem 1.05rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+  }
+  .cap-home .cap-primary .dai-card-title {
+    font-size: 1.05rem;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+    color: var(--text-primary, #111827);
+    line-height: 1.3;
+  }
+  .cap-home .cap-primary .dai-card-description {
+    font-size: 0.84rem;
+    color: var(--text-secondary, #6b7280);
+    line-height: 1.55;
+  }
+
+  /* "Learn More" CTA — brand color, up-right arrow, no gap animation */
+  .cap-home .cap-primary .dai-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.28rem;
+    margin-top: 0.65rem;
+    font-size: 0.8rem;
+    font-weight: 600;
     color: var(--brand, #1341A9);
-    border-radius: 10px;
+    text-decoration: none;
+    transition: none !important;
+  }
+  .cap-home .cap-primary .dai-card:hover .dai-card-cta {
+    gap: 0.28rem; /* lock — no widening animation */
+  }
+  /* Small up-right arrow after the "Learn More" label */
+  .cap-home .cap-primary .dai-card-cta::after {
+    content: "";
+    width: 0.82em;
+    height: 0.82em;
+    flex: 0 0 auto;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17 17 7'/><path d='M7 7h10v10'/></svg>") center / contain no-repeat;
+    mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17 17 7'/><path d='M7 7h10v10'/></svg>") center / contain no-repeat;
+  }
+  /* Defensive: primary cards have no icon; hide any icon tile if rendered */
+  .cap-home .cap-primary .dai-card-icon {
+    display: none !important;
+  }
+
+  /* ─── Secondary section heading + description ─── */
+  .cap-home .cap-section-heading {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.015em !important;
+    color: var(--text-primary, #111827) !important;
+    border: none !important;
+    margin: 2.5rem 0 0.25rem !important;
+    padding: 0 !important;
+  }
+  .cap-home .cap-section-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary, #6b7280);
+    line-height: 1.55;
+    margin: 0 0 1rem;
+  }
+
+  /* ════════════════════════════════════════════════════════
+     SECONDARY CARDS — icon tile on TOP-LEFT, text stacked below
+     These are vertical Cards (no image, no cta). We force a
+     column layout with explicit overrides so the icon sits on
+     its own line above the title regardless of default styles.
+     ════════════════════════════════════════════════════════ */
+  .cap-home .cap-secondary .dai-card,
+  .cap-home .cap-secondary .dai-card-horizontal {
+    background: var(--card-bg, #ffffff) !important;
+    border: 1px solid var(--card-border, #e5e8f0) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 1px 3px rgba(19, 65, 169, 0.05) !important;
+    /* explicit vertical stack — icon on top, then text */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.7rem !important;
+    padding: 1.1rem 1.15rem 1.2rem !important;
+    cursor: pointer;
+    transform: none !important;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
+  }
+  .cap-home .cap-secondary .dai-card:hover,
+  .cap-home .cap-secondary .dai-card-horizontal:hover {
+    transform: none !important;
+    background: var(--card-bg, #ffffff) !important;
+    box-shadow: 0 8px 24px rgba(19, 65, 169, 0.10) !important;
+    border-color: var(--card-border-hover, #c7cee0) !important;
+  }
+
+  /* Icon tile: 40px rounded square, brand-light bg, brand-color glyph */
+  .cap-home .cap-secondary .dai-card-icon {
+    flex: 0 0 auto !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    background: var(--brand-light, #eef2fb) !important;
+    color: var(--brand, #1341A9) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .cap-home .cap-secondary .dai-card:hover .dai-card-icon,
+  .cap-home .cap-secondary .dai-card-horizontal:hover .dai-card-icon {
+    background: var(--brand-light, #eef2fb) !important;
+    color: var(--brand, #1341A9) !important;
+    transform: none !important;
+  }
+
+  /* Body / text block stacks beneath the icon, full width */
+  .cap-home .cap-secondary .dai-card-body {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.3rem !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+  .cap-home .cap-secondary .dai-card-title {
+    font-size: 0.97rem !important;
+    font-weight: 650 !important;
+    letter-spacing: -0.01em !important;
+    color: var(--text-primary, #111827) !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+  }
+  .cap-home .cap-secondary .dai-card-description {
+    font-size: 0.84rem !important;
+    color: var(--text-secondary, #6b7280) !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+  }
+  /* Secondary cards carry no image or cta */
+  .cap-home .cap-secondary .dai-card-image,
+  .cap-home .cap-secondary .dai-card-cta {
+    display: none !important;
   }
 `}</style>
 
+<div className="cap-home">
+
 <div className="cap-hero">
 
-# Documentation
+# Welcome to Capillary Documentation
 
 <p className="cap-hero-sub">
-Explore guides, API references, and integration resources across Capillary's loyalty, engagement, analytics, and data platforms.
+Everything you need to integrate Capillary's loyalty, engagement, analytics, and data platforms — from your first API call to production.
 </p>
 
 </div>
 
-<div className="cap-cards">
+<div className="cap-primary">
 
 <Columns cols="2">
-  <Card title="Loyalty+" href="/loyalty/overview" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgMzIwIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJkMSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iLjgiIGZpbGw9IiMxMzQxQTkiIG9wYWNpdHk9Ii4xMiIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iI0VFRjJGQiIvPgogIDxyZWN0IHdpZHRoPSI0ODAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2QxKSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI0MCwxNTUpIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtNTAgNjUsLTE4IDAsMTQgLTY1LC0xOCIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDciIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1vcGFjaXR5PSIuMTgiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iLTY1LC0xOCAwLDE0IDAsNzggLTY1LDQ2IiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4xMiIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLW9wYWNpdHk9Ii4xOCIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI2NSwtMTggMCwxNCAwLDc4IDY1LDQ2IiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4wNSIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLW9wYWNpdHk9Ii4xOCIvPgogICAgPGxpbmUgeDE9IjAiIHkxPSItNTAiIHgyPSIwIiB5Mj0iNzgiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIuOCIgc3Ryb2tlLW9wYWNpdHk9Ii4xNSIvPgogICAgPGxpbmUgeDE9Ii02NSIgeTE9Ii0xOCIgeDI9IjY1IiB5Mj0iLTE4IiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iLjgiIHN0cm9rZS1vcGFjaXR5PSIuMTIiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtNzQgNiwtNjIgMTgsLTU5IDEwLC01MCAxMiwtMzggMCwtNDUgLTEyLC0zOCAtMTAsLTUwIC0xOCwtNTkgLTYsLTYyIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4xOCIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9Ii44IiBzdHJva2Utb3BhY2l0eT0iLjI1Ii8+CiAgPC9nPgo8L3N2Zz4K" horizontal="false" target="_self">
-    Design programs, manage points and tiers, configure promotions, and set up reward strategies.
+  <Card title="Loyalty+" href="/loyalty/overview" image="__IMG_LOYALTY__" cta="Learn More" horizontal="false" target="_self">
+    Design programs, manage points and tiers, configure promotions, and set up reward strategies that drive repeat purchases.
   </Card>
 
-  <Card title="Engage+" href="/engage/overview" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgMzIwIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJkMiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iLjgiIGZpbGw9IiMxMzQxQTkiIG9wYWNpdHk9Ii4xMiIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iI0VFRjJGQiIvPgogIDxyZWN0IHdpZHRoPSI0ODAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2QyKSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIwMCwxMzApIj4KICAgIDxyZWN0IHg9Ii01OCIgeT0iLTM4IiB3aWR0aD0iMTE2IiBoZWlnaHQ9Ijc2IiByeD0iMTQiIGZpbGw9IiMxMzQxQTkiIGZpbGwtb3BhY2l0eT0iLjA5IiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iMS4yIiBzdHJva2Utb3BhY2l0eT0iLjE4IiB0cmFuc2Zvcm09InNrZXdZKC02KSIvPgogICAgPGxpbmUgeDE9Ii0zNiIgeTE9Ii0xMiIgeDI9IjM2IiB5Mj0iLTEyIiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iMS4yIiBzdHJva2Utb3BhY2l0eT0iLjEyIiB0cmFuc2Zvcm09InNrZXdZKC02KSIvPgogICAgPGxpbmUgeDE9Ii0zNiIgeTE9IjYiIHgyPSIxOCIgeTI9IjYiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1vcGFjaXR5PSIuMSIgdHJhbnNmb3JtPSJza2V3WSgtNikiLz4KICAgIDxsaW5lIHgxPSItMzYiIHkxPSIyMiIgeDI9IjgiIHkyPSIyMiIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLW9wYWNpdHk9Ii4wOCIgdHJhbnNmb3JtPSJza2V3WSgtNikiLz4KICA8L2c+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzEwLDE4MCkiPgogICAgPHJlY3QgeD0iLTM4IiB5PSItMjUiIHdpZHRoPSI3NiIgaGVpZ2h0PSI1MCIgcng9IjExIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4wNiIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLW9wYWNpdHk9Ii4xNCIgdHJhbnNmb3JtPSJza2V3WSgtNikiLz4KICAgIDxsaW5lIHgxPSItMjAiIHkxPSItNiIgeDI9IjIwIiB5Mj0iLTYiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1vcGFjaXR5PSIuMSIgdHJhbnNmb3JtPSJza2V3WSgtNikiLz4KICAgIDxsaW5lIHgxPSItMjAiIHkxPSI4IiB4Mj0iMTAiIHkyPSI4IiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iMS4yIiBzdHJva2Utb3BhY2l0eT0iLjA4IiB0cmFuc2Zvcm09InNrZXdZKC02KSIvPgogIDwvZz4KICA8Y2lyY2xlIGN4PSIxNjUiIGN5PSIxOTUiIHI9IjQiIGZpbGw9IiMxMzQxQTkiIGZpbGwtb3BhY2l0eT0iLjE1Ii8+CiAgPGNpcmNsZSBjeD0iMTUwIiBjeT0iMjEwIiByPSIyLjUiIGZpbGw9IiMxMzQxQTkiIGZpbGwtb3BhY2l0eT0iLjEiLz4KPC9zdmc+Cg==" horizontal="false" target="_self">
-    Build omnichannel campaigns, design customer journeys, and send targeted messages.
+  <Card title="Engage+" href="/engage/overview" image="__IMG_ENGAGE__" cta="Learn More" horizontal="false" target="_self">
+    Build omnichannel campaigns, design customer journeys, and send targeted messages across SMS, email, push, and WhatsApp.
   </Card>
 
-  <Card title="Insights+" href="/insights/overview" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgMzIwIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJkMyIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iLjgiIGZpbGw9IiMxMzQxQTkiIG9wYWNpdHk9Ii4xMiIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iI0VFRjJGQiIvPgogIDxyZWN0IHdpZHRoPSI0ODAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2QzKSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI0MCwxODUpIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iLTk1LDEyIDAsLTQwIDk1LDEyIDAsNjQiIGZpbGw9IiMxMzQxQTkiIGZpbGwtb3BhY2l0eT0iLjAzIiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iLjgiIHN0cm9rZS1vcGFjaXR5PSIuMSIvPgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQ4LC04KSI+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtMzIgMTgsLTQyIDE4LDAgMCwxMCIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMTIiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE2Ii8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtMzIgLTE4LC00MiAtMTgsMCAwLDEwIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4wOCIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIuMTYiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTgsLTQyIDAsLTUyIDE4LC00MiAwLC0zMiIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDYiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE2Ii8+CiAgICA8L2c+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTYsLTgpIj4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIwLC03MiAxOCwtODIgMTgsMCAwLDEwIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4xMiIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIuMTYiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIwLC03MiAtMTgsLTgyIC0xOCwwIDAsMTAiIGZpbGw9IiMxMzQxQTkiIGZpbGwtb3BhY2l0eT0iLjA4IiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9Ii4xNiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9Ii0xOCwtODIgMCwtOTIgMTgsLTgyIDAsLTcyIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4wNiIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIuMTYiLz4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LC04KSI+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtNTIgMTgsLTYyIDE4LDAgMCwxMCIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMTIiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE2Ii8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtNTIgLTE4LC02MiAtMTgsMCAwLDEwIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4wOCIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIuMTYiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTgsLTYyIDAsLTcyIDE4LC02MiAwLC01MiIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDYiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE2Ii8+CiAgICA8L2c+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0OCwtOCkiPgogICAgICA8cG9seWdvbiBwb2ludHM9IjAsLTkwIDE4LC0xMDAgMTgsMCAwLDEwIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4xMiIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIuMTYiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIwLC05MCAtMTgsLTEwMCAtMTgsMCAwLDEwIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4wOCIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1vcGFjaXR5PSIuMTYiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTgsLTEwMCAwLC0xMTAgMTgsLTEwMCAwLC05MCIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDYiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE2Ii8+CiAgICA8L2c+CiAgPC9nPgo8L3N2Zz4K" horizontal="false" target="_self">
-    Query fact and dimension tables, build dashboards, and analyze customer behavior at scale.
+  <Card title="Insights+" href="/insights/overview" image="__IMG_INSIGHTS__" cta="Learn More" horizontal="false" target="_self">
+    Query fact and dimension tables, build dashboards, and use AI-powered analytics to understand customer behavior at scale.
   </Card>
 
-  <Card title="Capillary Data Platform" href="/data-platform/overview" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgMzIwIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJkNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iLjgiIGZpbGw9IiMxMzQxQTkiIG9wYWNpdHk9Ii4xMiIvPgogICAgPC9wYXR0ZXJuPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iNDgwIiBoZWlnaHQ9IjMyMCIgZmlsbD0iI0VFRjJGQiIvPgogIDxyZWN0IHdpZHRoPSI0ODAiIGhlaWdodD0iMzIwIiBmaWxsPSJ1cmwoI2Q0KSIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI0MCwxNTUpIj4KICAgIDxlbGxpcHNlIGN4PSIwIiBjeT0iLTUyIiByeD0iNjIiIHJ5PSIyMiIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDgiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1vcGFjaXR5PSIuMTgiLz4KICAgIDxwYXRoIGQ9Ik0tNjIsLTUyIEwtNjIsMzIgUS02Miw1NCAwLDU0IFE2Miw1NCA2MiwzMiBMNjIsLTUyIiBmaWxsPSIjMTM0MUE5IiBmaWxsLW9wYWNpdHk9Ii4wNCIgc3Ryb2tlPSIjMTM0MUE5IiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLW9wYWNpdHk9Ii4xNCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSItMTAiIHJ4PSI2MiIgcnk9IjIyIiBmaWxsPSJub25lIiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iLjgiIHN0cm9rZS1vcGFjaXR5PSIuMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCAzIi8+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9IjMyIiByeD0iNjIiIHJ5PSIyMiIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDgiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxLjIiIHN0cm9rZS1vcGFjaXR5PSIuMTgiLz4KICAgIDxjaXJjbGUgY3g9Ii05MCIgY3k9Ii0yMiIgcj0iOSIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDgiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE4Ii8+CiAgICA8bGluZSB4MT0iLTgxIiB5MT0iLTIyIiB4Mj0iLTYyIiB5Mj0iLTIyIiBzdHJva2U9IiMxMzQxQTkiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLW9wYWNpdHk9Ii4xNCIvPgogICAgPGNpcmNsZSBjeD0iOTAiIGN5PSIxMCIgcj0iOSIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDgiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE4Ii8+CiAgICA8bGluZSB4MT0iNjIiIHkxPSIxMCIgeDI9IjgxIiB5Mj0iMTAiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2Utb3BhY2l0eT0iLjE0Ii8+CiAgICA8Y2lyY2xlIGN4PSItODAiIGN5PSI0NSIgcj0iNiIgZmlsbD0iIzEzNDFBOSIgZmlsbC1vcGFjaXR5PSIuMDYiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIuOCIgc3Ryb2tlLW9wYWNpdHk9Ii4xMiIvPgogICAgPGxpbmUgeDE9Ii03NCIgeTE9IjQ1IiB4Mj0iLTU4IiB5Mj0iMzgiIHN0cm9rZT0iIzEzNDFBOSIgc3Ryb2tlLXdpZHRoPSIuOCIgc3Ryb2tlLW9wYWNpdHk9Ii4xIi8+CiAgPC9nPgo8L3N2Zz4K" horizontal="false" target="_self">
-    Set up event schemas, configure integrations, and manage the unified customer data layer.
+  <Card title="Data Platform" href="/data-platform/overview" image="__IMG_DATA__" cta="Learn More" horizontal="false" target="_self">
+    Set up event schemas, configure integrations and webhooks, and manage the unified customer data layer powering all products.
   </Card>
 </Columns>
 
 </div>
 
-<hr className="cap-divider" />
+<h2 className="cap-section-heading">Migration progress</h2>
 
-<div className="cap-section">
+<p className="cap-section-desc">Key documentation areas currently being migrated to the new platform.</p>
 
-## Migration workstreams
-
-<p className="cap-desc">Key documentation areas being migrated to the new platform.</p>
-</div>
-
-<div className="cap-migration">
+<div className="cap-secondary">
 
 <Columns cols="2">
-  <Card title="Fact & dimension tables" href="/insights/fact-dimension-tables" icon="layout-grid" horizontal="true">
-    Star-schema diagrams with cross-references between images and body text.
+  <Card title="Fact & dimension tables" href="/insights/fact-dimension-tables" icon="layout-grid" horizontal="false" target="_self">
+    Images in correct proportions with cross-references between diagrams and body text.
   </Card>
 
-  <Card title="Event schema payload" href="/data-platform/event-schema-payload" icon="zap" horizontal="true">
-    Restructured for faster loading with streamlined schema sections.
+  <Card title="Event schema payload" href="/data-platform/event-schema-payload" icon="zap" horizontal="false" target="_self">
+    Restructured for faster page load — streamlined schema sections and navigation.
   </Card>
 
-  <Card title="OpenAPI v1.json migration" href="/api-reference/overview" icon="file-json" horizontal="true">
-    Full API spec split into separate YAML files per endpoint.
+  <Card title="OpenAPI v1.json migration" href="/api-reference/overview" icon="file-json" horizontal="false" target="_self">
+    Full API spec split into separate YAML files per endpoint — zero information loss.
   </Card>
 
-  <Card title="Loyalty promotions APIs" href="/api-reference/loyalty-promotions" icon="target" horizontal="true">
-    Complete endpoint preservation — YAML and markdown body intact.
+  <Card title="Loyalty promotions APIs" href="/api-reference/loyalty-promotions" icon="target" horizontal="false" target="_self">
+    All promotion endpoints — YAML definitions and markdown body content preserved.
   </Card>
 </Columns>
+
+</div>
 
 </div>
