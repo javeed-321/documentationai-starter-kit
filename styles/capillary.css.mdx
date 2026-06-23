@@ -1,54 +1,259 @@
 <style>{`
-  /* ─── Brand variables (light) ─── */
+  /* ═══════════════════════════════════════════
+     CAPILLARY DOCS — GLOBAL STYLES
+     Simple, clean, no animations
+  ═══════════════════════════════════════════ */
+
+  /* ─── Brand tokens (light) ─── */
   :root {
-    --brand: #1341A9;
-    --brand-text: #ffffff;
-    --toc-active-text: #1341A9;
+    --brand:               #1341A9;
+    --brand-light:         #e8edf9;
+    --brand-text:          #ffffff;
+    --toc-active-text:     #1341A9;
+    --card-border:         #e2e6f0;
+    --card-bg:             #ffffff;
+    --card-shadow:         0 1px 4px rgba(19, 65, 169, 0.07), 0 0 0 1px #e2e6f0;
+    --card-radius:         14px;
+    --card-img-radius:     13px 13px 0 0;
+    --text-primary:        #111827;
+    --text-secondary:      #4b5563;
+    --divider:             #e5e7eb;
   }
 
-  /* ─── Brand variables (dark) ─── */
+  /* ─── Brand tokens (dark) ─── */
   .dark {
-    --brand: #85A1FF;
-    --brand-text: #000000;
-    --toc-active-text: #85A1FF;
+    --brand:               #85A1FF;
+    --brand-light:         #1e2540;
+    --brand-text:          #000000;
+    --toc-active-text:     #85A1FF;
+    --card-border:         #2a2f45;
+    --card-bg:             #161b2e;
+    --card-shadow:         0 1px 4px rgba(0,0,0,0.35), 0 0 0 1px #2a2f45;
+    --text-primary:        #f3f4f6;
+    --text-secondary:      #9ca3af;
+    --divider:             #2a2f45;
   }
 
-  /* ─── Card images: fixed ratio so the grid never jumps ─── */
+  /* ─── Page hero / title area ─── */
+  .dai-page-header {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 2.5rem;
+  }
+
+  .dai-page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .dai-page-header p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    max-width: 640px;
+  }
+
+  /* ─── Section headings ─── */
+  .dai-section-heading {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .dai-section-subheading {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    line-height: 1.55;
+  }
+
+  /* ─── Cards (vertical — with image) ─── */
+  .dai-card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ─── Card images: locked 16:9, no layout shifts ─── */
   .dai-card-image {
     aspect-ratio: 16 / 9;
     object-fit: cover;
     width: 100%;
-    border-radius: 12px 12px 0 0;
+    border-radius: var(--card-img-radius);
+    display: block;
+  }
+
+  /* ─── Card body padding ─── */
+  .dai-card-body {
+    padding: 1.1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
   }
 
   /* ─── Card title ─── */
   .dai-card-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    font-size: 1.05rem;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    line-height: 1.3;
   }
 
   /* ─── Card description ─── */
   .dai-card-description {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
   }
 
-  /* ─── Navbar: brand underline + blur ─── */
+  /* ─── Card CTA link ─── */
+  .dai-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  /* ─── Horizontal cards (migration / quick-links) ─── */
+  .dai-card-horizontal {
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.1rem;
+  }
+
+  .dai-card-horizontal .dai-card-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--brand-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand);
+  }
+
+  .dai-card-horizontal .dai-card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .dai-card-horizontal .dai-card-description {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 0.1rem;
+  }
+
+  /* ─── Navbar accent ─── */
   .dai-navbar {
-    border-bottom: 1px solid var(--brand);
+    border-bottom: 1px solid var(--divider);
     backdrop-filter: blur(12px);
   }
 
-  /* ─── Active TOC item accent ─── */
+  /* ─── Active TOC item ─── */
   .dai-toc-item-active {
     font-weight: 600;
-    border-left: 3px solid var(--brand);
-    padding-left: 8px;
+    color: var(--brand);
+    border-left: 2px solid var(--brand);
+    padding-left: 10px;
   }
 
-  /* ─── Ask AI button tinted to brand ─── */
+  /* ─── Ask AI button ─── */
   .dai-ask-ai-button {
     color: var(--brand);
+    font-weight: 500;
+  }
+
+  /* ─── Sidebar active link ─── */
+  .dai-sidebar-active {
+    color: var(--brand);
+    background: var(--brand-light);
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  /* ─── Inline brand badge / label ─── */
+  .dai-badge {
+    display: inline-block;
+    padding: 0.2em 0.65em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    background: var(--brand-light);
+    color: var(--brand);
+    line-height: 1.4;
+  }
+
+  /* ─── Callout refinement ─── */
+  .dai-callout {
+    border-radius: 10px;
+    border-left: 3px solid var(--brand);
+    background: var(--brand-light);
+    padding: 0.85rem 1.1rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* ─── Divider ─── */
+  .dai-divider {
+    border: none;
+    border-top: 1px solid var(--divider);
+    margin: 2rem 0;
+  }
+
+  /* ─── Code block refinements ─── */
+  .dai-code-block {
+    border-radius: 10px;
+    font-size: 0.85rem;
+    border: 1px solid var(--card-border);
+  }
+
+  /* ─── Table refinements ─── */
+  .dai-table th {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--divider);
+    padding: 0.6rem 0.85rem;
+  }
+
+  .dai-table td {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--divider);
+    padding: 0.6rem 0.85rem;
+    vertical-align: top;
+  }
+
+  .dai-table tr:last-child td {
+    border-bottom: none;
   }
 `}</style>

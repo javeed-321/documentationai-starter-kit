@@ -14,7 +14,10 @@
             "pages": [
               {
                 "title": "Home Page",
-                "path": "jav"
+                "path": "jav",
+                "content-width": "wide",
+                "show-sidebar": false,
+                "showi-toc": false
               }
             ]
           }
