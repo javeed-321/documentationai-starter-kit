@@ -1,5 +1,5 @@
 {
-  "navigation":{"tabs": [
+  "tabs": [
     {
       "tab": "Guides",
       "groups": [
@@ -4832,5 +4832,4 @@
       ]
     }
   ]
-}
 }
