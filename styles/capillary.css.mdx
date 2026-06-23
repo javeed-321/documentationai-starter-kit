@@ -1,0 +1,54 @@
+<style>{`
+  /* ─── Brand variables (light) ─── */
+  :root {
+    --brand: #1341A9;
+    --brand-text: #ffffff;
+    --toc-active-text: #1341A9;
+  }
+
+  /* ─── Brand variables (dark) ─── */
+  .dark {
+    --brand: #85A1FF;
+    --brand-text: #000000;
+    --toc-active-text: #85A1FF;
+  }
+
+  /* ─── Card images: fixed ratio so the grid never jumps ─── */
+  .dai-card-image {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 12px 12px 0 0;
+  }
+
+  /* ─── Card title ─── */
+  .dai-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Card description ─── */
+  .dai-card-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* ─── Navbar: brand underline + blur ─── */
+  .dai-navbar {
+    border-bottom: 1px solid var(--brand);
+    backdrop-filter: blur(12px);
+  }
+
+  /* ─── Active TOC item accent ─── */
+  .dai-toc-item-active {
+    font-weight: 600;
+    border-left: 3px solid var(--brand);
+    padding-left: 8px;
+  }
+
+  /* ─── Ask AI button tinted to brand ─── */
+  .dai-ask-ai-button {
+    color: var(--brand);
+  }
+`}</style>
