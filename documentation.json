@@ -4833,5 +4833,18 @@
         ]
       }
     ]
+  },
+  "template": "atlas",
+  "colors": {
+    "light": {
+      "brand": "#1341A9",
+      "heading": "#1a1a1a",
+      "text": "#374151"
+    },
+    "dark": {
+      "brand": "#85a1ff",
+      "heading": "#f2f2f2",
+      "text": "#c1c1c1"
+    }
   }
 }
