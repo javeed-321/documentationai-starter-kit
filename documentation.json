@@ -4839,12 +4839,22 @@
     "light": {
       "brand": "#1341A9",
       "heading": "#1a1a1a",
-      "text": "#374151"
+      "text": "#374151",
+      "background": "#f8f9fc",
+      "sidebar": "#eef1f8",
+      "border": "#d1d9ef",
+      "link": "#1341A9"
     },
     "dark": {
       "brand": "#85a1ff",
       "heading": "#f2f2f2",
-      "text": "#c1c1c1"
+      "text": "#c1c1c1",
+      "background": "#0f1117",
+      "sidebar": "#171c2b",
+      "border": "#2c3554",
+      "link": "#85a1ff"
     }
-  }
+  },
+  "title": "Capillary",
+  "name": "Capillary Technologies"
 }
