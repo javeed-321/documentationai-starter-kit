@@ -2,192 +2,329 @@
 ---
 
 <style>{`
-  /* ─── Hide page chrome for landing page feel ─── */
+  /* ══════════════════════════════════════════════
+     HOME PAGE — Landing page styles
+     Inspired by Stripe, Vercel, Notion, Mintlify
+  ══════════════════════════════════════════════ */
+
+  /* ─── Strip all page chrome for a clean landing ─── */
   nav[aria-label="breadcrumb"],
+  .dai-breadcrumb,
   [class*="breadcrumb"],
   [class*="Breadcrumb"],
-  [data-testid="breadcrumb"],
+  [class*="page-path"],
+  [class*="filePath"],
+  [data-testid="breadcrumb"] {
+    display: none !important;
+  }
+
   [class*="page-feedback"],
   [class*="pageFeedback"],
-  [data-testid*="feedback"],
+  [class*="PageFeedback"],
+  [data-testid*="feedback"] {
+    display: none !important;
+  }
+
   [class*="page-nav"],
   [class*="pageNav"],
+  [class*="PageNav"],
   [class*="next-prev"] {
     display: none !important;
   }
 
-  /* ─── Hero ─── */
+  /* ─── Hero section ─── */
   .cap-hero {
     text-align: center;
-    padding: 3.5rem 1.5rem 2.5rem;
+    padding: 4rem 1.5rem 3rem;
+    position: relative;
+  }
+
+  .cap-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(19, 65, 169, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .dark .cap-hero::before {
+    background: radial-gradient(circle, rgba(133, 161, 255, 0.06) 0%, transparent 70%);
   }
 
   .cap-hero h1 {
-    font-size: 2.5rem !important;
-    font-weight: 750 !important;
-    letter-spacing: -0.035em !important;
-    line-height: 1.15 !important;
-    color: var(--text-primary) !important;
+    font-size: 2.85rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.045em !important;
+    line-height: 1.1 !important;
+    background: linear-gradient(135deg, #0d2b7a 0%, #1341A9 40%, #5b7ed6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 0.75rem !important;
+    position: relative;
+    z-index: 1;
   }
 
-  .cap-hero-sub {
-    font-size: 1.05rem;
+  .dark .cap-hero h1 {
+    background: linear-gradient(135deg, #85A1FF 0%, #b8caff 50%, #dce5ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .cap-hero-subtitle {
+    font-size: 1.15rem;
     color: var(--text-secondary);
-    max-width: 560px;
+    max-width: 580px;
     margin: 0 auto;
-    line-height: 1.65;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
   }
 
-  /* ─── Section labels ─── */
-  .cap-label {
+  /* ─── Section headers ─── */
+  .cap-section {
+    margin-top: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .cap-section-label {
     display: inline-block;
     font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--brand);
-    margin-bottom: 0.6rem;
+    background: var(--brand-light);
+    padding: 0.25em 0.75em;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
   }
 
   .cap-section h2 {
-    font-size: 1.4rem !important;
+    font-size: 1.6rem !important;
     font-weight: 700 !important;
-    letter-spacing: -0.02em !important;
+    letter-spacing: -0.03em !important;
     color: var(--text-primary) !important;
+    margin-bottom: 0.4rem !important;
     margin-top: 0 !important;
-    margin-bottom: 0.3rem !important;
     border: none !important;
   }
 
-  .cap-desc {
-    font-size: 0.92rem;
+  .cap-section-desc {
+    font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 0.25rem;
+    max-width: 540px;
   }
 
-  /* ─── Divider ─── */
+  /* ─── Divider between sections ─── */
   .cap-divider {
     border: none;
     height: 1px;
-    background: var(--divider);
-    margin: 2.5rem 0 2rem;
+    background: linear-gradient(90deg, transparent 0%, var(--divider) 20%, var(--divider) 80%, transparent 100%);
+    margin: 3rem 0 2.5rem;
   }
 
-  /* ─── Product cards ─── */
+  /* ─── Product cards — sharp images ─── */
   .cap-products .dai-card {
     border: 1px solid var(--card-border);
+    overflow: hidden;
+  }
+
+  .cap-products .dai-card:hover {
+    border-color: var(--card-border-hover);
   }
 
   .cap-products .dai-card-image {
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
     width: 100%;
+    height: auto;
   }
 
   .cap-products .dai-card-body {
-    padding: 1.15rem 1.25rem 1.3rem;
+    padding: 1.25rem 1.35rem 1.4rem;
   }
 
   .cap-products .dai-card-title {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .cap-products .dai-card-description {
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.88rem;
+    line-height: 1.65;
   }
 
-  /* ─── Migration cards ─── */
+  .cap-products .dai-card-cta {
+    font-size: 0.84rem;
+    font-weight: 600;
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  /* ─── Migration cards — blue icon illustrations ─── */
   .cap-migration .dai-card-horizontal {
     border: 1px solid var(--card-border);
     border-radius: 12px;
-    padding: 1.1rem 1.25rem;
-    gap: 1.1rem;
+    padding: 1.15rem 1.3rem;
+    gap: 1.2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cap-migration .dai-card-horizontal::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #1341A9, #5b7ed6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cap-migration .dai-card-horizontal:hover::before {
+    opacity: 1;
+  }
+
+  .cap-migration .dai-card-horizontal:hover {
+    border-color: var(--brand);
+    border-left-color: transparent;
   }
 
   .cap-migration .dai-card-horizontal .dai-card-icon {
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #1341A9 0%, #3b63c9 100%);
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0d2b7a 0%, #1341A9 40%, #3b63c9 100%);
     color: #ffffff !important;
-    box-shadow: 0 3px 10px rgba(19, 65, 169, 0.25);
+    box-shadow: 0 4px 14px rgba(19, 65, 169, 0.3), 0 1px 3px rgba(19, 65, 169, 0.15);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s ease;
   }
 
   .dark .cap-migration .dai-card-horizontal .dai-card-icon {
-    background: linear-gradient(135deg, #2d5fd6 0%, #5b7ed6 100%);
-    box-shadow: 0 3px 10px rgba(45, 95, 214, 0.3);
+    background: linear-gradient(135deg, #1a3a8a 0%, #2d5fd6 40%, #5b7ed6 100%);
+    box-shadow: 0 4px 14px rgba(45, 95, 214, 0.35), 0 1px 3px rgba(45, 95, 214, 0.2);
   }
 
   .cap-migration .dai-card-horizontal .dai-card-icon svg {
+    width: 24px;
+    height: 24px;
     stroke: #ffffff !important;
     color: #ffffff !important;
   }
 
+  .cap-migration .dai-card-horizontal:hover .dai-card-icon {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(19, 65, 169, 0.4), 0 2px 6px rgba(19, 65, 169, 0.2);
+  }
+
   .cap-migration .dai-card-horizontal .dai-card-title {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     font-weight: 650;
   }
 
   .cap-migration .dai-card-horizontal .dai-card-description {
     font-size: 0.82rem;
     line-height: 1.55;
+    margin-top: 0.15rem;
   }
 
-  /* ─── Footer ─── */
-  .cap-footer {
+  /* ─── Footer CTA area ─── */
+  .cap-footer-cta {
     text-align: center;
-    padding: 2rem 1rem 0.5rem;
-    font-size: 0.88rem;
-    color: var(--text-secondary);
+    padding: 2.5rem 1.5rem 1rem;
+    margin-top: 1rem;
   }
 
-  .cap-footer a {
+  .cap-footer-cta p {
+    font-size: 0.88rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+  }
+
+  .cap-footer-cta a {
     color: var(--brand);
     font-weight: 600;
     text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .cap-footer-cta a:hover {
+    border-bottom-color: var(--brand);
+  }
+
+  /* ─── Responsive adjustments ─── */
+  @media (max-width: 768px) {
+    .cap-hero {
+      padding: 2.5rem 1rem 2rem;
+    }
+
+    .cap-hero h1 {
+      font-size: 2rem !important;
+    }
+
+    .cap-hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .cap-section h2 {
+      font-size: 1.35rem !important;
+    }
   }
 `}</style>
-
+ 
 <div className="cap-hero">
 
 # Capillary Documentation Hub
 
-<p className="cap-hero-sub">
-Guides, API references, and integration resources for Capillary's loyalty, engagement, analytics, and data platforms.
+<p className="cap-hero-subtitle">
+Guides, API references, and integration resources for Capillary's loyalty, engagement, analytics, and data platforms — from your first API call to production.
 </p>
 
 </div>
 
 <div className="cap-section">
-  <span className="cap-label">Products</span>
+  <span className="cap-section-label">Products</span>
 
 ## Explore by product
 
-<p className="cap-desc">Setup guides, configuration references, and best practices for each platform.</p>
+<p className="cap-section-desc">
+Choose a product to find setup guides, configuration references, and best practices.
+</p>
 </div>
 
 <div className="cap-products">
 
 <Columns cols="2">
-  <Card title="Loyalty+" href="/loyalty/overview" icon="award" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZmVmM2M3Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjU5ZTBiIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9IjkwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yKSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsMjAwKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwb2x5Z29uIHBvaW50cz0iMCwtMzUgOSwtMTIgMzQsLTEyIDE1LDQgMjIsMjcgMCwxNCAtMjIsMjcgLTE1LDQgLTM0LC0xMiAtOSwtMTIiLz48L2c+PC9zdmc+Cg==" cta="Explore Loyalty+" horizontal="false" target="_self">
-    Design programs, manage points and tiers, configure promotions, and set up reward strategies.
+  <Card title="Loyalty+" href="/loyalty/overview" icon="award" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214148507-tdsqzu59h7-Gemini_Generated_Image_q3qh9iq3qh9iq3qh.png?fm=png&q=95&w=800&auto=format" cta="Explore Loyalty+" horizontal="false" target="_self">
+    Design programs, manage points and tiers, configure promotions, and set up reward strategies that drive repeat purchases.
   </Card>
 
-  <Card title="Engage+" href="/engage/overview" icon="message-circle" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZGJlYWZlIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNjBhNWZhIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9IjkwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yKSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsMjAwKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0tMjgsLTIyIEwyOCwtMjIgQzMzLC0yMiAzNywtMTggMzcsLTEzIEwzNyw4IEMzNywxMyAzMywxNyAyOCwxNyBMNSwxNyBMLTgsMzAgTC04LDE3IEwtMjgsMTcgQy0zMywxNyAtMzcsMTMgLTM3LDggTC0zNywtMTMgQy0zNywtMTggLTMzLC0yMiAtMjgsLTIyWiIvPjwvZz48L3N2Zz4K" cta="Explore Engage+" horizontal="false" target="_self">
-    Build omnichannel campaigns, design journeys, and send targeted messages across all channels.
+  <Card title="Engage+" href="/engage/overview" icon="message-circle" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214168929-mpjykceu06e-Gemini_Generated_Image_9zq9hn9zq9hn9zq9.png?fm=png&q=95&w=800&auto=format" cta="Explore Engage+" horizontal="false" target="_self">
+    Build omnichannel campaigns, design customer journeys, and send targeted messages across SMS, email, push, and WhatsApp.
   </Card>
 
-  <Card title="Insights+" href="/insights/overview" icon="bar-chart" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZDFmYWU1Ii8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMzRkMzk5Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9IjkwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yKSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsMjA1KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9Ii0zMCIgeT0iLTIiIHdpZHRoPSIxNCIgaGVpZ2h0PSIyOCIgcng9IjMiLz48cmVjdCB4PSItNyIgeT0iLTIyIiB3aWR0aD0iMTQiIGhlaWdodD0iNDgiIHJ4PSIzIi8+PHJlY3QgeD0iMTYiIHk9Ii0xMiIgd2lkdGg9IjE0IiBoZWlnaHQ9IjM4IiByeD0iMyIvPjwvZz48L3N2Zz4K" cta="Explore Insights+" horizontal="false" target="_self">
-    Query fact and dimension tables, build dashboards, and analyze customer behavior at scale.
+  <Card title="Insights+" href="/insights/overview" icon="bar-chart" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214187634-fv75g28iseo-Gemini_Generated_Image_q8k1ewq8k1ewq8k1.png?fm=png&q=95&w=800&auto=format" cta="Explore Insights+" horizontal="false" target="_self">
+    Query fact and dimension tables, build dashboards, and use AI-powered analytics to understand customer behavior at scale.
   </Card>
 
-  <Card title="Capillary Data Platform" href="/data-platform/overview" icon="database" image="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNDAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjZWRlOWZlIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYTc4YmZhIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9IjkwIiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yKSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAsMjAwKSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNykiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPjxlbGxpcHNlIGN4PSIwIiBjeT0iLTE4IiByeD0iMzUiIHJ5PSIxNCIvPjxwYXRoIGQ9Ik0tMzUsLTE4IEwtMzUsMCBDLTM1LDcuNyAtMTkuMywxNCAwLDE0IEMxOS4zLDE0IDM1LDcuNyAzNSwwIEwzNSwtMTgiLz48cGF0aCBkPSJNLTM1LDAgTC0zNSwxOCBDLTM1LDI1LjcgLTE5LjMsMzIgMCwzMiBDMTkuMywzMiAzNSwyNS43IDM1LDE4IEwzNSwwIi8+PC9nPjwvc3ZnPgo=" cta="Explore Data Platform" horizontal="false" target="_self">
-    Set up event schemas, configure integrations, and manage the unified customer data layer.
+  <Card title="Capillary Data Platform" href="/data-platform/overview" icon="database" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214201265-xndmnegvflg-Gemini_Generated_Image_nh0vdrnh0vdrnh0v--1-.png?fm=png&q=95&w=800&auto=format" cta="Explore Data Platform" horizontal="false" target="_self">
+    Set up event schemas, configure integrations and webhooks, and manage the unified customer data layer powering all products.
   </Card>
 </Columns>
 
@@ -196,37 +333,39 @@ Guides, API references, and integration resources for Capillary's loyalty, engag
 <hr className="cap-divider" />
 
 <div className="cap-section">
-  <span className="cap-label">In Progress</span>
+  <span className="cap-section-label">In Progress</span>
 
 ## Migration workstreams
 
-<p className="cap-desc">Documentation areas being migrated to the new platform with full fidelity.</p>
+<p className="cap-section-desc">
+Key documentation areas being migrated to the new platform with full fidelity.
+</p>
 </div>
 
 <div className="cap-migration">
 
 <Columns cols="2">
   <Card title="Fact & dimension tables" href="/insights/fact-dimension-tables" icon="layout-grid" horizontal="true">
-    Star-schema diagrams with cross-references between images and body text.
+    Star-schema diagrams with correct proportions and cross-references between images and body text.
   </Card>
 
   <Card title="Event schema payload" href="/data-platform/event-schema-payload" icon="zap" horizontal="true">
-    Restructured for faster loading with streamlined schema sections.
+    Restructured for faster loading — streamlined schema sections with lazy-loaded content.
   </Card>
 
   <Card title="OpenAPI v1.json migration" href="/api-reference/overview" icon="file-json" horizontal="true">
-    Full API spec split into separate YAML files per endpoint.
+    Full API spec split into separate YAML files per endpoint — zero information loss from source.
   </Card>
 
   <Card title="Loyalty promotions APIs" href="/api-reference/loyalty-promotions" icon="target" horizontal="true">
-    Complete endpoint preservation — YAML and markdown body intact.
+    Complete endpoint preservation — YAML definitions and markdown body content intact.
   </Card>
 </Columns>
 
 </div>
 
-<div className="cap-footer">
+<div className="cap-footer-cta">
 
-Looking for something specific? Use **search** above or [browse the API reference](/api-reference/overview).
+Looking for something specific? Use the **search bar** above or [browse the full API reference](/api-reference/overview).
 
 </div>
