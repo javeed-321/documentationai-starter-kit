@@ -1,37 +1,70 @@
 <style>{`
   /* ═══════════════════════════════════════════
      CAPILLARY DOCS — GLOBAL STYLES
-     Simple, clean, no animations
+     Refined, premium feel inspired by Stripe,
+     Vercel, Notion, and Mintlify.
   ═══════════════════════════════════════════ */
 
   /* ─── Brand tokens (light) ─── */
   :root {
     --brand:               #1341A9;
-    --brand-light:         #e8edf9;
+    --brand-hover:         #0f3593;
+    --brand-light:         #eef2fb;
+    --brand-lighter:       #f6f8fd;
     --brand-text:          #ffffff;
     --toc-active-text:     #1341A9;
-    --card-border:         #e2e6f0;
+    --card-border:         #e5e8f0;
+    --card-border-hover:   #c7cee0;
     --card-bg:             #ffffff;
-    --card-shadow:         0 1px 4px rgba(19, 65, 169, 0.07), 0 0 0 1px #e2e6f0;
+    --card-shadow:         0 1px 3px rgba(19, 65, 169, 0.04), 0 0 0 1px rgba(19, 65, 169, 0.06);
+    --card-shadow-hover:   0 8px 24px rgba(19, 65, 169, 0.10), 0 0 0 1px rgba(19, 65, 169, 0.10);
     --card-radius:         14px;
     --card-img-radius:     13px 13px 0 0;
     --text-primary:        #111827;
-    --text-secondary:      #4b5563;
+    --text-secondary:      #6b7280;
+    --text-tertiary:       #9ca3af;
     --divider:             #e5e7eb;
+    --surface:             #f9fafb;
+    --surface-raised:      #ffffff;
+
+    --gradient-loyalty:    linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    --gradient-engage:     linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    --gradient-insights:   linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    --gradient-platform:   linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
   }
 
   /* ─── Brand tokens (dark) ─── */
   .dark {
     --brand:               #85A1FF;
-    --brand-light:         #1e2540;
+    --brand-hover:         #9db3ff;
+    --brand-light:         #1a2240;
+    --brand-lighter:       #141a30;
     --brand-text:          #000000;
     --toc-active-text:     #85A1FF;
-    --card-border:         #2a2f45;
+    --card-border:         #252d48;
+    --card-border-hover:   #3a4570;
     --card-bg:             #161b2e;
-    --card-shadow:         0 1px 4px rgba(0,0,0,0.35), 0 0 0 1px #2a2f45;
+    --card-shadow:         0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
+    --card-shadow-hover:   0 8px 24px rgba(0,0,0,0.45), 0 0 0 1px rgba(133,161,255,0.15);
+    --card-radius:         14px;
+    --card-img-radius:     13px 13px 0 0;
     --text-primary:        #f3f4f6;
     --text-secondary:      #9ca3af;
-    --divider:             #2a2f45;
+    --text-tertiary:       #6b7280;
+    --divider:             #252d48;
+    --surface:             #0f1322;
+    --surface-raised:      #161b2e;
+
+    --gradient-loyalty:    linear-gradient(135deg, #422006 0%, #78350f 100%);
+    --gradient-engage:     linear-gradient(135deg, #1e3a5f 0%, #1e40af 100%);
+    --gradient-insights:   linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+    --gradient-platform:   linear-gradient(135deg, #2e1065 0%, #4c1d95 100%);
+  }
+
+  /* ─── Global transitions ─── */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* ─── Page hero / title area ─── */
@@ -82,6 +115,14 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+  }
+
+  .dai-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
   }
 
   /* ─── Card images: locked 16:9, no layout shifts ─── */
@@ -91,6 +132,11 @@
     width: 100%;
     border-radius: var(--card-img-radius);
     display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .dai-card:hover .dai-card-image {
+    transform: scale(1.03);
   }
 
   /* ─── Card body padding ─── */
@@ -129,6 +175,11 @@
     color: var(--brand);
     text-decoration: none;
     letter-spacing: 0.01em;
+    transition: gap 0.2s ease;
+  }
+
+  .dai-card:hover .dai-card-cta {
+    gap: 0.5rem;
   }
 
   /* ─── Horizontal cards (migration / quick-links) ─── */
@@ -140,18 +191,35 @@
     align-items: center;
     gap: 1rem;
     padding: 0.9rem 1.1rem;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                background 0.3s ease;
+    cursor: pointer;
+  }
+
+  .dai-card-horizontal:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow-hover);
+    background: var(--brand-lighter);
   }
 
   .dai-card-horizontal .dai-card-icon {
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     background: var(--brand-light);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--brand);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .dai-card-horizontal:hover .dai-card-icon {
+    background: var(--brand);
+    color: var(--brand-text);
+    transform: scale(1.08);
   }
 
   .dai-card-horizontal .dai-card-title {
@@ -255,5 +323,16 @@
 
   .dai-table tr:last-child td {
     border-bottom: none;
+  }
+
+  /* ─── Links ─── */
+  a {
+    transition: color 0.2s ease;
+  }
+
+  /* ─── Selection ─── */
+  ::selection {
+    background: var(--brand-light);
+    color: var(--brand);
   }
 `}</style>
