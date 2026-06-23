@@ -19,13 +19,13 @@ Zoom in the table for more clarity. Click the table title to view its details.
 | abs_credit_value | integer | Absolute value of 'src (source)_credit_value' (e.g, if 'src_credit_value' is -2 or 2, then 'abs_credit_value' would be 2). | _ |
 | auto_update_time_credits_log | bigint | Date and time when the corresponding record in the credits_log table available at the source was last updated. It is in the Unix timestamp format. | _ |
 | comments | string | Comments or notes associated with the credit utilization. | _ |
-| dim_added_by_user_id | bigint | Unique identifier of the user from the brand/ Capillary side who initiated the credit utilization or modification. | users |
-| dim_communication_channel_id | bigint | Indicates the channel used for communicating with the customer. Possible values are - SMS, email, voicemail, Wechat, Facebook, Viber, etc. | communication_channel |
-| dim_credit_type_id | bigint | Identifier for the type of credit utilization. Possible values are, credits - Added, or Removed. | credit_type |
-| dim_event_date_id | bigint | Date when the credit utilization occurred. | date |
-| dim_event_time_id | bigint | Time when the credit utilization occurred. | time |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | time |
+| dim_added_by_user_id | bigint | Unique identifier of the user from the brand/ Capillary side who initiated the credit utilization or modification. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_communication_channel_id | bigint | Indicates the channel used for communicating with the customer. Possible values are - SMS, email, voicemail, Wechat, Facebook, Viber, etc. | [communication_channel](https://docs.capillarytech.com/docs/dimension-tables#communication-channel) |
+| dim_credit_type_id | bigint | Identifier for the type of credit utilization. Possible values are, credits - Added, or Removed. | [credit_type](https://docs.capillarytech.com/docs/dimension-tables#credit-type) |
+| dim_event_date_id | bigint | Date when the credit utilization occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Time when the credit utilization occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
 | id | bigint | Unique identifier of the credit log entry. It is the primary key of the table. | _ |
 | is_deleted | integer | Indicates whether the credit log entry has been deleted (0 for not deleted, 1 for deleted). | _ |
 | src_credit_value | integer | Represents the source credit value, before any modifications (addition or removal). | _ |

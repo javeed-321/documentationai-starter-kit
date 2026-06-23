@@ -16,41 +16,41 @@ Zoom in the table for more clarity. Click the table title to view its details.
 
 | Column Name | Column Type | Description | Linked Table | Availability for Export in theMember Fact Template |
 | --- | :--- | --- | :--- | --- |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | date | Yes; Dimension Name: Date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | time | Yes; Dimension Name: Date |
-| dim_event_date_id | bigint | Date when the customer was registered. | date | Yes; Dimension Name: Date |
-| dim_event_time_id | bigint | Time when the customer was registered (up to minutes). | time | Yes; Dimension Name: Time |
-| dim_event_user_id | bigint | Unique identifier for the customer_summary table, set internally by Capillary. It is the primary key of this facts table. | users | Yes; Dimension Name: User Id |
-| dim_joined_date_id | bigint | Records the loyalty registration date for the customer. | date | Yes; Dimension Name: Joined Date |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Date |
+| dim_event_date_id | bigint | Date when the customer was registered. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the customer was registered (up to minutes). | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_event_user_id | bigint | Unique identifier for the customer_summary table, set internally by Capillary. It is the primary key of this facts table. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User Id |
+| dim_joined_date_id | bigint | Records the loyalty registration date for the customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Joined Date |
 | auto_update_time_cps | bigint | Date and time when the corresponding record in the customer_point_summary table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Cps |
-| dim_conversion_date_id | bigint | Date when the customer is converted from a non loyalty customer to a loyalty customer. | date | Yes; Dimension Name: Conversion Date |
+| dim_conversion_date_id | bigint | Date when the customer is converted from a non loyalty customer to a loyalty customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Conversion Date |
 | auto_update_time_extnd | bigint | Date and time when the corresponding record in the extended field table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Extnd |
 | auto_update_time_loyalty | bigint | Date and time when the corresponding record in the loyalty table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Loyalty |
 | average_spent_per_sku | double | Average amount spent by the customer on each product type (per SKU). Stock Keeping Unit (SKU) is a unique identifier assigned to each distinct product or item in inventory. | _ | Yes; Measure Name: Average Spent Per Sku |
 | average_spent_per_visit | double | Average amount of money a customer spends during each visit they make to the store (total amount spent divided by number of visits). | _ | Yes; Measure Name: Average Spent Per Visit |
 | cancelled_points | double | Cancelled points are the number of reverted points. That is, issued points that were reverted due to reasons like transaction return. | _ | Yes; Measure Name: Cancelled Points |
 | year | integer | Year in which the customer was registered. | _ | Yes; Dimension Name: Year |
-| dim_conversion_time_id | bigint | Time when the customer is converted from a non loyalty customer to a loyalty customer. | time | Yes; Dimension Name: Conversion Time |
-| dim_dob_id | bigint | Denotes date of birth of the customer. | date | Yes; Dimension Name: DOB |
-| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | zone_till | Yes; Dimension Name: Store Hierarchy |
-| dim_first_awarded_date_id | bigint | Date when a point was awarded to the customer for the first time. | date | Yes; Dimension Name: First Awarded Date |
-| dim_first_bill_date_id | bigint | Date when the customer did his first transaction or purchase. | date | Yes; Dimension Name: First Txn Date |
-| dim_first_points_redemption_date_id | bigint | Date when the customer redeemed his points for the first time. | date | Yes; Dimension Name: First Points Redemption Date |
-| dim_first_purchased_till_id | bigint | Till Id of the store where the customer did his first transaction. | zone_till | Yes; Dimension Name: First Purchased Till |
-| dim_first_redeemption_date_id | bigint | Records the date of the first redemption of coupons. | date | Yes; Dimension Name: First Redemption Date |
-| dim_lapsation_date_id | bigint | Lapsation date of customers, calculated as last bill date plus 90 days. | date | Yes; Dimension Name: Lapsation Date |
-| dim_last_bill_date_id | bigint | Records the date of the most recent transaction. | date | Yes; Dimension Name: Last Txn Date |
-| dim_last_points_redemption_date_id | bigint | Records the date of the most recent redemption of loyalty points. | date | Yes; Dimension Name: Last Points Redemption Date |
-| dim_last_purchased_till_id | bigint | Identifier of the point-of-sale (till) where the customer made their most recent purchase. | zone_till | Yes; Dimension Name: Last Purchased Store |
-| dim_last_redeemption_date_id | bigint | Records the date of the most recent redemption of coupons. | date | Yes; Dimension Name: Last Redemption Date |
-| dim_loyalty_type_id | bigint | Customer's loyalty status, which can be categorized as: loyalty, non-loyalty, or not registered. | loyalty_type | Yes; Dimension Name: Loyalty Type |
+| dim_conversion_time_id | bigint | Time when the customer is converted from a non loyalty customer to a loyalty customer. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Conversion Time |
+| dim_dob_id | bigint | Denotes date of birth of the customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: DOB |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy |
+| dim_first_awarded_date_id | bigint | Date when a point was awarded to the customer for the first time. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Awarded Date |
+| dim_first_bill_date_id | bigint | Date when the customer did his first transaction or purchase. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Txn Date |
+| dim_first_points_redemption_date_id | bigint | Date when the customer redeemed his points for the first time. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Points Redemption Date |
+| dim_first_purchased_till_id | bigint | Till Id of the store where the customer did his first transaction. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: First Purchased Till |
+| dim_first_redeemption_date_id | bigint | Records the date of the first redemption of coupons. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Redemption Date |
+| dim_lapsation_date_id | bigint | Lapsation date of customers, calculated as last bill date plus 90 days. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Lapsation Date |
+| dim_last_bill_date_id | bigint | Records the date of the most recent transaction. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Last Txn Date |
+| dim_last_points_redemption_date_id | bigint | Records the date of the most recent redemption of loyalty points. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Last Points Redemption Date |
+| dim_last_purchased_till_id | bigint | Identifier of the point-of-sale (till) where the customer made their most recent purchase. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Last Purchased Store |
+| dim_last_redeemption_date_id | bigint | Records the date of the most recent redemption of coupons. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Last Redemption Date |
+| dim_loyalty_type_id | bigint | Customer's loyalty status, which can be categorized as: loyalty, non-loyalty, or not registered. | [loyalty_type](https://docs.capillarytech.com/docs/dimension-tables#loyalty-type) | Yes; Dimension Name: Loyalty Type |
 | dim_points_redemption_status_id | bigint | Records the status of points redemption. Possible values are - Issued, and Redeemed. | _ | Yes; Dimension Name: Points Redemption Status |
-| dim_preferred_order_channel_id | bigint | Stores the preferred channel through which the customer places orders. Possible values are online, in-store, through a mobile app, etc. | order_channel | Yes; Dimension Name: Preferred Order Channel |
-| dim_preferred_store_id | string | Preferred store where the customer performs most of the transactions. | zone_till | Yes; Dimension Name: Preferred Store |
-| dim_repeat_status_id | bigint | Shows if the customer has made previous purchases or if it's their first transaction. | repeat_status | Yes; Dimension Name: Repeat Status |
-| dim_source_type_id | bigint | Source through which the customer got registered. Possible values are in-store, app, WeChat, e-comm, Facebook, campaigns, etc. | source_type | Yes; Dimension Name: Source Type |
+| dim_preferred_order_channel_id | bigint | Stores the preferred channel through which the customer places orders. Possible values are online, in-store, through a mobile app, etc. | [order_channel](https://docs.capillarytech.com/docs/dimension-tables#order-channel) | Yes; Dimension Name: Preferred Order Channel |
+| dim_preferred_store_id | string | Preferred store where the customer performs most of the transactions. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Preferred Store |
+| dim_repeat_status_id | bigint | Shows if the customer has made previous purchases or if it's their first transaction. | [repeat_status](https://docs.capillarytech.com/docs/dimension-tables#repeat-status) | Yes; Dimension Name: Repeat Status |
+| dim_source_type_id | bigint | Source through which the customer got registered. Possible values are in-store, app, WeChat, e-comm, Facebook, campaigns, etc. | [source_type](https://docs.capillarytech.com/docs/dimension-tables#source-type) | Yes; Dimension Name: Source Type |
 | dim_voucher_redemption_status_id | bigint | Indicates the status of voucher redemption for a customer. | _ | Yes; Dimension Name: Voucher Redemption Status |
-| dim_wedding_date_id | bigint | Stores the customer's wedding date. | date | Yes; Dimension Name: Wedding Date |
+| dim_wedding_date_id | bigint | Stores the customer's wedding date. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Wedding Date |
 | expired_points | double | Total points that have expired for the customer since registration. | _ | Yes; Measure Name: Expired Points |
 | first_visit_basket_size | double | Number of items purchased during the customer's first transaction. | _ | Yes; Measure Name: First Visit Basket Size |
 | first_visit_bill_amount | double | Total amount spent by the customer during their first transaction. | _ | Yes; Measure Name: First Visit Bill Amount |

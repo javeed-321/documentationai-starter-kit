@@ -18,10 +18,10 @@ Zoom in the table for more clarity. Click the table title to view its details.
 | --- | --- | --- | --- |
 | auto_update_time | bigint | Date and time when the corresponding record in the milestone table available at the source was last updated. It is in the Unix timestamp format. | _ |
 | client_id | bigint | Unique identifier for the client or organization. | _ |
-| dim_event_date_id | bigint | Start date of the milestone. | date |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | time |
-| dim_milestone_id | bigint | Identifier for the milestone. | milestone |
-| dim_user_target_id | bigint | Identifier for the user target. | user_target |
+| dim_event_date_id | bigint | Start date of the milestone. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_milestone_id | bigint | Identifier for the milestone. | [milestone](https://docs.capillarytech.com/docs/dimension-tables#milestone) |
+| dim_user_target_id | bigint | Identifier for the user target. | [user_target](https://docs.capillarytech.com/docs/dimension-tables#user-target-user_target) |
 | id | bigint | Unique identifier and primary key for the table. | _ |
 | year | integer | Year of the milestone. | _ |

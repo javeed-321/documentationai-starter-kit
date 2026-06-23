@@ -18,12 +18,12 @@ Zoom in the table for more clarity. Click the table title to view its details.
 | --- | --- | --- | --- |
 | auto_update_time | bigint | Date and time when the corresponding record in the streaks table available at the source was last updated. It is in the Unix timestamp format. | _ |
 | current_count | bigint | Denotes the streak count (number of times the customer has performed the task in a row). | _ |
-| dim_event_date_id | bigint | Start date of the streak. | date |
-| dim_event_time_id | bigint | Start time of the streak. | time |
-| dim_event_user_id | bigint | Identifier for the user associated with the streak. It is an internally assigned value by Capillary for user identification. | users |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | time |
-| dim_streak_id | bigint | Identifier linking to a table containing streak information. | streaks |
-| dim_streak_status_id | string | Identifier linking to a table containing streak status information. | streak_status |
+| dim_event_date_id | bigint | Start date of the streak. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Start time of the streak. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the user associated with the streak. It is an internally assigned value by Capillary for user identification. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_streak_id | bigint | Identifier linking to a table containing streak information. | [streaks](https://docs.capillarytech.com/docs/dimension-tables#streaks-streaks) |
+| dim_streak_status_id | string | Identifier linking to a table containing streak status information. | [streak_status](https://docs.capillarytech.com/docs/dimension-tables#streak-status-streak_status) |
 | id | bigint | Unique identifier of the table. | _ |
 | year | int | Year of the streak. | _ |

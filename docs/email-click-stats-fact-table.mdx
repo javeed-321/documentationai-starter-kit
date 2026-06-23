@@ -19,12 +19,12 @@ Zoom in the table for more clarity. Click the table title to view its details.
 | auto_update_time_link_redirection | bigint | Date and time when the corresponding record in the link redirection table available at the source was last updated. It is in the Unix timestamp format. | _ |
 | auto_update_time_link_redirection_stats | bigint | Date and time when the corresponding record in the link redirection stats table available at the source was last updated. It is in the Unix timestamp format. | _ |
 | clicks | int | Number of times the link in the email was clicked. | _ |
-| dim_campaign_id | bigint | Identifier for the campaign in which the email message is configured. | campaigns |
-| dim_event_date_id | bigint | Date when the email was accessed by the customer. | date |
-| dim_event_time_id | bigint | Time when the email was accessed by the customer. | time |
-| dim_event_user_id | bigint | Identifier of the customer associated with the email click. | users |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | time |
+| dim_campaign_id | bigint | Identifier for the campaign in which the email message is configured. | [campaigns](https://docs.capillarytech.com/docs/dimension-tables#campaigns) |
+| dim_event_date_id | bigint | Date when the email was accessed by the customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Time when the email was accessed by the customer. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier of the customer associated with the email click. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
 | id | bigint | Unique identifier of the table. It is the primary key of the table. | _ |
 | link_id | bigint | Unique identifier of the link. It is the primary key of the table. | _ |
 | msg_id | bigint | Identifier of the email message. | _ |

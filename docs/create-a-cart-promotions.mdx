@@ -6,8 +6,6 @@ You can build a cart promotion by following this guided workflow. Define the met
 
 This guide provides a step-by-step walkthrough of the entire cart promotion lifecycle, from initial qualification triggers to redemption conditions and automated customer communication.
 
-<Image src="/diagrams/create-a-cart-promotions-diagram.png" width="1920" height="1080" alt="Diagram" />
-
 ## Step 1: Defining the promotion details
 
 Start by defining the promotion's basic identification and the active window for your campaign.
@@ -83,7 +81,7 @@ The fields are as follows:
 
 |  |  |
 | :--- | :--- |
-| What conditions are to be met? | Condition to be evaluated. For more information, refer to the document on Profiles. |
+| What conditions are to be met? | Condition to be evaluated. For more information, refer to the document on [Profiles](https://docs.capillarytech.com/docs/profiles). |
 
 <Image src="https://files.readme.io/671aeb6f668d23df742da9c6ec2bfb9a14fdf48060c84b79ba929d781e350aa5-image.png" width="1920" height="1080" alt="" />
 
@@ -91,8 +89,8 @@ The fields are as follows:
 
 | Field | Description |
 | :--- | :--- |
-| Maximum earning per customer | Limit the number of times a customer can earn this promotion. Enable the toggle and enter the maximum count in the Limit to field. |
-| Restrict earning days | Limit the earning window from the date of issual. Enable the toggle and enter the number of days in the From the date of issual field. |
+| Maximum earning per customer | Limit the number of times a customer can earn this promotion. Enable the toggle and enter the maximum count in the **Limit to** field. |
+| Restrict earning days | Limit the earning window from the date of issual. Enable the toggle and enter the number of days in the **From the date of issual** field. |
 
 <Image src="https://files.readme.io/22fd8cd411180ac044282912492e4e0a4ce1871287f2799aac8ce90e951bd8c2-image.png" width="1920" height="1080" alt="" />
 
@@ -136,12 +134,12 @@ Here, you can specify the cart rules, such as cart amount, item counts, product-
 
 | Cart Property | Detailed Description | Example |
 | :--- | :--- | :--- |
-| Cart Amount | Evaluates the Total Gross Value of the cart (before tax/discounts). | Spend More, Save More: "Shop for $500 or more to unlock a 10% discount."Operator: >= · Value: 500 |
-| Count of Items | Counts the total number of distinct items (SKUs) in the cart. | Volume Driver: "Buy any 5 items and get the cheapest one free."Operator: >= · Value: 5 |
-| Sum of Line Item Amount | Calculates the total price of only the selected products, ignoring others. | Category Target: "Spend $1000 on Denim to get a free belt."Scope: Category=Denim · Operator: >= · Value: 1000 |
-| Sum of Line Item Quantity | Counts total units for only selected products. Ideal for bundles. | Bundle Offer: "Buy any 3 T-Shirts for a bundle price."Scope: Category=T-Shirts · Operator: >= · Value: 3 |
-| Payment Mode | Triggers based on specific payment methods (Cash, Card, Points, etc.). | Loyalty Drive: "5% extra off if you pay using Loyalty Points."Identifier: Points · Value: Starts with "Loyalty" |
-| Gift Voucher | Triggers only if a specific Gift Voucher Code is applied. | Employee Benefit: "Apply Employee Special Voucher for 20% off."Value: Employee_Special_Voucher |
+| Cart Amount | Evaluates the Total Gross Value of the cart (before tax/discounts). | Spend More, Save More: "Shop for $500 or more to unlock a 10% discount." Operator: `>=` · Value: `500` |
+| Count of Items | Counts the total number of distinct items (SKUs) in the cart. | Volume Driver: "Buy any 5 items and get the cheapest one free." Operator: `>=` · Value: `5` |
+| Sum of Line Item Amount | Calculates the total price of only the selected products, ignoring others. | Category Target: "Spend $1000 on Denim to get a free belt." Scope: Category=Denim · Operator: `>=` · Value: `1000` |
+| Sum of Line Item Quantity | Counts total units for only selected products. Ideal for bundles. | Bundle Offer: "Buy any 3 T-Shirts for a bundle price." Scope: Category=T-Shirts · Operator: `>=` · Value: `3` |
+| Payment Mode | Triggers based on specific payment methods (Cash, Card, Points, etc.). | Loyalty Drive: "5% extra off if you pay using Loyalty Points." Identifier: Points · Value: Starts with "Loyalty" |
+| Gift Voucher | Triggers only if a specific Gift Voucher Code is applied. | Employee Benefit: "Apply Employee Special Voucher for 20% off." Value: `Employee_Special_Voucher` |
 
 <Image src="https://files.readme.io/a8f6678fb2771025880d57a3d8d1d2719cd59337029dfcb678439cd12c53c91c-Screenshot_2026-02-25_at_10.53.39_AM.png" width="1920" height="1080" alt="" />
 
@@ -229,8 +227,8 @@ If you chose **Select products in cart**, you must define how the system identif
 
 | Logic Option | Description | Real-World Example |
 | :--- | :--- | :--- |
-| Over and above the condition | The discount applies to items excluding those that triggered the condition. | Buy X, Get Y: Buy a Laptop (Condition), get a Mouse (Benefit) for free. |
-| Selected in condition | The discount applies to the same items that met the qualifying condition. | Buy X, Get % off X: Buy a T-shirt, get 20% off that same T-shirt. |
+| **Over and above the condition** | The discount applies to items **excluding** those that triggered the condition. | **Buy X, Get Y:** Buy a Laptop (Condition), get a Mouse (Benefit) for free. |
+| **Selected in condition** | The discount applies to the **same** items that met the qualifying condition. | **Buy X, Get % off X:** Buy a T-shirt, get 20% off that same T-shirt. |
 
 <Image src="https://files.readme.io/c0601b3acd40ed886bfd93e7af15c64a727ea192b1c773890f86fdb1ec94fab3-Screenshot_2026-02-26_at_10.20.10_AM.png" width="1920" height="1080" alt="" />
 
@@ -391,12 +389,12 @@ The following table shows what type of limits are supported by each promotion ty
 
 | Restriction Feature | POS | Loyalty | Loyalty Earning | Rewards | Code-linked |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| Individual Issual Limit | ✕ | ✓ | ✓ | ✓ | ✕ |
-| Individual Code Limits | ✕ | ✕ | ✕ | ✕ | ✓ |
-| Earn Limits (Per Earn) | ✕ | ✕ | ✓ | ✓ | ✕ |
-| Individual Cart Limits | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Individual Customer Limits | ✓ | ✓ | ✓ | ✓ | ✕ |
-| Global Customer Limits | ✓ | ✓ | ✕ | ✕ | ✕ |
+| **Individual Issual Limit** | ✕ | ✓ | ✓ | ✓ | ✕ |
+| **Individual Code Limits** | ✕ | ✕ | ✕ | ✕ | ✓ |
+| **Earn Limits** (Per Earn) | ✕ | ✕ | ✓ | ✓ | ✕ |
+| **Individual Cart Limits** | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Individual Customer Limits** | ✓ | ✓ | ✓ | ✓ | ✕ |
+| **Global Customer Limits** | ✓ | ✓ | ✕ | ✕ | ✕ |
 
 ### 5.3 Managing issuance and access restrictions
 
@@ -498,8 +496,8 @@ When you configure a fixed-window reset period (**every X days**, **every week**
 
 | Option | How it works | Available for |
 | :--- | :--- | :--- |
-| Promotion config date | All customers share the same cycle anchor — a specific reference date you set when creating the promotion. Every customer resets on the same schedule regardless of when they received the promotion. For example, if the reference date is 1 June and the cycle is monthly, all customers reset on 1 July, 1 August, and so on. | All promotion types |
-| Customer's issuance date | Each customer's cycle begins on the date the promotion was issued to them. A customer who receives the promotion on 5 June resets on 5 July, while one who receives it on 20 June resets on 20 July. Use this to give every customer an equal window from the moment they receive the promotion. | Loyalty Earning and Code linked promotions only |
+| **Promotion config date** | All customers share the same cycle anchor — a specific reference date you set when creating the promotion. Every customer resets on the same schedule regardless of when they received the promotion. For example, if the reference date is 1 June and the cycle is monthly, all customers reset on 1 July, 1 August, and so on. | All promotion types |
+| **Customer's issuance date** | Each customer's cycle begins on the date the promotion was issued to them. A customer who receives the promotion on 5 June resets on 5 July, while one who receives it on 20 June resets on 20 July. Use this to give every customer an equal window from the moment they receive the promotion. | **Loyalty Earning** and **Code linked** promotions only |
 
 <Callout kind="warning">
 
@@ -546,9 +544,9 @@ Custom fields use one of the following input types:
 
 | Field type | Description |
 | :--- | :--- |
-| Number | Accepts a numerical value. |
-| Text | Accepts free-form text input. |
-| Date | Accepts a date via the date picker. |
+| **Number** | Accepts a numerical value. |
+| **Text** | Accepts free-form text input. |
+| **Date** | Accepts a date via the date picker. |
 
 Complete all required fields before proceeding. You can leave optional fields blank.
 
@@ -590,32 +588,32 @@ This trigger fires at the moment the customer earns the promotion — for exampl
 
 | Field | Description |
 | :--- | :--- |
-| GSM Sender ID | The sender ID used for GSM network messages. |
-| CDMA Sender ID | The sender ID used for CDMA network messages. |
-| SMS Domain | The domain through which the SMS is routed. |
-| Send to DND customers | Toggle to Enabled to include customers who have registered on the Do Not Disturb list. By default, DND customers are excluded. |
-| Use tiny URL | Toggle to Enabled to automatically shorten any links in the message content. Reduces message length and character count. |
-| Send to brand POCs | Toggle to Enabled to route a copy of the message to configured brand Points of Contact. |
-| Maximum messages per day | Enter a number to limit how many messages the system sends to a single customer per day. This prevents over-messaging if a customer earns the promotion multiple times in one day. |
+| **GSM Sender ID** | The sender ID used for GSM network messages. |
+| **CDMA Sender ID** | The sender ID used for CDMA network messages. |
+| **SMS Domain** | The domain through which the SMS is routed. |
+| **Send to DND customers** | Toggle to **Enabled** to include customers who have registered on the Do Not Disturb list. By default, DND customers are excluded. |
+| **Use tiny URL** | Toggle to **Enabled** to automatically shorten any links in the message content. Reduces message length and character count. |
+| **Send to brand POCs** | Toggle to **Enabled** to route a copy of the message to configured brand Points of Contact. |
+| **Maximum messages per day** | Enter a number to limit how many messages the system sends to a single customer per day. This prevents over-messaging if a customer earns the promotion multiple times in one day. |
 
 #### Email
 
 | Field | Description |
 | :--- | :--- |
-| Sender ID | The email address that appears as the sender. |
-| Sender Name | The display name shown in the recipient's inbox. |
-| Reply-to ID | The email address customers reply to. |
-| Email Domain | The domain used for sending the email. |
-| Send to NDNC customers | Toggle to Enabled to include customers on the National Do Not Call registry. By default, NDNC customers are excluded. |
-| Use tiny URL | Toggle to Enabled to shorten links in the message content. |
-| Send to brand POCs | Toggle to Enabled to route a copy to configured brand Points of Contact. |
-| Maximum messages per day | Enter a number to cap how many emails the system sends to a single customer per day. |
+| **Sender ID** | The email address that appears as the sender. |
+| **Sender Name** | The display name shown in the recipient's inbox. |
+| **Reply-to ID** | The email address customers reply to. |
+| **Email Domain** | The domain used for sending the email. |
+| **Send to NDNC customers** | Toggle to **Enabled** to include customers on the National Do Not Call registry. By default, NDNC customers are excluded. |
+| **Use tiny URL** | Toggle to **Enabled** to shorten links in the message content. |
+| **Send to brand POCs** | Toggle to **Enabled** to route a copy to configured brand Points of Contact. |
+| **Maximum messages per day** | Enter a number to cap how many emails the system sends to a single customer per day. |
 
 #### WeChat
 
 | Field | Description |
 | :--- | :--- |
-| WeChat account | Select the WeChat account to send the message from. |
+| **WeChat account** | Select the WeChat account to send the message from. |
 
 ### Set expiry reminder
 

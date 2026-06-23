@@ -4,8 +4,6 @@ title: Brand Actions
 
 **Brand actions** are the specific rewards or operational outcomes that are triggered when a customer successfully meets the conditions of a loyalty promotion. Once a customer completes the required activity, like making a purchase, the system executes the linked brand action, such as issuing points, granting a coupon, upgrading a tier, or sending a communication. You can add up to 10 brand actions to a single activity to create rich, multi-faceted rewards.
 
-<Image src="/diagrams/loyalty-promotions-actions-diagram.png" width="1920" height="1080" alt="Diagram" />
-
 ---
 
 ## Issue Currency
@@ -62,16 +60,16 @@ The following table details the available base values you can select:
 
 | Proportional Value | UI term | Description | Example |
 | :--- | :--- | :--- | :--- |
-| Transaction Value |  | Uses the total monetary value of the transaction (bill amount) as the base for calculation.  You can use this to issue reward currency based on the customer's transaction value. | If a customer spends $100 and the proration is set to 10%, the system calculates 10% of $100 to award 10 points. |
+| Transaction Value |  | Uses the total monetary value of the transaction (bill amount) as the base for calculation. You can use this to issue reward currency based on the customer's transaction value. | If a customer spends $100 and the proration is set to 10%, the system calculates 10% of $100 to award 10 points. |
 | Transaction Extended Field |  | Uses a numeric value stored in a specific extended field attached to the entire transaction as the base for calculation. When selecting this option, you must also select the extended field. You can use this to issue reward currency based on an extended field in a transaction. | A transaction has a "Delivery Fee" field value of $20. If the proration is 50%, the customer earns 10 points based on that delivery fee. |
 | Transaction Custom Field |  | Uses a numeric value stored in a specific custom field attached to the entire transaction as the base for calculation. When selecting this option, you must also select the custom field. You can use this to issue reward currency based on an extended field in a transaction. | If a custom field "Tip Amount" has a value of $10, and proration is 100%, the customer earns 10 points. |
-| Line Item Value |  | Uses the price of a specific line item within the transaction as the base for calculation.  You can use this to issue reward currency on specific products. | A customer buys a shirt for $50. If the rule targets "Apparel" and proration is 20%, they earn 10 points based on the shirt's price. |
+| Line Item Value |  | Uses the price of a specific line item within the transaction as the base for calculation. You can use this to issue reward currency on specific products. | A customer buys a shirt for $50. If the rule targets "Apparel" and proration is 20%, they earn 10 points based on the shirt's price. |
 | Line Item Quantity |  | Uses the count (quantity) of specific items purchased rather than their price. You can use this when you want to reward bulk purchases. | A customer buys 5 coffee mugs. If proration is set to 100% (1 point per item), they earn 5 points. |
-| Line Item Extended Field |  | Uses a numeric value stored in a specific extended field attached to a specific item in a transaction. When selecting this option, you must also select the extended field.  You can use this to issue reward currency based on an extended field in a line item. | A hotel booking is made with a "Room nights count" field value of 4. If proration is 50%, the customer earns 2 points based on the room nights. |
-| Remaining gap to milestone (before this event) | Gap to upgrade as per condition (G) | Uses the remaining gap between the customer's current tracker value and the target milestone defined in the tracker condition. This is calculated before the current event's contribution is added. When selecting this option, you must also select the tracker. You can use this to issue reward currency based on the current progress of a customer in a tracker. | A customer has already spent $800 in a tracker window where the goal is $1000. The gap (G) is $200. If proration is 10%, they earn 20 points based on the remaining distance to the goal when they make their transaction. |
-| Value this event contributes toward the milestone | Event Tracked Value as per condition (E) | Uses the specific value that the current event contributes to the tracker condition. This isolates the portion of the transaction relevant to the tracked goal. You can use this to issue reward currency based on the value that is contributed towards a tracker's progress. | A customer has already spent $800 in a tracker window where the goal is $1000. The event value (E) is $200. If proration is 10%, they earn 20 points based on the value contributed towards the tracker's progress. |
-| Remaining gap to milestone (after this event) | Gap to upgrade after event | Uses the remaining gap between the customer's current tracker value and the target milestone defined in the tracker condition. This is calculated after the current event's contribution is added. When selecting this option, you must also select the tracker. You can use this to issue reward currency based on the current progress of a customer in a tracker. | A customer has already spent $800 in a tracker window where the goal is $1000. The gap is $200. The customer makes a transaction of $100, and the tracker gap is $100. If proration is 10%, they earn 10 points based on the remaining distance to the goal. |
-| Surplus above milestone target | Difference (E - G) | Uses the value by which the current event's contribution exceeds the remaining gap to the target milestone. This is the surplus value contributed after the milestone is reached. When selecting this option, you must also select the tracker.  You can use this to issue reward currency based on the amount that exceeds the tracker target. | A customer has already spent $800 in a tracker window where the goal is $1000. The gap (G) is $200. A customer makes a transaction, and the event value (E) is $300. The difference (E-G) is $100. If proration is 10%, they earn 10 points based on the value exceeding the milestone. |
+| Line Item Extended Field |  | Uses a numeric value stored in a specific extended field attached to a specific item in a transaction. When selecting this option, you must also select the extended field. You can use this to issue reward currency based on an extended field in a line item. | A hotel booking is made with a "Room nights count" field value of 4. If proration is 50%, the customer earns 2 points based on the room nights. |
+| Remaining gap to milestone (before this event) | Gap to upgrade as per condition (G) | Uses the remaining gap between the customer's *current* tracker value and the target milestone defined in the tracker condition. This is calculated *before* the current event's contribution is added. When selecting this option, you must also select the tracker. You can use this to issue reward currency based on the current progress of a customer in a tracker. | A customer has already spent $800 in a tracker window where the goal is $1000. The gap (G) is $200. If proration is 10%, they earn 20 points based on the remaining distance to the goal when they make their transaction. |
+| Value this event contributes toward the milestone | Event Tracked Value as per condition (E) | Uses the specific value that the *current event* contributes to the tracker condition. This isolates the portion of the transaction relevant to the tracked goal. You can use this to issue reward currency based on the value that is contributed towards a tracker's progress. | A customer has already spent $800 in a tracker window where the goal is $1000. The event value (E) is $200. If proration is 10%, they earn 20 points based on the value contributed towards the tracker's progress. |
+| Remaining gap to milestone (after this event) | Gap to upgrade after event | Uses the remaining gap between the customer's *current* tracker value and the target milestone defined in the tracker condition. This is calculated *after* the current event's contribution is added. When selecting this option, you must also select the tracker. You can use this to issue reward currency based on the current progress of a customer in a tracker. | A customer has already spent $800 in a tracker window where the goal is $1000. The gap is $200. The customer makes a transaction of $100, and the tracker gap is $100. If proration is 10%, they earn 10 points based on the remaining distance to the goal. |
+| Surplus above milestone target | Difference (E - G) | Uses the value by which the current event's contribution exceeds the remaining gap to the target milestone. This is the surplus value contributed after the milestone is reached. When selecting this option, you must also select the tracker. You can use this to issue reward currency based on the amount that exceeds the tracker target. | A customer has already spent $800 in a tracker window where the goal is $1000. The gap (G) is $200. A customer makes a transaction, and the event value (E) is $300. The difference (E-G) is $100. If proration is 10%, they earn 10 points based on the value exceeding the milestone. |
 
 ### Selecting the line item calculation method
 
@@ -79,8 +77,8 @@ When the activity type is **Single**, Proration type is **Proportional to value*
 
 | Aggregation type | Description | Example |
 | :--- | :--- | :--- |
-| Total value, then distribute across items (default) | Currency is calculated on the total of all qualifying line items, then proportionally attributed to each item based on their individual source values. | A customer buys shoes ($120.50), socks ($45.75), and a belt ($83.75), total $250.00. With 10% proration and rounding to the nearest integer, the system totals $250, calculates 25 points, then distributes proportionally: 12.05, 4.58, and 8.38 points to each item. Total awarded: 25 points. |
-| Each line item, independently | Currency is calculated separately for each qualifying line item based on its own value. | A customer buys shoes ($120.50), socks ($45.75), and a belt ($83.75). With 10% proration and rounding to the nearest integer, the system calculates points independently: $120.50 → $121 → 12.1 points, $45.75 → $46 → 4.6 points, $83.75 → $84 → 8.4 points. Total awarded: 25.1 points. |
+| **Total value, then distribute across items** (default) | Currency is calculated on the total of all qualifying line items, then proportionally attributed to each item based on their individual source values. | A customer buys shoes ($120.50), socks ($45.75), and a belt ($83.75), total $250.00. With 10% proration and rounding to the nearest integer, the system totals $250, calculates 25 points, then distributes proportionally: 12.05, 4.58, and 8.38 points to each item. Total awarded: 25 points. |
+| **Each line item, independently** | Currency is calculated separately for each qualifying line item based on its own value. | A customer buys shoes ($120.50), socks ($45.75), and a belt ($83.75). With 10% proration and rounding to the nearest integer, the system calculates points independently: $120.50 → $121 → 12.1 points, $45.75 → $46 → 4.6 points, $83.75 → $84 → 8.4 points. Total awarded: 25.1 points. |
 
 <Image src="https://files.readme.io/547b5560a703efb44fd37e18369b421198854403c4c9167f59fef6eeffdf5449-image.png" width="1920" height="1080" alt="" />
 
@@ -94,13 +92,13 @@ The table below elaborates on the available expiry types:
 
 | Expiry Type | Description | Example |
 | :--- | :--- | :--- |
-| Fixed Expiry | Currency expires on a specific calendar date or on a recurring date. The expiry is calculated from the issuance date and is not affected by any subsequent customer activity.Specific date: Select this if you want the issued currency to expire on a fixed date. For example, points expire on 25th December 2025.Recurring expiry: Select this if you want the issued currency to expire based on a yearly recurring time period. For example, points expire on the 15th of January every year.Note: The points will expire at the end of the day (23:59). | If the expiry is set to 90 days, currency earned on January 15th, 2025, will expire on April 15th, 2025. |
+| Fixed Expiry | Currency expires on a specific calendar date or on a recurring date. The expiry is calculated from the issuance date and is not affected by any subsequent customer activity. **Specific date**: Select this if you want the issued currency to expire on a fixed date. For example, points expire on 25th December 2025. **Recurring expiry:** Select this if you want the issued currency to expire based on a yearly recurring time period. For example, points expire on the 15th of January every year. **Note:** The points will expire at the end of the day (23:59). | If the expiry is set to 90 days, currency earned on January 15th, 2025, will expire on April 15th, 2025. |
 | Event Date | Currency expires after a fixed period calculated from the date of the earning activity (for example, a transaction or registration). | If the expiry is set to 60 days from the event date, currency earned from a purchase made on March 1st will expire on April 30th. |
 | Never Expires | Currency issued with this strategy will never expire. It remains in the customer's balance indefinitely unless it is redeemed. | Currency earned by the customer will remain valid and will not be removed from their balance due to inactivity. |
-| Customer Registration Date | Currency expires on the registration date of the customer. This registration date refers to the date on which the customer got enrolled or registered in the loyalty program. | Customer's registration date in the loyalty program.	If a customer registered on June 10, 2023, any currency earned with this strategy will expire every year on June 10th. |
+| Customer Registration Date | Currency expires on the registration date of the customer. This registration date refers to the date on which the customer got enrolled or registered in the loyalty program. | Customer's registration date in the loyalty program. If a customer registered on June 10, 2023, any currency earned with this strategy will expire every year on June 10th. |
 | Customer Extended Fields | Currency expires after a specified period calculated from a date stored in a customer-level extended field (for example, a "Subscription Renewal Date"). | If a customer's 'Subscription Renewal Date' field is '2025-09-01' and the expiry is configured to be 30 days after this date, the currency will expire on October 1st, 2025. |
 | Transaction Extended Fields | Currency expires after a specified period calculated from a date stored in a transaction-level extended field (for example, a "Hotel Check-in Date"). | If a transaction for a hotel stay has a 'Check-in Date' extended field of '2025-07-20' and the expiry is set to 14 days after this date, the currency will expire on August 3rd, 2025. |
-| From Event Date (Rolling Period) | Currency expiry is reset and extended based on subsequent customer activity. Each new qualifying activity pushes the expiry date for the customer's entire balance further into the future by the configured duration. | A customer earns currency on January 1, 2024, with a 12-month rolling expiry. If they make another transaction on December 1, 2024, the expiry date for all their currency is reset and now extends to December 1, 2025. |
+| From Event Date ([Rolling Period](https://docs.capillarytech.com/docs/points-rolling-expiry#/)) | Currency expiry is reset and extended based on subsequent customer activity. Each new qualifying activity pushes the expiry date for the customer's entire balance further into the future by the configured duration. | A customer earns currency on January 1, 2024, with a 12-month rolling expiry. If they make another transaction on December 1, 2024, the expiry date for all their currency is reset and now extends to December 1, 2025. |
 
 ### Strategies for rounding the transaction value
 
@@ -112,10 +110,10 @@ The following table lists the available strategies for rounding the transaction 
 
 | Rounding Strategy | Description | Example |
 | :--- | :--- | :--- |
-| Actual | Uses the exact, unrounded transaction value for the calculation. | A transaction of $50.75 is used as is. If the earning rule is 2 points per dollar, the calculated value would be 101.5 points. |
-| Round up | Rounds the transaction value up to the next highest whole number before calculation. | A transaction of $50.25 is rounded up to $51. If the earning rule is 2 points per dollar, the customer earns 102 points. |
-| Round down | Rounds the transaction value down to the nearest whole number, ignoring any cents. | A transaction of $50.75 is rounded down to $50. If the earning rule is 2 points per dollar, the customer earns 100 points. |
-| Round to nearest | Rounds the transaction value to the nearest whole number using standard mathematical rules (0.5 and above rounds up). | A transaction of $50.49 is rounded to $50 (earning 100 points), while a transaction of $50.50 is rounded to $51 (earning 102 points). |
+| **Actual** | Uses the exact, unrounded transaction value for the calculation. | A transaction of **$50.75** is used as is. If the earning rule is 2 points per dollar, the calculated value would be 101.5 points. |
+| **Round up** | Rounds the transaction value up to the next highest whole number before calculation. | A transaction of **$50.25** is rounded up to **$51**. If the earning rule is 2 points per dollar, the customer earns 102 points. |
+| **Round down** | Rounds the transaction value down to the nearest whole number, ignoring any cents. | A transaction of **$50.75** is rounded down to **$50**. If the earning rule is 2 points per dollar, the customer earns 100 points. |
+| **Round to nearest** | Rounds the transaction value to the nearest whole number using standard mathematical rules (0.5 and above rounds up). | A transaction of **$50.49** is rounded to **$50** (earning 100 points), while a transaction of **$50.50** is rounded to **$51** (earning 102 points). |
 
 ### Strategies for rounding the issued currency
 
@@ -127,10 +125,10 @@ The following table lists the available strategies for rounding the issued curre
 
 | Rounding Strategy | Description | Example |
 | :--- | :--- | :--- |
-| Actual | Awards the exact, calculated currency value, including any decimal fractions. | A calculated value of 101.5 currency remains 101.5. |
-| Round up | Rounds the final calculated currency up to the next highest whole number. | A calculated value of 101.1 currency is rounded up, and the customer is awarded 102 currency. |
-| Round down | Rounds the final calculated currency down to the nearest whole number, effectively ignoring any decimal places. | A calculated value of 101.9 currency is rounded down, and the customer is awarded 101 currency. |
-| Round to nearest | Rounds the final calculated currency to the nearest whole number using standard mathematical rules (0.5 and above rounds up). | A calculated value of 101.49 currency is awarded as 101, while a value of 101.50 currency is awarded as 102. |
+| **Actual** | Awards the exact, calculated currency value, including any decimal fractions. | A calculated value of **101.5** currency remains **101.5**. |
+| **Round up** | Rounds the final calculated currency up to the next highest whole number. | A calculated value of **101.1** currency is rounded up, and the customer is awarded **102** currency. |
+| **Round down** | Rounds the final calculated currency down to the nearest whole number, effectively ignoring any decimal places. | A calculated value of **101.9** currency is rounded down, and the customer is awarded **101** currency. |
+| **Round to nearest** | Rounds the final calculated currency to the nearest whole number using standard mathematical rules (0.5 and above rounds up). | A calculated value of **101.49** currency is awarded as **101**, while a value of **101.50** currency is awarded as **102**. |
 
 ### Strategies for configuring the currency issuance time
 
@@ -140,10 +138,10 @@ The issuance timing determines precisely when the currency is credited to a cust
 
 | Issuance Strategy | Description | Example |
 | :--- | :--- | :--- |
-| Immediate | Awards currency instantly upon the successful completion of the qualifying activity. This provides immediate gratification to the customer and is the standard for most earning rules. | A customer makes a $50 purchase and immediately receives 50 points in their account. |
-| Delayed by x days from activity | Awards currency only after a specified number of days have passed since the qualifying activity. This is commonly used to align with product return windows, ensuring currency is not awarded for purchases that are later returned. | A product has a 14-day return policy. The currency issuance is delayed by 15 days to ensure the points are awarded only after the return period has ended. |
-| On external API call | Holds the currency in a pending or "promised" state until an external system confirms the issuance via an API call. This is ideal for scenarios where final eligibility depends on a separate confirmation, such as a partner validating an action. | A customer books a hotel room, and the points are held as 'promised'. After the customer completes their stay, the hotel's reservation system makes an API call to confirm the event, and the currency is then issued. |
-| On transaction update | Awards currency only when the original transaction is updated to meet a specific condition or status. This is often used in order fulfillment workflows, where currency is granted upon shipment or delivery, not upon initial order placement. | A customer places an online order. The currency is configured to be issued only when the transaction status is updated to 'Shipped'. Once the warehouse ships the item, the status update triggers the point issuance. |
+| **Immediate** | Awards currency instantly upon the successful completion of the qualifying activity. This provides immediate gratification to the customer and is the standard for most earning rules. | A customer makes a **$50 purchase** and immediately receives **50 points** in their account. |
+| **Delayed by x days from activity** | Awards currency only after a specified number of days have passed since the qualifying activity. This is commonly used to align with product return windows, ensuring currency is not awarded for purchases that are later returned. | A product has a **14-day return policy**. The currency issuance is delayed by **15 days** to ensure the points are awarded only after the return period has ended. |
+| **On external API call** | Holds the currency in a pending or "promised" state until an external system confirms the issuance via an API call. This is ideal for scenarios where final eligibility depends on a separate confirmation, such as a partner validating an action. | A customer books a hotel room, and the points are held as 'promised'. After the customer completes their stay, the hotel's reservation system makes an API call to confirm the event, and the currency is then issued. |
+| **On transaction update** | Awards currency only when the original transaction is updated to meet a specific condition or status. This is often used in order fulfillment workflows, where currency is granted upon shipment or delivery, not upon initial order placement. | A customer places an online order. The currency is configured to be issued only when the transaction status is updated to **'Shipped'**. Once the warehouse ships the item, the status update triggers the point issuance. |
 
 ### Filtering transactions (Include/Exclude)
 
@@ -235,10 +233,10 @@ The following table lists the available expiration strategies:
 
 | Expiry strategy | Description | Example |
 | :--- | :--- | :--- |
-| Specific date | Sets a fixed calendar date for the tier expiration. All customers receiving this tier change will have their new status expire on this exact date, regardless of when they earned it. | A holiday promotion upgrades members to the 'Gold Tier'. The expiration is set to a specific date of January 31, 2026. All members who receive this upgrade will revert to their Gold status on that date. |
-| Specific duration | Sets the tier to expire after a specified number of days or months, calculated from the date the customer's tier was changed. Each customer will have a unique expiration date based on when they qualified. | A 'Welcome Offer' upgrades new members to the 'Silver Tier' with an expiration set to a specific duration of 90 days. If a member is upgraded on March 1st, their Silver status will expire on May 30th. |
-| Transaction extended field (Date) | Sets the expiration date based on a date value stored in a transaction-level extended field. The tier will expire a specified number of days or months after the date found in that field. | A hotel booking promotion grants 'VIP Status'. The expiration is configured to be 30 days after the date in the 'CheckOutDate' transaction extended field. If a customer's check-out date is June 15th, their VIP status will expire on July 15th. |
-| Transaction extended field (Number) | Sets the duration of the tier upgrade based on a numeric value stored in a transaction-level extended field. The number in the field is interpreted as the length of the tier status in days or months. | A partner promotion offers a tier upgrade. The expiration is set to use the value from the 'TrialPeriodDays' transaction extended field. If a transaction from the partner contains a value of 60 in that field, the member's tier upgrade will last for 60 days. |
+| Specific date | Sets a fixed calendar date for the tier expiration. All customers receiving this tier change will have their new status expire on this exact date, regardless of when they earned it. | A holiday promotion upgrades members to the 'Gold Tier'. The expiration is set to a **specific date** of **January 31, 2026**. All members who receive this upgrade will revert to their Gold status on that date. |
+| Specific duration | Sets the tier to expire after a specified number of days or months, calculated from the date the customer's tier was changed. Each customer will have a unique expiration date based on when they qualified. | A 'Welcome Offer' upgrades new members to the 'Silver Tier' with an expiration set to a **specific duration** of **90 days**. If a member is upgraded on March 1st, their Silver status will expire on May 30th. |
+| Transaction extended field (Date) | Sets the expiration date based on a date value stored in a transaction-level extended field. The tier will expire a specified number of days or months *after* the date found in that field. | A hotel booking promotion grants 'VIP Status'. The expiration is configured to be **30 days after** the date in the **'CheckOutDate'** transaction extended field. If a customer's check-out date is June 15th, their VIP status will expire on July 15th. |
+| Transaction extended field (Number) | Sets the duration of the tier upgrade based on a numeric value stored in a transaction-level extended field. The number in the field is interpreted as the length of the tier status in days or months. | A partner promotion offers a tier upgrade. The expiration is set to use the value from the **'TrialPeriodDays'** transaction extended field. If a transaction from the partner contains a value of **60** in that field, the member's tier upgrade will last for **60 days**. |
 
 ### Configuring the manage tier action
 
@@ -328,8 +326,8 @@ When the activity type is **Single**, the number of coupons to be issued dynamic
 
 | Aggregation type | Description | Example |
 | :--- | :--- | :--- |
-| Total value, then distribute across items (default) | The number of coupons is calculated on the total of all qualifying line items, then proportionally attributed to each item based on their individual source values. | A customer buys a shirt ($80), a tie ($60), and a jacket ($110), total $250. The rule issues 1 coupon per $100 spent. The system totals $250, calculates 2 coupons, then attributes them proportionally across items. Total awarded: 2 coupons. |
-| Each line item, independently | The number of coupons is calculated separately for each qualifying line item based on its own value. | A customer buys a shirt ($80), a tie ($60), and a jacket ($110). The rule issues 1 coupon per $100 spent. Calculated independently: $80 → 0 coupons, $60 → 0 coupons, $110 → 1 coupon. Total awarded: 1 coupon. |
+| **Total value, then distribute across items** (default) | The number of coupons is calculated on the total of all qualifying line items, then proportionally attributed to each item based on their individual source values. | A customer buys a shirt ($80), a tie ($60), and a jacket ($110), total $250. The rule issues 1 coupon per $100 spent. The system totals $250, calculates 2 coupons, then attributes them proportionally across items. Total awarded: 2 coupons. |
+| **Each line item, independently** | The number of coupons is calculated separately for each qualifying line item based on its own value. | A customer buys a shirt ($80), a tie ($60), and a jacket ($110). The rule issues 1 coupon per $100 spent. Calculated independently: $80 → 0 coupons, $60 → 0 coupons, $110 → 1 coupon. Total awarded: 1 coupon. |
 
 <Image src="https://files.readme.io/798bcb93eedd29fe1e1e696cd05c962837290665a781233ec5ebdf7c7e605f4f-image.png" width="1920" height="1080" alt="" />
 
@@ -339,9 +337,9 @@ When the proration type is **Dynamic** or **Stepped** and a line item-based valu
 
 | Rounding strategy | Description | Example |
 | :--- | :--- | :--- |
-| Round up | Rounds the source value up to the next whole number before calculating the number of coupons. | A line item source value of $74.25 is rounded up to $75 before the coupon count is calculated. |
-| Round down | Rounds the source value down to the nearest whole number before calculating the number of coupons. | A line item source value of $74.75 is rounded down to $74 before the coupon count is calculated. |
-| Round to nearest integer (default) | Rounds the source value to the nearest whole number using standard rounding rules (0.5 and above rounds up). | A source value of $74.49 is rounded to $74, while $74.50 is rounded to $75. |
+| **Round up** | Rounds the source value up to the next whole number before calculating the number of coupons. | A line item source value of $74.25 is rounded up to $75 before the coupon count is calculated. |
+| **Round down** | Rounds the source value down to the nearest whole number before calculating the number of coupons. | A line item source value of $74.75 is rounded down to $74 before the coupon count is calculated. |
+| **Round to nearest integer** (default) | Rounds the source value to the nearest whole number using standard rounding rules (0.5 and above rounds up). | A source value of $74.49 is rounded to $74, while $74.50 is rounded to $75. |
 
 ### Filtering transactions (Include/Exclude)
 
@@ -380,10 +378,10 @@ To configure the **Issue Coupon** action, follow these steps:
 
 | Coupon issue criteria | Description | Example |
 | :--- | :--- | :--- |
-| Fixed amount | A specific quantity of coupons is issued for a qualifying event, regardless of the transaction value. | A customer makes a purchase of $500. Because the rule is set to a fixed "1," they receive exactly 1 coupon, just as they would if they had spent only $10. |
-| Multiplier | Applies a multiplication factor to the base quantity of coupons defined in the earn rule. | A customer makes a purchase during a "Double Rewards" promo. Instead of the standard 1 coupon, the system applies a 2x multiplier, and the customer receives 2 coupons for that single transaction. |
-| Dynamic | The quantity of coupons is calculated as a percentage of a specific base value | A customer makes a purchase of $200. The rule is set to "Dynamic" with a condition of "5% of Transaction Amount." The system calculates 5% of 200, and the customer receives 10 coupons for that transaction. |
-| Stepped | Issues a specific quantity of coupons for every defined interval of spend (step size). | A customer spends $300. The rule is configured to "Issue 1 coupon for every $100 spent." The system calculates three full intervals ($100, $200, $300) and issues a total of 3 coupons. |
+| **Fixed amount** | A specific quantity of coupons is issued for a qualifying event, regardless of the transaction value. | A customer makes a purchase of $500. Because the rule is set to a fixed "1," they receive exactly 1 coupon, just as they would if they had spent only $10. |
+| **Multiplier** | Applies a multiplication factor to the base quantity of coupons defined in the earn rule. | A customer makes a purchase during a "Double Rewards" promo. Instead of the standard 1 coupon, the system applies a 2x multiplier, and the customer receives 2 coupons for that single transaction. |
+| **Dynamic** | The quantity of coupons is calculated as a percentage of a specific base value | A customer makes a purchase of $200. The rule is set to "Dynamic" with a condition of "5% of Transaction Amount." The system calculates 5% of 200, and the customer receives 10 coupons for that transaction. |
+| **Stepped** | Issues a specific quantity of coupons for every defined interval of spend (step size). | A customer spends $300. The rule is configured to "Issue 1 coupon for every $100 spent." The system calculates three full intervals ($100, $200, $300) and issues a total of 3 coupons. |
 
 1. Toggle Same for all tiers to ON to issue a fixed quantity of coupons for customers across all tiers. Toggle Same for all tiers to OFF to issue different quantities of coupons for customers across different tiers. If you create a new tier for the loyalty program, you must also reconfigure the values for the promotion.
 2. Enter the quantity of coupons to issue.
@@ -429,8 +427,8 @@ When the activity type is **Single**, the number of coupons to be issued dynamic
 
 | Aggregation type | Description | Example |
 | :--- | :--- | :--- |
-| Total value, then distribute across items (default) | The number of rewards is calculated on the total of all qualifying line items, then proportionally attributed to each item based on their individual source values. | A customer buys a skincare set ($75), a moisturizer ($55), and a perfume ($170), total $300. The rule issues 1 reward per $150 spent. The system totals $300, calculates 2 rewards, then attributes them proportionally across items. Total awarded: 2 rewards. |
-| Each line item, independently | The number of rewards is calculated separately for each qualifying line item based on its own value. | A customer buys a skincare set ($75), a moisturizer ($55), and a perfume ($170). The rule issues 1 reward per $150 spent. Calculated independently: $75 → 0 rewards, $55 → 0 rewards, $170 → 1 reward. Total awarded: 1 reward. |
+| **Total value, then distribute across items** (default) | The number of rewards is calculated on the total of all qualifying line items, then proportionally attributed to each item based on their individual source values. | A customer buys a skincare set ($75), a moisturizer ($55), and a perfume ($170), total $300. The rule issues 1 reward per $150 spent. The system totals $300, calculates 2 rewards, then attributes them proportionally across items. Total awarded: 2 rewards. |
+| **Each line item, independently** | The number of rewards is calculated separately for each qualifying line item based on its own value. | A customer buys a skincare set ($75), a moisturizer ($55), and a perfume ($170). The rule issues 1 reward per $150 spent. Calculated independently: $75 → 0 rewards, $55 → 0 rewards, $170 → 1 reward. Total awarded: 1 reward. |
 
 <Image src="https://files.readme.io/3f634b095c2d6dc2f577dae742c1aafa8ad7f6530a47deadf465d8328749d4da-image.png" width="1920" height="1080" alt="" />
 
@@ -440,9 +438,9 @@ When the proration type is **Dynamic** or **Stepped** and a line item-based valu
 
 | Rounding strategy | Description | Example |
 | :--- | :--- | :--- |
-| Round up | Rounds the source value up to the next whole number before calculating the number of rewards. | A line item source value of $74.25 is rounded up to $75 before the reward count is calculated. |
-| Round down | Rounds the source value down to the nearest whole number before calculating the number of rewards. | A line item source value of $74.75 is rounded down to $74 before the reward count is calculated. |
-| Round to nearest integer (default) | Rounds the source value to the nearest whole number using standard rounding rules (0.5 and above rounds up). | A source value of $74.49 is rounded to $74, while $74.50 is rounded to $75. |
+| **Round up** | Rounds the source value up to the next whole number before calculating the number of rewards. | A line item source value of $74.25 is rounded up to $75 before the reward count is calculated. |
+| **Round down** | Rounds the source value down to the nearest whole number before calculating the number of rewards. | A line item source value of $74.75 is rounded down to $74 before the reward count is calculated. |
+| **Round to nearest integer** (default) | Rounds the source value to the nearest whole number using standard rounding rules (0.5 and above rounds up). | A source value of $74.49 is rounded to $74, while $74.50 is rounded to $75. |
 
 ### Filtering transactions (Include/Exclude)
 
@@ -481,10 +479,10 @@ To configure the **Issue Reward** action, follow these steps:
 
 | Coupon issue criteria | Description | Example |
 | :--- | :--- | :--- |
-| Fixed amount | A specific quantity of coupons is issued for a qualifying event, regardless of the transaction value. |  |
-| Multiplier | Applies a multiplication factor to the base quantity of coupons defined in the earn rule. |  |
-| Dynamic | The quantity of coupons is calculated as a percentage of a specific base value |  |
-| Stepped | Issues a specific quantity of coupons for every defined interval of spend (step size). |  |
+| **Fixed amount** | A specific quantity of coupons is issued for a qualifying event, regardless of the transaction value. |  |
+| **Multiplier** | Applies a multiplication factor to the base quantity of coupons defined in the earn rule. |  |
+| **Dynamic** | The quantity of coupons is calculated as a percentage of a specific base value |  |
+| **Stepped** | Issues a specific quantity of coupons for every defined interval of spend (step size). |  |
 
 1. Toggle Same for all tiers to ON to issue a fixed quantity of rewards for customers across all tiers. Toggle Same for all tiers to OFF to issue different quantities of rewards for customers across different tiers. If you create a new tier for the loyalty program, you must also reconfigure the values for the promotion.
 2. Enter the quantity of rewards to issue.

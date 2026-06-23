@@ -16,8 +16,8 @@ Zoom in the table for more clarity. Click the table title to view its details.
 
 | Column Name | Data Type | Description | Linked Table |
 | --- | --- | --- | --- |
-| dim_event_date_id | bigint | Date of the transaction. It is the primary key of the table. | date |
-| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. It is the primary key of the table. | zone_till |
+| dim_event_date_id | bigint | Date of the transaction. It is the primary key of the table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. It is the primary key of the table. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) |
 | not_interested_bill_count | bigint | Number of bills generated from purchases of not-interested customers. | _ |
 | points_redeemed | double | Total points redeemed by the transactions made through the till (Point of sale counter). | _ |
 | total_bills | bigint | Total number of bills generated through the till. | _ |

@@ -15,8 +15,6 @@ Attributes allow you to define specific eligibility criteria based on various da
 
 The following attributes are available:
 
-<Image src="/diagrams/loyalty-promotions-qualifying-conditions-diagram.png" width="1920" height="1080" alt="Diagram" />
-
 ## Member attributes
 
 Member attributes enable you to create conditions based on the individual profile of the person interacting with your brand. This category includes demographic details like a name or email address, as well as dynamic loyalty data, for example, their current tier, available points balance, and lifetime purchase history.
@@ -86,7 +84,7 @@ The member attributes are supported for the following member actions: gets enrol
 | Target Achieved In Period | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The amount of a target goal achieved within a specific custom timeframe. | Target Achieved In Period Greater Than 500 |
 | Target Achieved In Current Period | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The amount of a target goal achieved during the currently active cycle. | Target Achieved In Current Period Greater Than Or Equal 1000 |
 | Count Active Coupons In Coupon Series | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The number of valid, unredeemed coupons the member holds for a specific series. | Count Active Coupons In Coupon Series (Summer Sale) Greater Than 0 |
-| Currency Metrics | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Conditions based on a filtered, aggregated view of a member's currency data, such as points or benefits. Select a specific fact, add optional filters, and define an aggregation. See Transaction and currency metrics for the selection flow. | Currency Metrics (Get Points, Sum, Duration: Today) Greater Than 500 |
+| Currency Metrics | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Conditions based on a filtered, aggregated view of a member's currency data, such as points or benefits. Select a specific fact, add optional filters, and define an aggregation. See [Transaction and currency metrics](#transaction-and-currency-metrics) for the selection flow. | Currency Metrics (Get Points, Sum, Duration: Today) Greater Than 500 |
 
 ---
 
@@ -179,17 +177,17 @@ The user group attributes are supported for the following member actions: redeem
 
 | Attribute | Classification | Supported Operators | Description | Example |
 | :--- | :--- | :--- | :--- | :--- |
-| Name | Member Attribute | Equals, Not Equals, Contains, Matches, Is One Of, Is None Of, Exists, Is Empty, Is Null, Is Not Null | The display name of the user group. | User Group > Name > Contains > Corporate |
-| External Id | Member Attribute | Equals, Not Equals, Contains, Matches, Is One Of, Is None Of, Exists, Is Empty, Is Null, Is Not Null | The unique external identifier assigned to the user group. | User Group > External Id > Equals > GRP-9988 |
-| Created Date | Member Attribute | Equals, Not Equals, Is Before, Is After, Is On Or Before, Is On Or After, Is Between, Is Weekend, Is Weekday, Days Diff | The date when the user group was created in the system. | User Group > Created Date > Is Before > 2024-01-01 |
-| Slab Name | Member Attribute | Equals, Not Equals, Contains, Is One Of, Is None Of, Is Null, Is Not Null | The name of the loyalty tier (slab) currently assigned to the group. | User Group > Slab Name > Is One Of > Gold, Platinum |
-| Slab Number | Member Attribute | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The numeric rank or level of the group's current loyalty tier. | User Group > Slab Number > Greater Than > 2 |
-| Slab Expiry Date | Member Attribute | Equals, Not Equals, Is Before, Is After, Is On Or Before, Is On Or After, Is Between, Days Diff | The date when the group's current tier status is set to expire. | User Group > Slab Expiry Date > Days Diff > Current Date |
-| Member Count | Member Attribute | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of individual members linked to this group. | User Group > Member Count > Greater Than > 5 |
-| Current Points | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The group's current balance of redeemable points. | User Group > Current Points > Greater Than > 5000 |
-| Lifetime Purchase | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total monetary value of purchases made by the entire group since inception. | User Group > Lifetime Purchase > Greater Than > 10000 |
-| Number Of Txns | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The cumulative number of transactions completed by all members of the group. | User Group > Number Of Txns > Greater Than > 50 |
-| Number Of Visits | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total count of unique visits made by the group. | User Group > Number Of Visits > Greater Than > 20 |
+| **Name** | Member Attribute | Equals, Not Equals, Contains, Matches, Is One Of, Is None Of, Exists, Is Empty, Is Null, Is Not Null | The display name of the user group. | `User Group` > `Name` > `Contains` > `Corporate` |
+| **External Id** | Member Attribute | Equals, Not Equals, Contains, Matches, Is One Of, Is None Of, Exists, Is Empty, Is Null, Is Not Null | The unique external identifier assigned to the user group. | `User Group` > `External Id` > `Equals` > `GRP-9988` |
+| **Created Date** | Member Attribute | Equals, Not Equals, Is Before, Is After, Is On Or Before, Is On Or After, Is Between, Is Weekend, Is Weekday, Days Diff | The date when the user group was created in the system. | `User Group` > `Created Date` > `Is Before` > `2024-01-01` |
+| **Slab Name** | Member Attribute | Equals, Not Equals, Contains, Is One Of, Is None Of, Is Null, Is Not Null | The name of the loyalty tier (slab) currently assigned to the group. | `User Group` > `Slab Name` > `Is One Of` > `Gold, Platinum` |
+| **Slab Number** | Member Attribute | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The numeric rank or level of the group's current loyalty tier. | `User Group` > `Slab Number` > `Greater Than` > `2` |
+| **Slab Expiry Date** | Member Attribute | Equals, Not Equals, Is Before, Is After, Is On Or Before, Is On Or After, Is Between, Days Diff | The date when the group's current tier status is set to expire. | `User Group` > `Slab Expiry Date` > `Days Diff` > `Current Date` |
+| **Member Count** | Member Attribute | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of individual members linked to this group. | `User Group` > `Member Count` > `Greater Than` > `5` |
+| **Current Points** | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The group's current balance of redeemable points. | `User Group` > `Current Points` > `Greater Than` > `5000` |
+| **Lifetime Purchase** | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total monetary value of purchases made by the entire group since inception. | `User Group` > `Lifetime Purchase` > `Greater Than` > `10000` |
+| **Number Of Txns** | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The cumulative number of transactions completed by all members of the group. | `User Group` > `Number Of Txns` > `Greater Than` > `50` |
+| **Number Of Visits** | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total count of unique visits made by the group. | `User Group` > `Number Of Visits` > `Greater Than` > `20` |
 
 ---
 
@@ -207,7 +205,7 @@ The purchase attributes are supported for the following member actions: makes a 
 | Basket Amount Sum | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total net value of the basket after all discounts are applied. | Basket Amount Sum Is Between 100 and 200 |
 | Basket Size | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total number of unique line items included in the purchase. | Basket Size Greater Than 3 |
 | Total Quantity | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The cumulative quantity of all items purchased across all lines. | Total Quantity Greater Than Or Equal 10 |
-| Tender Code | Transaction Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The identifier for the payment method(s) used (e.g., CASH, WALLET). Enter the payment method name (for example, Wag co-branded prepaid debit), not the numeric tender code ID (for example, 43). The system resolves numeric IDs to names before evaluating the condition, so entering a numeric ID will never match. | Tender Code Any Match "CREDIT_CARD" |
+| Tender Code | Transaction Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The identifier for the payment method(s) used (e.g., CASH, WALLET). Enter the payment method **name** (for example, `Wag co-branded prepaid debit`), not the numeric tender code ID (for example, `43`). The system resolves numeric IDs to names before evaluating the condition, so entering a numeric ID will never match. | Tender Code Any Match "CREDIT_CARD" |
 | Tender Amount | Transaction Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The specific amount paid through a specific payment tender. | Tender Amount Greater Than 50 |
 | Item Code | Transaction Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | A list of all product codes/SKUs present in the current transaction. | Item Code Contains "PROD-X" |
 | Item Description | Transaction Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | A list of all product names or descriptions in the basket. | Item Description Any Match contains "Shoes" |
@@ -226,7 +224,7 @@ The purchase attributes are supported for the following member actions: makes a 
 | Item Net Amount | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the final price (after discount) for every individual line item. | Item Net Amount Greater Than 100 |
 | Item Gross Amount | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the original price (before discount) for every individual line item. | Item Gross Amount Less Than 50 |
 | Basket Amount Sum Non Discounted | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total value of all items in the basket before any discounts are applied. | Basket Amount Sum Non Discounted Greater Than 200.00 |
-| Transaction Metrics | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Conditions based on a filtered, aggregated view of the current transaction's basket data. Select a specific basket fact, add optional filters, and define an aggregation. See Transaction and currency metrics for the selection flow. | Transaction Metrics (Basket Item Count, Count) Greater Than 3 |
+| Transaction Metrics | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Conditions based on a filtered, aggregated view of the current transaction's basket data. Select a specific basket fact, add optional filters, and define an aggregation. See [Transaction and currency metrics](#transaction-and-currency-metrics) for the selection flow. | Transaction Metrics (Basket Item Count, Count) Greater Than 3 |
 
 <Callout kind="info" title="Note:">
 
@@ -258,8 +256,8 @@ The referrer code attributes are supported for the following member actions: get
 
 | Attribute | Classification | Supported Operators | Description | Example |
 | :--- | :--- | :--- | :--- | :--- |
-| Referee Reg Count | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of new members who have successfully registered using this customer's referral code. | Referrer Code > Referee Reg Count > Greater Than > 5 |
-| Referee Txn Count | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of transactions completed by the new members referred by this customer. | Referrer Code > Referee Txn Count > Greater Than Or Equal > 10 |
+| **Referee Reg Count** | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of new members who have successfully registered using this customer's referral code. | `Referrer Code` > `Referee Reg Count` > `Greater Than` > `5` |
+| **Referee Txn Count** | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of transactions completed by the new members referred by this customer. | `Referrer Code` > `Referee Txn Count` > `Greater Than Or Equal` > `10` |
 
 ---
 

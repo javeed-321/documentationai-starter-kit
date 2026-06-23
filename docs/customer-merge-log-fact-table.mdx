@@ -18,14 +18,14 @@ Zoom in the table for more clarity. Click the table title to view its details.
 | :--- | :---: | :--- | :---: | :---: |
 | auto_update_time | bigint | Date and time when the corresponding record in the communications table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time |
 | details | string | Details about the merge process. | _ | Yes; Measure Name: Details |
-| dim_event_date_id | bigint | Date when the customer profile was merged. | date | Yes; Dimension Name: Date > Date |
-| dim_event_time_id | bigint | Time when the customer profile was merged. | time | Yes; Dimension Name: Time > Time Id |
-| dim_event_user_id | bigint | Current user id of the customer whose account was merged. | users | Yes; Dimension Name: User > User Id |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | date | Yes; Dimension Name: Latest Updated Date > Date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | time | Yes; Dimension Name: Latest Updated Time > Time Id |
-| dim_merged_by_admin_id | bigint | Identifier for the admin user who performed the merge. | admin_users | Yes; Dimension Name: Merge By Admin User > Id |
-| dim_merged_by_zone_till_id | bigint | Identifier for the store (till) where the customer profile was merged. | zone till | Yes; Dimension Name: Merge By Till > Till Id |
-| dim_victim_user_id | bigint | Identifier for the user with which the customer profile was merged. | users | Yes; Dimension Name: Victim User > User Id |
+| dim_event_date_id | bigint | Date when the customer profile was merged. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time when the customer profile was merged. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Current user id of the customer whose account was merged. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_merged_by_admin_id | bigint | Identifier for the admin user who performed the merge. | [admin_users](https://docs.capillarytech.com/docs/dimension-tables#admin-users) | Yes; Dimension Name: Merge By Admin User > Id |
+| dim_merged_by_zone_till_id | bigint | Identifier for the store (till) where the customer profile was merged. | [zone till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Merge By Till > Till Id |
+| dim_victim_user_id | bigint | Identifier for the user with which the customer profile was merged. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: Victim User > User Id |
 | merge_event_id | bigint | Unique identifier for the merge event. It is the primary key of this table. | _ | Yes; Measure Name: Merge Event Id |
 | merge_reason | string | The reason provided for merging the accounts. | _ | Yes; Measure Name: Merge Reason |
 | victim_external_id | string | External id of customer for which the customer profile has been merged. | _ | Yes; Measure Name: Victim External Id |

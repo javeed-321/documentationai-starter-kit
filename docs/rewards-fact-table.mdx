@@ -45,15 +45,15 @@ Zoom in the table for more clarity. Click the table title to view its details.
 | points_ref_id | bigint | Reference id for points-related transactions, and is null for transactions that are free or paid with cash. | _ |
 | reward_promotion_link_id | bigint | Identifier for the promotion that is linked to the reward. | _ |
 | vendor_reward | string | Reward provided by the vendor. | _ |
-| dim_catalog_promotion_id | bigint | Identifier for the catalogue promotion. | rewards_catalogue_promotion |
-| dim_event_date_id | bigint | Date when the reward is issued. It is in the YYYYMMDD format. | date |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | date |
-| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | time |
-| dim_reward_id | bigint | Identifier of the reward. | rewards |
-| dim_reward_issue_update_on_id | bigint | Date when the reward issue table is updated.  It is in the YYYYMMDD format. | time |
+| dim_catalog_promotion_id | bigint | Identifier for the catalogue promotion. | [rewards_catalogue_promotion](https://docs.capillarytech.com/docs/dimension-tables#catalog-promotion-reward_catalog_promotion) |
+| dim_event_date_id | bigint | Date when the reward is issued. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_reward_id | bigint | Identifier of the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_reward_issue_update_on_id | bigint | Date when the reward issue table is updated. It is in the YYYYMMDD format. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
 | transaction_id | bigint | Identifier for the transaction. |  |
 | year | integer | Year of the reward issual. | _ |
-| is_active | boolean | A flag to indicate the current status of the coupon.Supported Values:True: The coupon is active, valid, and can be redeemed by the user.  False: The coupon is inactive, meaning it may have been used, expired, or failed during the issuance process. |  |
+| is_active | boolean | A flag to indicate the current status of the coupon.Supported Values:True: The coupon is active, valid, and can be redeemed by the user. False: The coupon is inactive, meaning it may have been used, expired, or failed during the issuance process. |  |
 
 ## Reward Payment Currency Fact
 
@@ -69,19 +69,19 @@ Customers can purchase rewards with cash, fixed points, variable points, or a co
 | --- | :---: | --- | :---: |
 | auto_update_time | bigint | Date and time when the reward_transaction source table was last updated. It is in the Unix timestamp format. | _ |
 | auto_update_time_redemption | bigint | Date and time when the corresponding record in the redemption source table was last updated. It is in the Unix timestamp format. | _ |
-| dim_event_date_id | bigint | Date on which the issue reward transaction occurred. It is in the YYYYMMDD format. | date |
-| dim_event_time_id | bigint | Identifier for the time when the issue reward transaction occurred. | time |
-| dim_event_user_id | bigint | Identifier for the customer associated with the reward. | users |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | date |
-| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | time |
-| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_dim |
-| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_standard_dim |
-| dim_payment_config_currency_type_id | bigint | Identifier for the currency type used in the payment configuration. Possible values of the currency types, in the linked dimension table include - conv_ratio, points, and cash. | reward_payment_config_currency_dim |
-| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | reward_payment_config_dim |
-| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | reward_redemption_types_dim |
-| dim_reward_id | bigint | Identifier for the reward. | rewards |
-| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | reward_vendor_dim |
-| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | reward_vendor_redemption_dim |
+| dim_event_date_id | bigint | Date on which the issue reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the issue reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the customer associated with the reward. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_payment_config_currency_type_id | bigint | Identifier for the currency type used in the payment configuration. Possible values of the currency types, in the linked dimension table include - conv_ratio, points, and cash. | [reward_payment_config_currency_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-currency-reward_payment_config_currency_dim) |
+| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | [reward_payment_config_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-reward_payment_config_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
 | group_loyalty_redemption | int | Identifier forgroup loyalty redemption. | _ |
 | id | bigint | Unique identifier for the table record. It is the primary key for the table. | _ |
 | intouch_series_id | string | Identifier for the series within the Intouch system. It can be the promotion id or coupons series id. | _ |
@@ -110,17 +110,17 @@ This table captures transaction details whenever a reward is issued. It shows on
 | --- | :---: | --- | :---: |
 | auto_update_time | bigint | Date and time when the reward_transaction source table was last updated. It is in the Unix timestamp format. | _ |
 | auto_update_time_redemption | bigint | Date and time when the corresponding record in the redemption source table was last updated. It is in the Unix timestamp format. | _ |
-| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | date |
-| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | time |
-| dim_event_user_id | bigint | Identifier for the customer associated with the reward. | users |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | date |
-| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | time |
-| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_dim |
-| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_standard_dim |
-| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | reward_redemption_types_dim |
-| dim_reward_id | bigint | Identifier for the reward. | rewards |
-| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | reward_vendor_dim |
-| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | reward_vendor_redemption_dim |
+| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the customer associated with the reward. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
 | group_loyalty_redemption | int | Identifier for group loyalty redemption. | _ |
 | id | bigint | Unique identifier for the table record. It is the primary key for the table. | _ |
 | intouch_series_id | string | Identifier for the series within the Intouch system. It can be the promotion id or coupons series id or null. | _ |
@@ -149,20 +149,20 @@ This table captures the reward issue transaction along with its custom field dat
 | auto_update_time_user_custom_field | bigint | Date and time when the corresponding record in the user_custom_field source table was last updated. It is in the Unix timestamp format. | _ |
 | custom_field_mapping_isactive | int | Indicates whether the custom field mapping is active (1 for active, 0 for inactive). | _ |
 | custom_field_value | string | The value associated with a custom field. | _ |
-| dim_custom_field_id | bigint | Identifier for the rewards custom field. | reward_custom_fields_dim |
-| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | date |
-| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | time |
-| dim_event_user_id | bigint | Identifier for the user associated with the reward transaction. | users |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | date |
-| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | time |
-| dim_owner_id | string | Identifier for the module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_dim |
-| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_standard_dim |
-| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | reward_payment_config_dim |
-| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | reward_redemption_types_dim |
-| dim_reward_id | bigint | Identifier for the reward. | rewards |
-| dim_scope_id | bigint | Identifier for the scope. Scope defines where the additional custom fields will apply: REWARD: While creating or updating a reward. CATALOGUE_PROMOTION: While creating or updating a promotion. ISSUE_REWARD: While issuing a reward. | reward_fulfillment_details_scope_dim |
-| dim_vendor_id | bigint | Identifier for the vendor associated with the reward. | reward_vendor_dim |
-| dim_vendor_redemption_id | bigint | Identifier for the vendor redemption. | reward_vendor_redemption_dim |
+| dim_custom_field_id | bigint | Identifier for the rewards custom field. | [reward_custom_fields_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-custom-fields-reward_custom_fields_dim) |
+| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the user associated with the reward transaction. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | [reward_payment_config_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-reward_payment_config_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_scope_id | bigint | Identifier for the scope. Scope defines where the additional custom fields will apply: REWARD: While creating or updating a reward. CATALOGUE_PROMOTION: While creating or updating a promotion. ISSUE_REWARD: While issuing a reward. | [reward_fulfillment_details_scope_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-fulfillment-scope-reward_fulfillment_details_scope_dim) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the vendor redemption. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
 | group_loyalty_redemption | int | Identifier forgroup loyalty redemption. | _ |
 | id | bigint | Unique identifier for the table record. It is the primary key for the table. | _ |
 | intouch_series_id | string | Identifier for the series within the Intouch system. It can be the promotion id or coupons series id or null. | _ |
@@ -191,20 +191,20 @@ This fact table captures the issue reward event, along with the fullfillment det
 | auto_update_time | bigint | Date and time when the reward_transaction source table was last updated. It is in the Unix timestamp format. | _ |
 | auto_update_time_fulfillment_details | bigint | Date and time when the fulfillment_details source table was last updated. It is in the Unix timestamp format. | _ |
 | auto_update_time_redemption | bigint | Date and time when the redemption source table was last updated. It is in the Unix timestamp format. | _ |
-| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | date |
-| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | time |
-| dim_event_user_id | bigint | Identifier for the user associated with the reward transaction. | users |
-| dim_ful_fillment_status_id | bigint | Identifier for the fulfillment status of the reward. Possible values are integers that represent statuses such as, Shipped, Delivered, Order Confirmed, On the Way, Voucher Issued, Delivering Soon, or In Transit. | reward_fulfillment_status_dim |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | date |
-| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | time |
-| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_dim |
-| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | reward_owner_standard_dim |
-| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | reward_payment_config_dim |
-| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | reward_redemption_types_dim |
-| dim_reward_id | bigint | Identifier for the reward. | rewards |
-| dim_scope_id | bigint | Identifier for the scope. Scope defines where the additional custom fields will apply: REWARD: While creating or updating a reward. CATALOGUE_PROMOTION: While creating or updating a promotion. ISSUE_REWARD: While issuing a reward. | reward_fulfillment_details_scope_dim |
-| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | reward_vendor_dim |
-| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | reward_vendor_redemption_dim |
+| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the user associated with the reward transaction. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_ful_fillment_status_id | bigint | Identifier for the fulfillment status of the reward. Possible values are integers that represent statuses such as, Shipped, Delivered, Order Confirmed, On the Way, Voucher Issued, Delivering Soon, or In Transit. | [reward_fulfillment_status_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-fulfillment-status-reward_fulfillment_status_dim) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | [reward_payment_config_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-reward_payment_config_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_scope_id | bigint | Identifier for the scope. Scope defines where the additional custom fields will apply: REWARD: While creating or updating a reward. CATALOGUE_PROMOTION: While creating or updating a promotion. ISSUE_REWARD: While issuing a reward. | [reward_fulfillment_details_scope_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-fulfillment-scope-reward_fulfillment_details_scope_dim) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
 | fulfillment_details_enabled | int | Indicator of whether fulfillment details tracking is enabled (1 for yes, 0 for no). | _ |
 | fullfillment_details_id | bigint | Identifier for the specific fulfillment details associated with the transaction. | _ |
 | group_loyalty_redemption | int | Identifier forgroup loyalty redemption. | _ |

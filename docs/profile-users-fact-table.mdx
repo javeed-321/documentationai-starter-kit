@@ -22,17 +22,17 @@ Zoom in the table for more clarity. Click the table title to view its details.
 | comm_channel_ios | string | Unique identifier if the customer's profile was created using an iOS app. | _ | Yes; Measure Name: Comm Channel Ios |
 | comm_channel_mobile | string | Unique identifier (mobile number), if the customer's profile was created using a mobile device. | _ | Yes; Measure Name: Comm Channel Mobile |
 | comm_channel_wechat | string | Unique identifier (wechat number), if the customer's profile was created using WeChat. | _ | Yes; Measure Name: Comm Channel Wechat |
-| dim_channel_account_id | bigint | Identifier for the channel where the customer's profile was created. Possible values are - Whatsapp, Web_engage, Mobile_app, Line, and WeChat. It is the primary key of this table. | channel_account | Yes; Dimension Name: Channel Account > Channel Account Id |
-| dim_event_date_id | bigint | Date when the customer registered/ customer's profile was created. | date | Yes; Dimension Name: Date > Date |
-| dim_event_time_id | bigint | Time when the customer registered/ customer's profile was created. | time | Yes; Dimension Name: Time > Time Id |
-| dim_event_user_id | bigint | Identifier for the customer details. It is the primary key of this table. | users | Yes; Dimension Name: User > User Id |
-| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | zone_tills | Yes; Dimension Name: Store Hierarchy > Till Id |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | date | Yes; Dimension Name: Latest Updated Date > Date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | time | Yes; Dimension Name: Latest Updated Time > Time Id |
-| dim_modified_date_id | bigint | Date when modifications were made to the customer's profile. | date | _ |
-| dim_modified_time_id | bigint | Time when modifications were made to the customer's profile. | time | _ |
+| dim_channel_account_id | bigint | Identifier for the channel where the customer's profile was created. Possible values are - Whatsapp, Web_engage, Mobile_app, Line, and WeChat. It is the primary key of this table. | [channel_account](https://docs.capillarytech.com/docs/dimension-tables#channel-account) | Yes; Dimension Name: Channel Account > Channel Account Id |
+| dim_event_date_id | bigint | Date when the customer registered/ customer's profile was created. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time when the customer registered/ customer's profile was created. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier for the customer details. It is the primary key of this table. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_tills](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_modified_date_id | bigint | Date when modifications were made to the customer's profile. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | _ |
+| dim_modified_time_id | bigint | Time when modifications were made to the customer's profile. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | _ |
 | dim_modified_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | _ | _ |
-| dim_source_profile_type_id | int | Identifier for the source where the customer's profile was created. If the customer's profile was created in-store, the value will be 'Instore', and if not, the value will be 'Not-instore'. It is the primary key of this table. | source_profile_type | _ |
+| dim_source_profile_type_id | int | Identifier for the source where the customer's profile was created. If the customer's profile was created in-store, the value will be 'Instore', and if not, the value will be 'Not-instore'. It is the primary key of this table. | [source_profile_type](https://docs.capillarytech.com/docs/dimension-tables#source-profile-type) | _ |
 | first_name | string | First name of the customer. | _ | Yes; Measure Name: First Name |
 | id_email | string | Email address of the customer. | _ | Yes; Measure Name: Id Email |
 | id_external | string | External ID of the customer. | _ | Yes; Measure Name: Id External |

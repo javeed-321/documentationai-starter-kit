@@ -14,20 +14,20 @@ Zoom in the table for more clarity. Click the table title to view its details.
 
 **Issue Tracker Fact Table**
 
-| Column Name | Data Type | Description | Linked Table | Availability for Export in theIssue Trackers Template |
+| **Column Name** | **Data Type** | **Description** | Linked Table | **Availability for Export in theIssue Trackers Template** |
 | :--- | :---: | :--- | :---: | :--- |
-| dim_active_status_id | bigint | Identifier indicating whether the issue is still active or not. Possible values are 0 and 1. | active_status | Yes; Dimension Name: Active Status > Id |
-| dim_assigned_by_id | bigint | Identifier for the person or entity who assigned the issue. | zone_till | Yes; Dimension Name: Assigned By > Till Id |
-| dim_assigned_to_id | bigint | Identifier for the person or department to whom the issue is assigned. | zone_till | Yes; Dimension Name: Assigned To > Id |
-| dim_created_by_id | bigint | Identifier for the person who created the issue record. | zone_till | Yes; Dimension Name: Created By > Till Id |
-| dim_due_date_id | bigint | Identifier for the due date of the issue resolution. | date | Yes; Dimension Name: Due Date > Date |
-| dim_event_date_id | bigint | Date when the issue event occurred. | date | Yes; Dimension Name: Date |
-| dim_event_time_id | bigint | Time when the issue event occurred. | time | Yes; Dimension Name: Time > Time Id |
-| dim_event_user_id | bigint | Identifier for the user involved in the issue event. | users | Yes; Dimension Name: User > User Id |
-| dim_issue_type_id | bigint | Identifier for the type or category of the issue. Possible values are - Store, and Customer. | issue_type | Yes; Dimension Name: Issue Type > Id |
-| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | date | Yes; Dimension Name: Latest Updated Date > Date |
-| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | time | Yes; Dimension Name: Latest Updated Time > Time Id |
-| dim_reported_by_id | bigint | Identifier indicating how the issue was reported. Possible values are - email, intouch, call center, client and microsite. | reported_by | Yes; Dimension Name: Reported By > Id |
+| dim_active_status_id | bigint | Identifier indicating whether the issue is still active or not. Possible values are 0 and 1. | [active_status](https://docs.capillarytech.com/docs/dimension-tables#active-status) | Yes; Dimension Name: Active Status > Id |
+| dim_assigned_by_id | bigint | Identifier for the person or entity who assigned the issue. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Assigned By > Till Id |
+| dim_assigned_to_id | bigint | Identifier for the person or department to whom the issue is assigned. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Assigned To > Id |
+| dim_created_by_id | bigint | Identifier for the person who created the issue record. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Created By > Till Id |
+| dim_due_date_id | bigint | Identifier for the due date of the issue resolution. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Due Date > Date |
+| dim_event_date_id | bigint | Date when the issue event occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the issue event occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier for the user involved in the issue event. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_issue_type_id | bigint | Identifier for the type or category of the issue. Possible values are - Store, and Customer. | [issue_type](https://docs.capillarytech.com/docs/dimension-tables#issue-type) | Yes; Dimension Name: Issue Type > Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_reported_by_id | bigint | Identifier indicating how the issue was reported. Possible values are - email, intouch, call center, client and microsite. | [reported_by](https://docs.capillarytech.com/docs/dimension-tables#reported-by) | Yes; Dimension Name: Reported By > Id |
 | issue_code | string | Identifier of the issue. | _ | Yes; Measure Name: Issue Code |
 | issue_depearment | string | Department to which the issue belongs. | _ | Yes; Measure Name: Issue Department |
 | issue_name | string | Gives the actual issue description. | _ | Yes; Measure Name: Issue Name |
