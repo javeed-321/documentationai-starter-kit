@@ -1,5 +1,341 @@
 ---
-title: "Qualifying Conditions and Attributes"
+title: Qualifying Conditions and Attributes
 ---
 
-This is a html page.
+Qualifying conditions are the specific rules that a member's action must satisfy to be valid for a loyalty promotion. While a [member action](https://docs.capillarytech.com/docs/loyalty-promotions-core-concepts#member-actions) defines a general event, such as making a transaction, qualifying conditions provide the necessary precision by adding specific criteria. These criteria ensure that rewards are granted only when the action meets exact requirements, such as a minimum spend, a specific store location, or the purchase of a particular product.
+
+Attributes allow you to define specific eligibility criteria based on various data sources, including the customer's profile, the details of their current transaction, and the location where the activity occurs. By combining these attributes, you can create dynamic rules that filter for the right audience and context, for example targeting high-value customers shopping at a specific store during a weekend sale.
+
+> Note: In the rule builder, the attribute picker organizes attributes into the following categories. Attributes within each category are listed alphabetically.
+> 
+> Customer extended fields — Extended fields added to your organisation's customer profiles.
+> Event — Attributes from the event or transaction that triggered the condition.
+> Member KPI — Calculated performance metrics such as points balance, tier level, and visit count.
+> Member Profile — Core customer profile data such as name, email, and mobile number.
+
+The following attributes are available:
+
+<Image src="/diagrams/loyalty-promotions-qualifying-conditions-diagram.svg" width="1920" height="1080" alt="Diagram" />
+
+## Member attributes
+
+Member attributes enable you to create conditions based on the individual profile of the person interacting with your brand. This category includes demographic details like a name or email address, as well as dynamic loyalty data, for example, their current tier, available points balance, and lifetime purchase history.
+
+The member attributes are supported for the following member actions: gets enrolled in the program, redeems points, redeems a coupon, updates a customer profile, makes a transaction, gets delinked from a partner program, gets linked to a partner program, tier is updated in a partner program, behavioral event.
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| First Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The primary member’s first name. | First Name Matches "Chris" |
+| Last Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The last name of the group's primary member. | Last Name Equals "Smith" |
+| Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The full name of the primary member. | Name Contains "John" |
+| Mobile | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The primary member's mobile number. | Mobile Is Not Null |
+| Email | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The registered email of the primary member. | Email Is Valid |
+| External Id | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | Unique external ID of the primary member. | External Id Exists |
+| Slab Number | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | The tier number of the primary member. | Slab Number Greater Than Or Equal 4 |
+| Slab Name | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The tier name of the primary member. | Slab Name Is One Of ["Gold", "Platinum"] |
+| Slab Change Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | Date the primary member last changed tiers. | Slab Change Date Is Before "2024-01-01" |
+| Slab Expiry Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | Tier expiration date for the primary member. | Slab Expiry Date Is After Today |
+| Join Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The date the primary member joined the program. | Month of Join Date Equals 12 |
+| Customer Enrolment Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The system timestamp when the primary member's record was created. | Customer Enrolment Date Is After "2024-01-01" |
+| Loyalty Type | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The loyalty category of the primary member. | Loyalty Type Any Match "LOYAL" |
+| Communication Profile | Member Attribute | matches all of, matches any of, is not in | Channels the primary member has opted into. | Communication Profile Contains "WHATSAPP" |
+| Member Status | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | Current operational status of the primary member. | Member Status Any Match "ACTIVE" |
+| Registered At | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The location where the primary member registered. | Registered At Equals "Store 101" |
+| Belong To Segment | Member Attribute | matches all of, matches any of, is not in | Checks if the primary member is in a specific cluster. | Belong To Segment Any Match "VIP" |
+| Points Redeemed Today | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Points the primary member redeemed today. | Points Redeemed Today Greater Than 500 |
+| Number Of Visits | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total unique visit count of the primary member. | Number Of Visits Greater Than 10 |
+| Number Of Txns | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total transaction count of the primary member. | Number Of Txns Equals 100 |
+| Lifetime Purchase | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total spend history of the primary member. | Lifetime Purchase Greater Than 2000 |
+| Current All Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary member's current total points (Redeemable + Promised). | Current All Points Greater Than 10000 |
+| Lifetime Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total redeemable points earned by the primary member. | Lifetime Points Greater Than 25000 |
+| Current Non Redeemable Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary's balance of promised/pending points. | Current Non Redeemable Points Greater Than 500 |
+| Lifetime Non Redeemable Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total promised points ever earned by the primary member. | Lifetime Non Redeemable Points Is Not Null |
+| Initial Lifetime Purchase | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary's lifetime spend before the current event. | Initial Lifetime Purchase Less Than 500 |
+| Initial Current All Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary's total points balance before the current event. | Initial Current All Points Equals 0 |
+| Initial Lifetime Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary's lifetime redeemable points before the current event. | Initial Lifetime Points Less Than 10000 |
+| Points Redeemed In Calendar Week | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Points redeemed by primary member this week. | Points Redeemed In Calendar Week Greater Than 20000 |
+| Number Of Redemptions In Calendar Month | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Count of primary member's redemptions this month. | Number Of Redemptions In Calendar Month Greater Than Or Equal 5 |
+| Number Of Txns Today | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Count of primary member's transactions today. | Number Of Txns Today Equals 1 |
+| Initial Current Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary's redeemable points before current event. | Initial Current Points Less Than 100 |
+| Avg Basket Size | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary member's average items per transaction. | Avg Basket Size Greater Than 4 |
+| Number Of Redemptions Today | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Count of primary member's redemptions today. | Number Of Redemptions Today Greater Than 5 |
+| Avg Spend Per Visit | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary member's average spend per visit. | Avg Spend Per Visit Greater Than 200 |
+| Lifetime All Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total points (all types) ever earned by primary member. | Lifetime All Points Greater Than Or Equal 50000 |
+| Number Of Redemptions In Calendar Week | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Count of primary member's redemptions this week. | Number Of Redemptions In Calendar Week Greater Than 0 |
+| Points Redeemed In Calendar Month | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Points redeemed by primary member this month. | Points Redeemed In Calendar Month Greater Than 1000 |
+| Sum Of Item Quantity | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total quantity of specific items purchased by primary member. | Sum Of Item Quantity Greater Than 10 |
+| Sum Of Item Gross Amount | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total spend on specific items by primary member. | Sum Of Item Gross Amount Greater Than 100 |
+| Points Redeemed In Period | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Points redeemed by primary member in a custom period. | Points Redeemed In Period Greater Than 5000 |
+| Count Of Redemptions In Period | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Redemption count in a custom period. | Count Of Redemptions In Period Greater Than 2 |
+| Points Redeemed In Past Days | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Points redeemed in the last X days. | Points Redeemed In Past Days Is Not Null |
+| Count Of Unique Line Items | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Distinct products purchased by primary member. | Count Of Unique Line Items Less Than 5 |
+| Sum Of Item Discount | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total discounts received by primary member. | Sum Of Item Discount Greater Than 50 |
+| Streak Current Value | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | Primary member's progress in a streak. | Streak Current Value Equals 4 |
+| Number Of Redemptions In Past Days | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Redemption count in the last X days. | Number Of Redemptions In Past Days Greater Than 2 |
+| Tracker Value Tracked In Event | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Tracker value including current event contribution. | Tracker Value Tracked In Event Greater Than 10 |
+| Tracker Value Before Event | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Tracker value excluding current event contribution. | Tracker Value Before Event Less Than 100 |
+| Transaction Count In Range | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Transaction count in a specific date range. | Transaction Count In Range Greater Than 5 |
+| Transaction Sum In Range | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total spend in a specific date range. | Transaction Sum In Range Greater Than 500 |
+| Is Streak Achieved | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | If primary member completed a streak. | Is Streak Achieved Equals True |
+| Custom Fields | Member Attribute | matches all of, matches any of, is not in | Custom metadata or properties defined specifically for the member profile. | Custom Fields Matches Any Of ["Region:North"] |
+| Is Subscribed To Channel | Member Attribute | Equals, Not Equals | Checks if the member has opted in to receive communications on a specific channel. | Is Subscribed To Channel (Email) Equals True |
+| Cluster Value Includes | Member Attribute | Equals, Not Equals | Checks if the member belongs to a specific analytical segment or cluster. | Cluster Value Includes (High Value) Equals True |
+| Cluster Value Excludes | Member Attribute | Equals, Not Equals | Checks if the member does not belong to a specific analytical segment or cluster. | Cluster Value Excludes (Churned) Equals True |
+| Custom Field Value Exists | Member Attribute | Equals, Not Equals | Checks if a specific custom field has been populated with data for the member. | Custom Field Value Exists (Anniversary) Equals True |
+| Tracker Value Current Event | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The absolute value of a tracker calculated at the exact moment of the current event. | Tracker Value Current Event (Daily Limit) Less Than 100 |
+| Target Achieved In Period | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The amount of a target goal achieved within a specific custom timeframe. | Target Achieved In Period Greater Than 500 |
+| Target Achieved In Current Period | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The amount of a target goal achieved during the currently active cycle. | Target Achieved In Current Period Greater Than Or Equal 1000 |
+| Count Active Coupons In Coupon Series | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The number of valid, unredeemed coupons the member holds for a specific series. | Count Active Coupons In Coupon Series (Summer Sale) Greater Than 0 |
+| Currency Metrics | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Conditions based on a filtered, aggregated view of a member's currency data, such as points or benefits. Select a specific fact, add optional filters, and define an aggregation. See Transaction and currency metrics for the selection flow. | Currency Metrics (Get Points, Sum, Duration: Today) Greater Than 500 |
+
+---
+
+## Group primary member
+
+Group primary member attributes enable you to add conditions for the primary member of a user group. You can use this data to determine eligibility for any member of the group based on the primary member, for example, checking if the primary member holds a Gold tier status or has a specific points balance.
+
+The group primary member attributes are supported for the following member actions: updates a customer profile, makes a transaction.
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| First Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The primary member's first name. | First Name Equals "Alice" |
+| Last Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The primary member's last name. | Last Name Equals "Johnson" |
+| Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The full name of the primary member. | Name Contains "Alice Johnson" |
+| Email | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The registered email of the primary member. | Email Is Not Null |
+| Mobile | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The primary member's mobile number. | Mobile Exists |
+| External Id | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | Unique external ID of the primary member. | External Id Equals "EXT-99" |
+| Slab Number | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | The tier number of the primary member. | Slab Number Greater Than 2 |
+| Slab Name | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The tier name of the primary member. | Slab Name Is One Of ["Platinum"] |
+| Slab Change Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | Date the primary member last changed tiers. | Slab Change Date Is Before 2024-01-01 |
+| Slab Expiry Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | Tier expiration date for the primary member. | Slab Expiry Date Is After Today |
+| Join Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The date the primary member joined the program. | Join Date Month Equals 12 |
+| Loyalty Type | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The loyalty category of the primary member. | Loyalty Type Any Match "LOYAL" |
+| Is Test Account | Member Attribute | Equals, Not Equals, Is Null, Is Not Null | Whether the primary account is a test account. | Is Test Account Equals False |
+| Member Status | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | Current operational status of the primary member. | Member Status Any Match "ACTIVE" |
+| Current All Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary member's current total points. | Current All Points Greater Than 5000 |
+| Lifetime Purchase | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total spend history of the primary member. | Lifetime Purchase Greater Than 10000 |
+| Number Of Visits | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total unique visit count of the primary member. | Number Of Visits Greater Than 20 |
+| Number Of Txns | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total transaction count of the primary member. | Number Of Txns Greater Than 50 |
+| Points Redeemed Today | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Points the primary member redeemed today. | Points Redeemed Today Equals 0 |
+| Avg Spend Per Visit | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Average transaction value for the primary member. | Avg Spend Per Visit Greater Than 200 |
+| Initial Lifetime Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary's lifetime points before this event. | Initial Lifetime Points Less Than 1000 |
+| Initial Lifetime Purchase | #Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Primary's lifetime spend before this event. | Initial Lifetime Purchase Greater Than 500 |
+| Streak Current Value | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | Progress of the primary member's current streak. | Streak Current Value Greater Than 3 |
+| Count Active Coupons | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Number of valid coupons held by the primary member. | Count Active Coupons Greater Than 0 |
+
+---
+
+## Current group primary
+
+Current group primary attributes enable you to add conditions for the primary member of a user group at the exact moment an event occurs. This is commonly used to ensure the primary member meets specific criteria, for example, checking if they have an active subscription or valid membership status, before a transaction triggers a reward for the group.
+
+The current group primary attributes are supported for the following member actions: gets enrolled in the program, redeems points, makes a transaction.
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| First Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The first name of the group's primary member. | First Name Equals "Alice" |
+| Last Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The last name of the group's primary member. | Last Name Equals "Johnson" |
+| Name | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The full name of the primary member. | Name Contains "Alice Johnson" |
+| Email | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The registered email address of the primary member. | Email Is Not Null |
+| Mobile | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The mobile number of the primary member. | Mobile Exists |
+| External Id | Member Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The unique external identifier for the primary member. | External Id Equals "EXT-99" |
+| Slab Number | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | The serial number of the primary member's current loyalty tier. | Slab Number Greater Than 2 |
+| Slab Name | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The name of the primary member's current loyalty tier (e.g., "Silver", "Gold"). | Slab Name Is One Of ["Gold", "Platinum"] |
+| Slab Change Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The specific date when the primary member's loyalty tier was last changed. | Slab Change Date Is Before "2024-01-01" |
+| Slab Expiry Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The date on which the primary member's current loyalty tier is set to expire. | Slab Expiry Date Is After Today |
+| Join Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The date on which the primary member enrolled in the loyalty program. | Day Of Month of Join Date Equals 1 |
+| Enrollment Date | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The system timestamp of the primary member's record creation. | Enrollment Date Is Before "2020-01-01" |
+| Customer Status | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The current functional status of the primary member (e.g., Active, Lapsed). | Customer Status Equals "Active" |
+| Customer Status Label | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | A descriptive label assigned to the primary member based on activity. | Customer Status Label Equals "At Risk" |
+| Loyalty Type | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | Categorization of the primary member's loyalty program type. | Loyalty Type Equals "Premium" |
+| Communication Profile | Member Attribute | matches all of, matches any of, is not in | List of channels the primary member is eligible to be contacted through. | Communication Profile matches any of "WHATSAPP" |
+| Current All Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Sum of all points (Redeemable + Promised) currently held by the primary member. | Current All Points Greater Than 10000 |
+| Promised points current balance | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The primary member's current balance of non-redeemable/pending points. | Promised points current balance Greater Than 500 |
+| Lifetime All Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Sum of the primary member's lifetime redeemable and promised points. | Lifetime All Points Greater Than Or Equal 50000 |
+| Lifetime Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total sum of redeemable points earned by the primary member since registration. | Lifetime Points Greater Than 25000 |
+| Lifetime promised points earned | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The cumulative history of all non-redeemable points the primary member has earned. | Lifetime promised points earned Is Not Null |
+| Lifetime Purchase | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total monetary value of all purchases made by the primary member. | Lifetime Purchase Greater Than 2000 |
+| Initial Lifetime Purchase | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total lifetime spend of the primary member calculated before the current transaction. | Initial Lifetime Purchase Less Than 500 |
+| Number Of Visits | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total count of unique days the primary member has made a transaction. | Number Of Visits Greater Than 10 |
+| Number Of Txns | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The cumulative number of transactions made by the primary member. | Number Of Txns Equals 100 |
+| Number Of Txns Today | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total number of transactions made by the primary member on the current day. | Number Of Txns Today Equals 1 |
+| Points Redeemed Today | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Total sum of loyalty points the primary member has redeemed today. | Points Redeemed Today Greater Than 500 |
+| Avg Basket Size | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Average number of items per transaction for the primary member. | Avg Basket Size Greater Than 4 |
+| Avg Spend Per Visit | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The average monetary amount the primary member spends per visit. | Avg Spend Per Visit Greater Than 200 |
+| Streak Current Value | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | Returns the primary member's current progress in a streak challenge. | Streak Current Value Equals 4 |
+| Is Streak Achieved | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null | Boolean check if the primary member has completed a specific streak challenge. | Is Streak Achieved Equals True |
+| Member Count | Member Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total number of customers linked within the group. | Member Count Greater Than Or Equal 4 |
+| Current Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The primary member's current balance of redeemable points only (excluding promised points). | Current Points Greater Than 2000 |
+| Initial Slab Name | Member Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The loyalty tier name the primary member held before the current transaction. | Initial Slab Name Equals "Silver" |
+| Initial Current Points | Member KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The redeemable points balance of the primary member before the current transaction. | Initial Current Points Less Than 500 |
+
+---
+
+## User group
+
+User group attributes enable you to create rules based on the specific user group a member belongs to. This category allows you to evaluate the group's overall standing, for example ,checking the group's shared points balance, current tier status, or the total number of members linked to the account.
+
+The user group attributes are supported for the following member actions: redeems points, makes a transaction.
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| Name | Member Attribute | Equals, Not Equals, Contains, Matches, Is One Of, Is None Of, Exists, Is Empty, Is Null, Is Not Null | The display name of the user group. | User Group > Name > Contains > Corporate |
+| External Id | Member Attribute | Equals, Not Equals, Contains, Matches, Is One Of, Is None Of, Exists, Is Empty, Is Null, Is Not Null | The unique external identifier assigned to the user group. | User Group > External Id > Equals > GRP-9988 |
+| Created Date | Member Attribute | Equals, Not Equals, Is Before, Is After, Is On Or Before, Is On Or After, Is Between, Is Weekend, Is Weekday, Days Diff | The date when the user group was created in the system. | User Group > Created Date > Is Before > 2024-01-01 |
+| Slab Name | Member Attribute | Equals, Not Equals, Contains, Is One Of, Is None Of, Is Null, Is Not Null | The name of the loyalty tier (slab) currently assigned to the group. | User Group > Slab Name > Is One Of > Gold, Platinum |
+| Slab Number | Member Attribute | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The numeric rank or level of the group's current loyalty tier. | User Group > Slab Number > Greater Than > 2 |
+| Slab Expiry Date | Member Attribute | Equals, Not Equals, Is Before, Is After, Is On Or Before, Is On Or After, Is Between, Days Diff | The date when the group's current tier status is set to expire. | User Group > Slab Expiry Date > Days Diff > Current Date |
+| Member Count | Member Attribute | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of individual members linked to this group. | User Group > Member Count > Greater Than > 5 |
+| Current Points | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The group's current balance of redeemable points. | User Group > Current Points > Greater Than > 5000 |
+| Lifetime Purchase | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total monetary value of purchases made by the entire group since inception. | User Group > Lifetime Purchase > Greater Than > 10000 |
+| Number Of Txns | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The cumulative number of transactions completed by all members of the group. | User Group > Number Of Txns > Greater Than > 50 |
+| Number Of Visits | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total count of unique visits made by the group. | User Group > Number Of Visits > Greater Than > 20 |
+
+---
+
+## Purchase attributes
+
+Purchase Attributes enable you to create conditions based on the granular details of the current transaction bill or receipt. These are financial and operational details of the purchase, including the total gross amount, the specific items present in the basket, the payment mode used, and the time of day the transaction occurred.
+
+The purchase attributes are supported for the following member actions: makes a transaction.
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| Transaction Number | Transaction Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The unique identifier or receipt number for the transaction. | Transaction Number Equals "TXN-10293" |
+| Date | Transaction Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The date and time when the purchase was recorded. | Transaction Date Is On Or After "2024-01-01" |
+| Gross Amount | Transaction Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total value of the transaction before any discounts or taxes. | Gross Amount Greater Than 500 |
+| Basket Amount Sum | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total net value of the basket after all discounts are applied. | Basket Amount Sum Is Between 100 and 200 |
+| Basket Size | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total number of unique line items included in the purchase. | Basket Size Greater Than 3 |
+| Total Quantity | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The cumulative quantity of all items purchased across all lines. | Total Quantity Greater Than Or Equal 10 |
+| Tender Code | Transaction Attribute | Not Exists, Is One Of, Matches Regex, Starts With, Is None Of, Does Not Equal, Exists, Contains, Equals | The identifier for the payment method(s) used (e.g., CASH, WALLET). Enter the payment method name (for example, Wag co-branded prepaid debit), not the numeric tender code ID (for example, 43). The system resolves numeric IDs to names before evaluating the condition, so entering a numeric ID will never match. | Tender Code Any Match "CREDIT_CARD" |
+| Tender Amount | Transaction Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The specific amount paid through a specific payment tender. | Tender Amount Greater Than 50 |
+| Item Code | Transaction Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | A list of all product codes/SKUs present in the current transaction. | Item Code Contains "PROD-X" |
+| Item Description | Transaction Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | A list of all product names or descriptions in the basket. | Item Description Any Match contains "Shoes" |
+| Notes | Transaction Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | Any additional comments or notes attached to the transaction. | Notes Contains "Gift Wrap" |
+| Basket Discount Sum | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total sum of all discounts applied to the entire basket. | Basket Discount Sum Greater Than 0 |
+| Basket Sum (Gross) | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Calculates the gross sum of specific items in the basket based on attributes. | Basket Sum Gross for "Category: Electronics" > 1000 |
+| Basket Count | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The count of specific items in the basket meeting a criteria. | Basket Count for "Brand: Nike" Equals 2 |
+| Basket Includes | Transaction Attribute | Equals, Not Equals | A check to see if a specific item or category exists in the purchase. | Basket Includes "Category: Dairy" Equals True |
+| Transaction Custom Fields | Transaction Attribute | matches all of, matches any of, is not in | Custom metadata attached to the transaction header. | Transaction Custom Fields Contains "Origin:App" |
+| Basket Items | Transaction Attribute | matches all of, matches any of, is not in | A list of specific item characteristics (Brand, Category, or SKU) present in the basket. | Basket Items (Brand) Matches Any Of ["Nike", "Adidas"] |
+| Tender Notes | Transaction Attribute | matches all of, matches any of, is not in | Specific remarks or codes attached to the payment methods used. | Tender Notes Contains "GiftCard_1234" |
+| Item Quantity | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the quantity for every individual line item in the basket. | Item Quantity Greater Than Or Equal 2 |
+| Item Rate | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the unit price for every individual line item. | Item Rate Greater Than 50.00 |
+| Item Discount | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the discount amount applied to every individual line item. | Item Discount Greater Than 0 |
+| Item Discount Percentage | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the discount percentage applied to every individual line item. | Item Discount Percentage Equals 10 |
+| Item Net Amount | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the final price (after discount) for every individual line item. | Item Net Amount Greater Than 100 |
+| Item Gross Amount | Transaction Attribute | Equal To, Less Than or Equal To, Greater Than or Equal To, Is Set, Is Not Set, Less Than, Greater Than, Not Equal To, Is Between | A list containing the original price (before discount) for every individual line item. | Item Gross Amount Less Than 50 |
+| Basket Amount Sum Non Discounted | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | The total value of all items in the basket before any discounts are applied. | Basket Amount Sum Non Discounted Greater Than 200.00 |
+| Transaction Metrics | Transaction KPI | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Is Not Null, Is Null, Interval | Conditions based on a filtered, aggregated view of the current transaction's basket data. Select a specific basket fact, add optional filters, and define an aggregation. See Transaction and currency metrics for the selection flow. | Transaction Metrics (Basket Item Count, Count) Greater Than 3 |
+
+<Callout kind="info" title="Note:">
+
+📘Time-based conditions on the Date attribute — such as Is Hour Between or Is Time Between — always evaluate against the org's configured timezone, regardless of any timezone offset included in the transaction's billing date. If your org is set to a different timezone than where transactions are processed, convert your target hours to the org timezone before configuring the condition.
+
+</Callout>
+
+---
+
+## Purchase store
+
+Purchase store attributes enable you to define location-specific conditions by targeting the specific outlet where a transaction takes place. You can filter eligibility based on the store's unique identifier or name, as well as custom fields.
+
+The purchase store attributes are supported for the following member actions: gets enrolled in the program, redeems points, redeems a coupon, updates a customer profile, makes a transaction, gets delinked from a partner program, gets linked to a partner program, tier is updated in a partner program.
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| Store Name | Store Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The name of the store where the transaction or event occurred. | Store Name Equals "London Flagship" |
+| Store Code | Store Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The unique internal identifier for the store. | Store Code Equals "UK-001" |
+| Store Custom Fields | Store Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | Custom metadata associated with the store (e.g., store size, region, or format). | Store Custom Fields (Region) Equals "Midlands" |
+
+---
+
+## Referrer code
+
+Referrer code attributes enable you to create rules based on a customer's referral history. This category allows you to reward members based on their success in bringing new customers to the program, for example counting how many members they have successfully registered or how many of those member have made a purchase.
+
+The referrer code attributes are supported for the following member actions: gets enrolled in the program, updates a customer profile, makes a transaction.
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| Referee Reg Count | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of new members who have successfully registered using this customer's referral code. | Referrer Code > Referee Reg Count > Greater Than > 5 |
+| Referee Txn Count | Member KPI | Equals, Not Equals, Greater Than, Less Than, Greater Than Or Equal, Less Than Or Equal, Is Null, Is Not Null | The total number of transactions completed by the new members referred by this customer. | Referrer Code > Referee Txn Count > Greater Than Or Equal > 10 |
+
+---
+
+## Activity attributes
+
+Activity attributes enable you to create conditions based on the behavioural event triggered. This allows you to evaluate operational metadata surrounding the member's action, for example, the geographic country of origin, the specific channel source of the event, and the exact timestamp of when the activity occurred.
+
+The activity attributes are supported for the following member actions:
+
+| Attribute | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| Country | Activity Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The geographic country code where the activity originated. | Country Equals "UK" |
+| Code | Activity Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The unique identifier or event code associated with the specific activity. | Code Equals "APP_LOGIN" |
+| Event Source | Activity Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The specific platform, device, or channel from which the event was triggered. | Event Source Is One Of ["APP", "WEB"] |
+| Activity Date | Activity Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The system timestamp recording when the activity was processed. | Activity Date Is On Or After "2024-01-01" |
+| Event Date | Activity Attribute | Equals, Less Than, Greater Than, Less Than or Equal, Greater Than or Equal, Not Equals, Minutes Diff, Is Before, Is Not, Is, Is On or Before, Day Of Month, Is On or After, Is Not Null, Is Time Between, Is Null, Is After, Is Valid, Date Diff, Days Diff from String, Is Hour Between, Days Diff, Is Weekend, Is Weekday, Is Between | The actual date and time the event occurred on the client side. | Event Date Is Weekday |
+| Username | Activity Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The username or handle of the member performing the activity. | Username Exists |
+
+---
+
+## Event Location
+
+Event Location attributes allow you to create conditions based on the organisational scope where the event occurred. You can filter by concept, zone, or till to ensure rewards are granted only for activities at specific locations within your organisation hierarchy.
+
+| Attribute | Data Type | Classification | Supported Operators | Description | Example |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Event Location | String | Activity Attribute | Equals, Not Equals, Contains, Not Exists, Is Empty, Is None Of, Exists, Is One Of, Matches | The organisational scope where the event occurred. You can filter by concept (business unit), zone (geographic region), or till (store). | Event Location - Scope - Store - Equals - Store001 |
+
+---
+
+## Transaction and currency metrics
+
+**Currency Metrics** and **Transaction Metrics** let you build conditions based on a filtered, aggregated view of data. Both use a multi-step selection flow: select a KPI fact, optionally add **Refine by** filters to narrow the data, then set a **Calculate by** aggregation.
+
+- Currency Metrics is available under Member attributes and measures a member's currency balances, such as points earned and benefit activity.
+- Transaction Metrics is available under Purchase attributes and measures basket-level data from the current transaction, such as item amounts, quantities, and discounts.
+
+### KPI facts
+
+| Metric dimension | Available facts |
+| :--- | :--- |
+| Currency Metrics | Get Benefits, Get Alternate Currencies, Get Points |
+| Transaction Metrics | Basket Discount, Basket Quantity, Basket Item Count, Basket Amount |
+
+### Refine by options
+
+Use **Refine by** to narrow which records contribute to the calculation. The following options are available for Currency Metrics:
+
+| Option | Description |
+| :--- | :--- |
+| Duration | Narrows records by a relative time period, such as today or this week. |
+| Reward Type | Narrows records by reward currency type, such as points or benefits. |
+
+### Calculate by options
+
+The following aggregation methods are available for both metric dimensions: **Average**, **Count**, **Sum**.
+
+**To build a currency metric condition:**
+
+1. In the attribute category dropdown, select Member attributes.
+2. In the metric dimension dropdown, select Currency Metrics.
+3. In the Select Fact dropdown, select the fact you want to measure.
+4. Select Refine by, then choose a filter type and value. To add more filters, select Add filter.
+5. Select Calculate by, then choose an aggregation method.
+6. Select an operator and enter a value to complete the condition.
+
+**To build a transaction metric condition:**
+
+1. In the attribute category dropdown, select Purchase attributes.
+2. In the metric dimension dropdown, select Transaction Metrics.
+3. In the Select Fact dropdown, select the fact you want to measure.
+4. Select Refine by, then choose a filter type and value. To add more filters, select Add filter.
+5. Select Calculate by, then choose an aggregation method.
+
+Select an operator and enter a value to complete the condition.
+
+<Image src="https://files.readme.io/298547600f9d68af098d423a2ae2b385efc071dc8e6663433c2241e859b45404-image.png" width="1920" height="1080" alt="" />
+
+> Note: Add all Refine by filters before selecting Calculate by. Once you set a Calculate by method, you can't add more Refine by filters.

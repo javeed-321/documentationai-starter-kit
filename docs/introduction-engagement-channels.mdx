@@ -1,5 +1,118 @@
 ---
-title: "Introduction"
+title: Introduction
 ---
 
-This is a html page.
+Engage+ supports multiple engagement channels to help you communicate effectively with customers. It provides a library of templates for all supported channels, allowing you to manage messages efficiently and maintain consistency in design, structure, and style. This not only enhances the professional appearance of your messages but also saves time by avoiding the need to recreate templates from scratch. You can customize the look and feel of each message based on the campaign or loyalty communication needs. You can create content from scratch, store it, and reuse it as needed. It supports the full content lifecycle covering creation, delivery, retrieval, and governance of digital assets such as text, images, audio, video, and other multimedia.
+
+Engage+ supports the following engagement channels:
+
+<Image src="https://cdn-icons-png.flaticon.com/512/11685/11685202.png" width="1920" height="1080" alt="SMS Icon" />
+
+SMS
+
+<Image src="https://cdn-icons-png.flaticon.com/512/732/732200.png" width="1920" height="1080" alt="Email Icon" />
+
+Email
+
+<Image src="https://cdn-icons-png.flaticon.com/512/1827/1827349.png" width="1920" height="1080" alt="Push Notifications Icon" />
+
+Push Notifications
+
+<Image src="https://cdn-icons-png.flaticon.com/512/3670/3670101.png" width="1920" height="1080" alt="WeChat Logo" />
+
+WeChat
+
+<Image src="https://cdn-icons-png.flaticon.com/512/724/724664.png" width="1920" height="1080" alt="Call Task Icon" />
+
+Call Task
+
+<Image src="https://www.svgrepo.com/show/303189/line-messenger-logo.svg" width="1920" height="1080" alt="LINE Logo" />
+
+LINE
+
+<Image src="https://cdn-icons-png.flaticon.com/512/3670/3670059.png" width="1920" height="1080" alt="Viber Logo" />
+
+Viber
+
+<Image src="https://cdn-icons-png.flaticon.com/512/3536/3536445.png" width="1920" height="1080" alt="WhatsApp Icon" />
+
+WhatsApp
+
+<Image src="https://cdn-icons-png.flaticon.com/512/7286/7286142.png" width="1920" height="1080" alt="RCS Icon" />
+
+RCS
+
+<Image src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" width="1920" height="1080" alt="Zalo Logo" />
+
+Zalo
+
+<Image src="https://cdn-icons-png.flaticon.com/512/204/204301.png" width="1920" height="1080" alt="In-app Message Icon" />
+
+In-app Message
+
+## Messaging availability across channels and platforms
+
+This table provides an overview of support for various types of messages (Transactional, OTP, and Bulk) across multiple communication channels and platforms.
+
+**How to Read the Table**
+
+- ✓ (Checkmark): Indicates that the feature is available. For example, Bulk SMS under the Engage+ channel means that bulk SMS messaging is supported.
+- (Template Creation): Indicates that while direct sending might not be supported, templates can be created for that message type. For instance, for Engage+, in WhatsApp OTP, the symbol means that Whatsapp OTP message templates can be created in the Engage+ channel.
+
+| Channel | Type of Message | SMS | Email | WhatsApp | Zalo | LINE* | Mobile Push/In-app | Viber | RCS |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Engage+ | Transactional |  |  |  |  |  |  |  |  |
+| OTP |  |  |  |  |  |  |  |  |  |
+| Bulk | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  |
+| Journeys | Transactional |  |  |  |  |  |  |  |  |
+| OTP |  |  |  |  |  |  |  |  |  |
+| Bulk | ✓ | ✓ | ✓ | ✓ |  | ✓ |  |  |  |
+| Loyalty+ | Transactional | ✓ | ✓ |  |  |  | ✓ |  |  |
+| OTP |  |  |  |  |  |  |  |  |  |
+| Bulk |  |  |  |  |  |  |  |  |  |
+| Unified Comms. Engine | Transactional |  | ✓ | ✓ |  |  |  |  |  |
+| OTP |  | ✓ | ✓ |  |  |  |  |  |  |
+| Bulk |  | ✓ | ✓ |  |  |  |  |  |  |
+| Send Comm. API | Transactional | ✓ | ✓ |  |  |  |  |  |  |
+| OTP | ✓ | ✓ |  |  |  |  |  |  |  |
+| Bulk | ✓ | ✓ |  |  |  |  |  |  |  |
+| GET Customer InteractionsAPI | Transactional | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |
+| OTP | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  |
+| Bulk | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |  |  |  |
+| Auth Engine | Transactional |  |  |  |  |  |  |  |  |
+| OTP | ✓ | ✓ | ✓ | ✓ |  |  |  |  |  |
+| Bulk |  |  |  |  |  |  |  |  |  |
+
+*For the LINE channel, individual message delivery statuses are not available.
+
+**For information on creating OTP templates, refer to the documentation on [creating templates](https://docs.capillarytech.com/docs/creatives).
+
+## Supported gateway partners
+
+The following table lists the gateway partners integrated with Capillary, along with the respective communication channels they support.
+
+| Channel | Gateway Partners |
+| --- | --- |
+| Email | SendGrid, Falconide, Netcore, Octane, ValueFirst |
+| WhatsApp | Karix, Tanla, ICS, Gupshup |
+| SMS | ICS, Airtel, Alibaba, Sinch, Onextel, Cequence, SolutionInfini, Tanla, Broadnet, Infobip, SSL, ValueFirst, TBP, Vectramind, Unicel, Karix |
+
+## Supported features for engagement channels
+
+This table provides a comprehensive overview of features available across different engagement channels, helping you choose the right channel for your communication needs.
+
+| Section/Channels | Push notification | In-app message | WhatsApp | RCS | SMS | Email | Line | Viber | Zalo |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Template name | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Subject / Title | Yes | Yes | No | Yes | No | Yes | Yes | No | No |
+| Message/Content | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Image | Yes | Yes | Yes | Yes | No | Yes | Yes | Yes | No |
+| Video | Yes | No | Yes | Yes | No | Yes | Yes | Yes | No |
+| Carousel | Yes | No | Yes | No | No | No | Yes | Yes | No |
+| Primary button | Yes | Yes | Yes | Yes | No | Yes | No | Yes | Yes |
+| Secondary button | Yes | Yes | Yes | No | No | Yes | No | No | No |
+| Tertiary button | Yes | No | No | No | No | Yes | No | No | No |
+| Upload HTML | No | Yes | No | No | No | Yes | No | No | No |
+| Link URL to content | Yes | Yes | No | No | No | Yes | No | No | No |
+| Device type: Android/iOS | Yes | Yes | No | No | No | No | No | No | No |
+| Template/layout type | No | Yes | Yes | No | No | No | Yes | No | No |
