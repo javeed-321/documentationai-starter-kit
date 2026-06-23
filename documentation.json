@@ -13,11 +13,19 @@
             "group": "Data Fields",
             "pages": [
               {
+                "title": "hello",
+                "path": "hello"
+              },
+              {
+                "title": "hai",
+                "path": "hai"
+              },
+              {
                 "title": "Home Page",
                 "path": "jav",
                 "content-width": "wide",
                 "show-sidebar": false,
-                "showi-toc": false
+                "show-toc": false
               }
             ]
           }
