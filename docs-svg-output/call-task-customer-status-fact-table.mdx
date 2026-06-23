@@ -1,0 +1,186 @@
+---
+title: Call Task Customer Status Fact Table
+---
+
+Call tasks are tasks created at the POS (point of sale machines) for cashiers to process. The tasks could be call customers for birthday wishes that will get populated every day for the cashier to process. These tasks have a specific validity within which these needs to be closed. The call task customer status fact table captures the details of the call task such as call task id, the associated campaign, and date and time of the call task.
+
+**Databricks Table Name:** call_task_customer_status
+
+**Call Task Customer Status Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 472" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="472" fill="#fafbfc" rx="8"/>
+<path d="M 400 104.0 C 460 104.0, 560 48.0, 620 48.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,48.0 614,45.0 614,51.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 96.0, 620 96.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,96.0 614,93.0 614,99.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 144.0, 620 144.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,144.0 614,141.0 614,147.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 192.0, 620 192.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,192.0 614,189.0 614,195.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 240.0, 620 240.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,240.0 614,237.0 614,243.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 288.0, 620 288.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,288.0 614,285.0 614,291.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 336.0, 620 336.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,336.0 614,333.0 614,339.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 144.0, 620 144.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,144.0 614,141.0 614,147.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 192.0, 620 192.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,192.0 614,189.0 614,195.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 384.0, 620 384.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,384.0 614,381.0 614,387.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 240.0, 620 240.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,240.0 614,237.0 614,243.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 144.0, 620 144.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,144.0 614,141.0 614,147.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 192.0, 620 192.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,192.0 614,189.0 614,195.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="374" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="374" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">call_task_customer_status</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_task_status: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">call_task_id: bigint</text>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_campaign_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_campaign_message_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_internal_status_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_task_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_updated_by_user_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_updated_date_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_updated_time_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">task_id: bigint</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">year: integer</text>
+<a href="/docs/dimension-tables#campaigns" target="_blank">
+<rect x="622" y="32" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="30" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="30" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="53.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaign</text>
+<line x1="636" y1="56.0" x2="700" y2="56.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#campaign-message-campaign_msg" target="_blank">
+<rect x="622" y="80" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="78" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="78" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="101.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaign_msg</text>
+<line x1="636" y1="104.0" x2="732" y2="104.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="128" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="126" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="126" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="149.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="152.0" x2="668" y2="152.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="176" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="174" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="174" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="197.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="200.0" x2="668" y2="200.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="224" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="222" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="222" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="245.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="248.0" x2="676" y2="248.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="272" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="270" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="270" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="293.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="296.0" x2="708" y2="296.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#internal-status" target="_blank">
+<rect x="622" y="320" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="318" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="318" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="341.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>internal_status</text>
+<line x1="636" y1="344.0" x2="756" y2="344.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#tasks" target="_blank">
+<rect x="622" y="368" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="366" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="366" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="389.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>tasks</text>
+<line x1="636" y1="392.0" x2="676" y2="392.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="432" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="442" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="454" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="442" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="454" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="449" x2="395" y2="449" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="449" r="3" fill="#E67E22"/>
+<text x="403" y="454" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Call Task Customer Status Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table | Availability for Export in theCall TasksTemplate |
+| :--- | :---: | :--- | :---: | :--- |
+| auto_update_time_task_status | bigint | Date and time when the corresponding record in the task status table available at the source was last updated. It is in the Unix timestamp format. |  | Yes; Measure Name: Auto Update Time Task Status |
+| call_task_id | bigint | Identifier for the call task. It is the primary key for the table. |  | Yes; Measure Name: Call Task Id |
+| dim_campaign_id | bigint | Identifier of the campaign associated with the call task. | [campaign](https://docs.capillarytech.com/docs/dimension-tables#campaigns) | Yes; Dimension Name: Campaign > Campaign Id |
+| dim_campaign_message_id | bigint | Identifier of the campaign message associated with the call task. | [campaign_msg](https://docs.capillarytech.com/docs/dimension-tables#campaign-message-campaign_msg) | Yes; Dimension Name: Campaign Message > Id |
+| dim_event_date_id | bigint | Date of the call task. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time of the call task. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Used Id of the customer for which the task is created. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier of the store associated with the call task. It is the identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_internal_status_id | bigint | Identifier for the internal status of the call task. Possible values are - Open, and complete. | [internal_status](https://docs.capillarytech.com/docs/dimension-tables#internal-status) | Yes; Dimension Name: Internal Status > Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_task_id | bigint | Identifier that links to the task dimension table, which provides additional details about the task, including the task type, task description, etc. | [tasks](https://docs.capillarytech.com/docs/dimension-tables#tasks) | Yes; Dimension Name: Task > Task Id |
+| dim_updated_by_user_id | bigint | Identifier of the user who updated the call task status. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: Updated By User > User Id |
+| dim_updated_date_id | bigint | Captures the date when the date has been updated. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Updated Date |
+| dim_updated_time_id | bigint | Captures the time when the date has been updated. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Updated Time |
+| task_id | bigint | Unique identifier for the task configured for the campaigns. It is the primary key for the table. | _ | Yes; Measure Name: Task Id |
+| year | integer | Year of the call task creation. | _ | Yes; Dimension Name: Year |

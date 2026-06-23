@@ -1,0 +1,179 @@
+---
+title: Profile Users Fact Table
+---
+
+This table captures the events related to user profile creation and modification.
+
+**Databricks Table Name:** profile_users
+
+**Profile Users - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 624" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="624" fill="#fafbfc" rx="8"/>
+<path d="M 400 184.0 C 460 184.0, 560 167.0, 620 167.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,167.0 614,164.0 614,170.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 215.0, 620 215.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,215.0 614,212.0 614,218.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 263.0, 620 263.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,263.0 614,260.0 614,266.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 311.0, 620 311.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,311.0 614,308.0 614,314.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 359.0, 620 359.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,359.0 614,356.0 614,362.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 215.0, 620 215.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,215.0 614,212.0 614,218.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 263.0, 620 263.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,263.0 614,260.0 614,266.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 215.0, 620 215.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,215.0 614,212.0 614,218.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 263.0, 620 263.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,263.0 614,260.0 614,266.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 384.0 C 460 384.0, 560 407.0, 620 407.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,407.0 614,404.0 614,410.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="534" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="534" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">profile_users</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_profile_users: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">comm_channel_android: string</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">comm_channel_email: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">comm_channel_ios: string</text>
+<text x="30" y="148" fill="#2C3E50" fontSize="11" fontWeight="normal">comm_channel_mobile: string</text>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#2C3E50" fontSize="11" fontWeight="normal">comm_channel_wechat: string</text>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_channel_account_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_modified_date_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_modified_time_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_modified_zone_till_id: bigint</text>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_source_profile_type_id: int</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">first_name: string</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">id_email: string</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">id_external: string</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">id_mobile: string</text>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">id_unique: string</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">last_name: string</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#2C3E50" fontSize="11" fontWeight="normal">union_id: string</text>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#channel-account" target="_blank">
+<rect x="622" y="151.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="149.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="149.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="149.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="149.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="172.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>channel_account</text>
+<line x1="636" y1="175.0" x2="756" y2="175.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="199.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="197.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="197.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="197.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="197.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="220.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="223.0" x2="668" y2="223.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="247.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="245.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="245.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="245.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="245.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="268.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="271.0" x2="668" y2="271.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="295.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="293.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="293.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="293.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="293.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="316.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="319.0" x2="676" y2="319.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="343.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="341.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="341.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="341.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="341.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="364.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_tills</text>
+<line x1="636" y1="367.0" x2="716" y2="367.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#source-profile-type" target="_blank">
+<rect x="622" y="391.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="389.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="389.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="389.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="389.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="412.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>source_profile_type</text>
+<line x1="636" y1="415.0" x2="788" y2="415.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="584" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="594" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="606" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="594" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="606" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="601" x2="395" y2="601" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="601" r="3" fill="#E67E22"/>
+<text x="403" y="606" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Profile Users Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in theProfilesTemplate |
+| --- | --- | --- | --- | --- |
+| auto_update_time_profile_users | bigint | Date and time when the corresponding record in the communications table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Profile Users |
+| comm_channel_android | string | Unique identifier if the customer's profile was created using an Android app. | _ | Yes; Measure Name: Comm Channel Android |
+| comm_channel_email | string | Email address associated with the customer's profile, specifically if the profile was created through an Android or iOS app. | _ | Yes; Measure Name: Comm Channel Email |
+| comm_channel_ios | string | Unique identifier if the customer's profile was created using an iOS app. | _ | Yes; Measure Name: Comm Channel Ios |
+| comm_channel_mobile | string | Unique identifier (mobile number), if the customer's profile was created using a mobile device. | _ | Yes; Measure Name: Comm Channel Mobile |
+| comm_channel_wechat | string | Unique identifier (wechat number), if the customer's profile was created using WeChat. | _ | Yes; Measure Name: Comm Channel Wechat |
+| dim_channel_account_id | bigint | Identifier for the channel where the customer's profile was created. Possible values are - Whatsapp, Web_engage, Mobile_app, Line, and WeChat. It is the primary key of this table. | [channel_account](https://docs.capillarytech.com/docs/dimension-tables#channel-account) | Yes; Dimension Name: Channel Account > Channel Account Id |
+| dim_event_date_id | bigint | Date when the customer registered/ customer's profile was created. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time when the customer registered/ customer's profile was created. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier for the customer details. It is the primary key of this table. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_tills](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_modified_date_id | bigint | Date when modifications were made to the customer's profile. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | _ |
+| dim_modified_time_id | bigint | Time when modifications were made to the customer's profile. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | _ |
+| dim_modified_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | _ | _ |
+| dim_source_profile_type_id | int | Identifier for the source where the customer's profile was created. If the customer's profile was created in-store, the value will be 'Instore', and if not, the value will be 'Not-instore'. It is the primary key of this table. | [source_profile_type](https://docs.capillarytech.com/docs/dimension-tables#source-profile-type) | _ |
+| first_name | string | First name of the customer. | _ | Yes; Measure Name: First Name |
+| id_email | string | Email address of the customer. | _ | Yes; Measure Name: Id Email |
+| id_external | string | External ID of the customer. | _ | Yes; Measure Name: Id External |
+| id_mobile | string | Mobile number of the customer. | _ | Yes; Measure Name: Id Mobile |
+| id_unique | string | Unique identifier of the customer. | _ | Yes; Measure Name: Id Unique |
+| last_name | string | Customer's last name. | _ | Yes; Measure Name: Last Name |
+| union_id | string | Unique identifier for the table. | _ | Yes; Measure Name: Union Id |
+| year | int | Year when the customer's profile was created. | _ | Yes; Dimension Name: Year |

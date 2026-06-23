@@ -1,0 +1,192 @@
+---
+title: Nsadmin Messages Fact Table
+---
+
+This fact table captures all communications sent to customers. It lets you access both, transaction and campaign messages together.
+
+**Databricks Table Name:** nsadmin_messages
+
+**Nsadmin Messages - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 520" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="520" fill="#fafbfc" rx="8"/>
+<path d="M 400 124.0 C 460 124.0, 560 48.0, 620 48.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,48.0 614,45.0 614,51.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 96.0, 620 96.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,96.0 614,93.0 614,99.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 144.0, 620 144.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,144.0 614,141.0 614,147.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 192.0, 620 192.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,192.0 614,189.0 614,195.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 240.0, 620 240.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,240.0 614,237.0 614,243.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 288.0, 620 288.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,288.0 614,285.0 614,291.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 336.0, 620 336.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,336.0 614,333.0 614,339.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 384.0, 620 384.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,384.0 614,381.0 614,387.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 288.0, 620 288.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,288.0 614,285.0 614,291.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 336.0, 620 336.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,336.0 614,333.0 614,339.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 432.0, 620 432.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,432.0 614,429.0 614,435.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="394" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="394" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">nsadmin_messages</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_nsadmin: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">client_context_id: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">client_id: bigint</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_account_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_campaign_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_communication_channel_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_communication_client_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_delivery_status_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_nsadmin_priority_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">message: string</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">message_count: bigint</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">nsadmin_id: bigint</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#gateway" target="_blank">
+<rect x="622" y="32" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="30" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="30" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="53.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>gateway</text>
+<line x1="636" y1="56.0" x2="692" y2="56.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#campaigns" target="_blank">
+<rect x="622" y="80" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="78" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="78" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="101.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaigns</text>
+<line x1="636" y1="104.0" x2="708" y2="104.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#communication-channel" target="_blank">
+<rect x="622" y="128" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="126" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="126" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="149.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>communication_channel</text>
+<line x1="636" y1="152.0" x2="804" y2="152.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#communication-client" target="_blank">
+<rect x="622" y="176" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="174" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="174" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="197.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>communication_client</text>
+<line x1="636" y1="200.0" x2="796" y2="200.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#campaign-delivery-status" target="_blank">
+<rect x="622" y="224" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="222" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="222" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="245.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaign_delivery_status</text>
+<line x1="636" y1="248.0" x2="828" y2="248.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="272" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="270" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="270" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="293.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="296.0" x2="668" y2="296.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="320" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="318" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="318" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="341.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="344.0" x2="668" y2="344.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="368" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="366" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="366" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="389.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="392.0" x2="676" y2="392.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#nsadmin-priority" target="_blank">
+<rect x="622" y="416" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="414" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="414" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="414" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="414" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="437.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>nsadmin_priority</text>
+<line x1="636" y1="440.0" x2="764" y2="440.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="480" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="490" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="502" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="490" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="502" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="497" x2="395" y2="497" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="497" r="3" fill="#E67E22"/>
+<text x="403" y="502" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Nsadmin Messages Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in theMessagesTemplate |
+| :--- | :--- | :--- | :--- | :--- |
+| auto_update_time_nsadmin | bigint | Date and time when the corresponding record in the nsadmin table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Nsadmin |
+| client_context_id | bigint | The context ID to which the message belongs. If the message is triggered by campaigns, it will be the communication details ID. | _ | Yes; Measure Name: Client Context Id |
+| client_id | bigint | Identifier of the client that triggered the message, such as campaigns. Each module has a unique static ID. | _ | Yes; Measure Name: Client Id |
+| dim_account_id | bigint | Identifier for the gateway account used for the communication. | [gateway](https://docs.capillarytech.com/docs/dimension-tables#gateway) | Yes; Dimension Name: Gateway Account > Id |
+| dim_campaign_id | bigint | Captures the campaign details for which the communication occurred. | [campaigns](https://docs.capillarytech.com/docs/dimension-tables#campaigns) | Yes; Dimension Name: Campaign > Campaign Id |
+| dim_communication_channel_id | bigint | Indicates the channel used for communicating with the customer. Possible values are - SMS, email, voicemail, Wechat, Facebook, Viber, etc. | communication_channel [Link](https://docs.capillarytech.com/docs/dimension-tables#communication-channel) | Yes; Dimension Name: Communication Channel > Id |
+| dim_communication_client_id | bigint | Identifier of the client associated with the communication. Possible values are - Loyalty, promotion, referral, etc. | communication_client [Link](https://docs.capillarytech.com/docs/dimension-tables#communication-client) | Yes; Dimension Name: Communication Client > Id |
+| dim_delivery_status_id | bigint | Identifier assigned to the nsadmin message delivery status. Possible values are - Delayed delivery, clicked, opened, received, read, sending, sent, blocked, etc. | campaign_delivery_status [Link](https://docs.capillarytech.com/docs/dimension-tables#campaign-delivery-status) | Yes; Dimension Name: Delivery Status > Id |
+| dim_event_date_id | bigint | Date of the communication. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time of the communication. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier of the customer for which the communication occurred, set internally by Capillary. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_nsadmin_priority_id | bigint | Identifier of the nsadmin message priority. Possible values are - High, default, and bulk. | [nsadmin_priority](https://docs.capillarytech.com/docs/dimension-tables#nsadmin-priority) | Yes; Dimension Name: Nsadmin Priority > Id |
+| message | string | Content of the message. | _ | Yes; Measure Name: Message |
+| message_count | bigint | Total number of messages sent. | _ | Yes; Measure Name: Message Count |
+| nsadmin_id | bigint | Unique id of the message as available in the nsadmin table. It is the primary key of the table. | _ | Yes; Measure Name: Nsadmin Id |
+| year | int | Year when the communication was sent. | _ | Yes; Dimension Name: Year |

@@ -1,0 +1,134 @@
+---
+title: Communication Credits Log Fact Table
+---
+
+This fact table captures the addition or removal of credits. Organisations are charged credits for sending communications (SMS, email, and X-Engage) to customers through Capillary products. This fact table captures information such as the user who added the credits; the credit type; and date and time of the credit addition/ removal. Mapping data from this table and the linked dimension tables helps in analysing the credit usage patterns for brands.
+
+**Databricks Table Name:** communication_credit_logs
+
+**Communication Credits Log - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 404" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="404" fill="#fafbfc" rx="8"/>
+<path d="M 400 124.0 C 460 124.0, 560 81.0, 620 81.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,81.0 614,78.0 614,84.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 129.0, 620 129.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,129.0 614,126.0 614,132.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 177.0, 620 177.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,177.0 614,174.0 614,180.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 225.0, 620 225.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,225.0 614,222.0 614,228.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 273.0, 620 273.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,273.0 614,270.0 614,276.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 225.0, 620 225.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,225.0 614,222.0 614,228.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 273.0, 620 273.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,273.0 614,270.0 614,276.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="314" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="314" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">communication_credit_logs</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">abs_credit_value: integer</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_credits_log: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">comments: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_added_by_user_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_communication_channel_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_credit_type_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">id: bigint</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">is_deleted: integer</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">src_credit_value: integer</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">year: integer</text>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="65.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="63.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="63.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="63.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="63.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="86.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="89.0" x2="676" y2="89.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#communication-channel" target="_blank">
+<rect x="622" y="113.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="111.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="111.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="111.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="111.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="134.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>communication_channel</text>
+<line x1="636" y1="137.0" x2="804" y2="137.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#credit-type" target="_blank">
+<rect x="622" y="161.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="159.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="159.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="159.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="159.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="182.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>credit_type</text>
+<line x1="636" y1="185.0" x2="724" y2="185.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="209.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="207.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="207.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="207.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="207.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="230.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="233.0" x2="668" y2="233.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="257.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="255.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="255.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="255.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="255.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="278.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="281.0" x2="668" y2="281.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="364" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="374" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="386" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="374" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="386" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="381" x2="395" y2="381" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="381" r="3" fill="#E67E22"/>
+<text x="403" y="386" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Communication Credits Log Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | --- | --- | --- |
+| abs_credit_value | integer | Absolute value of 'src (source)_credit_value' (e.g, if 'src_credit_value' is -2 or 2, then 'abs_credit_value' would be 2). | _ |
+| auto_update_time_credits_log | bigint | Date and time when the corresponding record in the credits_log table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| comments | string | Comments or notes associated with the credit utilization. | _ |
+| dim_added_by_user_id | bigint | Unique identifier of the user from the brand/ Capillary side who initiated the credit utilization or modification. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_communication_channel_id | bigint | Indicates the channel used for communicating with the customer. Possible values are - SMS, email, voicemail, Wechat, Facebook, Viber, etc. | [communication_channel](https://docs.capillarytech.com/docs/dimension-tables#communication-channel) |
+| dim_credit_type_id | bigint | Identifier for the type of credit utilization. Possible values are, credits - Added, or Removed. | [credit_type](https://docs.capillarytech.com/docs/dimension-tables#credit-type) |
+| dim_event_date_id | bigint | Date when the credit utilization occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Time when the credit utilization occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| id | bigint | Unique identifier of the credit log entry. It is the primary key of the table. | _ |
+| is_deleted | integer | Indicates whether the credit log entry has been deleted (0 for not deleted, 1 for deleted). | _ |
+| src_credit_value | integer | Represents the source credit value, before any modifications (addition or removal). | _ |
+| year | integer | Year of the credit utilization. | _ |

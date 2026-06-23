@@ -1,0 +1,280 @@
+---
+title: Payment Details Fact Table
+---
+
+This table captures the payment details of transactions, such as the bill amount, customer details, the mode of payment, taxes and discount details, cashier id, NPS value, loyalty type of the customer, and the store where the transaction is done.
+
+**Databricks Table Name:** payment_details_fact
+
+**Payment Details Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 760" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="760" fill="#fafbfc" rx="8"/>
+<path d="M 400 164.0 C 460 164.0, 560 48.0, 620 48.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,48.0 614,45.0 614,51.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 96.0, 620 96.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,96.0 614,93.0 614,99.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 144.0, 620 144.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,144.0 614,141.0 614,147.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 192.0, 620 192.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,192.0 614,189.0 614,195.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 48.0, 620 48.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,48.0 614,45.0 614,51.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 240.0, 620 240.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,240.0 614,237.0 614,243.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 288.0, 620 288.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,288.0 614,285.0 614,291.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 336.0, 620 336.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,336.0 614,333.0 614,339.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 48.0, 620 48.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,48.0 614,45.0 614,51.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 240.0, 620 240.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,240.0 614,237.0 614,243.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 364.0 C 460 364.0, 560 384.0, 620 384.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,384.0 614,381.0 614,387.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 384.0 C 460 384.0, 560 432.0, 620 432.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,432.0 614,429.0 614,435.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 404.0 C 460 404.0, 560 480.0, 620 480.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,480.0 614,477.0 614,483.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 424.0 C 460 424.0, 560 528.0, 620 528.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,528.0 614,525.0 614,531.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 444.0 C 460 444.0, 560 576.0, 620 576.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,576.0 614,573.0 614,579.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 464.0 C 460 464.0, 560 624.0, 620 624.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,624.0 614,621.0 614,627.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 524.0 C 460 524.0, 560 672.0, 620 672.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,672.0 614,669.0 614,675.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="594" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="594" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">payment_details_fact</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_amount: double</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_discount: double</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_id: bigint</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_number: string</text>
+<text x="30" y="148" fill="#2C3E50" fontSize="11" fontWeight="normal">central_gst: double</text>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_added_on_date_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_bill_outlier_status_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_bill_type_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_cashier_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_loyalty_type_id: bigint</text>
+<circle cx="388" cy="364.0" r="3" fill="#E67E22"/>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_nps_id: bigint</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_order_channel_id: bigint</text>
+<circle cx="388" cy="404.0" r="3" fill="#E67E22"/>
+<text x="30" y="428" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_payment_mode_id: bigint</text>
+<circle cx="388" cy="424.0" r="3" fill="#E67E22"/>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_repeat_status_id: bigint</text>
+<circle cx="388" cy="444.0" r="3" fill="#E67E22"/>
+<text x="30" y="468" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_source_type_id: bigint</text>
+<circle cx="388" cy="464.0" r="3" fill="#E67E22"/>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">integrated_gst: double</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">payment_mode_amount: double</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#1B4F72" fontSize="11" fontWeight="bold">payment_mode_details_id: bigint</text>
+<circle cx="388" cy="524.0" r="3" fill="#E67E22"/>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">quantity: double</text>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#2C3E50" fontSize="11" fontWeight="normal">state_gst: double</text>
+<text x="30" y="588" fill="#2C3E50" fontSize="11" fontWeight="normal">tax_amount: double</text>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="32" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="30" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="30" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="53.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="56.0" x2="668" y2="56.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#outlier-status" target="_blank">
+<rect x="622" y="80" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="78" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="78" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="101.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>outlier_status</text>
+<line x1="636" y1="104.0" x2="748" y2="104.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#bill-type" target="_blank">
+<rect x="622" y="128" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="126" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="126" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="149.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>bill_type</text>
+<line x1="636" y1="152.0" x2="708" y2="152.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#cashier" target="_blank">
+<rect x="622" y="176" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="174" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="174" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="197.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>cashier</text>
+<line x1="636" y1="200.0" x2="692" y2="200.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="224" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="222" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="222" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="245.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="248.0" x2="668" y2="248.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="272" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="270" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="270" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="293.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="296.0" x2="676" y2="296.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="320" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="318" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="318" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="341.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_tills</text>
+<line x1="636" y1="344.0" x2="716" y2="344.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#loyalty-type" target="_blank">
+<rect x="622" y="368" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="366" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="366" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="389.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>loyalty_type</text>
+<line x1="636" y1="392.0" x2="732" y2="392.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#nps-score" target="_blank">
+<rect x="622" y="416" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="414" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="414" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="414" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="414" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="437.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>nps_score</text>
+<line x1="636" y1="440.0" x2="708" y2="440.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#order-channel" target="_blank">
+<rect x="622" y="464" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="462" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="462" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="462" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="462" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="485.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>order_channel</text>
+<line x1="636" y1="488.0" x2="740" y2="488.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#payment-mode" target="_blank">
+<rect x="622" y="512" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="510" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="510" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="510" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="510" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="533.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>payment_mode</text>
+<line x1="636" y1="536.0" x2="732" y2="536.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#repeat-status" target="_blank">
+<rect x="622" y="560" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="558" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="558" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="558" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="558" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="581.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>repeat_status</text>
+<line x1="636" y1="584.0" x2="740" y2="584.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#source-type" target="_blank">
+<rect x="622" y="608" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="606" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="606" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="606" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="606" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="629.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>source_type</text>
+<line x1="636" y1="632.0" x2="724" y2="632.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#payment-attributes" target="_blank">
+<rect x="622" y="656" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="654" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="654" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="654" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="654" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="677.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>payment_attributes</text>
+<line x1="636" y1="680.0" x2="780" y2="680.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="720" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="730" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="742" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="730" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="742" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="737" x2="395" y2="737" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="737" r="3" fill="#E67E22"/>
+<text x="403" y="742" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Payment Details Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in thePayment Mode Template |
+| --- | --- | --- | --- | --- |
+| bill_amount | double | The total amount of the transaction for which the payment has been done. | _ | Yes; Measure Name: Bill Amount |
+| bill_discount | double | Total discount applied on the bill. Possible values are flat discount, percentage discount, etc. | _ | Yes; Measure Name: Bill Discount |
+| bill_id | bigint | Unique identifier assigned to a bill internally by Capillary system. It is the primary key of this table. | _ | Yes; Measure Name: Bill Id |
+| bill_number | string | A unique number for a transaction that is either auto-generated at the POS machine (billing counter) or provided manually. | _ | Yes; Measure Name: Bill Number |
+| central_gst | double | GST tax levied by the Central Government. | _ | Yes; Measure Name: Central Gst |
+| dim_added_on_date_id | bigint | Date when the payment details had been added for the transaction. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes: Dimension Name: Added On Date > Date Id |
+| dim_bill_outlier_status_id | bigint | Captures whether a bill, identified by its bill_id, contains outlier items. | [outlier_status](https://docs.capillarytech.com/docs/dimension-tables#outlier-status) | Yes: Dimension Name: Bill Outlier > Id |
+| dim_bill_type_id | bigint | Captures the type of bill for which the payment has been made. Possible values are - Regular, and Not interested. | [bill_type](https://docs.capillarytech.com/docs/dimension-tables#bill-type) | Yes: Dimension Name: Dim Bill Type Id |
+| dim_cashier_id | bigint | Identifier of the cashier who processed the transaction. | [cashier](https://docs.capillarytech.com/docs/dimension-tables#cashier) | Yes: Dimension Name: Cashier Id |
+| dim_event_date_id | bigint | Date when the payment has been done. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes: Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time when the payment has been done. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes: Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier of the customer who has done the payment. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes: Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store, where the payment has been done. | [zone_tills](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes: Dimension Name: Store Hierarchy > Till Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes: Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes: Dimension Name: Latest Updated Time > Time Id |
+| dim_loyalty_type_id | bigint | Identifier of the Loyalty type of the customer. Possible values are - loyalty/ non loyalty/ not registered (who have not provided their contact details). | [loyalty_type](https://docs.capillarytech.com/docs/dimension-tables#loyalty-type) | Yes: Dimension Name: Loyalty > Id |
+| dim_nps_id | bigint | Net Promoter Score (NPS) for the transaction, where NPS is a measure for customer satisfaction, ranging from 1 to 10. | [nps_score](https://docs.capillarytech.com/docs/dimension-tables#nps-score) | Yes: Dimension Name: Nps > Id |
+| dim_order_channel_id | bigint | Identifier for the order channel associated with a transaction. It indicates the specific channel through which the transaction was completed. Possible values are online, in-store, through a mobile app, etc. | [order_channel](https://docs.capillarytech.com/docs/dimension-tables#order-channel) | Yes: Dimension Name: Order Channel > Id |
+| dim_payment_mode_id | bigint | Identifier for the mode of payment. Possible values are- Netbanking, PhonePe, Mastercard, Visa card, etc. | [payment_mode](https://docs.capillarytech.com/docs/dimension-tables#payment-mode) | Yes: Dimension Name: Payment Mode > Id |
+| dim_repeat_status_id | bigint | Shows if the customer has made previous purchases or if it's their first transaction. | [repeat_status](https://docs.capillarytech.com/docs/dimension-tables#repeat-status) | Yes: Dimension Name: Repeat > Id |
+| dim_source_type_id | bigint | Identifier for the source of the bill. Possible values are instore, e-comm, newsletter, campaigns, NCA, Wechat, Facebook, etc. | [source_type](https://docs.capillarytech.com/docs/dimension-tables#source-type) | Yes: Dimension Name: Source > Id |
+| integrated_gst | double | GST levied by the Central Government for inter-state trade. | _ | Yes; Measure Name: Integrated Gst |
+| payment_mode_amount | double | Total amount of the payment made. | _ | Yes; Measure Name: Payment Mode Amount |
+| payment_mode_details_id | bigint | Unique identifier for the payment mode details, generated by Capillary system. It is the primary key of this table. | [payment_attributes](https://docs.capillarytech.com/docs/dimension-tables#payment-attributes) | Yes; Measure Name: Payment Mode Attribute > Id |
+| quantity | double | Total number of items in the transaction, for which the payment has been done. | _ | Yes; Measure Name: Quantity |
+| state_gst | double | Taxes levied by the State Government on the bill. | _ | Yes; Measure Name: State Gst |
+| tax_amount | double | Total amount of tax levied on the bill. | _ | Yes; Measure Name: Tax Amount |
+| year | int | Year when the payment has been done. | _ | Yes: Dimension Name: Year |

@@ -1,0 +1,181 @@
+---
+title: Goodwill Requests Fact Table
+---
+
+A goodwill request involves the allocation of goodwill points or coupons to a customer for various reasons. This table records the generation of goodwill requests. It captures the event details such as the number of goodwill points that have been approved, loyalty program against which the goodwill points have been allocated, date and time when the request was made.
+
+**Databricks Table Name:** goodwill_requests
+
+**Goodwill Requests - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 684" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="684" fill="#fafbfc" rx="8"/>
+<path d="M 400 144.0 C 460 144.0, 560 197.0, 620 197.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,197.0 614,194.0 614,200.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 245.0, 620 245.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,245.0 614,242.0 614,248.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 293.0, 620 293.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,293.0 614,290.0 614,296.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 341.0, 620 341.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,341.0 614,338.0 614,344.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 389.0, 620 389.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,389.0 614,386.0 614,392.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 437.0, 620 437.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,437.0 614,434.0 614,440.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 341.0, 620 341.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,341.0 614,338.0 614,344.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 341.0, 620 341.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,341.0 614,338.0 614,344.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="594" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="594" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">goodwill_requests</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">allocated_points: double</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">approval_comments: string</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">approved_value: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">comments: string</text>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_program_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_points_category_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_request_created_date_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_request_updated_date_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">event_id: bigint</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">goodwill_points_log_notes: string</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">goodwill_points_log_status: bigint</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">goodwill_points_logs_id: bigint</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">goodwill_request_status: string</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">goodwill_type: string</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">gpl_auto_update_time: bigint</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">gr_auto_update_time: bigint</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">is_one_step_change: bigint</text>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">points_event_id: bigint</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">reason: string</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#2C3E50" fontSize="11" fontWeight="normal">request_assoc_id: bigint</text>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">request_auto_update_time: bigint</text>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#2C3E50" fontSize="11" fontWeight="normal">request_status: string</text>
+<text x="30" y="588" fill="#2C3E50" fontSize="11" fontWeight="normal">request_type: string</text>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#2C3E50" fontSize="11" fontWeight="normal">year: integer</text>
+<a href="/docs/dimension-tables#program" target="_blank">
+<rect x="622" y="181.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="179.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="179.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="179.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="179.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="202.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>program</text>
+<line x1="636" y1="205.0" x2="692" y2="205.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="229.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="227.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="227.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="227.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="227.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="250.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="253.0" x2="676" y2="253.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="277.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="275.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="275.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="275.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="275.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="298.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="301.0" x2="708" y2="301.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="325.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="323.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="323.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="323.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="323.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="346.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="349.0" x2="668" y2="349.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="373.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="371.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="371.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="371.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="371.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="394.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="397.0" x2="668" y2="397.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#points-category" target="_blank">
+<rect x="622" y="421.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="419.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="419.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="419.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="419.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="442.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>points_category</text>
+<line x1="636" y1="445.0" x2="756" y2="445.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="644" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="654" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="666" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="654" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="666" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="661" x2="395" y2="661" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="661" r="3" fill="#E67E22"/>
+<text x="403" y="666" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Goodwill Requests Facts Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in theGoodwill RequestsTemplate |
+| :--- | :--- | :--- | :--- | :--- |
+| allocated_points | double | Total number of goodwill points issued to the customer. | _ | Yes; Measure Name: Allocated Points |
+| approval_comments | string | Comments added by the approver for the goodwill point allocation request. | _ | Yes; Measure Name: Approval Comments |
+| approved_value | string | Value of the points that has been approved. | _ | Yes; Measure Name: Approved Value |
+| comments | string | Any remarks related to the goodwill points, added by the user. | _ | Yes; Measure Name: Comments |
+| dim_event_program_id | bigint | Identifier for the loyalty program name against which the goodwill points have been allocated. | [program](https://docs.capillarytech.com/docs/dimension-tables#program) | Yes; Dimension Name: Event Program |
+| dim_event_user_id | bigint | Identifier for the user associated with the event. It is an internally assigned value by Capillary for user identification. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Date |
+| dim_points_category_id | bigint | Gives the category name against which the goodwill points have been allocated. Possible values are - Regular points, Trackers, Promised points, Alternate currencies, and External trigger based points. | [points_category](https://docs.capillarytech.com/docs/dimension-tables#points-category) | Yes; Dimension Name: Points Category |
+| dim_request_created_date_id | bigint | Date when the goodwill request was created. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_request_updated_date_id | bigint | Date when the goodwill request was updated. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| event_id | bigint | Unique identifier for the Goodwill points table. It is the primary key for this table. | _ | Yes; Measure Name: Event Id |
+| goodwill_points_log_notes | string | Additional information about goodwill points. | _ | Yes; Measure Name: GoodWill Points log notes |
+| goodwill_points_log_status | bigint | Status indicator for the goodwill points log. | _ | Yes; Measure Name: GoodWill Points Log Status |
+| goodwill_points_logs_id | bigint | Unique identifier for each entry in the goodwill points log. | _ | Yes; Measure Name: Goodwill Points Logs Id |
+| goodwill_request_status | string | Status of the goodwill request associated with the points. Whether is the status is approved or not. | _ | Yes; Measure Name: Goodwill Request Status |
+| goodwill_type | string | Type or category of the goodwill points. Possible values are - Coupon, and Points. | _ | Yes; Measure Name: Goodwill Type |
+| gpl_auto_update_time | bigint | Time when the goodwill points logs table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Gpl Auto Update Time |
+| gr_auto_update_time | bigint | Time when the goodwill request table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Gr Auto Update Time |
+| is_one_step_change | bigint | Indicates if one step issual of goodwill points is active or not. In one step issual, goodwill points are issued instantly without requiring additional approval steps. | _ | Yes; Measure Name: Is One Step Change |
+| points_event_id | bigint | Refers to the points fact table event id. | _ | Yes; Measure Name: Points event Id |
+| reason | string | Reason for the goodwill request. | _ | Yes; Measure Name: Reason |
+| request_assoc_id | bigint | Associated ID for the goodwill request. | _ | Yes; Measure Name: Request Assoc Id |
+| request_auto_update_time | bigint | Time when the goodwill request table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Request Auto Update Time |
+| request_status | string | Status of the request. Possible values are - Pending, Approved, and Rejected. | _ | Yes; Measure Name: Request Status |
+| request_type | string | Type of the request. | _ | Yes; Measure Name: Request Type |
+| year | integer | Year when the goodwill points are issued. | _ | Yes; Dimension Name: Year |

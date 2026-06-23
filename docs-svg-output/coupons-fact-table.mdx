@@ -1,0 +1,298 @@
+---
+title: Coupons Fact Table
+---
+
+This table captures the event wherein coupons are issued to or redeemed by the customer. It captures the date and time of the coupon issual/ redemption, the associated bill amount, expiry date of the coupon, and the customer for which the coupon issual/ redemption has been done.
+
+**Databricks Table Name:** coupons
+
+**Coupons - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 784" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="784" fill="#fafbfc" rx="8"/>
+<path d="M 400 64.0 C 460 64.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 151.0, 620 151.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,151.0 614,148.0 614,154.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 199.0, 620 199.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,199.0 614,196.0 614,202.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 247.0, 620 247.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,247.0 614,244.0 614,250.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 295.0, 620 295.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,295.0 614,292.0 614,298.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 343.0, 620 343.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,343.0 614,340.0 614,346.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 391.0, 620 391.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,391.0 614,388.0 614,394.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 439.0, 620 439.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,439.0 614,436.0 614,442.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 364.0 C 460 364.0, 560 487.0, 620 487.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,487.0 614,484.0 614,490.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 384.0 C 460 384.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 404.0 C 460 404.0, 560 535.0, 620 535.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,535.0 614,532.0 614,538.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 424.0 C 460 424.0, 560 583.0, 620 583.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,583.0 614,580.0 614,586.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 444.0 C 460 444.0, 560 151.0, 620 151.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,151.0 614,148.0 614,154.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 464.0 C 460 464.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 484.0 C 460 484.0, 560 391.0, 620 391.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,391.0 614,388.0 614,394.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 504.0 C 460 504.0, 560 247.0, 620 247.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,247.0 614,244.0 614,250.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 524.0 C 460 524.0, 560 487.0, 620 487.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,487.0 614,484.0 614,490.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 544.0 C 460 544.0, 560 439.0, 620 439.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,439.0 614,436.0 614,442.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 564.0 C 460 564.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 584.0 C 460 584.0, 560 391.0, 620 391.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,391.0 614,388.0 614,394.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 704.0 C 460 704.0, 560 631.0, 620 631.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,631.0 614,628.0 614,634.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="694" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="694" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">coupons</text>
+<text x="30" y="68" fill="#1B4F72" fontSize="11" fontWeight="bold">auto_update_time_coupons: string</text>
+<circle cx="388" cy="64.0" r="3" fill="#E67E22"/>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_id: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">coupon_code: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">coupon_code_src: string</text>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">coupons_expiry_auto_update_time: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_campaign_group_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_campaign_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_coupon_issual_type_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_coupon_series_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_coupons_expiry_date_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_coupons_expiry_time_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_entry_type_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="364.0" r="3" fill="#E67E22"/>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiry_date_id: bigint</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_is_coupon_issued_active_id: bigint</text>
+<circle cx="388" cy="404.0" r="3" fill="#E67E22"/>
+<text x="30" y="428" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_is_coupon_redemptions_active_id: bigint</text>
+<circle cx="388" cy="424.0" r="3" fill="#E67E22"/>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_issual_campaign_group_id: bigint</text>
+<circle cx="388" cy="444.0" r="3" fill="#E67E22"/>
+<text x="30" y="468" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_issual_date_id: bigint</text>
+<circle cx="388" cy="464.0" r="3" fill="#E67E22"/>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_issual_time_id: bigint</text>
+<circle cx="388" cy="484.0" r="3" fill="#E67E22"/>
+<text x="30" y="508" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_issual_type_id: bigint</text>
+<circle cx="388" cy="504.0" r="3" fill="#E67E22"/>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_issual_zone_till_id: int</text>
+<circle cx="388" cy="524.0" r="3" fill="#E67E22"/>
+<text x="30" y="548" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_issued_to_user_id: bigint</text>
+<circle cx="388" cy="544.0" r="3" fill="#E67E22"/>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="564.0" r="3" fill="#E67E22"/>
+<text x="30" y="588" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="584.0" r="3" fill="#E67E22"/>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#2C3E50" fontSize="11" fontWeight="normal">event_id: bigint</text>
+<text x="30" y="628" fill="#2C3E50" fontSize="11" fontWeight="normal">issual_coupon_id: bigint</text>
+<rect x="21" y="634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="648" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_bill_amount: double</text>
+<text x="30" y="668" fill="#2C3E50" fontSize="11" fontWeight="normal">used_bill_number: string</text>
+<rect x="21" y="674" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="688" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<text x="30" y="708" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_coupon_event_type_id: bigint</text>
+<circle cx="388" cy="704.0" r="3" fill="#E67E22"/>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="87.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="85.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="85.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="85.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="85.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="108.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="111.0" x2="668" y2="111.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#campaign-group" target="_blank">
+<rect x="622" y="135.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="133.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="133.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="133.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="133.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="156.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaign_group</text>
+<line x1="636" y1="159.0" x2="748" y2="159.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#campaigns" target="_blank">
+<rect x="622" y="183.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="181.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="181.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="181.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="181.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="204.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaigns</text>
+<line x1="636" y1="207.0" x2="708" y2="207.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#coupon-issual-type-coupon_issual_type" target="_blank">
+<rect x="622" y="231.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="229.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="229.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="229.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="229.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="252.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>coupon_issual_type</text>
+<line x1="636" y1="255.0" x2="780" y2="255.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#coupon-series-coupon_series" target="_blank">
+<rect x="622" y="279.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="277.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="277.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="277.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="277.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="300.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>coupon_series</text>
+<line x1="636" y1="303.0" x2="740" y2="303.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#entry-type-entry_type" target="_blank">
+<rect x="622" y="327.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="325.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="325.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="325.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="325.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="348.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>entry_type</text>
+<line x1="636" y1="351.0" x2="716" y2="351.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="375.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="373.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="373.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="373.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="373.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="396.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="399.0" x2="668" y2="399.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="423.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="421.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="421.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="421.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="421.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="444.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="447.0" x2="676" y2="447.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="471.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="469.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="469.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="469.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="469.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="492.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_tills</text>
+<line x1="636" y1="495.0" x2="716" y2="495.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#coupon-status-is_coupon_issued_active-1" target="_blank">
+<rect x="622" y="519.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="517.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="517.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="517.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="517.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="540.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>Coupons issued status</text>
+<line x1="636" y1="543.0" x2="804" y2="543.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#coupon-redemption-status-is_coupon_redemptions_active" target="_blank">
+<rect x="622" y="567.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="565.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="565.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="565.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="565.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="588.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>Coupon redemption status</text>
+<line x1="636" y1="591.0" x2="828" y2="591.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#redeemed-status-redeemed_status" target="_blank">
+<rect x="622" y="615.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="613.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="613.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="613.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="613.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="636.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>redeemed_status</text>
+<line x1="636" y1="639.0" x2="756" y2="639.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="744" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="754" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="766" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="754" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="766" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="761" x2="395" y2="761" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="761" r="3" fill="#E67E22"/>
+<text x="403" y="766" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Coupons Fact Table**
+
+| **Column Name** | **Data Type** | **Description New** | Linked Table | **Availability for Export in theCoupons template** |
+| :--- | :---: | :--- | :---: | :--- |
+| auto_update_time_coupons | string | Date and time when the corresponding record in the coupons table available at the source was last updated. It is in the Unix timestamp format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Measure Name: Auto Update Time Coupons |
+| bill_id | bigint | Identifier for the bill against which the coupons have been issued or redeemed. | _ | Yes; Measure Name: Bill Id |
+| coupon_code | string | A unique identifier is generated for the coupons. | _ | Yes; Measure Name: Coupon Code |
+| coupon_code_src | string | Represents the source coupon code. It is the same as the coupon code. | _ | Yes; Measure Name: Coupon Code Src |
+| coupons_expiry_auto_update_time | bigint | Indicates the timestamp when the coupon's expiry information was last automatically updated by the system during a issual or transaction which issued the coupon. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | NA |
+| dim_campaign_group_id | bigint | Identifier for the campaign group (test or control) for which the coupon has been issued or redeemed. | [campaign_group](https://docs.capillarytech.com/docs/dimension-tables#campaign-group) | Yes; Dimension Name: Campaign Group |
+| dim_campaign_id | bigint | Identifier for the campaign for which the coupon has been issued or redeemed. | [campaigns](https://docs.capillarytech.com/docs/dimension-tables#campaigns) | Yes; Dimension Name: Campaign Id |
+| dim_coupon_issual_type_id | bigint | Identifier of the type of coupon issued. Possible values are - Single, and Bulk. Single: A single coupon is issued in response to a specific event. Bulk: Multiple coupons are issued simultaneously. | coupon_issual_type [Link](https://docs.capillarytech.com/docs/dimension-tables#coupon-issual-type-coupon_issual_type) | Yes; Dimension Name: Coupon Issual Type |
+| dim_coupon_series_id | bigint | Identifier of the coupon series against which the coupon has been issued or redeemed. | [coupon_series](https://docs.capillarytech.com/docs/dimension-tables#coupon-series-coupon_series) | Yes; Dimension Name: Coupon Series |
+| dim_coupons_expiry_date_id | bigint | Indicates the date until which the coupon is valid to be redeemed. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: coupons_expiry_date |
+| dim_coupons_expiry_time_id | bigint | Indicates the specific time on the expiry date until which the coupon is valid to be redeemed. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name:coupons_expiry_time |
+| dim_entry_type_id | bigint | Captures the entry type for the coupon, whether it is a manual entry or through Intouch. | [entry_type](https://docs.capillarytech.com/docs/dimension-tables#entry-type-entry_type) | Yes; Dimension Name: Entry Type |
+| dim_event_date_id | bigint | Date when the coupon issual or redemption has occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the coupon issual or redeemed. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_event_user_id | bigint | Identifier of the user, set internally by Capillary. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store, where the coupon was issued/redeemed. It distinguishes one checkout location from another within the same store. | [zone_tills](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_expiry_date_id | bigint | Date when the coupon is set to expire. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Expiry Date |
+| dim_is_coupon_issued_active_id | bigint | Indicates whether the issued coupon is currently active. | [Coupons issued status](https://docs.capillarytech.com/docs/dimension-tables#coupon-status-is_coupon_issued_active-1) | Yes; Dimension Name:is_coupon_issued_active |
+| dim_is_coupon_redemptions_active_id | bigint | Indicates whether redemptions are currently enabled for this coupon. | [Coupon redemption status](https://docs.capillarytech.com/docs/dimension-tables#coupon-redemption-status-is_coupon_redemptions_active) | Yes; Dimension Name: is_coupon_redemptions_active |
+| dim_issual_campaign_group_id | bigint | Identifier for the campaign group associated with the coupon issual. | [campaign_group](https://docs.capillarytech.com/docs/dimension-tables#campaign-group) | Yes; Dimension Name: Campaign Group |
+| dim_issual_date_id | bigint | Date when the coupon has been issued. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Issual Date |
+| dim_issual_time_id | bigint | Time when the coupon has been issued. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Issual Time |
+| dim_issual_type_id | bigint | Captures the issual type. Possible values are store and customer. | coupon_issual_type [Link](https://docs.capillarytech.com/docs/dimension-tables#coupon-issual-type-coupon_issual_type) | Yes; Dimension Name: Issual Type |
+| dim_issual_zone_till_id | int | Identifier assigned to the point-of-sale (POS) terminal within a store, where the coupon was issued. It distinguishes one checkout location from another within the same store. | [zone_tills](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Issual Zone Till |
+| dim_issued_to_user_id | bigint | Identifier of the customer to whom the coupon has been issued. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Measure Name: Latest Updated Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Measure Name: Latest Updated Time |
+| event_id | bigint | Unique identifier of the coupons issual/redemption event, It is the primary key of this table. | _ | Yes; Measure Name: Event Id |
+| issual_coupon_id | bigint | Unique identifier assigned to the coupon which has been issued. | _ | Yes; Measure Name: Issual Coupon Id |
+| redemption_bill_amount | double | Total transaction amount of the bill against which the coupon has been redeemed. | _ | Yes; Measure Name: Redemption Bill Amount |
+| used_bill_number | string | Bill number used while redeeming the coupon. | _ | Yes; Measure Name: Used Bill Number |
+| year | int | Year when the coupon was issued/redeemed. | _ | Yes; Dimension Name: Year |
+| dim_coupon_event_type_id | bigint | Identifier for the coupons event type (issual, redemption). It is the primary key of this table. | [redeemed_status](https://docs.capillarytech.com/docs/dimension-tables#redeemed-status-redeemed_status) | Yes; Dimension Name: Coupon Event Type |

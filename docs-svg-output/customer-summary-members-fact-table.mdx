@@ -1,0 +1,358 @@
+---
+title: Customer Summary Fact Table
+---
+
+Also known as members fact. This table summarizes all the data pertaining to the customer, such as their registration date, points information, total transaction amount, number of transactions made, their date of birth, and wedding date.
+
+**Databricks Table Name:** customer_summary
+
+**Customer Summary (members) - Entity Relationship Diagram ERD**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 1524" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="1524" fill="#fafbfc" rx="8"/>
+<path d="M 400 64.0 C 460 64.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 84.0 C 460 84.0, 560 617.0, 620 617.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,617.0 614,614.0 614,620.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 104.0 C 460 104.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 617.0, 620 617.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,617.0 614,614.0 614,620.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 665.0, 620 665.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,665.0 614,662.0 614,668.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 617.0, 620 617.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,617.0 614,614.0 614,620.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 364.0 C 460 364.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 384.0 C 460 384.0, 560 713.0, 620 713.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,713.0 614,710.0 614,716.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 404.0 C 460 404.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 424.0 C 460 424.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 444.0 C 460 444.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 464.0 C 460 464.0, 560 713.0, 620 713.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,713.0 614,710.0 614,716.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 484.0 C 460 484.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 504.0 C 460 504.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 524.0 C 460 524.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 544.0 C 460 544.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 564.0 C 460 564.0, 560 713.0, 620 713.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,713.0 614,710.0 614,716.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 584.0 C 460 584.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 604.0 C 460 604.0, 560 761.0, 620 761.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,761.0 614,758.0 614,764.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 644.0 C 460 644.0, 560 809.0, 620 809.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,809.0 614,806.0 614,812.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 664.0 C 460 664.0, 560 713.0, 620 713.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,713.0 614,710.0 614,716.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 684.0 C 460 684.0, 560 857.0, 620 857.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,857.0 614,854.0 614,860.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 704.0 C 460 704.0, 560 905.0, 620 905.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,905.0 614,902.0 614,908.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 744.0 C 460 744.0, 560 569.0, 620 569.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,569.0 614,566.0 614,572.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="1434" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="1434" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">customer_summary</text>
+<text x="30" y="68" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="64.0" r="3" fill="#E67E22"/>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="84.0" r="3" fill="#E67E22"/>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_joined_date_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_cps: bigint</text>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_conversion_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_extnd: bigint</text>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_loyalty: bigint</text>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">average_spent_per_sku: double</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">average_spent_per_visit: double</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">cancelled_points: double</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">year: integer</text>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_conversion_time_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_dob_id: bigint</text>
+<circle cx="388" cy="364.0" r="3" fill="#E67E22"/>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_first_awarded_date_id: bigint</text>
+<circle cx="388" cy="404.0" r="3" fill="#E67E22"/>
+<text x="30" y="428" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_first_bill_date_id: bigint</text>
+<circle cx="388" cy="424.0" r="3" fill="#E67E22"/>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_first_points_redemption_date_id: bigint</text>
+<circle cx="388" cy="444.0" r="3" fill="#E67E22"/>
+<text x="30" y="468" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_first_purchased_till_id: bigint</text>
+<circle cx="388" cy="464.0" r="3" fill="#E67E22"/>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_first_redeemption_date_id: bigint</text>
+<circle cx="388" cy="484.0" r="3" fill="#E67E22"/>
+<text x="30" y="508" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_lapsation_date_id: bigint</text>
+<circle cx="388" cy="504.0" r="3" fill="#E67E22"/>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_last_bill_date_id: bigint</text>
+<circle cx="388" cy="524.0" r="3" fill="#E67E22"/>
+<text x="30" y="548" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_last_points_redemption_date_id: bigint</text>
+<circle cx="388" cy="544.0" r="3" fill="#E67E22"/>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_last_purchased_till_id: bigint</text>
+<circle cx="388" cy="564.0" r="3" fill="#E67E22"/>
+<text x="30" y="588" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_last_redeemption_date_id: bigint</text>
+<circle cx="388" cy="584.0" r="3" fill="#E67E22"/>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_loyalty_type_id: bigint</text>
+<circle cx="388" cy="604.0" r="3" fill="#E67E22"/>
+<text x="30" y="628" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_points_redemption_status_id: bigint</text>
+<rect x="21" y="634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="648" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_preferred_order_channel_id: bigint</text>
+<circle cx="388" cy="644.0" r="3" fill="#E67E22"/>
+<text x="30" y="668" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_preferred_store_id: string</text>
+<circle cx="388" cy="664.0" r="3" fill="#E67E22"/>
+<rect x="21" y="674" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="688" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_repeat_status_id: bigint</text>
+<circle cx="388" cy="684.0" r="3" fill="#E67E22"/>
+<text x="30" y="708" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_source_type_id: bigint</text>
+<circle cx="388" cy="704.0" r="3" fill="#E67E22"/>
+<rect x="21" y="714" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="728" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_voucher_redemption_status_id: bigint</text>
+<text x="30" y="748" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_wedding_date_id: bigint</text>
+<circle cx="388" cy="744.0" r="3" fill="#E67E22"/>
+<rect x="21" y="754" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="768" fill="#2C3E50" fontSize="11" fontWeight="normal">expired_points: double</text>
+<text x="30" y="788" fill="#2C3E50" fontSize="11" fontWeight="normal">first_visit_basket_size: double</text>
+<rect x="21" y="794" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="808" fill="#2C3E50" fontSize="11" fontWeight="normal">first_visit_bill_amount: double</text>
+<text x="30" y="828" fill="#2C3E50" fontSize="11" fontWeight="normal">has_spike_bill: integer</text>
+<rect x="21" y="834" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="848" fill="#2C3E50" fontSize="11" fontWeight="normal">last_updated_by_till_id: bigint</text>
+<text x="30" y="868" fill="#2C3E50" fontSize="11" fontWeight="normal">last_visit_bill_amount: double</text>
+<rect x="21" y="874" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="888" fill="#2C3E50" fontSize="11" fontWeight="normal">latency: double</text>
+<text x="30" y="908" fill="#2C3E50" fontSize="11" fontWeight="normal">line_item_count: bigint</text>
+<rect x="21" y="914" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="928" fill="#2C3E50" fontSize="11" fontWeight="normal">loyalty_id: bigint</text>
+<text x="30" y="948" fill="#2C3E50" fontSize="11" fontWeight="normal">loyalty_points: double</text>
+<rect x="21" y="954" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="968" fill="#2C3E50" fontSize="11" fontWeight="normal">max_bill_amount: double</text>
+<text x="30" y="988" fill="#2C3E50" fontSize="11" fontWeight="normal">max_bill_count_in_day: bigint</text>
+<rect x="21" y="994" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1008" fill="#2C3E50" fontSize="11" fontWeight="normal">max_bill_count_in_week: bigint</text>
+<text x="30" y="1028" fill="#2C3E50" fontSize="11" fontWeight="normal">max_bill_hour_count_in_day: double</text>
+<rect x="21" y="1034" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1048" fill="#2C3E50" fontSize="11" fontWeight="normal">max_zones_with_billing_on_same_day: bigint</text>
+<text x="30" y="1068" fill="#2C3E50" fontSize="11" fontWeight="normal">number_of_visit_days: bigint</text>
+<rect x="21" y="1074" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1088" fill="#2C3E50" fontSize="11" fontWeight="normal">number_of_visits: bigint</text>
+<text x="30" y="1108" fill="#2C3E50" fontSize="11" fontWeight="normal">points_awarded_days: bigint</text>
+<rect x="21" y="1114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1128" fill="#2C3E50" fontSize="11" fontWeight="normal">redeemed_points: double</text>
+<text x="30" y="1148" fill="#2C3E50" fontSize="11" fontWeight="normal">redeemed_rate: double</text>
+<rect x="21" y="1154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1168" fill="#2C3E50" fontSize="11" fontWeight="normal">redeemed_visit_days: bigint</text>
+<text x="30" y="1188" fill="#2C3E50" fontSize="11" fontWeight="normal">redeemed_visits: bigint</text>
+<rect x="21" y="1194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1208" fill="#2C3E50" fontSize="11" fontWeight="normal">redeemed_voucher_count: bigint</text>
+<text x="30" y="1228" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_latency: double</text>
+<rect x="21" y="1234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1248" fill="#2C3E50" fontSize="11" fontWeight="normal">returned_bill_amount: double</text>
+<text x="30" y="1268" fill="#2C3E50" fontSize="11" fontWeight="normal">returned_bill_count: bigint</text>
+<rect x="21" y="1274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1288" fill="#2C3E50" fontSize="11" fontWeight="normal">sku_purchased: bigint</text>
+<text x="30" y="1308" fill="#2C3E50" fontSize="11" fontWeight="normal">skus_returned: bigint</text>
+<rect x="21" y="1314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1328" fill="#2C3E50" fontSize="11" fontWeight="normal">total_bill_amount: double</text>
+<text x="30" y="1348" fill="#2C3E50" fontSize="11" fontWeight="normal">total_bill_count: bigint</text>
+<rect x="21" y="1354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1368" fill="#2C3E50" fontSize="11" fontWeight="normal">total_line_item_amount: double</text>
+<text x="30" y="1388" fill="#2C3E50" fontSize="11" fontWeight="normal">total_points_redeemed: double</text>
+<rect x="21" y="1394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1408" fill="#2C3E50" fontSize="11" fontWeight="normal">total_returned_line_item_amount: double</text>
+<text x="30" y="1428" fill="#2C3E50" fontSize="11" fontWeight="normal">lifetime_points: double</text>
+<rect x="21" y="1434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1448" fill="#2C3E50" fontSize="11" fontWeight="normal">lifetime_purchased: double</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="553.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="551.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="551.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="551.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="551.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="574.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="577.0" x2="668" y2="577.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="601.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="599.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="599.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="599.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="599.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="622.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="625.0" x2="668" y2="625.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="649.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="647.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="647.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="647.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="647.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="670.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="673.0" x2="676" y2="673.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="697.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="695.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="695.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="695.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="695.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="718.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="721.0" x2="708" y2="721.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#loyalty-type" target="_blank">
+<rect x="622" y="745.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="743.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="743.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="743.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="743.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="766.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>loyalty_type</text>
+<line x1="636" y1="769.0" x2="732" y2="769.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#order-channel" target="_blank">
+<rect x="622" y="793.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="791.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="791.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="791.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="791.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="814.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>order_channel</text>
+<line x1="636" y1="817.0" x2="740" y2="817.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#repeat-status" target="_blank">
+<rect x="622" y="841.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="839.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="839.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="839.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="839.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="862.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>repeat_status</text>
+<line x1="636" y1="865.0" x2="740" y2="865.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#source-type" target="_blank">
+<rect x="622" y="889.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="887.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="887.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="887.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="887.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="910.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>source_type</text>
+<line x1="636" y1="913.0" x2="724" y2="913.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="1484" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="1494" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="1506" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="1494" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="1506" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="1501" x2="395" y2="1501" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="1501" r="3" fill="#E67E22"/>
+<text x="403" y="1506" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Customer summary facts table** **(members)**
+
+| Column Name | Column Type | Description | Linked Table | Availability for Export in theMember Fact Template |
+| --- | :--- | --- | :--- | --- |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Date |
+| dim_event_date_id | bigint | Date when the customer was registered. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the customer was registered (up to minutes). | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_event_user_id | bigint | Unique identifier for the customer_summary table, set internally by Capillary. It is the primary key of this facts table. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User Id |
+| dim_joined_date_id | bigint | Records the loyalty registration date for the customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Joined Date |
+| auto_update_time_cps | bigint | Date and time when the corresponding record in the customer_point_summary table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Cps |
+| dim_conversion_date_id | bigint | Date when the customer is converted from a non loyalty customer to a loyalty customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Conversion Date |
+| auto_update_time_extnd | bigint | Date and time when the corresponding record in the extended field table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Extnd |
+| auto_update_time_loyalty | bigint | Date and time when the corresponding record in the loyalty table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Loyalty |
+| average_spent_per_sku | double | Average amount spent by the customer on each product type (per SKU). Stock Keeping Unit (SKU) is a unique identifier assigned to each distinct product or item in inventory. | _ | Yes; Measure Name: Average Spent Per Sku |
+| average_spent_per_visit | double | Average amount of money a customer spends during each visit they make to the store (total amount spent divided by number of visits). | _ | Yes; Measure Name: Average Spent Per Visit |
+| cancelled_points | double | Cancelled points are the number of reverted points. That is, issued points that were reverted due to reasons like transaction return. | _ | Yes; Measure Name: Cancelled Points |
+| year | integer | Year in which the customer was registered. | _ | Yes; Dimension Name: Year |
+| dim_conversion_time_id | bigint | Time when the customer is converted from a non loyalty customer to a loyalty customer. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Conversion Time |
+| dim_dob_id | bigint | Denotes date of birth of the customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: DOB |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy |
+| dim_first_awarded_date_id | bigint | Date when a point was awarded to the customer for the first time. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Awarded Date |
+| dim_first_bill_date_id | bigint | Date when the customer did his first transaction or purchase. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Txn Date |
+| dim_first_points_redemption_date_id | bigint | Date when the customer redeemed his points for the first time. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Points Redemption Date |
+| dim_first_purchased_till_id | bigint | Till Id of the store where the customer did his first transaction. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: First Purchased Till |
+| dim_first_redeemption_date_id | bigint | Records the date of the first redemption of coupons. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: First Redemption Date |
+| dim_lapsation_date_id | bigint | Lapsation date of customers, calculated as last bill date plus 90 days. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Lapsation Date |
+| dim_last_bill_date_id | bigint | Records the date of the most recent transaction. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Last Txn Date |
+| dim_last_points_redemption_date_id | bigint | Records the date of the most recent redemption of loyalty points. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Last Points Redemption Date |
+| dim_last_purchased_till_id | bigint | Identifier of the point-of-sale (till) where the customer made their most recent purchase. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Last Purchased Store |
+| dim_last_redeemption_date_id | bigint | Records the date of the most recent redemption of coupons. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Last Redemption Date |
+| dim_loyalty_type_id | bigint | Customer's loyalty status, which can be categorized as: loyalty, non-loyalty, or not registered. | [loyalty_type](https://docs.capillarytech.com/docs/dimension-tables#loyalty-type) | Yes; Dimension Name: Loyalty Type |
+| dim_points_redemption_status_id | bigint | Records the status of points redemption. Possible values are - Issued, and Redeemed. | _ | Yes; Dimension Name: Points Redemption Status |
+| dim_preferred_order_channel_id | bigint | Stores the preferred channel through which the customer places orders. Possible values are online, in-store, through a mobile app, etc. | [order_channel](https://docs.capillarytech.com/docs/dimension-tables#order-channel) | Yes; Dimension Name: Preferred Order Channel |
+| dim_preferred_store_id | string | Preferred store where the customer performs most of the transactions. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Preferred Store |
+| dim_repeat_status_id | bigint | Shows if the customer has made previous purchases or if it's their first transaction. | [repeat_status](https://docs.capillarytech.com/docs/dimension-tables#repeat-status) | Yes; Dimension Name: Repeat Status |
+| dim_source_type_id | bigint | Source through which the customer got registered. Possible values are in-store, app, WeChat, e-comm, Facebook, campaigns, etc. | [source_type](https://docs.capillarytech.com/docs/dimension-tables#source-type) | Yes; Dimension Name: Source Type |
+| dim_voucher_redemption_status_id | bigint | Indicates the status of voucher redemption for a customer. | _ | Yes; Dimension Name: Voucher Redemption Status |
+| dim_wedding_date_id | bigint | Stores the customer's wedding date. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Wedding Date |
+| expired_points | double | Total points that have expired for the customer since registration. | _ | Yes; Measure Name: Expired Points |
+| first_visit_basket_size | double | Number of items purchased during the customer's first transaction. | _ | Yes; Measure Name: First Visit Basket Size |
+| first_visit_bill_amount | double | Total amount spent by the customer during their first transaction. | _ | Yes; Measure Name: First Visit Bill Amount |
+| has_spike_bill | integer | Records whether the customer has ever made a purchase that is 10 times greater than their average spending. It is mainly used for detecting fraud. | _ | Yes; Measure Name: Has Spike Bill |
+| last_updated_by_till_id | bigint | Records the till id (point of sale) where the customer details were last updated. | _ | Yes; Measure Name: Last Updated By Till Id |
+| last_visit_bill_amount | double | Total amount spent by the customer during their most recent transaction. | _ | Yes; Measure Name: Last Visit Bill Amount |
+| latency | double | Average number of days between two successive visits made by the customer. | _ | Yes; Measure Name: Latency |
+| line_item_count | bigint | Total number of items purchased by the customer, since registration. | _ | Yes; Measure Name: Line Item Count |
+| loyalty_id | bigint | Unique identifier for the loyalty source table. | _ | Yes; Measure Name: Loyalty Id |
+| loyalty_points | double | Total number of points that the customer can redeem as of today. | _ | Yes; Measure Name: Loyalty Points |
+| max_bill_amount | double | Highest amount spent by the customer in a single transaction, since registration. | _ | Yes; Measure Name: Max Bill Amount |
+| max_bill_count_in_day | bigint | Maximum number of transactions made by the customer in a single day, since registration. | _ | Yes; Measure Name: Max Bill Count In Day |
+| max_bill_count_in_week | bigint | Maximum number of transactions made by the customer in a week, since registration. | _ | Yes; Measure Name: Max Bill Count In Week |
+| max_bill_hour_count_in_day | double | Maximum number of transactions made by the customer in an hour in a single day, since registration. | _ | Yes; Measure Name: Max Bill Hour Count In Day |
+| max_zones_with_billing_on_same_day | bigint | Maximum number of zones where the customer made a transaction in a single day, since registration. | _ | Yes; Measure Name: Max Zones With Billing On Same Day |
+| number_of_visit_days | bigint | Total number of different days on which the customer has visited the store, since registration. | _ | Yes; Measure Name: Number Of Visit Days |
+| number_of_visits | bigint | Total number of transactions made by the customer since registration. | _ | Yes; Measure Name: Number Of Visits |
+| points_awarded_days | bigint | Total number of days on which the customer received points, since registration. | _ | Yes; Measure Name: Points awarded days |
+| redeemed_points | double | Total points redeemed by the customer since registration. | _ | Yes; Measure Name: Redeemed Points |
+| redeemed_rate | double | Ratio of redeemed transactions to the total transactions, since registration. | _ | Yes; Measure Name: Redeemed Rate |
+| redeemed_visit_days | bigint | Total number of days on which the customer redeemed points during visits, since registration. | _ | Yes; Measure Name: Redeemed Visit Days |
+| redeemed_visits | bigint | Total number of visits during which the customer redeemed points, since registration. | _ | Yes; Measure Name: Redeemed Visits |
+| redeemed_voucher_count | bigint | Total number of vouchers redeemed by the customer, since registration. | _ | Yes; Measure Name: Redeemed Voucher Count |
+| redemption_latency | double | Average number of days between two successive point redemptions by the customer. | _ | Yes; Measure Name: Redemption Latency |
+| returned_bill_amount | double | The total amount corresponding to the items returned by the customer, since registration. | _ | Yes; Measure Name: Returned Bill Amount |
+| returned_bill_count | bigint | Total number of bills for which the items have been returned by the customer, since registration. | _ | Yes; Measure Name: Returned Bill Count |
+| sku_purchased | bigint | Total number of different product types (SKUs) purchased by the customer, since registration. Stock Keeping Unit (SKU) is a unique identifier assigned to each distinct product or item in inventory. | _ | Yes; Measure Name: Sku Purchased |
+| skus_returned | bigint | Total number of different product types (SKUs) returned by the customer, since registration. | _ | Yes; Measure Name: Skus Returned |
+| total_bill_amount | double | Total amount spent by the customer across all the bills, since registration. | _ | Yes; Measure Name: Total Bill Amount |
+| total_bill_count | bigint | Total number of transactions made by the customer since registration. | _ | Yes; Measure Name: Total Bill Count |
+| total_line_item_amount | double | Total amount spent on all line items purchased by the customer across all the bills, since registration. | _ | Yes; Measure Name: Total Line Item Amount |
+| total_points_redeemed | double | Total points that have been redeemed by the customer, since registration. | _ | Yes; Measure Name: Total Points Redeemed |
+| total_returned_line_item_amount | double | Total amount refunded for all individual line items returned by the customer, since registration. | _ | Yes; Measure Name: Total Returned Line Item Amount |
+| lifetime_points | double | Total points accumulated by the customer since registration. | _ | Yes; Measure Name: Lifetime Points |
+| lifetime_purchased | double | Total amount spent by the customer since registration. | _ | Yes; Measure Name: Lifetime Purchased |

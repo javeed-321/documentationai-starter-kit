@@ -1,0 +1,217 @@
+---
+title: Slab Change Log Fact Table
+---
+
+This table captures the event wherein slab change for a customer occurs, such as the date and time of slab change, the associated customer, and the store where the slab change occurred.
+
+**Databricks Table Name:** slab_change_log
+
+**Slab Change Log - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 568" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="568" fill="#fafbfc" rx="8"/>
+<path d="M 400 84.0 C 460 84.0, 560 48.0, 620 48.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,48.0 614,45.0 614,51.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 104.0 C 460 104.0, 560 96.0, 620 96.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,96.0 614,93.0 614,99.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 144.0, 620 144.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,144.0 614,141.0 614,147.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 192.0, 620 192.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,192.0 614,189.0 614,195.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 240.0, 620 240.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,240.0 614,237.0 614,243.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 288.0, 620 288.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,288.0 614,285.0 614,291.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 96.0, 620 96.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,96.0 614,93.0 614,99.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 192.0, 620 192.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,192.0 614,189.0 614,195.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 48.0, 620 48.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,48.0 614,45.0 614,51.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 336.0, 620 336.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,336.0 614,333.0 614,339.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 384.0, 620 384.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,384.0 614,381.0 614,387.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 432.0, 620 432.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,432.0 614,429.0 614,435.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 480.0, 620 480.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,480.0 614,477.0 614,483.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 96.0, 620 96.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,96.0 614,93.0 614,99.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="454" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="454" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">slab_change_log</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">Auto_Update_Time_Slab_Upgrade: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_customer_slab_id: integer</text>
+<circle cx="388" cy="84.0" r="3" fill="#E67E22"/>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_program_id: integer</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_previous_slab_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_scd_type_id: integer</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_slab_change_action_id: string</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_slab_change_source_id: string</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_upgrade_event_type_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">event_date_time: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">event_source_id: bigint</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">id: bigint</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">notes: string</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">slab_name: string</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">user_id: bigint</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">year: integer</text>
+<a href="/docs/dimension-tables#customer-slab" target="_blank">
+<rect x="622" y="32" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="30" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="30" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="30" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="53.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>customer_slab</text>
+<line x1="636" y1="56.0" x2="740" y2="56.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="80" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="78" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="78" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="78" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="101.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="104.0" x2="668" y2="104.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#program" target="_blank">
+<rect x="622" y="128" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="126" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="126" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="126" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="149.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>program</text>
+<line x1="636" y1="152.0" x2="692" y2="152.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="176" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="174" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="174" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="174" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="197.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="200.0" x2="668" y2="200.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="224" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="222" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="222" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="222" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="245.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="248.0" x2="676" y2="248.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="272" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="270" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="270" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="270" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="293.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_tills</text>
+<line x1="636" y1="296.0" x2="716" y2="296.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#scd-type" target="_blank">
+<rect x="622" y="320" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="318" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="318" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="318" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="341.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>scd_type</text>
+<line x1="636" y1="344.0" x2="700" y2="344.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#slab-change-action-slab_change_action" target="_blank">
+<rect x="622" y="368" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="366" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="366" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="366" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="389.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>slab change action</text>
+<line x1="636" y1="392.0" x2="780" y2="392.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#slab-change-source-slab_change_source" target="_blank">
+<rect x="622" y="416" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="414" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="414" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="414" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="414" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="437.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>slab_change_source</text>
+<line x1="636" y1="440.0" x2="780" y2="440.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#upgrade-event-type" target="_blank">
+<rect x="622" y="464" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="462" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="462" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="462" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="462" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="485.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>upgrade_event_type</text>
+<line x1="636" y1="488.0" x2="780" y2="488.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="528" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="538" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="550" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="538" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="550" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="545" x2="395" y2="545" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="545" r="3" fill="#E67E22"/>
+<text x="403" y="550" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Slab Change Log Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table | Availability for Export in theSlab Change LogTemplate |
+| :--- | :---: | :--- | :---: | :---: |
+| Auto_Update_Time_Slab_Upgrade | bigint | Date and time when the corresponding record in the slab change log table available at the source was last updated. It is in the Unix timestamp format. |  | Yes; Measure Name: Auto Update Time Slab Upgrade |
+| dim_customer_slab_id | integer | Identifier of the slab to which the customer currently belongs. | [customer_slab](https://docs.capillarytech.com/docs/dimension-tables#customer-slab) | Yes; Dimension Name: Customer Slab |
+| dim_event_date_id | bigint | Date when the slab change occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_program_id | integer | Identifier of the program associated with the customer's slab change. | [program](https://docs.capillarytech.com/docs/dimension-tables#program) |  |
+| dim_event_time_id | bigint | Time when the slab change occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_event_user_id | bigint | Unique identifier for the customer assigned by Capillary. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store, where the customer's slab change occurred. It distinguishes one checkout location from another. | [zone_tills](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time |
+| dim_previous_slab_id | bigint | Slab ID of the customer prior to the slab change. | [customer_slab](https://docs.capillarytech.com/docs/dimension-tables#customer-slab) | Yes; Dimension Name: Previous Customer Slab |
+| dim_scd_type_id | integer | Unique identifier and primary key of the table. | [scd_type](https://docs.capillarytech.com/docs/dimension-tables#scd-type) | Yes; Dimension Name: Scd Type |
+| dim_slab_change_action_id | string | Indicates the action associated with the slab change. Possible values are - Upgrade, downgrade, and renewal. | [slab change action](https://docs.capillarytech.com/docs/dimension-tables#slab-change-action-slab_change_action) | Yes; Dimension Name: Slab Change Action |
+| dim_slab_change_source_id | string | Source ID associated with the customer's slab change. Possible values are - Import, merge, rule, strategy, partner program, etc. | [slab_change_source](https://docs.capillarytech.com/docs/dimension-tables#slab-change-source-slab_change_source) | Yes; Dimension Name: Slab Change Source |
+| dim_upgrade_event_type_id | bigint | Identifier for the type of event that caused the customer's slab upgrade. Possible values are - Customer registration, new bill, points redemption, voucher redemption, campaign referral, etc. | [upgrade_event_type](https://docs.capillarytech.com/docs/dimension-tables#upgrade-event-type) | Yes; Dimension Name: Slab Upgrade Event Type |
+| event_date_time | bigint | Date and time when the slab change occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Measure Name: Event Date Time |
+| event_source_id | bigint | Identifier for the event. | _ | Yes; Measure Name: Event Source Id |
+| id | bigint | Unique identifier and primary key of the table. Refers to the change log id. | _ | Yes; Measure Name: Id |
+| notes | string | Additional details or notes related to the slab change. | _ | Yes; Measure Name: Notes |
+| slab_name | string | The name of the slab to which the customer migrated after the change. | _ | Yes; Measure Name: Slab Name |
+| user_id | bigint | Identifier for the customer. | _ | Yes; Measure Name: User Id |
+| year | integer | Year when the slab change occurred. | _ | Yes; Dimension Name: Year |

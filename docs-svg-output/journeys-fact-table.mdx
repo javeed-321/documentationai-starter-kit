@@ -1,0 +1,177 @@
+---
+title: Journeys Fact Table
+---
+
+[Journeys](https://docs.capillarytech.com/docs/journeys) is an engagement automation interface that enables brands to create scenario-based flows to nurture your customers throughout their lifecycle. Journeys are created using [building blocks](https://docs.capillarytech.com/docs/building-blocks-of-a-journey). After the entry trigger, the building blocks define the journey of a customer. Each building block has a specific purpose in the journey.
+
+The journey_block_execution_fact table captures information about each execution of a journey block, including timestamps, journey and block identifiers, user identifiers, and status.
+
+**Databricks Table Name:** journey_block_execution_fact
+
+**Journeys Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 544" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="544" fill="#fafbfc" rx="8"/>
+<path d="M 400 124.0 C 460 124.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 151.0, 620 151.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,151.0 614,148.0 614,154.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 199.0, 620 199.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,199.0 614,196.0 614,202.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 247.0, 620 247.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,247.0 614,244.0 614,250.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 295.0, 620 295.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,295.0 614,292.0 614,298.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 343.0, 620 343.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,343.0 614,340.0 614,346.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 391.0, 620 391.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,391.0 614,388.0 614,394.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 151.0, 620 151.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,151.0 614,148.0 614,154.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="454" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="454" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">journey_block_execution_fact</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_journey: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_journey_block_execution: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">block_id: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_journeyLevel_id: bigint</text>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_journey_block_status_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_journey_block_type_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_journey_meta_block_id: string</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_journey_status_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">is_control: string</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">journey_block_execution_id: string</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">journey_id: string</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">journey_meta_id: string</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">journey_version: int</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">level_id: string</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">next_block_id: string</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="87.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="85.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="85.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="85.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="85.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="108.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="111.0" x2="668" y2="111.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="135.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="133.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="133.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="133.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="133.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="156.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="159.0" x2="668" y2="159.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="183.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="181.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="181.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="181.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="181.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="204.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>user</text>
+<line x1="636" y1="207.0" x2="668" y2="207.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#journey-block-status" target="_blank">
+<rect x="622" y="231.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="229.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="229.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="229.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="229.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="252.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>journey block status</text>
+<line x1="636" y1="255.0" x2="796" y2="255.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#journey-block-type" target="_blank">
+<rect x="622" y="279.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="277.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="277.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="277.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="277.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="300.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>journey block type</text>
+<line x1="636" y1="303.0" x2="780" y2="303.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#journey-block" target="_blank">
+<rect x="622" y="327.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="325.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="325.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="325.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="325.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="348.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>journey block</text>
+<line x1="636" y1="351.0" x2="740" y2="351.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#journey-status" target="_blank">
+<rect x="622" y="375.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="373.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="373.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="373.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="373.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="396.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>journey status</text>
+<line x1="636" y1="399.0" x2="748" y2="399.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="504" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="514" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="526" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="514" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="526" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="521" x2="395" y2="521" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="521" r="3" fill="#E67E22"/>
+<text x="403" y="526" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Journeys Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table |
+| :--- | :---: | :--- | :---: |
+| auto_update_time_journey | bigint | Date and time when the corresponding record in the journeys table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_journey_block_execution | bigint | Date and time when the corresponding record in the journey_block_execution table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| block_id | string | Unique identifier for the journey meta block. | _ |
+| dim_event_date_id | bigint | Journey block execution start date (that is, the date on which the user started processing the corresponding journey block). | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Journey block execution start time (that is, the time when the user started processing the corresponding journey block). | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the user associated with the journey. | [user](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_journeyLevel_id | bigint | Identifier for the user journey level. | _ |
+| dim_journey_block_status_id | bigint | Identifier for the status of the journey block. Possible values are - completed, executing, failed, queued, temporary failure, etc. | [journey block status](https://docs.capillarytech.com/docs/dimension-tables#journey-block-status) |
+| dim_journey_block_type_id | bigint | Identifier for the type of the journey block. Possible values are - Entry, join, jump, reminder, incentives, whatsapp engagement, email engagement, sms engagement, etc. | [journey block type](https://docs.capillarytech.com/docs/dimension-tables#journey-block-type) |
+| dim_journey_meta_block_id | string | Identifier of the journey block. It is the combination of journeyMetaId - journeyVersion - blockId. | [journey block](https://docs.capillarytech.com/docs/dimension-tables#journey-block) |
+| dim_journey_status_id | bigint | Identifier for the status of the user journey. | [journey status](https://docs.capillarytech.com/docs/dimension-tables#journey-status) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| is_control | string | Indicates whether the journey block is part of a control group. Possible values are - 'true' and 'false'. | _ |
+| journey_block_execution_id | string | Unique identifier for the execution of the user journey block. This is the primary key for the table. | _ |
+| journey_id | string | Unique identifier for the user journey. | _ |
+| journey_meta_id | string | Unique identifier for the journey meta. | _ |
+| journey_version | int | Version number of the journey meta. | _ |
+| level_id | string | Identifier for the user journey level. | _ |
+| next_block_id | string | Identifier for the next block id to be executed for the user journey. | _ |
+| year | int | Year of the user journey block execution event. | _ |

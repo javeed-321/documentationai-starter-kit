@@ -1,0 +1,520 @@
+---
+title: Badges Fact Table
+---
+
+## Introduction to Badges Fact Tables
+
+Badges are a type of visual recognition used in loyalty programs to reward customers for their progress, specific actions or achievements. They act as a form of gamification and instill a sense of pride and accomplishment within the user, thus, reinforcing the targeted behaviors and boosting engagement.
+
+For more information about how badges work in Capillary product suite, please refer to the [Badges Documentation](https://capillary--dafiniti-javeed.documentationai.com/docs/introduction-to-badges). This part of the documentation covers how you can analyze and report on badges featured in the Capillary system.
+
+There are a few crucial elements of Badges lifecycle which a user would like to track and analyze. They include events such as earning a badge (without enrolment), the issual of badge (based on enrolment) and the promotions linked with the badge. The information of these events are stored in the form of fact and dimension tables based on star schema. The fact tables store the details of these events and the corresponding dimension tables contain the fields on the basis of which the entries in these fact tables can be grouped/filtered for reporting.
+
+**Badges - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 484" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="484" fill="#fafbfc" rx="8"/>
+<path d="M 400 84.0 C 460 84.0, 560 97.0, 620 97.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,97.0 614,94.0 614,100.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 104.0 C 460 104.0, 560 145.0, 620 145.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,145.0 614,142.0 614,148.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 193.0, 620 193.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,193.0 614,190.0 614,196.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 241.0, 620 241.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,241.0 614,238.0 614,244.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 289.0, 620 289.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,289.0 614,286.0 614,292.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 337.0, 620 337.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,337.0 614,334.0 614,340.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 241.0, 620 241.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,241.0 614,238.0 614,244.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 289.0, 620 289.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,289.0 614,286.0 614,292.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 241.0, 620 241.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,241.0 614,238.0 614,244.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 289.0, 620 289.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,289.0 614,286.0 614,292.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 241.0, 620 241.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,241.0 614,238.0 614,244.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 289.0, 620 289.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,289.0 614,286.0 614,292.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="394" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="394" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">badges_earn</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_badges_earn: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_badgeMeta_id: string</text>
+<circle cx="388" cy="84.0" r="3" fill="#E67E22"/>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_badges_earn_active_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_badges_owner_type_id: string</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_createdOn_date_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_createdOn_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_customer_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiresOn_date_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiresOn_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">earnId: string</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">isActive: string</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">lastUpdatedBy: bigint</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">ownerReferenceId: string</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#badges-meta-badgemeta" target="_blank">
+<rect x="622" y="81.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="79.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="79.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="79.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="79.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="102.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>badgemeta</text>
+<line x1="636" y1="105.0" x2="708" y2="105.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#enabled" target="_blank">
+<rect x="622" y="129.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="127.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="127.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="127.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="127.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="150.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>enabled</text>
+<line x1="636" y1="153.0" x2="692" y2="153.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#badge-owner-type-badges_owner_type" target="_blank">
+<rect x="622" y="177.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="175.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="175.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="175.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="175.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="198.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>badges_owner_type</text>
+<line x1="636" y1="201.0" x2="772" y2="201.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="225.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="223.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="223.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="223.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="223.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="246.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="249.0" x2="668" y2="249.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="273.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="271.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="271.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="271.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="271.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="294.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="297.0" x2="668" y2="297.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="321.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="319.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="319.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="319.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="319.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="342.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="345.0" x2="676" y2="345.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="444" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="454" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="466" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="454" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="466" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="461" x2="395" y2="461" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="461" r="3" fill="#E67E22"/>
+<text x="403" y="466" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 524" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="524" fill="#fafbfc" rx="8"/>
+<path d="M 400 124.0 C 460 124.0, 560 117.0, 620 117.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,117.0 614,114.0 614,120.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 165.0, 620 165.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,165.0 614,162.0 614,168.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 213.0, 620 213.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,213.0 614,210.0 614,216.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 261.0, 620 261.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,261.0 614,258.0 614,264.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 309.0, 620 309.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,309.0 614,306.0 614,312.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 357.0, 620 357.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,357.0 614,354.0 614,360.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 261.0, 620 261.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,261.0 614,258.0 614,264.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 309.0, 620 309.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,309.0 614,306.0 614,312.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 261.0, 620 261.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,261.0 614,258.0 614,264.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 309.0, 620 309.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,309.0 614,306.0 614,312.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 261.0, 620 261.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,261.0 614,258.0 614,264.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 309.0, 620 309.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,309.0 614,306.0 614,312.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="434" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="434" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">badges_issue</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_badges_issue: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">badges_issued_id: string</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">createdBy: bigint</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_badgeMeta_id: string</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_badges_issue_active_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_badges_owner_type_id: string</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_createdOn_date_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_createdOn_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_customer_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiresOn_date_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiresOn_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">isActive: string</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">lastUpdatedBy: bigint</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">ownerReferenceId: string</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">requestId: string</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#badges-meta-badgemeta" target="_blank">
+<rect x="622" y="101.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="99.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="99.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="99.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="99.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="122.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>badgemeta</text>
+<line x1="636" y1="125.0" x2="708" y2="125.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#enabled" target="_blank">
+<rect x="622" y="149.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="147.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="147.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="147.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="147.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="170.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>enabled</text>
+<line x1="636" y1="173.0" x2="692" y2="173.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#badge-owner-type-badges_owner_type" target="_blank">
+<rect x="622" y="197.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="195.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="195.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="195.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="195.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="218.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>badges_owner_type</text>
+<line x1="636" y1="221.0" x2="772" y2="221.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="245.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="243.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="243.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="243.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="243.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="266.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="269.0" x2="668" y2="269.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="293.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="291.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="291.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="291.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="291.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="314.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="317.0" x2="668" y2="317.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="341.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="339.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="339.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="339.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="339.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="362.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="365.0" x2="676" y2="365.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="484" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="494" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="506" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="494" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="506" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="501" x2="395" y2="501" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="501" r="3" fill="#E67E22"/>
+<text x="403" y="506" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 644" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="644" fill="#fafbfc" rx="8"/>
+<path d="M 400 164.0 C 460 164.0, 560 201.0, 620 201.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,201.0 614,198.0 614,204.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 249.0, 620 249.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,249.0 614,246.0 614,252.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 297.0, 620 297.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,297.0 614,294.0 614,300.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 345.0, 620 345.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,345.0 614,342.0 614,348.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 393.0, 620 393.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,393.0 614,390.0 614,396.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 345.0, 620 345.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,345.0 614,342.0 614,348.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 393.0, 620 393.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,393.0 614,390.0 614,396.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 345.0, 620 345.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,345.0 614,342.0 614,348.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="554" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="554" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">badges_earned_benefits</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">allocationStrategyId: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_badges_benefits_earn: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">benefitType: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">couponCode: string</text>
+<text x="30" y="148" fill="#2C3E50" fontSize="11" fontWeight="normal">description: string</text>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_badgeMeta_id: string</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_coupon_series_id: string</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_customer_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_validTill_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">discountCode: string</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">discountType: string</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">earnId: string</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">expirationStrategyId: bigint</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">notes: string</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">pointsEarned: bigint</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">programId: bigint</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">promoIdentifier: string</text>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">promotionId: string</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">promotionName: string</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#2C3E50" fontSize="11" fontWeight="normal">statusCode: int</text>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">uniqueId: string</text>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#badges-meta-badgemeta" target="_blank">
+<rect x="622" y="185.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="183.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="183.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="183.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="183.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="206.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>badgemeta</text>
+<line x1="636" y1="209.0" x2="708" y2="209.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#coupon-series-coupon_series" target="_blank">
+<rect x="622" y="233.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="231.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="231.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="231.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="231.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="254.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>coupon_series</text>
+<line x1="636" y1="257.0" x2="740" y2="257.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="281.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="279.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="279.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="279.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="279.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="302.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="305.0" x2="676" y2="305.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="329.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="327.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="327.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="327.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="327.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="350.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="353.0" x2="668" y2="353.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="377.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="375.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="375.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="375.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="375.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="398.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="401.0" x2="668" y2="401.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="604" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="614" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="626" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="614" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="626" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="621" x2="395" y2="621" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="621" r="3" fill="#E67E22"/>
+<text x="403" y="626" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+### Badges - Earn (badges_earn)
+
+Each row in this table represents an event in which a customer earns a badge on completing a specified activity or meeting a set of pre-defined criteria. This doesn’t require the customer to enrol for the badge beforehand. It captures information like the badge ID, customer ID, earning date, expiry date, and whether the badge is active or revoked.
+
+For example- When a customer registers, they automatically receive the "New Member" badge if the configuration specifies that pre-enrollment is not needed. These types of events are stored in the Badges_earn fact table. By linking this fact table with the dimension tables, you would be able to have a complete picture of this event.
+
+**Databricks Table Name:** badges_earn
+
+**Badges Earn Fact Table**
+
+| Column name | Data type | Description | Linked Table | Availability for Export in theBadges EarnTemplate |
+| --- | --- | :--- | :--- | :--- |
+| auto_update_time_badges_earn | bigint | Date and time when the badges_earn table was last updated. It is in the Unix timestamp format. The update takes place only when the badge deactivation occurs. | _ | Yes; Measure Name: Auto Update Time Badges Earn |
+| dim_badgeMeta_id | string | Unique identifier assigned to a badge when it is generated. It is a common key that connects to the badgeMeta dimension table for providing badge details. | [badgemeta](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#badges-meta-badgemeta) | Yes; Dimension Name: Badgemeta |
+| dim_badges_earn_active_id | bigint | Indicates if the badge is currently active or not. | [enabled](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#enabled) | Yes; Dimension Name: Badges Earn Active |
+| dim_badges_owner_type_id | string | Provides information about the module (name) that granted the customer a particular badge. For instance, if the badge was awarded by the Journeys module, you can retrieve Journeys module details by linking to the badges_owner_type field using this column. The types of modules are - Loyalty/ Referral_Campaigns/ Journeys/ Auidence_Campaigns/ Rewards_Catalog/ Goodwill_Module/ Milestones. | [badges_owner_type](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#badge-owner-type-badges_owner_type) | Yes; Dimension Name: Badges Owner Type |
+| dim_createdOn_date_id | bigint | Date on which the badge was earned by the customer. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_createdOn_id | bigint | Time when the badge was earned by the customer. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_customer_id | bigint | Unique identifier for the customer associated with the badge. | [users](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#users-users) | Yes; Dimension Name: Customer user Id |
+| dim_event_date_id | bigint | Date on which the badge was earned. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the badge was earned. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_expiresOn_date_id | bigint | Date on which the badge expires. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_expiresOn_id | bigint | Time when the badge expires. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_latest_updated_date_id | bigint | Date when the table was last updated. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_latest_updated_time_id | bigint | Time when the table was last updated. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| earnId | string | Unique identifier assigned to each row of the earn badges fact table. It is the primary key of this table. It is useful in accessing information related to the customer, badge earn date, badge expiration details, etc. | _ | Yes; Measure Name: Earnid |
+| isActive | string | Indicates if the badge is currently active or not. | _ | Yes; Measure Name: Isactive |
+| lastUpdatedBy | bigint | Identifier of the user who last updated the badge. It could be a brand representative, a Customer Success Manager (CSM), or someone similar. | _ | Yes; Measure Name: Lastupdatedby |
+| ownerReferenceId | string | Orchestered ID assigned to the module responsible for awarding the badge, e.g, milestone id, journey id, campaign id, loyalty id, etc. | _ | Yes; Measure Name: Ownerreferenceid |
+| year | int | Year of the event. | _ | Yes; Dimension Name: Year |
+
+### Badges - Issue (badges_issue)
+
+Each row in this table represents the event, where the customer has to enrol in the badge before they can earn it. It captures information like the badge ID, customer ID, issuance date, expiry date, and whether the badge is active or revoked.
+
+For example- A brand launches a campaign to ensure proactive engagement. In this campaign, the first 1000 participants would have the opportunity to become premium members. As configured, the "premium member" badge requires pre-enrollment. Therefore, such types of events are stored in this table.
+
+**Databricks Table Name:** badges_issue
+
+**Badges Issue Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in theBadges IssueTemplate |
+| --- | --- | --- | :--- | :--- |
+| auto_update_time_badges_issue | bigint | Date and time when the badges_issue table was last updated. It is in the Unix timestamp format. The update takes place only when the badge deactivation occurs. | _ | Yes; Measure Name: Auto Update Time Badges Issue |
+| badges_issued_id | string | It is an unique identifier for the 'badges issued' fact table. As a primary key, it uniquely identifies each record or entry within the table. It allows tracking and analysis of individual badge issuance events. | _ | Yes; Measure Name: Badges Issued Id |
+| createdBy | bigint | Identifier of the user who issued the badge, such a brand representative. | _ | Yes; Measure Name: Createdby |
+| dim_badgeMeta_id | string | Unique identifier assigned to a badge when it is generated. It is a common key that connects to the badgeMeta dimension table for providing badge details. | [badgemeta](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#badges-meta-badgemeta) | Yes; Dimension Name: Badgemeta |
+| dim_badges_issue_active_id | bigint | Indicates whether the badge is currently active or not. | [enabled](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#enabled) | Yes; Dimension Name: Badges Issue Active |
+| dim_badges_owner_type_id | string | Provides information about the module (name) that granted the customer a particular badge. For instance, if the badge was awarded by the Journeys module, you can retrieve Journeys module details by linking to the badges_owner_type field using this column. The types of modules are - Loyalty/ Referral_Campaigns/ Journeys/ Auidence_Campaigns/ Rewards_Catalog/ Goodwill_Module/ Milestones. | [badges_owner_type](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#badge-owner-type-badges_owner_type) | Yes; Dimension Name: Badges Owner Type |
+| dim_createdOn_date_id | bigint | Date when the badge was issued to the customer. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_createdOn_id | bigint | Time when the badge was issued to the customer. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_customer_id | bigint | Unique identifier for the customer associated with the badge. | [users](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#users-users) | Yes; Dimension Name: Customer user Id |
+| dim_event_date_id | bigint | Date on which the badge was issued. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the badge was issued. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_expiresOn_date_id | bigint | Date on which the badge expires. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_expiresOn_id | bigint | Time when the badge expires. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_latest_updated_date_id | bigint | Date when the table was last updated. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_latest_updated_time_id | bigint | Time when the table was last updated. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| isActive | string | Indicates whether the badge is currently active or not. | _ | Yes; Measure Name: Isactive |
+| lastUpdatedBy | bigint | Identifier of the user who last updated the badge. It could be a brand representative, a Customer Success Manager (CSM), or someone similar. | _ | Yes; Measure Name: Lastupdatedby |
+| ownerReferenceId | string | Orchestered ID assigned to the module responsible for awarding the badge, e.g. milestone id, journey id, campaign id, loyalty id, etc. | _ | Yes; Measure Name: Ownerreferenceid |
+| requestId | string | It is a request ID generated during the issue of a badge. This ID serves as a reference point for tracking and managing the issuance of badges. | _ | Yes; Measure Name: Requestid |
+| year | int | Year of the event. | _ | Yes; Dimension Name: Year |
+
+### Badges - Earned Benefits (badges_earned_benefits)
+
+Each row in this table represents the event, wherein the promotions or benefits are linked to the badge. It captures information on the benefit type, coupon code, points earned, and validity of the benefit that comes along.
+
+For example- A brand wants to run a campaign where customers who purchase items worth Rs. 10,000 during the campaign will earn a "Super Customer" badge. Additionally, the brand will provide extra coupons to "Super Customers." Here, the event of badge creation is linked to a promotion, and thus such events will be captured in this table.
+
+**Databricks Table Name:** badges_earned_benefits
+
+**Badges Earned Benefits Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in the Badges Earned BenefitsTemplate |
+| --- | --- | --- | :--- | :--- |
+| allocationStrategyId | bigint | Denotes the strategy selected to allocate points for badges. In case of tier-based allocation, points are allocated according to predefined tiers or categories. | _ | Yes: Measure Name: Allocationstrategyid |
+| auto_update_time_badges_benefits_earn | bigint | Date and time when the badges_benefits_earn table was last updated. It is in the Unix timestamp format. The update takes place only when the badge deactivation occurs. | _ | Yes: Measure Name: Auto Update Time Badges Benefits Earn |
+| benefitType | string | Type of benefit linked to the badge. The benefit types are: coupons and points. | _ | Yes: Measure Name: Benefittype |
+| couponCode | string | The coupon code associated with the benefit. It is generated by the coupons system. | _ | Yes: Measure Name: Couponcode |
+| description | string | Description of the coupon. | _ | Yes: Measure Name: Description |
+| dim_badgeMeta_id | string | Unique identifier assigned to a badge when it is generated. It is a common key that connects to the badgeMeta dimension table for providing badge details. | [badgemeta](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#badges-meta-badgemeta) | Yes; Dimension Name: Badgemeta |
+| dim_coupon_series_id | string | Unique identifier for coupon series id. Whenever a coupon is generated, it is allocated a unique coupon series ID. It links to the coupon series dimension table, establishing a relationship between the benefits earned and the details of the coupon series. | [coupon_series](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#coupon-series-coupon_series) | Yes; Dimension Name: Coupon Series |
+| dim_customer_id | bigint | Unique identifier for the customer associated with the badge. | [users](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#users-users) | Yes; Dimension Name: Customer user Id |
+| dim_event_date_id | bigint | Date on which the benefit (coupon or point) was earned. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the benefit (coupon or point) was earned. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_latest_updated_date_id | bigint | Date when the table was last updated. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_latest_updated_time_id | bigint | Time when the table was last updated. | [time](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#time) | Yes; Dimension Name: Time |
+| dim_validTill_id | bigint | Denotes the coupon validity date. | [date](https://capillary--dafiniti-javeed.documentationai.com/docs/dimension-tables#date) | Yes; Dimension Name: Validtill |
+| discountCode | string | Discount code associated with the coupon series. | _ | Yes; Measure Name: Discountcode |
+| discountType | string | Type of discount. Can be ABS - absolute discount type where the discount value is fixed, or percent discount or a fixed discount. | _ | Yes; Measure Name: Discounttype |
+| earnId | string | Unique identifier for the badges_earn table. | _ | Yes; Measure Name: Earnid |
+| expirationStrategyId | bigint | Denotes the strategy used for deciding how points expire for the customer, such as fixed expiry date, or no expiry, etc. | _ | Yes; Measure Name: Expirationstrategyid |
+| notes | string | Provides additional information or remarks related to badges. | _ | Yes; Measure Name: Notes |
+| pointsEarned | bigint | Points earned by the customer. | _ | Yes; Measure Name: Pointsearned |
+| programId | bigint | The Loyalty program ID is the identifier assigned to the loyalty program linked to the allocated points. | _ | Yes; Measure Name: Programid |
+| promoIdentifier | string | Unique identifier assigned to a promotion. | _ | Yes; Measure Name: Promoidentifier |
+| promotionId | string | Unique id assigned to a particular promotion. | _ | Yes; Measure Name: Promotionid |
+| promotionName | string | Refers to the name of the promotion to which points were allocated, redeemed, or expired. | _ | Yes; Measure Name: Promotionname |
+| statusCode | int | Status code for the action (used for internal purpose). | _ | Yes; Measure Name: Statuscode |
+| uniqueId | string | Unique identifier for the table. As a primary key, it uniquely identifies each record or entry within the table. It allows tracking and analysis of individual badge benefits events. | _ | Yes; Measure Name: Uniqueid |
+| year | int | Year of the event. | _ | Yes; Dimension Name: Year |
+
+You can use Insights and perform the following:
+
+- Create a chart using Badges KPI and Dimensions
+- Create a custom report on Badges
+- Export Badges using standard Badges export templates

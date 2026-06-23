@@ -1,0 +1,644 @@
+---
+title: Points Fact Tables
+---
+
+Points represent loyalty points of an organization that are issued to the loyalty customers through different sources such as Loyalty Program, Data Import (import profiles) and Member Care (goodwill points). Customers can redeem their points against transactions. Given below are the fact tables associated with the points data:
+
+POINTS
+POINTS REDEMPTION SUMMARY
+POINTS EXPIRY REMINDER INFO
+
+## Points Fact Table
+
+This table captures events related to allocation and deduction of points.
+
+**Databricks Table Name:** points
+
+**Points - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<Callout kind="info" title="Note">
+
+📘
+                                                        
+                                                            
+                                                            
+                                                        
+                                                        The points fact and points_redemption_summary fact are linked
+                                                            and share the same ERD.
+
+</Callout>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 984" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="984" fill="#fafbfc" rx="8"/>
+<path d="M 400 324.0 C 460 324.0, 560 227.0, 620 227.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,227.0 614,224.0 614,230.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 275.0, 620 275.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,275.0 614,272.0 614,278.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 364.0 C 460 364.0, 560 275.0, 620 275.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,275.0 614,272.0 614,278.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 404.0 C 460 404.0, 560 323.0, 620 323.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,323.0 614,320.0 614,326.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 424.0 C 460 424.0, 560 371.0, 620 371.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,371.0 614,368.0 614,374.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 444.0 C 460 444.0, 560 419.0, 620 419.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,419.0 614,416.0 614,422.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 464.0 C 460 464.0, 560 275.0, 620 275.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,275.0 614,272.0 614,278.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 504.0 C 460 504.0, 560 467.0, 620 467.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,467.0 614,464.0 614,470.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 524.0 C 460 524.0, 560 515.0, 620 515.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,515.0 614,512.0 614,518.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 544.0 C 460 544.0, 560 563.0, 620 563.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,563.0 614,560.0 614,566.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 564.0 C 460 564.0, 560 323.0, 620 323.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,323.0 614,320.0 614,326.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 584.0 C 460 584.0, 560 275.0, 620 275.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,275.0 614,272.0 614,278.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 604.0 C 460 604.0, 560 515.0, 620 515.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,515.0 614,512.0 614,518.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 624.0 C 460 624.0, 560 275.0, 620 275.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,275.0 614,272.0 614,278.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 644.0 C 460 644.0, 560 515.0, 620 515.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,515.0 614,512.0 614,518.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 664.0 C 460 664.0, 560 611.0, 620 611.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,611.0 614,608.0 614,614.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 684.0 C 460 684.0, 560 659.0, 620 659.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,659.0 614,656.0 614,662.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 704.0 C 460 704.0, 560 707.0, 620 707.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,707.0 614,704.0 614,710.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 884.0 C 460 884.0, 560 371.0, 620 371.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,371.0 614,368.0 614,374.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="894" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="894" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">points</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">allocated_points: double</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_pa: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_pabp: bigint</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_pacp: bigint</text>
+<text x="30" y="148" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_pal: bigint</text>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_palp: bigint</text>
+<text x="30" y="188" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_pd: bigint</text>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#2C3E50" fontSize="11" fontWeight="normal">awarded_ref_id: bigint</text>
+<text x="30" y="228" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_id: bigint</text>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_lineitem_id: string</text>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_number: string</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">deducted_points: double</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">deducted_ref_id: bigint</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">deduction_summary_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_awarded_date_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_awarded_expiry_date_id: bigint</text>
+<circle cx="388" cy="364.0" r="3" fill="#E67E22"/>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_awarded_program_id: bigint</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_awarded_zone_till_id: bigint</text>
+<circle cx="388" cy="404.0" r="3" fill="#E67E22"/>
+<text x="30" y="428" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_category_id: bigint</text>
+<circle cx="388" cy="424.0" r="3" fill="#E67E22"/>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_deduction_type_id: bigint</text>
+<circle cx="388" cy="444.0" r="3" fill="#E67E22"/>
+<text x="30" y="468" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="464.0" r="3" fill="#E67E22"/>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_event_log_id: bigint</text>
+<text x="30" y="508" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_program_id: bigint</text>
+<circle cx="388" cy="504.0" r="3" fill="#E67E22"/>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="524.0" r="3" fill="#E67E22"/>
+<text x="30" y="548" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="544.0" r="3" fill="#E67E22"/>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="564.0" r="3" fill="#E67E22"/>
+<text x="30" y="588" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiry_date_id: bigint</text>
+<circle cx="388" cy="584.0" r="3" fill="#E67E22"/>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiry_time_id: bigint</text>
+<circle cx="388" cy="604.0" r="3" fill="#E67E22"/>
+<text x="30" y="628" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="624.0" r="3" fill="#E67E22"/>
+<rect x="21" y="634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="648" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="644.0" r="3" fill="#E67E22"/>
+<text x="30" y="668" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_pointsawarded: bigint</text>
+<circle cx="388" cy="664.0" r="3" fill="#E67E22"/>
+<rect x="21" y="674" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="688" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_points_event_type_id: bigint</text>
+<circle cx="388" cy="684.0" r="3" fill="#E67E22"/>
+<text x="30" y="708" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_points_promotion_id: bigint</text>
+<circle cx="388" cy="704.0" r="3" fill="#E67E22"/>
+<rect x="21" y="714" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="728" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_redemption_program_id: bigint</text>
+<text x="30" y="748" fill="#2C3E50" fontSize="11" fontWeight="normal">event_id: bigint</text>
+<rect x="21" y="754" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="768" fill="#2C3E50" fontSize="11" fontWeight="normal">external_reference_number: string</text>
+<text x="30" y="788" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_bill_id: bigint</text>
+<rect x="21" y="794" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="808" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_bill_number: string</text>
+<text x="30" y="828" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_id: string</text>
+<rect x="21" y="834" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="848" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_awarded_points_promotion_id: bigint</text>
+<text x="30" y="868" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<rect x="21" y="874" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="888" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_old_category_id: bigint</text>
+<circle cx="388" cy="884.0" r="3" fill="#E67E22"/>
+<text x="30" y="908" fill="#2C3E50" fontSize="11" fontWeight="normal">event_log_id: bigint</text>
+<a href="/docs/points-fact-table#points_redemption_summary-fact-table" target="_blank">
+<rect x="622" y="211.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="209.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="209.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="209.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="209.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="232.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>points_redemption_summary</text>
+<line x1="636" y1="235.0" x2="836" y2="235.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="259.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="257.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="257.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="257.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="257.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="280.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="283.0" x2="668" y2="283.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="307.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="305.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="305.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="305.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="305.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="328.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="331.0" x2="708" y2="331.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#points-category" target="_blank">
+<rect x="622" y="355.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="353.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="353.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="353.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="353.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="376.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>points_category</text>
+<line x1="636" y1="379.0" x2="756" y2="379.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#deduction-type" target="_blank">
+<rect x="622" y="403.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="401.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="401.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="401.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="401.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="424.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>deduction_type</text>
+<line x1="636" y1="427.0" x2="748" y2="427.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#program" target="_blank">
+<rect x="622" y="451.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="449.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="449.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="449.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="449.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="472.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>program</text>
+<line x1="636" y1="475.0" x2="692" y2="475.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="499.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="497.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="497.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="497.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="497.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="520.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="523.0" x2="668" y2="523.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="547.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="545.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="545.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="545.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="545.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="568.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="571.0" x2="676" y2="571.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#points-awarded-type" target="_blank">
+<rect x="622" y="595.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="593.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="593.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="593.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="593.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="616.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>points_awarded_type</text>
+<line x1="636" y1="619.0" x2="788" y2="619.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#points-events-type" target="_blank">
+<rect x="622" y="643.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="641.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="641.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="641.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="641.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="664.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>points_event_type</text>
+<line x1="636" y1="667.0" x2="772" y2="667.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#points-promotion" target="_blank">
+<rect x="622" y="691.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="689.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="689.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="689.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="689.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="712.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>points_promotions</text>
+<line x1="636" y1="715.0" x2="772" y2="715.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="944" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="954" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="966" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="954" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="966" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="961" x2="395" y2="961" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="961" r="3" fill="#E67E22"/>
+<text x="403" y="966" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Points Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in the Points Template |
+| :--- | :---: | :--- | :---: | :---: |
+| allocated_points | double | Points awarded for a specific event. The points are awarded either at the bill level, line item level, or customer level. | _ | Yes; Measure Name: Allocated Points |
+| auto_update_time_pa | bigint | Date and time when the corresponding record in the points awarded (PA) source table was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Pa |
+| auto_update_time_pabp | bigint | Date and time when the corresponding record in the Points Awarded Bill Promotion (PABP) source table was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Pabp |
+| auto_update_time_pacp | bigint | Date and time when the corresponding record in the Points Awarded Customer Promotion (PACP) source table was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Pacp |
+| auto_update_time_pal | bigint | Date and time when the corresponding record in the Points Awarded Lineitem (PAL) source table was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Pal |
+| auto_update_time_palp | bigint | Date and time when the corresponding record in the Points Awarded Lineitem Promotion (PALP) source table was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Palp |
+| auto_update_time_pd | bigint | Date and time when the corresponding record in the Points Deductions (PD) source table was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Pd |
+| awarded_ref_id | bigint | It is the identifier that is created when a point is awarded. | _ | Yes; Measure Name: Awarded Ref Id |
+| bill_id | bigint | Unique identifier for a transaction (loyalty log id or bill id) for which points are awarded or redeemed. This is populated primarily from the Points Awarded (PA), Points Awarded Lineitem (PAL), Points Awarded Lineitem Promotion (PALP), Points Awarded Bill Promotion (PABP) tables available at the source. | _ | Yes; Measure Name: Bill Id |
+| bill_lineitem_id | string | The line item id against which points have been allocated. | _ | Yes; Measure Name: Bill Lineitem Id |
+| bill_number | string | System-generated bill number for which points are awarded or redeemed. If there is no valid bill_id in the source table, this field would be empty. | _ | Yes; Measure Name: Bill Number |
+| deducted_points | double | The number of points that have been redeemed, returned, or expired and thus deducted from the total points. | _ | Yes; Measure Name: Deducted Points |
+| deducted_ref_id | bigint | The original redemption or transfer deduction id against which a reversal has occurred. | _ | Yes; Measure Name: Deducted Ref Id |
+| deduction_summary_id | bigint | Identifier to group deducted points related to a single event. It is the primary key of the PRS (Point Redemption Summary) table. | points_redemption_summary [Link](https://docs.capillarytech.com/docs/points-fact-table#points_redemption_summary-fact-table) | Yes; Measure Name: Deduction Summary Id |
+| dim_awarded_date_id | bigint | Date when points were awarded to the customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Awarded date > Date |
+| dim_awarded_expiry_date_id | bigint | Date when the awarded points are set to expire. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Awarded Expiry Date > Date |
+| dim_awarded_program_id | bigint | Identifier for the loyalty program associated with the awarded points. | _ | Yes; Dimension Name: Awarded Program > Program Id |
+| dim_awarded_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store, where the points were awarded. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Awarded Zone Till > Till Id |
+| dim_category_id | bigint | Identifier which indicates the type of points awarded or deducted. The points categories can be - regular points, promised points, alternate currencies, trackers, and external trigger based points. | [points_category](https://docs.capillarytech.com/docs/dimension-tables#points-category) | Yes; Dimension Name: Category > Category Id |
+| dim_deduction_type_id | bigint | Identifier indicating the type of deduction. Possible values are - cancelled, expired, migrated, redeemed, returned, etc. | [deduction_type](https://docs.capillarytech.com/docs/dimension-tables#deduction-type) | Yes; Dimension Name: Deduction Type > Id |
+| dim_event_date_id | bigint | Date when the points were allocated/ deducted. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_log_id | bigint | Unique identifier for the points event. Corresponds to the id in the event_log table and is mapped to the point awarded (PA) / points deducted (PD) table. | _ | Yes; Measure Name: Dim Event Log Id |
+| dim_event_program_id | bigint | Identifier of the loyalty program associated with the points event. | [program](https://docs.capillarytech.com/docs/dimension-tables#program) | Yes; Dimension Name: Event Program > Program Id |
+| dim_event_time_id | bigint | Time when the points were allocated/ deducted. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier of the user, set internally by Capillary. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store, where the points event occurred. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_expiry_date_id | bigint | Date when the allocated points are set to expire. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | _ |
+| dim_expiry_time_id | bigint | Time when the allocated points are set to expire. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | _ |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_points*awarded* | bigint | Identifier for the type of points that are awarded. Possible values are - bill promotion, line item, line item promotion, and customer promotion. This is the primary key of the table. | points_awarded_type [Link](https://docs.capillarytech.com/docs/dimension-tables#points-awarded-type) | Yes; Dimension Name: Points Awarded Type > Id |
+| dim_points_event_type_id | bigint | Identifier for the type of event, indicating whether points were awarded or deducted. This is the primary key of the table. | [points_event_type](https://docs.capillarytech.com/docs/dimension-tables#points-events-type) | Yes; Dimension Name: Points Event Type > Id |
+| dim_points_promotion_id | bigint | Identifier for the promotion against which points were allocated, redeemed, or expired. | [points_promotions](https://docs.capillarytech.com/docs/dimension-tables#points-promotion) | Yes; Dimension Name: Points Promotion > Id |
+| dim_redemption_program_id | bigint | Identifier of the loyalty program associated with the points redemption. | _ | _ |
+| event_id | bigint | Unique identifier of the points event. It is the primary key of the table. | _ | Yes; Measure Name: Event Id |
+| external_reference_number | string | Refers to the number, unique to each org, linked to the Points Redemption Summary (PRS) table. It is populated from the API Payload. | _ | Yes; Measure Name: External Reference Number |
+| redemption_bill_id | bigint | Identifier for a transaction (loyalty log id or bill id) for which the points are redeemed. It is generated by Capillary. | _ | Yes; Measure Name: Redemption Bill Id |
+| redemption_bill_number | string | Bill number for which the points are redeemed. If the source data does not provide this number, the system shows 'Not Captured'. | _ | Yes; Measure Name: Redemption Bill Number |
+| redemption_id | string | A unique 6-character long string for each redemption or reversal request, auto-generated by the Loyalty System. | _ | Yes; Measure Name: Redemption Id |
+| dim_awarded_points_promotion_id | bigint | Identifier for the promotion associated with the awarded points. | _ | Yes; Dimension Name: Awarded Points Promotion > Id |
+| year | int | Year when the points were awarded/ deducted. | _ | Yes; Dimension Name: Year |
+| dim_old_category_id | bigint | Refers to point_category_id in individual points tables, indicating the category of points, such as redeemable, tracker, or delayed accrual. | [points_category](https://docs.capillarytech.com/docs/dimension-tables#points-category) | _ |
+| event_log_id | bigint | Event log id in which the point is getting awarded, from the event log table. | _ | Yes; Measure Name: Event Log Id |
+
+## Points_redemption_summary Fact Table
+
+This table captures the event where the customer redeems their points. The table captures the date and time of redemption, the loyalty program associated with the points, the category to which the points belong, the bill number associated with the points redemption, etc.
+
+**Databricks Table Name:** points_redemption_summary
+
+**Points Redemption Summary - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<Callout kind="info" title="Note">
+
+📘
+                                                        
+                                                            
+                                                            
+                                                            
+                                                        
+                                                        The points fact and points_redemption_summary fact are linked
+                                                            and share the same ERD.
+
+</Callout>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 464" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="464" fill="#fafbfc" rx="8"/>
+<path d="M 400 84.0 C 460 84.0, 560 63.0, 620 63.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,63.0 614,60.0 614,66.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 104.0 C 460 104.0, 560 111.0, 620 111.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,111.0 614,108.0 614,114.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 159.0, 620 159.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,159.0 614,156.0 614,162.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 63.0, 620 63.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,63.0 614,60.0 614,66.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 207.0, 620 207.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,207.0 614,204.0 614,210.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 255.0, 620 255.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,255.0 614,252.0 614,258.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 303.0, 620 303.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,303.0 614,300.0 614,306.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 351.0, 620 351.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,351.0 614,348.0 614,354.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 351.0, 620 351.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,351.0 614,348.0 614,354.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 351.0, 620 351.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,351.0 614,348.0 614,354.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="374" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="374" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">points_redemption_summary</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="84.0" r="3" fill="#E67E22"/>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_redemption_program_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_redemption_type_id: string</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">event_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#2C3E50" fontSize="11" fontWeight="normal">notes: string</text>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">point_category_id: bigint</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">points_redeemed: double</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">points_redemption_time: bigint</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">redemption_bill_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">redemption_bill_number: string</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">source_type: string</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="47.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="45.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="45.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="45.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="45.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="68.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="71.0" x2="668" y2="71.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="95.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="93.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="93.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="93.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="93.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="116.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="119.0" x2="676" y2="119.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="143.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="141.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="141.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="141.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="141.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="164.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="167.0" x2="708" y2="167.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="191.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="189.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="189.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="189.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="189.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="212.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="215.0" x2="668" y2="215.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#program" target="_blank">
+<rect x="622" y="239.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="237.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="237.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="237.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="237.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="260.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>program</text>
+<line x1="636" y1="263.0" x2="692" y2="263.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#redemption-type" target="_blank">
+<rect x="622" y="287.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="285.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="285.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="285.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="285.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="308.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>redemption type</text>
+<line x1="636" y1="311.0" x2="756" y2="311.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/points-fact-table#points-fact-table" target="_blank">
+<rect x="622" y="335.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="333.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="333.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="333.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="333.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="356.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>points fact</text>
+<line x1="636" y1="359.0" x2="724" y2="359.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="424" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="434" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="446" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="434" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="446" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="441" x2="395" y2="441" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="441" r="3" fill="#E67E22"/>
+<text x="403" y="446" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Points Redemption Summary Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Available for Export in Points Redemption Summary Template |
+| :--- | :---: | :--- | :---: | :--- |
+| auto_update_time | bigint | Date and time when the corresponding record in the points redemption summary table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto update time |
+| dim_event_date_id | bigint | Date when the points were redeemed. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_user_id | bigint | Identifier of the user, set internally by Capillary. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store, where the points were redeemed. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes Dimension: Concept_Hierarchy > Till_Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_redemption_program_id | bigint | Identifier of the loyalty program associated with the points redemption. | [program](https://docs.capillarytech.com/docs/dimension-tables#program) | Yes; Dimension Name: Program > Program Id |
+| dim_redemption_type_id | string | Identifier for the points redemption type. Possible values are redemption, reversal, group_redemption, and reversal_on_return. | [redemption type](https://docs.capillarytech.com/docs/dimension-tables#redemption-type) | Yes; Dimension Name: Redemption Type > Id |
+| event_id | bigint | Unique identifier of the points redemption event, correlating to Deduction_Summary_Id in the Points Fact table. It is the primary key of this table. | [points fact](https://docs.capillarytech.com/docs/points-fact-table#points-fact-table) | Yes; Measure Name: Event Id |
+| notes | string | Any additional information or comments provided during the redemption process. | _ | Yes; Measure Name: Notes |
+| point_category_id | bigint | It refers to the Point category Id column of PRS table. This id comes from points_category source table, which indicates whether the points category is main, delayed accrual, trigger based or trackers. In case of Group Redemption, this ID will be set to -1. | _ | Yes; Measure Name: Points Category Id |
+| points_redeemed | double | Total points redeemed in a particular redemption. The value is populated from the points_redemption_summary table available at the source. | _ | Yes; Measure Name: Points Redeemed |
+| points_redemption_time | bigint | Time when the points were redeemed, populated from the points_redemption_summary table available at the source. | _ | Yes; Measure Name: Points Redemption Time |
+| redemption_bill_id | bigint | Identifier for a transaction (loyalty log id or bill id) for which the points are redeemed. It is generated by Capillary. | [points fact](https://docs.capillarytech.com/docs/points-fact-table#points-fact-table) | Yes; Measure Name: Redemption Bill Id |
+| redemption_bill_number | string | Bill number for which the points are redeemed. If the source data does not provide this number, the system shows 'Not Captured'. | [points fact](https://docs.capillarytech.com/docs/points-fact-table#points-fact-table) | Yes; Measure Name: Redemption Bill Number |
+| source_type | string | Source from where the redemption data is collected (API or redemption data import). | _ | Yes; Measure Name: Source Type |
+| year | int | Year when the points were redeemed. | _ | Yes; Dimension Name: Year |
+
+## Points_expiry_reminder_info Fact Table
+
+This table captures the event where communication is made with the customer to remind them about their points, which would expire after a certain date. It captures the date and time of the communication, the channel used, the number of points expiring, and the date and time the points will expire, among other details.
+
+**Databricks Table Name:** points_expiry_reminer_info
+
+**Points Expiry Reminder Info - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 384" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="384" fill="#fafbfc" rx="8"/>
+<path d="M 400 84.0 C 460 84.0, 560 95.0, 620 95.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,95.0 614,92.0 614,98.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 104.0 C 460 104.0, 560 143.0, 620 143.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,143.0 614,140.0 614,146.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 191.0, 620 191.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,191.0 614,188.0 614,194.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 239.0, 620 239.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,239.0 614,236.0 614,242.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 143.0, 620 143.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,143.0 614,140.0 614,146.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 191.0, 620 191.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,191.0 614,188.0 614,194.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 143.0, 620 143.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,143.0 614,140.0 614,146.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 191.0, 620 191.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,191.0 614,188.0 614,194.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="294" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="294" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">points_expiry_reminer_info</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time point_exp_reminder: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_communication channel_id: bigint</text>
+<circle cx="388" cy="84.0" r="3" fill="#E67E22"/>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiry_date_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_expiry_time_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#2C3E50" fontSize="11" fontWeight="normal">points_expiring: double</text>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">reminded_before_days: int</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">reminder_id: bigint</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#communication-channel" target="_blank">
+<rect x="622" y="79.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="77.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="77.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="77.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="77.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="100.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>communication_channel</text>
+<line x1="636" y1="103.0" x2="804" y2="103.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="127.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="125.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="125.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="125.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="125.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="148.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="151.0" x2="668" y2="151.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="175.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="173.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="173.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="173.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="173.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="196.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="199.0" x2="668" y2="199.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="223.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="221.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="221.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="221.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="221.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="244.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="247.0" x2="676" y2="247.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="344" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="354" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="366" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="354" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="366" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="361" x2="395" y2="361" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="361" r="3" fill="#E67E22"/>
+<text x="403" y="366" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Points Expiry Reminder Info Fact Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in the Points Expiry Reminder Template |
+| :--- | :---: | :--- | :---: | :--- |
+| auto_update_time point_exp_reminder | bigint | Date and time when the corresponding record in the points reminder expiry info Fact table available at the source was last updated. It is in Unix timestamp format. | _ | Yes; Measure Name: Auto Update Points Expiry Reminder |
+| dim_communication channel_id | bigint | Indicates the channel used for communicating with the customer. Possible values are - SMS, email, voicemail, Wechat, Facebook, Viber, etc. | communication_channel [Link](https://docs.capillarytech.com/docs/dimension-tables#communication-channel) | Yes; Dimension Name : Communication Channel > Id |
+| dim_event_date_id | bigint | Date when the points expiry reminder is sent. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name : Date > Date |
+| dim_event_time_id | bigint | Time when the points expiry reminder is sent. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name : Time > Time Id |
+| dim_event_user_id | bigint | Identifier for the customer who has performed the redemption or reversal, part of the points_redemption_summary fact. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name : User > User Id |
+| dim_expiry_date_id | bigint | Date when the allocated points are set to expire. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name : Expiry Date > Date |
+| dim_expiry_time_id | bigint | Time when the allocated points are set to expire. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name : Expiry Time > Time Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name : Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name : Latest Updated Time > Time Id |
+| points_expiring | double | Total number of points that are set to expire, for which the reminder is sent. | _ | Yes; Measure Name: Points Expiring |
+| reminded_before_days | int | The number of days in advance a reminder should be sent before the points are set to expire. | _ | Yes; Measure Name: Reminded Before Days |
+| reminder_id | bigint | Unique identifier for the table. It is the primary key of this table. | _ | Yes; Measure Name: Reminder Id |
+| year | int | Year in which the points expiry reminder is sent. | _ | Yes; Dimension Name : Year |
+
+## Use cases
+
+Reporting of points data helps brands understand how loyalty points are distributed and used. By looking at this data, brands can see patterns in how points are redeemed and issued, track trends in points activity, find which loyalty programs are most utilized, and understand customer behavior related to points.
+
+Following are two use cases, where points promotion data can be used in reporting:
+
+### Streak and Milestone Based Promotions
+
+- A brand sets up a promotion tied to a streak or milestone, where the brand issues points to the customers after they achieve a streak/ milestone.
+- The brand wants to track how many customers have achieved the streak or milestone and earned promotional points.
+- This is done through the custom fields in the points_promotions dimension table.
+- The brand defines the target id in custom field which is mapped to the target table in the milestones module. This connects the milestone and the points promotion data.
+
+**Example:** Suppose a brand creates a milestone requiring customers to spend $500 in a month to earn extra points. The brand adds a custom field in `points_promotions` where the target ID of this milestone is mapped to the corresponding target in the milestones module. This allows tracking of all customers who achieved the $500 spend milestone and were awarded points based on their milestone achievement.
+
+### Behavioral Event Based Promotions
+
+- A brand creates a promotion linked to a specific behavioral event, such as customers earning points for completing actions (e.g., updating their profile picture or writing product reviews).
+- The brand can track how many customers have participated in the event and how many points have been issued based on their actions.
+- This is done by mapping the behavioral_event_name in the points_promotions dimension table, which shows the event to which the promotion is linked.
+- The brand can therefore track how many customers have completed the event and earned points.
+
+**Example:** Suppose a brand offers 50 points to customers who update their profile picture on their account. The `behavioral_event_name` in the `points_promotions` dimension table links this promotion to the "Profile Picture Update" event. This allows the brand to track how many customers updated their profile picture, and were awarded points for this behavioral event; and how many total points were issued for this promotion.

@@ -1,0 +1,587 @@
+---
+title: Bill Line Items Fact Table
+---
+
+The Bill Line Items fact table provides a granular level view of each transaction at the line item level. For instance, if a customer buys 5 items in a single transaction, the table would contain 5 rows corresponding to each line item. This table captures information such as bill amount, discount, GST details, line item description, quantity, and price.
+
+**Databricks Table Name:** bill_lineitems
+
+<Callout kind="info" title="Note">
+
+📘
+                                                        
+                                                            
+                                                            
+                                                        
+                                                        Bill level details remain the same and are repeated across
+                                                            rows.
+
+</Callout>
+
+**Bill Line Items - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 1844" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="1844" fill="#fafbfc" rx="8"/>
+<path d="M 400 384.0 C 460 384.0, 560 321.0, 620 321.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,321.0 614,318.0 614,324.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 404.0 C 460 404.0, 560 369.0, 620 369.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,369.0 614,366.0 614,372.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 424.0 C 460 424.0, 560 417.0, 620 417.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,417.0 614,414.0 614,420.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 444.0 C 460 444.0, 560 465.0, 620 465.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,465.0 614,462.0 614,468.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 464.0 C 460 464.0, 560 513.0, 620 513.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,513.0 614,510.0 614,516.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 484.0 C 460 484.0, 560 561.0, 620 561.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,561.0 614,558.0 614,564.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 504.0 C 460 504.0, 560 321.0, 620 321.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,321.0 614,318.0 614,324.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 524.0 C 460 524.0, 560 369.0, 620 369.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,369.0 614,366.0 614,372.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 544.0 C 460 544.0, 560 609.0, 620 609.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,609.0 614,606.0 614,612.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 564.0 C 460 564.0, 560 321.0, 620 321.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,321.0 614,318.0 614,324.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 584.0 C 460 584.0, 560 369.0, 620 369.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,369.0 614,366.0 614,372.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 604.0 C 460 604.0, 560 657.0, 620 657.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,657.0 614,654.0 614,660.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 624.0 C 460 624.0, 560 705.0, 620 705.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,705.0 614,702.0 614,708.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 644.0 C 460 644.0, 560 753.0, 620 753.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,753.0 614,750.0 614,756.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 664.0 C 460 664.0, 560 321.0, 620 321.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,321.0 614,318.0 614,324.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 684.0 C 460 684.0, 560 369.0, 620 369.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,369.0 614,366.0 614,372.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 704.0 C 460 704.0, 560 417.0, 620 417.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,417.0 614,414.0 614,420.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 724.0 C 460 724.0, 560 801.0, 620 801.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,801.0 614,798.0 614,804.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 744.0 C 460 744.0, 560 609.0, 620 609.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,609.0 614,606.0 614,612.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 764.0 C 460 764.0, 560 849.0, 620 849.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,849.0 614,846.0 614,852.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 784.0 C 460 784.0, 560 897.0, 620 897.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,897.0 614,894.0 614,900.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 804.0 C 460 804.0, 560 945.0, 620 945.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,945.0 614,942.0 614,948.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 824.0 C 460 824.0, 560 993.0, 620 993.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,993.0 614,990.0 614,996.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 844.0 C 460 844.0, 560 1041.0, 620 1041.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1041.0 614,1038.0 614,1044.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 864.0 C 460 864.0, 560 1089.0, 620 1089.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1089.0 614,1086.0 614,1092.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 884.0 C 460 884.0, 560 1137.0, 620 1137.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1137.0 614,1134.0 614,1140.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 904.0 C 460 904.0, 560 1185.0, 620 1185.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1185.0 614,1182.0 614,1188.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 924.0 C 460 924.0, 560 801.0, 620 801.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,801.0 614,798.0 614,804.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 944.0 C 460 944.0, 560 1233.0, 620 1233.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1233.0 614,1230.0 614,1236.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 964.0 C 460 964.0, 560 1281.0, 620 1281.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1281.0 614,1278.0 614,1284.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 984.0 C 460 984.0, 560 1329.0, 620 1329.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1329.0 614,1326.0 614,1332.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 1004.0 C 460 1004.0, 560 1377.0, 620 1377.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1377.0 614,1374.0 614,1380.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 1024.0 C 460 1024.0, 560 1425.0, 620 1425.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1425.0 614,1422.0 614,1428.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 1044.0 C 460 1044.0, 560 1473.0, 620 1473.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,1473.0 614,1470.0 614,1476.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="1754" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="1754" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">bill_lineitems</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">allocated_points: double</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">additional_discount: double</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_bill: bigint</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_combo_details: bigint</text>
+<text x="30" y="148" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_lineitem: bigint</text>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_shipping: bigint</text>
+<text x="30" y="188" fill="#2C3E50" fontSize="11" fontWeight="normal">autoupdate_time_bill extended_fields: bigint</text>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_lineitem_extended_fields: bigint</text>
+<text x="30" y="228" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_amount: double</text>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_discount: double</text>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_id: bigint</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">bill_number: string</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">central_gst: double</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">converted_bill_id: bigint</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">days_since_last_visit: bigint</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">description: string</text>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_bill_conversion_date_id: bigint</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_bill_conversion_time_id: bigint</text>
+<circle cx="388" cy="404.0" r="3" fill="#E67E22"/>
+<text x="30" y="428" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_bill_outlier_status_id: bigint</text>
+<circle cx="388" cy="424.0" r="3" fill="#E67E22"/>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_buyer_type_id: bigint</text>
+<circle cx="388" cy="444.0" r="3" fill="#E67E22"/>
+<text x="30" y="468" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_cashier_id: bigint</text>
+<circle cx="388" cy="464.0" r="3" fill="#E67E22"/>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_cashier_name_id: bigint</text>
+<circle cx="388" cy="484.0" r="3" fill="#E67E22"/>
+<text x="30" y="508" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_conversion_request_date_id: bigint</text>
+<circle cx="388" cy="504.0" r="3" fill="#E67E22"/>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_conversion_request_time_id: bigint</text>
+<circle cx="388" cy="524.0" r="3" fill="#E67E22"/>
+<text x="30" y="548" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_discount_reason_id: bigint</text>
+<circle cx="388" cy="544.0" r="3" fill="#E67E22"/>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="564.0" r="3" fill="#E67E22"/>
+<text x="30" y="588" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="584.0" r="3" fill="#E67E22"/>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="604.0" r="3" fill="#E67E22"/>
+<text x="30" y="628" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="624.0" r="3" fill="#E67E22"/>
+<rect x="21" y="634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="648" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_item_id: bigint</text>
+<circle cx="388" cy="644.0" r="3" fill="#E67E22"/>
+<text x="30" y="668" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="664.0" r="3" fill="#E67E22"/>
+<rect x="21" y="674" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="688" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="684.0" r="3" fill="#E67E22"/>
+<text x="30" y="708" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_line_item_outlier_status_id: bigint</text>
+<circle cx="388" cy="704.0" r="3" fill="#E67E22"/>
+<rect x="21" y="714" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="728" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_line_item_type_id: bigint</text>
+<circle cx="388" cy="724.0" r="3" fill="#E67E22"/>
+<text x="30" y="748" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_lineitem_cashier_discount_reason_id: bigint</text>
+<circle cx="388" cy="744.0" r="3" fill="#E67E22"/>
+<rect x="21" y="754" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="768" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_lineitem_cashier_id: bigint</text>
+<circle cx="388" cy="764.0" r="3" fill="#E67E22"/>
+<text x="30" y="788" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_lineitem_discount_type_id: bigint</text>
+<circle cx="388" cy="784.0" r="3" fill="#E67E22"/>
+<rect x="21" y="794" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="808" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_lineitem_external_coupon_code_id: bigint</text>
+<circle cx="388" cy="804.0" r="3" fill="#E67E22"/>
+<text x="30" y="828" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_lineitem_return_reason_id: bigint</text>
+<circle cx="388" cy="824.0" r="3" fill="#E67E22"/>
+<rect x="21" y="834" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="848" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_loyalty_type_id: bigint</text>
+<circle cx="388" cy="844.0" r="3" fill="#E67E22"/>
+<text x="30" y="868" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_membership_card_present_id: bigint</text>
+<circle cx="388" cy="864.0" r="3" fill="#E67E22"/>
+<rect x="21" y="874" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="888" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_nps_id: bigint</text>
+<circle cx="388" cy="884.0" r="3" fill="#E67E22"/>
+<text x="30" y="908" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_order_channel_id: bigint</text>
+<circle cx="388" cy="904.0" r="3" fill="#E67E22"/>
+<rect x="21" y="914" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="928" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_parent_item_id: bigint</text>
+<circle cx="388" cy="924.0" r="3" fill="#E67E22"/>
+<text x="30" y="948" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_promotion_code_id: bigint</text>
+<circle cx="388" cy="944.0" r="3" fill="#E67E22"/>
+<rect x="21" y="954" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="968" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_repeat_status_id: bigint</text>
+<circle cx="388" cy="964.0" r="3" fill="#E67E22"/>
+<text x="30" y="988" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_source_type_id: bigint</text>
+<circle cx="388" cy="984.0" r="3" fill="#E67E22"/>
+<rect x="21" y="994" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1008" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_special_lineitem_type_id: bigint</text>
+<circle cx="388" cy="1004.0" r="3" fill="#E67E22"/>
+<text x="30" y="1028" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_tax_code_id: bigint</text>
+<circle cx="388" cy="1024.0" r="3" fill="#E67E22"/>
+<rect x="21" y="1034" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1048" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_card_used_id: bigint</text>
+<circle cx="388" cy="1044.0" r="3" fill="#E67E22"/>
+<text x="30" y="1068" fill="#2C3E50" fontSize="11" fontWeight="normal">initial_bill_value: double</text>
+<rect x="21" y="1074" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1088" fill="#2C3E50" fontSize="11" fontWeight="normal">initial_line_item_value: double</text>
+<text x="30" y="1108" fill="#2C3E50" fontSize="11" fontWeight="normal">integrated_gst: double</text>
+<rect x="21" y="1114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1128" fill="#2C3E50" fontSize="11" fontWeight="normal">item_code: string</text>
+<text x="30" y="1148" fill="#2C3E50" fontSize="11" fontWeight="normal">item_coupon_discount: double</text>
+<rect x="21" y="1154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1168" fill="#2C3E50" fontSize="11" fontWeight="normal">item_discount_description: string</text>
+<text x="30" y="1188" fill="#2C3E50" fontSize="11" fontWeight="normal">item_point_discount: double</text>
+<rect x="21" y="1194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1208" fill="#2C3E50" fontSize="11" fontWeight="normal">item_unit_margin: double</text>
+<text x="30" y="1228" fill="#2C3E50" fontSize="11" fontWeight="normal">items_in_product_set: integer</text>
+<rect x="21" y="1234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1248" fill="#2C3E50" fontSize="11" fontWeight="normal">line_item_amount: double</text>
+<text x="30" y="1268" fill="#2C3E50" fontSize="11" fontWeight="normal">line_item_discount: double</text>
+<rect x="21" y="1274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1288" fill="#2C3E50" fontSize="11" fontWeight="normal">line_item_id: bigint</text>
+<text x="30" y="1308" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_central_gst: double</text>
+<rect x="21" y="1314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1328" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_integrated_gst: double</text>
+<text x="30" y="1348" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_serial_number: string</text>
+<rect x="21" y="1354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1368" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_service_tax_amount: double</text>
+<text x="30" y="1388" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_service_tax_percentage: double</text>
+<rect x="21" y="1394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1408" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_size: string</text>
+<text x="30" y="1428" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_state_gst: double</text>
+<rect x="21" y="1434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1448" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_uuid: string</text>
+<text x="30" y="1468" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_vat_amount: double</text>
+<rect x="21" y="1474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1488" fill="#2C3E50" fontSize="11" fontWeight="normal">lineitem_vat_tax_percentage: double</text>
+<text x="30" y="1508" fill="#2C3E50" fontSize="11" fontWeight="normal">notes: string</text>
+<rect x="21" y="1514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1528" fill="#2C3E50" fontSize="11" fontWeight="normal">parent_line_item_id: bigint</text>
+<text x="30" y="1548" fill="#2C3E50" fontSize="11" fontWeight="normal">quantity: double</text>
+<rect x="21" y="1554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1568" fill="#2C3E50" fontSize="11" fontWeight="normal">rate: double</text>
+<text x="30" y="1588" fill="#2C3E50" fontSize="11" fontWeight="normal">reason: string</text>
+<rect x="21" y="1594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1608" fill="#2C3E50" fontSize="11" fontWeight="normal">redeemed_points: double</text>
+<text x="30" y="1628" fill="#2C3E50" fontSize="11" fontWeight="normal">state_gst: double</text>
+<rect x="21" y="1634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1648" fill="#2C3E50" fontSize="11" fontWeight="normal">tax_amount: double</text>
+<text x="30" y="1668" fill="#2C3E50" fontSize="11" fontWeight="normal">total_quantity: integer</text>
+<rect x="21" y="1674" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1688" fill="#2C3E50" fontSize="11" fontWeight="normal">total_unit_cost: double</text>
+<text x="30" y="1708" fill="#2C3E50" fontSize="11" fontWeight="normal">visit_count: bigint</text>
+<rect x="21" y="1714" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1728" fill="#2C3E50" fontSize="11" fontWeight="normal">visit_day_count: bigint</text>
+<text x="30" y="1748" fill="#2C3E50" fontSize="11" fontWeight="normal">year: integer</text>
+<rect x="21" y="1754" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="1768" fill="#2C3E50" fontSize="11" fontWeight="normal">dim_membership_id: bigint</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="305.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="303.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="303.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="303.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="303.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="326.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="329.0" x2="668" y2="329.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="353.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="351.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="351.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="351.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="351.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="374.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="377.0" x2="668" y2="377.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#outlier-status" target="_blank">
+<rect x="622" y="401.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="399.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="399.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="399.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="399.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="422.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>outlier_status</text>
+<line x1="636" y1="425.0" x2="748" y2="425.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#buyer-type" target="_blank">
+<rect x="622" y="449.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="447.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="447.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="447.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="447.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="470.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>buyer_type</text>
+<line x1="636" y1="473.0" x2="716" y2="473.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#cashier" target="_blank">
+<rect x="622" y="497.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="495.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="495.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="495.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="495.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="518.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>cashier</text>
+<line x1="636" y1="521.0" x2="692" y2="521.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#cashier-name" target="_blank">
+<rect x="622" y="545.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="543.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="543.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="543.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="543.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="566.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>cashier_name</text>
+<line x1="636" y1="569.0" x2="732" y2="569.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reason-for-the-cashier-discount-line-item-cashier-discount-reason" target="_blank">
+<rect x="622" y="593.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="591.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="591.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="591.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="591.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="614.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>lineitem_cashier_discount_reason</text>
+<line x1="636" y1="617.0" x2="892" y2="617.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="641.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="639.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="639.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="639.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="639.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="662.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="665.0" x2="676" y2="665.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="689.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="687.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="687.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="687.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="687.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="710.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="713.0" x2="708" y2="713.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#item" target="_blank">
+<rect x="622" y="737.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="735.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="735.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="735.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="735.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="758.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>item</text>
+<line x1="636" y1="761.0" x2="668" y2="761.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#line-item-type" target="_blank">
+<rect x="622" y="785.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="783.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="783.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="783.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="783.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="806.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>line_item_type</text>
+<line x1="636" y1="809.0" x2="748" y2="809.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#line-item-cashier-id" target="_blank">
+<rect x="622" y="833.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="831.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="831.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="831.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="831.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="854.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>lineitem_cashier_id</text>
+<line x1="636" y1="857.0" x2="788" y2="857.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#line-item-discount-type" target="_blank">
+<rect x="622" y="881.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="879.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="879.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="879.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="879.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="902.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>lineitem_discount_type</text>
+<line x1="636" y1="905.0" x2="812" y2="905.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#line-item-external-coupon-code" target="_blank">
+<rect x="622" y="929.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="927.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="927.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="927.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="927.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="950.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>lineitem_external_coupon_code</text>
+<line x1="636" y1="953.0" x2="868" y2="953.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#line-item-return-reason-id" target="_blank">
+<rect x="622" y="977.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="975.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="975.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="975.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="975.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="998.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>lineitem_return_reason_id</text>
+<line x1="636" y1="1001.0" x2="836" y2="1001.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#loyalty-type" target="_blank">
+<rect x="622" y="1025.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1023.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1023.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1023.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1023.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1046.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>loyalty_type</text>
+<line x1="636" y1="1049.0" x2="732" y2="1049.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#membership-card-present" target="_blank">
+<rect x="622" y="1073.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1071.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1071.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1071.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1071.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1094.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>membership_ card_present</text>
+<line x1="636" y1="1097.0" x2="828" y2="1097.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#nps-score" target="_blank">
+<rect x="622" y="1121.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1119.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1119.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1119.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1119.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1142.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>nps_score</text>
+<line x1="636" y1="1145.0" x2="708" y2="1145.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#order-channel" target="_blank">
+<rect x="622" y="1169.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1167.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1167.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1167.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1167.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1190.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>order_channel</text>
+<line x1="636" y1="1193.0" x2="740" y2="1193.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#line-item-promotion-code" target="_blank">
+<rect x="622" y="1217.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1215.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1215.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1215.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1215.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1238.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>lineitem_promotion_code</text>
+<line x1="636" y1="1241.0" x2="820" y2="1241.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#repeat-status" target="_blank">
+<rect x="622" y="1265.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1263.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1263.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1263.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1263.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1286.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>repeat_status</text>
+<line x1="636" y1="1289.0" x2="740" y2="1289.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#source-type" target="_blank">
+<rect x="622" y="1313.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1311.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1311.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1311.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1311.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1334.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>source_type</text>
+<line x1="636" y1="1337.0" x2="724" y2="1337.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#special-line-item-type" target="_blank">
+<rect x="622" y="1361.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1359.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1359.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1359.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1359.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1382.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>special_lineitem_type</text>
+<line x1="636" y1="1385.0" x2="804" y2="1385.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#line-item-tax-code" target="_blank">
+<rect x="622" y="1409.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1407.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1407.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1407.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1407.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1430.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>lineitem_tax_code</text>
+<line x1="636" y1="1433.0" x2="772" y2="1433.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#card-used-card_used" target="_blank">
+<rect x="622" y="1457.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="1455.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="1455.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="1455.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="1455.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="1478.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>card_used</text>
+<line x1="636" y1="1481.0" x2="708" y2="1481.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="1804" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="1814" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="1826" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="1814" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="1826" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="1821" x2="395" y2="1821" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="1821" r="3" fill="#E67E22"/>
+<text x="403" y="1826" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Bill Line Items Facts Table**
+
+| Column Name | Data Type | Description | Linked Table | Availability for Export in Transactions Template |
+| :--- | :--- | :--- | :--- | :--- |
+| allocated_points | double | Number of loyalty points allocated to a customer for a specific transaction. Can be on bill level, line item level or customer level. | _ | Yes; Measure Name: Allocated Points |
+| additional_discount | double | Extra discount availed on a transaction, for example, discount on combo or bulk items. However, this is a extended field and takes the user input values. | _ | Yes; Measure Name: Additional Discount |
+| auto_update_time_bill | bigint | Date and time when the corresponding record in the bill table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Bill |
+| auto_update_time_combo_details | bigint | Date and time when the corresponding record in the combo_details table available at the source was last updated. Combos typically refer to bundled offers or packages where multiple items are sold together at a discounted price. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Combo Details |
+| auto_update_time_lineitem | bigint | Date and time when the line item table (e.g., product name, quantity, price) available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Lineitem |
+| auto_update_time_shipping | bigint | Date and time when the corresponding record in the shipping table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Shipping |
+| auto*update_time_bill* extended_fields | bigint | Date and time when the corresponding record in the bill extended fields table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Bill Extended Fields |
+| auto_update_time_lineitem_extended_fields | bigint | Date and time when the line item extended fields table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time Lineitem Extended Fields |
+| bill_amount | double | Net amount of the transaction made by the customer. Refers to the total amount of the transaction after adjusting any discounts, taxes, etc. It represents the final amount that the customer is required to pay. | _ | Yes; Measure Name: Bill Amount |
+| bill_discount | double | Total discount applied on the bill. Possible values are flat discount, percentage discount, etc. | _ | Yes; Measure Name: Bill Discount |
+| bill_id | bigint | Unique identifier assigned to a bill internally by capillary system. It helps in differentiating one bill from the other. It is the primary key for the table. | _ | Yes; Measure Name: Bill Id |
+| bill_number | string | Unique identifier for the transaction, which is either auto-generated at the POS machine or provided manually. | _ | Yes; Measure Name: Bill Number |
+| central_gst | double | GST tax levied by the Central Government. | _ | Yes; Measure Name: Central Gst |
+| converted_bill_id | bigint | The new bill id after conversion from non-loyal customer to loyal customer. | _ | Yes; Measure Name: Converted Bill Id |
+| days_since_last_visit | bigint | The number of days since the customer's last transaction. | _ | Yes; Measure Name: Days Since Last Visit |
+| description | string | Description of the line items. | _ | Yes; Measure Name: Description |
+| dim_bill_conversion_date_id | bigint | Date of the bill conversion when the customer has been converted from non loyalty customer to loyalty customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Bill Conversion Date > Date |
+| dim_bill_conversion_time_id | bigint | Time of the bill conversion when the customer has been converted from non loyalty customer to loyalty customer. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Bill Conversion Time > Time Id |
+| dim_bill_outlier_status_id | bigint | Captures whether a bill, identified by its bill_id, contains outlier items. Possible values are - failed, deleted, fraud, invalid, etc. | [outlier_status](https://docs.capillarytech.com/docs/dimension-tables#outlier-status) | Yes; Dimension Name: Bill Outlier > Id |
+| dim_buyer_type_id | bigint | Identifier for the type of buyer. Possible values are retail, and wholesale. | [buyer_type](https://docs.capillarytech.com/docs/dimension-tables#buyer-type) | Yes; Dimension Name: Buyer Type > Id |
+| dim_cashier_id | bigint | Identifier of the cashier who processed the transaction. | [cashier](https://docs.capillarytech.com/docs/dimension-tables#cashier) | Yes; Dimension Name: Cashier Id > Id |
+| dim_cashier_name_id | bigint | Name of the cashier who made the bill in POS (point-of-sale) machine. | [cashier_name](https://docs.capillarytech.com/docs/dimension-tables#cashier-name) | Yes; Dimension Name: Cashier Name > Id |
+| dim_conversion_request_date_id | bigint | Date when the request was raised to convert a bill from non-loyalty customer to loyalty customer status. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Conversion Request Date > Date |
+| dim_conversion_request_time_id | bigint | Time when the request was raised to convert a bill from non-loyalty customer to loyalty customer status. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Conversion Request Time > Time Id |
+| dim_discount_reason_id | bigint | Identifier of the reason behind the discount applied to the bill. Possible values for discount are manager_discount, gift_card_discount, employee_discount, member_discount, incorrect_label, advertisement, wrong_display, bulk_customer, wrong_scan, customer, display, faulty, and damaged. | lineitem_cashier_discount_reason [Link](https://docs.capillarytech.com/docs/dimension-tables#reason-for-the-cashier-discount-line-item-cashier-discount-reason) | Yes; Dimension Name: Lineitem Cashier Discount Reason > Id |
+| dim_event_date_id | bigint | Date when the transaction has occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Timestamp of the transaction, capturing up to minutes (seconds are not captured). | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifies the user associated with the event. It is an internally assigned value by Capillary for user identification. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_item_id | bigint | Unique identifier generated by the system for the item. | [item](https://docs.capillarytech.com/docs/dimension-tables#item) | Yes; Dimension Name: Item Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_line_item_outlier_status_id | bigint | Identifier of the outlier status of the bill at the line item level. Possible values are - failed, deleted, fraud, invalid, etc. | [outlier_status](https://docs.capillarytech.com/docs/dimension-tables#outlier-status) | Yes; Dimension Name: Line Item Outlier > Id |
+| dim_line_item_type_id | bigint | Identifier for the type of line item. Possible values are add on item, combo item, combo parent, and split. | [line_item_type](https://docs.capillarytech.com/docs/dimension-tables#line-item-type) | Yes; Dimension Name: Line Item Type > Id |
+| dim_lineitem_cashier_discount_reason_id | bigint | Identifier of the reason behind the discount applied to the lineitem. Possible values for discount are manager_discount, gift_card_discount, employee_discount, member_discount, incorrect_label, advertisement, wrong_display, bulk_customer, wrong_scan, customer, display, faulty, and damaged. | lineitem_cashier_discount_reason [Link](https://docs.capillarytech.com/docs/dimension-tables#reason-for-the-cashier-discount-line-item-cashier-discount-reason) | Yes; Dimension Name: Lineitem Cashier Discount Reason > Id |
+| dim_lineitem_cashier_id | bigint | Identifier of the cashier who processed the transaction. | [lineitem_cashier_id](https://docs.capillarytech.com/docs/dimension-tables#line-item-cashier-id) | Yes; Dimension Name: Lineitem Cashier > Id |
+| dim_lineitem_discount_type_id | bigint | Identifier of the type of discount given to the customer. Possible values are flat discount, percentage discount, etc. | lineitem_discount_type [Link](https://docs.capillarytech.com/docs/dimension-tables#line-item-discount-type) | Yes; Dimension Name: Item Discount Type > Id |
+| dim_lineitem_external_coupon_code_id | bigint | Coupon code id if any external coupon has been applied on the lineitems. | lineitem_external_coupon_code [Link](https://docs.capillarytech.com/docs/dimension-tables#line-item-external-coupon-code) | Yes; Dimension Name: Lineitem External Coupon Code > Id |
+| dim_lineitem_return_reason_id | bigint | Identifier of the reason for returning the lineitem. | lineitem_return_reason_id [Link](https://docs.capillarytech.com/docs/dimension-tables#line-item-return-reason-id) | Yes; Dimension Name: Lineitem Return Reason > Id |
+| dim_loyalty_type_id | bigint | Identifier of the Loyalty type of the customer. Possible values are - loyalty/ non loyalty/ not registered (who have not provided their contact details). | [loyalty_type](https://docs.capillarytech.com/docs/dimension-tables#loyalty-type) | Yes; Dimension Name: Loyalty > Id |
+| dim_membership_card_present_id | bigint | Indicates whether a membership card is present for the customer or not. | membership_ card_present [Link](https://docs.capillarytech.com/docs/dimension-tables#membership-card-present) | Yes; Dimension Name: Membership Card Present > Id |
+| dim_nps_id | bigint | Net Promoter Score (NPS) for the transaction, where NPS is a measure for customer satisfaction, ranging from 1 to 10. | [nps_score](https://docs.capillarytech.com/docs/dimension-tables#nps-score) | Yes; Dimension Name: Nps > Id |
+| dim_order_channel_id | bigint | Identifier for the order channel associated with a transaction. It indicates the specific channel through which the transaction was completed. Possible values are online, in-store, through a mobile app, etc. | [order_channel](https://docs.capillarytech.com/docs/dimension-tables#order-channel) | Yes; Dimension Name: Order Channel > Id |
+| dim_parent_item_id | bigint | Identifier of the parent item (for transactions with combo, split or add-on items). | [line_item_type](https://docs.capillarytech.com/docs/dimension-tables#line-item-type) | Yes; Dimension Name: Parent Item > Item Id |
+| dim_promotion_code_id | bigint | Gives the line item promotion code information. | lineitem_promotion_code [Link](https://docs.capillarytech.com/docs/dimension-tables#line-item-promotion-code) | Yes; Dimension Name: Item Promotion Code > Id |
+| dim_repeat_status_id | bigint | Shows if the customer has made previous purchases or if it's their first transaction. | [repeat_status](https://docs.capillarytech.com/docs/dimension-tables#repeat-status) | Yes; Dimension Name: Repeat Status |
+| dim_source_type_id | bigint | Identifier for the source of the bill. Possible values are instore, e-comm, newsletter, campaigns, NCA, Wechat, Facebook, etc. | [source_type](https://docs.capillarytech.com/docs/dimension-tables#source-type) | Yes; Dimension Name: Source Type > Id |
+| dim_special_lineitem_type_id | bigint | Identifier for the line item type. Possible values are - a free item, and processing fee information. | [special_lineitem_type](https://docs.capillarytech.com/docs/dimension-tables#special-line-item-type) | Yes; Dimension Name: Special Lineitem Type > Id |
+| dim_tax_code_id | bigint | Unique identifier or code assigned to a specific tax category. They include GST at the central and state levels, interstate GST, and taxes levied to the total bill. | [lineitem_tax_code](https://docs.capillarytech.com/docs/dimension-tables#line-item-tax-code) | Yes; Dimension Name: Item Tax Code > Id |
+| dim_card_used_id | bigint | Unique identifier for the card used in the transaction. | [card_used](https://docs.capillarytech.com/docs/dimension-tables#card-used-card_used) | Yes; Dimension Name: Card used > Id |
+| initial_bill_value | double | Represents the original bill amount before any discounts or taxes are applied. | _ | Yes; Measure Name: Initial Bill Value |
+| initial_line_item_value | double | Indicates the original value of a line item within the transaction before any discounts or taxes are applied. | _ | Yes; Measure Name: Initial Line Item Value |
+| integrated_gst | double | GST levied by the Central Government for inter-state trade. | _ | Yes; Measure Name: Integrated Gst |
+| item_code | string | Unique code assigned to a line item within the transaction. | _ | Yes; Measure Name: Item Code |
+| item_coupon_discount | double | Represents any discount applied to the line item using coupons. | _ | Yes; Measure Name: Item Coupon Discount |
+| item_discount_description | string | Provides a description of why the discount has been applied to the item. | _ | Yes; Measure Name: Item Discount Description |
+| item_point_discount | double | Denotes any discount applied to the line item using loyalty points. | _ | Yes; Measure Name: Item Points discount |
+| item_unit_margin | double | Indicates the profit margin associated with the item. | _ | Yes; Measure Name: Item Unit Margin |
+| items_in_product_set | integer | Provides the count of the item within a product set. | _ | Yes; Measure Name: Items In Product Set |
+| line_item_amount | double | Represents the total amount for the line item after discounts and taxes have been applied. | _ | Yes; Measure Name: Line Item Amount |
+| line_item_discount | double | Denotes the discount given for the particular line item. | _ | Yes; Measure Name: Line Item Discount |
+| line_item_id | bigint | Unique identifier generated by the system for the line item. It is the primary key of this table. | _ | Yes; Measure Name: Line Item Id |
+| lineitem_central_gst | double | GST levied by the Central Government on the line item. | _ | Yes; Measure Name: Lineitem Central Gst |
+| lineitem_integrated_gst | double | Integrated GST levied by the Central Government on the line item. | _ | Yes; Measure Name: Lineitem Integrated Gst |
+| lineitem_serial_number | string | Unique serial number of the line-item. | _ | Yes; Measure Name: Lineitem Serial Number |
+| lineitem_service_tax_amount | double | Represents the amount of service tax applicable to the line item. | _ | Yes; Measure Name: Lineitem Service Tax Amount |
+| lineitem_service_tax_percentage | double | Denotes the percentage of service tax levied to the line item. | _ | Yes; Measure Name: Lineitem Service Tax Percentage |
+| lineitem_size | string | Indicates the size of the line item. | _ | Yes; Measure Name: Lineitem Size |
+| lineitem_state_gst | double | State GST applicable to the line item. | _ | Yes; Measure Name: Lineitem State Gst |
+| lineitem_uuid | string | Contains a universally unique identifier (UUID) assigned to the line item. | _ | Yes; Measure Name: Lineitem Uuid |
+| lineitem_vat_amount | double | Amount of VAT levied by the Central Government on the line item. | NA | Yes; Measure Name: Lineitem Vat Amount |
+| lineitem_vat_tax_percentage | double | Percentage of VAT levied by the Central Government on the line item. | _ | Yes; Measure Name: Lineitem Vat Tax Percentage |
+| notes | string | Additional information added while creating the line item. | _ | Yes; Measure Name: Notes |
+| parent_line_item_id | bigint | Identifier of the parent line item (for transactions with combo or add-on items). | _ | Yes; Measure Name: Parent Line Item Id |
+| quantity | double | Number of units/ lineitems bought. | _ | Yes; Measure Name: Quantity |
+| rate | double | Total cost of a line item, obtained by multiplying the item price by the quantity purchased. | _ | Yes; Measure Name: Rate |
+| reason | string | Captures the reason for the transaction. | _ | Yes; Measure Name: Reason |
+| redeemed_points | double | Points redeemed on the bill level. | _ | Yes; Measure Name: Redeemed Points |
+| state_gst | double | Taxes levied by the State Government on the bill. | _ | Yes; Measure Name: Lineitem State Gst |
+| tax_amount | double | Total amount of tax levied on the bill. | _ | Yes; Measure Name: Tax Amount |
+| total_quantity | integer | Total number of line items in the bill. | _ | Yes; Measure Name: Total Quantity |
+| total_unit_cost | double | Total price of the item including tax and other charges | _ | Yes; Measure Name: Total Unit Cost |
+| visit_count | bigint | Total number of visits made by a customer. It is based on the number of transactions recorded for the customer. | _ | Yes; Measure Name: Visit Count |
+| visit_day_count | bigint | Total number of visits made by a customer based on dates. Even if the customer visits multiple times on a particular day, it will only count as one day in the visit count. | _ | Yes; Measure Name: Visit Day Count |
+| year | integer | Year when the transaction was done. | _ | Yes; Dimension Name: Year |
+| dim_membership_id | bigint | Membership type of the customer who completed the transaction. Possible values are - member/ not interested/ loyalty-not-interested. It is the primary key of the Bill_Lineitems facts table. | _ | Yes; Dimension Name: Membership > Id |

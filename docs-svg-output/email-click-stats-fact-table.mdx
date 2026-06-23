@@ -1,0 +1,119 @@
+---
+title: Email Click Stats Fact Table
+---
+
+This fact table represents the event where the customer clicks the link in the campaign email. It captures information like the number of times links within emails were clicked; the link and message id; date and time of the click; etc. It is linked to the campaign, users, date and time dimension tables which provide other relevant attributes.
+
+**Databricks Table Name:** email_click_stats
+
+**Email Click Stats - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 384" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="384" fill="#fafbfc" rx="8"/>
+<path d="M 400 124.0 C 460 124.0, 560 95.0, 620 95.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,95.0 614,92.0 614,98.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 143.0, 620 143.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,143.0 614,140.0 614,146.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 191.0, 620 191.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,191.0 614,188.0 614,194.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 239.0, 620 239.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,239.0 614,236.0 614,242.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 143.0, 620 143.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,143.0 614,140.0 614,146.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 191.0, 620 191.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,191.0 614,188.0 614,194.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="294" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="294" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">email_click_stats</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_link_redirection: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_link_redirection_stats: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">clicks: int</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_campaign_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#2C3E50" fontSize="11" fontWeight="normal">id: bigint</text>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">link_id: bigint</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">msg_id: bigint</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#campaigns" target="_blank">
+<rect x="622" y="79.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="77.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="77.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="77.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="77.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="100.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaigns</text>
+<line x1="636" y1="103.0" x2="708" y2="103.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="127.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="125.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="125.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="125.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="125.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="148.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="151.0" x2="668" y2="151.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="175.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="173.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="173.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="173.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="173.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="196.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="199.0" x2="668" y2="199.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="223.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="221.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="221.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="221.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="221.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="244.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="247.0" x2="676" y2="247.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="344" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="354" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="366" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="354" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="366" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="361" x2="395" y2="361" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="361" r="3" fill="#E67E22"/>
+<text x="403" y="366" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Email Click Stats Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| :--- | :---: | :--- | :---: |
+| auto_update_time_link_redirection | bigint | Date and time when the corresponding record in the link redirection table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_link_redirection_stats | bigint | Date and time when the corresponding record in the link redirection stats table available at the source was last updated. It is in the Unix timestamp format. | _ |
+| clicks | int | Number of times the link in the email was clicked. | _ |
+| dim_campaign_id | bigint | Identifier for the campaign in which the email message is configured. | [campaigns](https://docs.capillarytech.com/docs/dimension-tables#campaigns) |
+| dim_event_date_id | bigint | Date when the email was accessed by the customer. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Time when the email was accessed by the customer. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier of the customer associated with the email click. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| id | bigint | Unique identifier of the table. It is the primary key of the table. | _ |
+| link_id | bigint | Unique identifier of the link. It is the primary key of the table. | _ |
+| msg_id | bigint | Identifier of the email message. | _ |
+| year | int | Year when the email was clicked. | _ |

@@ -39,6 +39,127 @@
                 "show-toc": false
               }
             ]
+          },
+          {
+            "group": "fact-table",
+            "pages": [
+              {
+                "title": "badges-fact-table",
+                "path": "docs-svg-output/badges-fact-table"
+              },
+              {
+                "title": "bill-line-items-fact-table",
+                "path": "docs-svg-output/bill-line-items-fact-table"
+              },
+              {
+                "title": "call-task-customer-status-fact-table",
+                "path": "docs-svg-output/call-task-customer-status-fact-table"
+              },
+              {
+                "title": "communication-credits-log-fact-table",
+                "path": "docs-svg-output/communication-credits-log-fact-table"
+              },
+              {
+                "title": "contact-info-fact-table",
+                "path": "docs-svg-output/contact-info-fact-table"
+              },
+              {
+                "title": "coupons-fact-table",
+                "path": "docs-svg-output/coupons-fact-table"
+              },
+              {
+                "title": "customer-merge-log-fact-table",
+                "path": "docs-svg-output/customer-merge-log-fact-table"
+              },
+              {
+                "title": "customer-notes-fact-table",
+                "path": "docs-svg-output/customer-notes-fact-table"
+              },
+              {
+                "title": "customer-summary-members-fact-table",
+                "path": "docs-svg-output/customer-summary-members-fact-table"
+              },
+              {
+                "title": "custom-field-data-fact-table",
+                "path": "docs-svg-output/custom-field-data-fact-table"
+              },
+              {
+                "title": "daily-till-summary-fact-table",
+                "path": "docs-svg-output/daily-till-summary-fact-table"
+              },
+              {
+                "title": "email-click-stats-fact-table",
+                "path": "docs-svg-output/email-click-stats-fact-table"
+              },
+              {
+                "title": "fact_milestones",
+                "path": "docs-svg-output/fact_milestones"
+              },
+              {
+                "title": "fact_registration-event",
+                "path": "docs-svg-output/fact_registration-event"
+              },
+              {
+                "title": "fact_streaks",
+                "path": "docs-svg-output/fact_streaks"
+              },
+              {
+                "title": "goodwill-requests-fact-table",
+                "path": "docs-svg-output/goodwill-requests-fact-table"
+              },
+              {
+                "title": "invitation-sent-fact-table",
+                "path": "docs-svg-output/invitation-sent-fact-table"
+              },
+              {
+                "title": "issue-tracker-fact-table",
+                "path": "docs-svg-output/issue-tracker-fact-table"
+              },
+              {
+                "title": "journeys-fact-table",
+                "path": "docs-svg-output/journeys-fact-table"
+              },
+              {
+                "title": "nsadmin-messages-fact-table",
+                "path": "docs-svg-output/nsadmin-messages-fact-table"
+              },
+              {
+                "title": "payment-details-fact",
+                "path": "docs-svg-output/payment-details-fact"
+              },
+              {
+                "title": "points-fact-table",
+                "path": "docs-svg-output/points-fact-table"
+              },
+              {
+                "title": "profile-users-fact-table",
+                "path": "docs-svg-output/profile-users-fact-table"
+              },
+              {
+                "title": "referrals-fact-table",
+                "path": "docs-svg-output/referrals-fact-table"
+              },
+              {
+                "title": "referrers-fact-table",
+                "path": "docs-svg-output/referrers-fact-table"
+              },
+              {
+                "title": "response-info-fact-table",
+                "path": "docs-svg-output/response-info-fact-table"
+              },
+              {
+                "title": "return-bill-line-item-fact-table",
+                "path": "docs-svg-output/return-bill-line-item-fact-table"
+              },
+              {
+                "title": "rewards-fact-table",
+                "path": "docs-svg-output/rewards-fact-table"
+              },
+              {
+                "title": "slab-change-log-fact-table",
+                "path": "docs-svg-output/slab-change-log-fact-table"
+              }
+            ]
           }
         ]
       }

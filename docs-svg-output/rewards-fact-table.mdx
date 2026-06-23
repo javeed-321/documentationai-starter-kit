@@ -1,0 +1,1117 @@
+---
+title: Rewards Fact Tables
+---
+
+Rewards are perks or benefits offered to customers as part of a loyalty program or promotional campaign. These can be in the form of discounts, free products, points, cashback, or exclusive offers, given to encourage customer engagement, repeat purchases, or brand loyalty.
+
+Given below are the fact tables associated with the rewards data:
+
+- reward_issue_fact
+- reward_payment_currency_fact
+- reward_transaction_fact
+- reward_transaction_customfield_fact
+- reward_transaction_fullfillment_fact
+
+## Reward Issue Fact
+
+This table captures details of rewards issued to customers. It includes unique identifiers for brands/ organisations, and promotions, points deducted, vouchers issued, and associated expiry dates within the Intouch system.
+
+**Databricks Table Name:** reward_issue_fact
+
+**Reward Issue Fact - Entity Relationship Diagram (ERD)**
+
+<Callout kind="info" title="All the rewards fact tables share the same ERD.">
+
+📘
+
+</Callout>
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 484" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="484" fill="#fafbfc" rx="8"/>
+<path d="M 400 284.0 C 460 284.0, 560 145.0, 620 145.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,145.0 614,142.0 614,148.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 193.0, 620 193.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,193.0 614,190.0 614,196.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 193.0, 620 193.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,193.0 614,190.0 614,196.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 241.0, 620 241.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,241.0 614,238.0 614,244.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 364.0 C 460 364.0, 560 289.0, 620 289.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,289.0 614,286.0 614,292.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 384.0 C 460 384.0, 560 241.0, 620 241.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,241.0 614,238.0 614,244.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="394" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="394" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">reward_issue_fact</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">brand_id: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">Id: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_points_deducted: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_user_id: bigint</text>
+<text x="30" y="148" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_voucher: string</text>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_voucher_expiry: string</text>
+<text x="30" y="188" fill="#2C3E50" fontSize="11" fontWeight="normal">issued_ref_id: string</text>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#2C3E50" fontSize="11" fontWeight="normal">org_id: bigint</text>
+<text x="30" y="228" fill="#2C3E50" fontSize="11" fontWeight="normal">points_ref_id: bigint</text>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#2C3E50" fontSize="11" fontWeight="normal">reward_promotion_link_id: bigint</text>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">vendor_reward: string</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_catalog_promotion_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_reward_id: bigint</text>
+<circle cx="388" cy="364.0" r="3" fill="#E67E22"/>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_reward_issue_update_on_id: bigint</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">year: integer</text>
+<a href="/docs/dimension-tables#catalog-promotion-reward_catalog_promotion" target="_blank">
+<rect x="622" y="129.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="127.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="127.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="127.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="127.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="150.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>rewards_catalogue_promotion</text>
+<line x1="636" y1="153.0" x2="852" y2="153.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="177.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="175.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="175.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="175.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="175.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="198.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="201.0" x2="668" y2="201.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="225.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="223.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="223.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="223.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="223.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="246.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="249.0" x2="668" y2="249.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#rewards-rewards" target="_blank">
+<rect x="622" y="273.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="271.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="271.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="271.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="271.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="294.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>rewards</text>
+<line x1="636" y1="297.0" x2="692" y2="297.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="444" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="454" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="466" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="454" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="466" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="461" x2="395" y2="461" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="461" r="3" fill="#E67E22"/>
+<text x="403" y="466" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 724" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="724" fill="#fafbfc" rx="8"/>
+<path d="M 400 104.0 C 460 104.0, 560 97.0, 620 97.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,97.0 614,94.0 614,100.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 145.0, 620 145.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,145.0 614,142.0 614,148.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 193.0, 620 193.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,193.0 614,190.0 614,196.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 97.0, 620 97.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,97.0 614,94.0 614,100.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 145.0, 620 145.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,145.0 614,142.0 614,148.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 241.0, 620 241.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,241.0 614,238.0 614,244.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 289.0, 620 289.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,289.0 614,286.0 614,292.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 337.0, 620 337.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,337.0 614,334.0 614,340.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 385.0, 620 385.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,385.0 614,382.0 614,388.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 433.0, 620 433.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,433.0 614,430.0 614,436.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 481.0, 620 481.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,481.0 614,478.0 614,484.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 529.0, 620 529.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,529.0 614,526.0 614,532.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 577.0, 620 577.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,577.0 614,574.0 614,580.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="634" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="634" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">reward_payment_currency_fact</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_redemption: bigint</text>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_id: string</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_type_id: int</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_payment_config_currency_type_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_payment_config_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_redemption_type_identifier_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_reward_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_redemption_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">group_loyalty_redemption: int</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">id: bigint</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_series_id: string</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_reference_id: string</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">payment_config_currency_value: double</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">quantity: bigint</text>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_id: bigint</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">request_id: string</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#2C3E50" fontSize="11" fontWeight="normal">status_code: string</text>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">status_message: string</text>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#2C3E50" fontSize="11" fontWeight="normal">success: int</text>
+<text x="30" y="588" fill="#2C3E50" fontSize="11" fontWeight="normal">tender_details_id: bigint</text>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#2C3E50" fontSize="11" fontWeight="normal">user_payment_config_currency_id: bigint</text>
+<text x="30" y="628" fill="#2C3E50" fontSize="11" fontWeight="normal">user_payment_config_id: bigint</text>
+<rect x="21" y="634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="648" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="81.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="79.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="79.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="79.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="79.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="102.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="105.0" x2="668" y2="105.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="129.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="127.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="127.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="127.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="127.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="150.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="153.0" x2="668" y2="153.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="177.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="175.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="175.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="175.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="175.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="198.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="201.0" x2="676" y2="201.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-reward_owner_dim" target="_blank">
+<rect x="622" y="225.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="223.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="223.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="223.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="223.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="246.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_dim</text>
+<line x1="636" y1="249.0" x2="764" y2="249.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim" target="_blank">
+<rect x="622" y="273.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="271.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="271.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="271.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="271.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="294.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_standard_dim</text>
+<line x1="636" y1="297.0" x2="836" y2="297.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-payment-config-currency-reward_payment_config_currency_dim" target="_blank">
+<rect x="622" y="321.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="319.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="319.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="319.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="319.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="342.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_payment_config_currency_dim</text>
+<line x1="636" y1="345.0" x2="908" y2="345.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-payment-config-reward_payment_config_dim" target="_blank">
+<rect x="622" y="369.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="367.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="367.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="367.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="367.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="390.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_payment_config_dim</text>
+<line x1="636" y1="393.0" x2="836" y2="393.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim" target="_blank">
+<rect x="622" y="417.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="415.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="415.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="415.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="415.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="438.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_redemption_types_dim</text>
+<line x1="636" y1="441.0" x2="852" y2="441.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#rewards-rewards" target="_blank">
+<rect x="622" y="465.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="463.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="463.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="463.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="463.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="486.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>rewards</text>
+<line x1="636" y1="489.0" x2="692" y2="489.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-reward_vendor_dim" target="_blank">
+<rect x="622" y="513.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="511.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="511.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="511.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="511.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="534.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_dim</text>
+<line x1="636" y1="537.0" x2="772" y2="537.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim" target="_blank">
+<rect x="622" y="561.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="559.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="559.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="559.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="559.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="582.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_redemption_dim</text>
+<line x1="636" y1="585.0" x2="860" y2="585.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="684" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="694" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="706" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="694" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="706" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="701" x2="395" y2="701" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="701" r="3" fill="#E67E22"/>
+<text x="403" y="706" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 624" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="624" fill="#fafbfc" rx="8"/>
+<path d="M 400 104.0 C 460 104.0, 560 95.0, 620 95.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,95.0 614,92.0 614,98.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 143.0, 620 143.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,143.0 614,140.0 614,146.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 191.0, 620 191.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,191.0 614,188.0 614,194.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 95.0, 620 95.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,95.0 614,92.0 614,98.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 143.0, 620 143.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,143.0 614,140.0 614,146.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 239.0, 620 239.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,239.0 614,236.0 614,242.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 287.0, 620 287.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,287.0 614,284.0 614,290.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 335.0, 620 335.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,335.0 614,332.0 614,338.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 383.0, 620 383.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,383.0 614,380.0 614,386.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 431.0, 620 431.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,431.0 614,428.0 614,434.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 479.0, 620 479.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,479.0 614,476.0 614,482.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="534" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="534" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">reward_transaction_fact</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_redemption: bigint</text>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_id: string</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_type_id: int</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_redemption_type_identifier_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_reward_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_redemption_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">group_loyalty_redemption: int</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">id: bigint</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_series_id: string</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_reference_id: string</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">quantity: bigint</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_id: bigint</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">request_id: string</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">status_code: string</text>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">status_message: string</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">success: int</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#2C3E50" fontSize="11" fontWeight="normal">tender_details_id: bigint</text>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="79.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="77.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="77.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="77.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="77.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="100.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="103.0" x2="668" y2="103.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="127.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="125.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="125.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="125.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="125.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="148.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="151.0" x2="668" y2="151.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="175.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="173.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="173.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="173.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="173.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="196.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="199.0" x2="676" y2="199.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-reward_owner_dim" target="_blank">
+<rect x="622" y="223.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="221.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="221.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="221.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="221.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="244.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_dim</text>
+<line x1="636" y1="247.0" x2="764" y2="247.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim" target="_blank">
+<rect x="622" y="271.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="269.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="269.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="269.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="269.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="292.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_standard_dim</text>
+<line x1="636" y1="295.0" x2="836" y2="295.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim" target="_blank">
+<rect x="622" y="319.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="317.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="317.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="317.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="317.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="340.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_redemption_types_dim</text>
+<line x1="636" y1="343.0" x2="852" y2="343.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#rewards-rewards" target="_blank">
+<rect x="622" y="367.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="365.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="365.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="365.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="365.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="388.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>rewards</text>
+<line x1="636" y1="391.0" x2="692" y2="391.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-reward_vendor_dim" target="_blank">
+<rect x="622" y="415.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="413.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="413.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="413.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="413.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="436.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_dim</text>
+<line x1="636" y1="439.0" x2="772" y2="439.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim" target="_blank">
+<rect x="622" y="463.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="461.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="461.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="461.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="461.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="484.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_redemption_dim</text>
+<line x1="636" y1="487.0" x2="860" y2="487.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="584" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="594" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="606" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="594" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="606" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="601" x2="395" y2="601" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="601" r="3" fill="#E67E22"/>
+<text x="403" y="606" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 784" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="784" fill="#fafbfc" rx="8"/>
+<path d="M 400 164.0 C 460 164.0, 560 103.0, 620 103.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,103.0 614,100.0 614,106.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 151.0, 620 151.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,151.0 614,148.0 614,154.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 199.0, 620 199.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,199.0 614,196.0 614,202.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 247.0, 620 247.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,247.0 614,244.0 614,250.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 151.0, 620 151.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,151.0 614,148.0 614,154.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 199.0, 620 199.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,199.0 614,196.0 614,202.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 295.0, 620 295.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,295.0 614,292.0 614,298.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 343.0, 620 343.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,343.0 614,340.0 614,346.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 391.0, 620 391.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,391.0 614,388.0 614,394.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 439.0, 620 439.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,439.0 614,436.0 614,442.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 364.0 C 460 364.0, 560 487.0, 620 487.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,487.0 614,484.0 614,490.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 384.0 C 460 384.0, 560 535.0, 620 535.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,535.0 614,532.0 614,538.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 404.0 C 460 404.0, 560 583.0, 620 583.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,583.0 614,580.0 614,586.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 424.0 C 460 424.0, 560 631.0, 620 631.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,631.0 614,628.0 614,634.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="694" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="694" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">reward_transaction_customfield_fact</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_redemption: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_user_custom_field: bigint</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#2C3E50" fontSize="11" fontWeight="normal">custom_field_mapping_isactive: int</text>
+<text x="30" y="148" fill="#2C3E50" fontSize="11" fontWeight="normal">custom_field_value: string</text>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_custom_field_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_id: string</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_type_id: int</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_payment_config_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_redemption_type_identifier_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_reward_id: bigint</text>
+<circle cx="388" cy="364.0" r="3" fill="#E67E22"/>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_scope_id: bigint</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_id: bigint</text>
+<circle cx="388" cy="404.0" r="3" fill="#E67E22"/>
+<text x="30" y="428" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_redemption_id: bigint</text>
+<circle cx="388" cy="424.0" r="3" fill="#E67E22"/>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">group_loyalty_redemption: int</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">id: bigint</text>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_series_id: string</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_reference_id: string</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#2C3E50" fontSize="11" fontWeight="normal">quantity: bigint</text>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_id: bigint</text>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#2C3E50" fontSize="11" fontWeight="normal">request_id: string</text>
+<text x="30" y="588" fill="#2C3E50" fontSize="11" fontWeight="normal">status_code: string</text>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#2C3E50" fontSize="11" fontWeight="normal">status_message: string</text>
+<text x="30" y="628" fill="#2C3E50" fontSize="11" fontWeight="normal">success: int</text>
+<rect x="21" y="634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="648" fill="#2C3E50" fontSize="11" fontWeight="normal">tender_details_id: bigint</text>
+<text x="30" y="668" fill="#2C3E50" fontSize="11" fontWeight="normal">user_custom_field_id: bigint</text>
+<rect x="21" y="674" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="688" fill="#2C3E50" fontSize="11" fontWeight="normal">user_payment_config_id: bigint</text>
+<text x="30" y="708" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#reward-custom-fields-reward_custom_fields_dim" target="_blank">
+<rect x="622" y="87.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="85.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="85.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="85.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="85.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="108.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_custom_fields_dim</text>
+<line x1="636" y1="111.0" x2="828" y2="111.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="135.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="133.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="133.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="133.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="133.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="156.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="159.0" x2="668" y2="159.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="183.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="181.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="181.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="181.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="181.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="204.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="207.0" x2="668" y2="207.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="231.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="229.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="229.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="229.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="229.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="252.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="255.0" x2="676" y2="255.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-reward_owner_dim" target="_blank">
+<rect x="622" y="279.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="277.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="277.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="277.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="277.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="300.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_dim</text>
+<line x1="636" y1="303.0" x2="764" y2="303.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim" target="_blank">
+<rect x="622" y="327.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="325.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="325.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="325.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="325.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="348.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_standard_dim</text>
+<line x1="636" y1="351.0" x2="836" y2="351.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-payment-config-reward_payment_config_dim" target="_blank">
+<rect x="622" y="375.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="373.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="373.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="373.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="373.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="396.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_payment_config_dim</text>
+<line x1="636" y1="399.0" x2="836" y2="399.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim" target="_blank">
+<rect x="622" y="423.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="421.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="421.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="421.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="421.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="444.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_redemption_types_dim</text>
+<line x1="636" y1="447.0" x2="852" y2="447.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#rewards-rewards" target="_blank">
+<rect x="622" y="471.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="469.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="469.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="469.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="469.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="492.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>rewards</text>
+<line x1="636" y1="495.0" x2="692" y2="495.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-fulfillment-scope-reward_fulfillment_details_scope_dim" target="_blank">
+<rect x="622" y="519.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="517.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="517.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="517.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="517.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="540.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_fulfillment_details_scope_dim</text>
+<line x1="636" y1="543.0" x2="924" y2="543.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-reward_vendor_dim" target="_blank">
+<rect x="622" y="567.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="565.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="565.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="565.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="565.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="588.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_dim</text>
+<line x1="636" y1="591.0" x2="772" y2="591.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim" target="_blank">
+<rect x="622" y="615.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="613.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="613.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="613.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="613.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="636.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_redemption_dim</text>
+<line x1="636" y1="639.0" x2="860" y2="639.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="744" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="754" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="766" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="754" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="766" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="761" x2="395" y2="761" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="761" r="3" fill="#E67E22"/>
+<text x="403" y="766" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 764" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="764" fill="#fafbfc" rx="8"/>
+<path d="M 400 124.0 C 460 124.0, 560 93.0, 620 93.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,93.0 614,90.0 614,96.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 141.0, 620 141.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,141.0 614,138.0 614,144.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 189.0, 620 189.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,189.0 614,186.0 614,192.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 237.0, 620 237.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,237.0 614,234.0 614,240.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 93.0, 620 93.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,93.0 614,90.0 614,96.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 141.0, 620 141.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,141.0 614,138.0 614,144.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 285.0, 620 285.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,285.0 614,282.0 614,288.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 333.0, 620 333.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,333.0 614,330.0 614,336.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 381.0, 620 381.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,381.0 614,378.0 614,384.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 304.0 C 460 304.0, 560 429.0, 620 429.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,429.0 614,426.0 614,432.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 324.0 C 460 324.0, 560 477.0, 620 477.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,477.0 614,474.0 614,480.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 344.0 C 460 344.0, 560 525.0, 620 525.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,525.0 614,522.0 614,528.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 364.0 C 460 364.0, 560 573.0, 620 573.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,573.0 614,570.0 614,576.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 384.0 C 460 384.0, 560 621.0, 620 621.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,621.0 614,618.0 614,624.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="674" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="674" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">reward_transaction_fullfillment_fact</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_fulfillment_details: bigint</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time_redemption: bigint</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_ful_fillment_status_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_id: string</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_owner_type_id: int</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_payment_config_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_redemption_type_identifier_id: bigint</text>
+<circle cx="388" cy="304.0" r="3" fill="#E67E22"/>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_reward_id: bigint</text>
+<circle cx="388" cy="324.0" r="3" fill="#E67E22"/>
+<text x="30" y="348" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_scope_id: bigint</text>
+<circle cx="388" cy="344.0" r="3" fill="#E67E22"/>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_id: bigint</text>
+<circle cx="388" cy="364.0" r="3" fill="#E67E22"/>
+<text x="30" y="388" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_vendor_redemption_id: bigint</text>
+<circle cx="388" cy="384.0" r="3" fill="#E67E22"/>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">fulfillment_details_enabled: int</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">fullfillment_details_id: bigint</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">group_loyalty_redemption: int</text>
+<text x="30" y="468" fill="#2C3E50" fontSize="11" fontWeight="normal">id: bigint</text>
+<rect x="21" y="474" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="488" fill="#2C3E50" fontSize="11" fontWeight="normal">intouch_series_id: string</text>
+<text x="30" y="508" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_reference_id: string</text>
+<rect x="21" y="514" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="528" fill="#2C3E50" fontSize="11" fontWeight="normal">quantity: bigint</text>
+<text x="30" y="548" fill="#2C3E50" fontSize="11" fontWeight="normal">redemption_id: bigint</text>
+<rect x="21" y="554" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="568" fill="#2C3E50" fontSize="11" fontWeight="normal">request_id: string</text>
+<text x="30" y="588" fill="#2C3E50" fontSize="11" fontWeight="normal">status_code: string</text>
+<rect x="21" y="594" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="608" fill="#2C3E50" fontSize="11" fontWeight="normal">status_message: string</text>
+<text x="30" y="628" fill="#2C3E50" fontSize="11" fontWeight="normal">success: int</text>
+<rect x="21" y="634" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="648" fill="#2C3E50" fontSize="11" fontWeight="normal">tender_details_id: bigint</text>
+<text x="30" y="668" fill="#2C3E50" fontSize="11" fontWeight="normal">user_payment_config_id: bigint</text>
+<rect x="21" y="674" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="688" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="77.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="75.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="75.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="75.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="75.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="98.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="101.0" x2="668" y2="101.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="125.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="123.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="123.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="123.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="123.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="146.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="149.0" x2="668" y2="149.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="173.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="171.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="171.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="171.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="171.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="194.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="197.0" x2="676" y2="197.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-fulfillment-status-reward_fulfillment_status_dim" target="_blank">
+<rect x="622" y="221.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="219.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="219.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="219.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="219.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="242.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_fulfillment_status_dim</text>
+<line x1="636" y1="245.0" x2="868" y2="245.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-reward_owner_dim" target="_blank">
+<rect x="622" y="269.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="267.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="267.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="267.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="267.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="290.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_dim</text>
+<line x1="636" y1="293.0" x2="764" y2="293.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim" target="_blank">
+<rect x="622" y="317.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="315.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="315.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="315.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="315.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="338.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_owner_standard_dim</text>
+<line x1="636" y1="341.0" x2="836" y2="341.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-payment-config-reward_payment_config_dim" target="_blank">
+<rect x="622" y="365.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="363.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="363.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="363.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="363.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="386.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_payment_config_dim</text>
+<line x1="636" y1="389.0" x2="836" y2="389.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim" target="_blank">
+<rect x="622" y="413.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="411.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="411.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="411.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="411.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="434.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_redemption_types_dim</text>
+<line x1="636" y1="437.0" x2="852" y2="437.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#rewards-rewards" target="_blank">
+<rect x="622" y="461.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="459.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="459.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="459.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="459.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="482.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>rewards</text>
+<line x1="636" y1="485.0" x2="692" y2="485.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-fulfillment-scope-reward_fulfillment_details_scope_dim" target="_blank">
+<rect x="622" y="509.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="507.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="507.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="507.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="507.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="530.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_fulfillment_details_scope_dim</text>
+<line x1="636" y1="533.0" x2="924" y2="533.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-reward_vendor_dim" target="_blank">
+<rect x="622" y="557.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="555.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="555.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="555.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="555.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="578.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_dim</text>
+<line x1="636" y1="581.0" x2="772" y2="581.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim" target="_blank">
+<rect x="622" y="605.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="603.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="603.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="603.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="603.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="626.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reward_vendor_redemption_dim</text>
+<line x1="636" y1="629.0" x2="860" y2="629.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="724" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="734" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="746" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="734" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="746" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="741" x2="395" y2="741" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="741" r="3" fill="#E67E22"/>
+<text x="403" y="746" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Reward Issue Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | :---: | --- | :---: |
+| brand_id | bigint | Unique identifier of the brand. | _ |
+| Id | bigint | Unique identifier for the table. | _ |
+| intouch_points_deducted | string | Points deducted for the reward in the Intouch system. | _ |
+| intouch_user_id | bigint | Intouch user ID of the customer. | _ |
+| intouch_voucher | string | Voucher associated with the reward within the Intouch system. | _ |
+| intouch_voucher_expiry | string | Date and time for the voucher expiry in the Intouch system. | _ |
+| issued_ref_id | string | Reference id for cart promotion or gift voucher. | _ |
+| org_id | bigint | Identifier associated with the org. | _ |
+| points_ref_id | bigint | Reference id for points-related transactions, and is null for transactions that are free or paid with cash. | _ |
+| reward_promotion_link_id | bigint | Identifier for the promotion that is linked to the reward. | _ |
+| vendor_reward | string | Reward provided by the vendor. | _ |
+| dim_catalog_promotion_id | bigint | Identifier for the catalogue promotion. | [rewards_catalogue_promotion](https://docs.capillarytech.com/docs/dimension-tables#catalog-promotion-reward_catalog_promotion) |
+| dim_event_date_id | bigint | Date when the reward is issued. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_reward_id | bigint | Identifier of the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_reward_issue_update_on_id | bigint | Date when the reward issue table is updated. It is in the YYYYMMDD format. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| transaction_id | bigint | Identifier for the transaction. |  |
+| year | integer | Year of the reward issual. | _ |
+| is_active | boolean | A flag to indicate the current status of the coupon.Supported Values:True: The coupon is active, valid, and can be redeemed by the user. False: The coupon is inactive, meaning it may have been used, expired, or failed during the issuance process. |  |
+
+## Reward Payment Currency Fact
+
+Brands can issue rewards individually or in bulk. This table captures the transaction event where a reward is issued, including the [mode of payment](https://docs.capillarytech.com/docs/pointscash-journeys-in-rewards-catalog) used for redeeming the reward. It has entries based on the type of reward and the type of mode of payment.
+
+Customers can purchase rewards with cash, fixed points, variable points, or a combination of both. So, if a customer chooses to use points plus cash, the system issues rewards based on redeeming both cash and points from the customer's wallet. In this case, even for a single reward, two entries will be made in this fact table, as it would capture the total number of points needed and the total amount of cash needed for the reward issual, as separate entries.
+
+**Databricks Table Name:** reward_payment_currency_fact
+
+**Reward Payment Currency Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | :---: | --- | :---: |
+| auto_update_time | bigint | Date and time when the reward_transaction source table was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_redemption | bigint | Date and time when the corresponding record in the redemption source table was last updated. It is in the Unix timestamp format. | _ |
+| dim_event_date_id | bigint | Date on which the issue reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the issue reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the customer associated with the reward. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_payment_config_currency_type_id | bigint | Identifier for the currency type used in the payment configuration. Possible values of the currency types, in the linked dimension table include - conv_ratio, points, and cash. | [reward_payment_config_currency_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-currency-reward_payment_config_currency_dim) |
+| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | [reward_payment_config_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-reward_payment_config_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
+| group_loyalty_redemption | int | Identifier forgroup loyalty redemption. | _ |
+| id | bigint | Unique identifier for the table record. It is the primary key for the table. | _ |
+| intouch_series_id | string | Identifier for the series within the Intouch system. It can be the promotion id or coupons series id. | _ |
+| issue_reference_id | string | Reference id for cart promotion or gift voucher. | _ |
+| payment_config_currency_value | double | The monetary value associated with the payment configuration. It can be either the cash value or the number of points. | _ |
+| quantity | bigint | Number of rewards issued in the transaction. For instance, if two units of Reward Type A and three units of Reward Type B are issued, there will be two entries: one with a quantity of two and another with a quantity of three. | _ |
+| redemption_id | bigint | Internal identifier for the redemption transaction. | _ |
+| request_id | string | Unique identifier for the request related to the reward issuance. | _ |
+| status_code | string | Status code indicating the result of the reward issuance process. | _ |
+| status_message | string | Message describing the status of the reward issuance, such as Reward issued successfully, or Promotion issued successfully. | _ |
+| success | int | Indicator for whether the reward issuance was successful (1 for success/ partial success, 0 for failure). | _ |
+| tender_details_id | bigint | Identifier for payment details where the currency is CASH. Although Capillary does not process this payment method, it stores related information (such as credit card usage) for reference. | _ |
+| user_payment_config_currency_id | bigint | Internal identifier for the user's payment configuration currency. | _ |
+| user_payment_config_id | bigint | Internal identifier for the user's payment configuration. | _ |
+| year | int | Year of the reward issual. | _ |
+
+## Reward Transaction Fact
+
+This table captures transaction details whenever a reward is issued. It shows one entry per reward issue transaction. Unlike the payment currency fact table entries, where there are two entries for a points plus cash redemption method, this table shows only one entry for the same transaction.
+
+**Databricks Table Name:** reward_transaction_fact
+
+**Reward Transaction Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | :---: | --- | :---: |
+| auto_update_time | bigint | Date and time when the reward_transaction source table was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_redemption | bigint | Date and time when the corresponding record in the redemption source table was last updated. It is in the Unix timestamp format. | _ |
+| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the customer associated with the reward. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
+| group_loyalty_redemption | int | Identifier for group loyalty redemption. | _ |
+| id | bigint | Unique identifier for the table record. It is the primary key for the table. | _ |
+| intouch_series_id | string | Identifier for the series within the Intouch system. It can be the promotion id or coupons series id or null. | _ |
+| issue_reference_id | string | Reference id for cart promotion or gift voucher. | _ |
+| quantity | bigint | Number of rewards issued in the transaction. For instance, if two units of Reward Type A and three units of Reward Type B are issued, there will be two entries: one with a quantity of two and another with a quantity of three. | _ |
+| redemption_id | bigint | Internal identifier for the redemption transaction. | _ |
+| request_id | string | Unique identifier for the request related to the reward issuance. | _ |
+| status_code | string | Status code indicating the result of the reward issuance process. | _ |
+| status_message | string | Message describing the status of the reward issuance, such as Reward issued successfully, or Promotion issued successfully. | _ |
+| success | int | Indicator for whether the reward issuance was successful (1 for success/ partial success, 0 for failure). | _ |
+| tender_details_id | bigint | Identifier for payment details where the currency is CASH. Although Capillary does not process this payment method, it stores related information (such as credit card usage) for reference. | _ |
+| year | int | Year of the reward is issual. | _ |
+
+## Reward Transaction Custom Field Fact
+
+This table captures the reward issue transaction along with its custom field data. Entries are based on the number of custom fields. For example, if a reward with three custom fields is issued, the table will have three entries for that single transaction, each with the same transaction ID.
+
+**Databricks Table Name:** reward_transaction_customfield_fact
+
+**Reward Transaction Custom Field Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | :---: | --- | :---: |
+| auto_update_time | bigint | Date and time when the reward_transaction source table was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_redemption | bigint | Date and time when the corresponding record in the redemption source table was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_user_custom_field | bigint | Date and time when the corresponding record in the user_custom_field source table was last updated. It is in the Unix timestamp format. | _ |
+| custom_field_mapping_isactive | int | Indicates whether the custom field mapping is active (1 for active, 0 for inactive). | _ |
+| custom_field_value | string | The value associated with a custom field. | _ |
+| dim_custom_field_id | bigint | Identifier for the rewards custom field. | [reward_custom_fields_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-custom-fields-reward_custom_fields_dim) |
+| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the user associated with the reward transaction. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | [reward_payment_config_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-reward_payment_config_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_scope_id | bigint | Identifier for the scope. Scope defines where the additional custom fields will apply: REWARD: While creating or updating a reward. CATALOGUE_PROMOTION: While creating or updating a promotion. ISSUE_REWARD: While issuing a reward. | [reward_fulfillment_details_scope_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-fulfillment-scope-reward_fulfillment_details_scope_dim) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the vendor redemption. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
+| group_loyalty_redemption | int | Identifier forgroup loyalty redemption. | _ |
+| id | bigint | Unique identifier for the table record. It is the primary key for the table. | _ |
+| intouch_series_id | string | Identifier for the series within the Intouch system. It can be the promotion id or coupons series id or null. | _ |
+| issue_reference_id | string | Reference ID for cart promotion or gift voucher. | _ |
+| quantity | bigint | Number of rewards issued in the transaction. For instance, if two units of Reward Type A and three units of Reward Type B are issued, there will be two entries: one with a quantity of two and another with a quantity of three. | _ |
+| redemption_id | bigint | Internal identifier for the redemption transaction. | _ |
+| request_id | string | Unique identifier for the request related to the reward issuance. | _ |
+| status_code | string | Status code indicating the result of the reward issuance process. | _ |
+| status_message | string | Message describing the status of the reward issuance, such as Reward issued successfully, or Promotion issued successfully. | _ |
+| success | int | Indicator for whether the reward issuance was successful (1 for success, 0 for failure). | _ |
+| tender_details_id | bigint | Identifier for payment details where the currency is CASH. Although Capillary does not process this payment method, it stores related information (such as credit card usage) for reference. | _ |
+| user_custom_field_id | bigint | Internal identifier for the user's custom field. | _ |
+| user_payment_config_id | bigint | Internal identifier for the user's payment configuration. | _ |
+| year | int | Year of the reward issual. | _ |
+
+## Reward Transaction Fullfillment Fact
+
+This fact table captures the issue reward event, along with the fullfillment details of the transactions. It includes multiple entries based on the number of fullfillment details. [Fullfillment](https://docs.capillarytech.com/docs/reward-tracking-with-status-and-custom-fields-in-reward-fulfillment) details include statuses of the reward issual such as order confirmed, voucher issued, shipped, or delivered.
+
+**Databricks Table Name:** reward_transaction_fullfillment_fact
+
+**Reward Transaction Fullfillment Fact Table**
+
+| Column Name | Data Type | Description | Linked Table |
+| --- | :---: | --- | :---: |
+| auto_update_time | bigint | Date and time when the reward_transaction source table was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_fulfillment_details | bigint | Date and time when the fulfillment_details source table was last updated. It is in the Unix timestamp format. | _ |
+| auto_update_time_redemption | bigint | Date and time when the redemption source table was last updated. It is in the Unix timestamp format. | _ |
+| dim_event_date_id | bigint | Date when the reward transaction occurred. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_event_time_id | bigint | Identifier for the time when the reward transaction occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_event_user_id | bigint | Identifier for the user associated with the reward transaction. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) |
+| dim_ful_fillment_status_id | bigint | Identifier for the fulfillment status of the reward. Possible values are integers that represent statuses such as, Shipped, Delivered, Order Confirmed, On the Way, Voucher Issued, Delivering Soon, or In Transit. | [reward_fulfillment_status_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-fulfillment-status-reward_fulfillment_status_dim) |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/ row is changed in the source table. It is in the YYYYMMDD format. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) |
+| dim_latest_updated_time_id | bigint | Identifier for the time when the data corresponding to this event/ row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) |
+| dim_owner_id | string | Identifier for the owner module to which the reward belongs. They include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-reward_owner_dim) |
+| dim_owner_type_id | int | Identifier for the owner module type. Possible values of owner module types, in the linked dimension table include journeys, goodwill, loyalty program, milestone, and campaigns. | [reward_owner_standard_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-owner-standard-types-reward_owner_standard_dim) |
+| dim_payment_config_id | bigint | Identifier for thepayment configurationused by the customer to redeem rewards. Possible values of the payment configurations, in the linked dimension table include - cash, conv_ratio, free, points, and points_cash. | [reward_payment_config_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-payment-config-reward_payment_config_dim) |
+| dim_redemption_type_identifier_id | bigint | Identifier for the redemption type associated with the reward. Possible values of the redemption types, in the linked dimension table include: games, auction, cart_promotion, cash_wallet, vendor_only_reward, voucher, cash_back, intouch_reward, physical_reward, charity, miles, gift_card, sweepstakes, vendor_intouch_reward, card_disc. | [reward_redemption_types_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-redemption-types-reward_redemption_types_dim) |
+| dim_reward_id | bigint | Identifier for the reward. | [rewards](https://docs.capillarytech.com/docs/dimension-tables#rewards-rewards) |
+| dim_scope_id | bigint | Identifier for the scope. Scope defines where the additional custom fields will apply: REWARD: While creating or updating a reward. CATALOGUE_PROMOTION: While creating or updating a promotion. ISSUE_REWARD: While issuing a reward. | [reward_fulfillment_details_scope_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-fulfillment-scope-reward_fulfillment_details_scope_dim) |
+| dim_vendor_id | bigint | Identifier for the vendor associated with the reward transaction. | [reward_vendor_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-reward_vendor_dim) |
+| dim_vendor_redemption_id | bigint | Identifier for the redemption transaction from the vendor. | [reward_vendor_redemption_dim](https://docs.capillarytech.com/docs/dimension-tables#reward-vendor-redemption-reward_vendor_redemption_dim) |
+| fulfillment_details_enabled | int | Indicator of whether fulfillment details tracking is enabled (1 for yes, 0 for no). | _ |
+| fullfillment_details_id | bigint | Identifier for the specific fulfillment details associated with the transaction. | _ |
+| group_loyalty_redemption | int | Identifier forgroup loyalty redemption. | _ |
+| id | bigint | Unique identifier for the reward transaction fulfillment record. This is the primary key of this table. | _ |
+| intouch_series_id | string | Identifier for the series within the Intouch system. It can be the promotion id or coupons series id or null. | _ |
+| issue_reference_id | string | Reference id for cart promotion or gift voucher. | _ |
+| quantity | bigint | Number of rewards issued in the transaction. For instance, if two units of Reward Type A and three units of Reward Type B are issued, there will be two entries: one with a quantity of two and another with a quantity of three. | _ |
+| redemption_id | bigint | Internal identifier for the redemption transaction. | _ |
+| request_id | string | Unique identifier for the request related to the reward issuance. | _ |
+| status_code | string | Status code indicating the result of the reward issuance process. | _ |
+| status_message | string | Message describing the status of the reward issuance, such as Reward issued successfully, or Promotion issued successfully. | _ |
+| success | int | Indicator for whether the reward issuance was successful (1 for yes, 0 for no). | _ |
+| tender_details_id | bigint | Identifier for payment details where the currency is CASH. Although Capillary does not process this payment method, it stores related information (such as credit card usage) for reference. | _ |
+| user_payment_config_id | bigint | Internal identifier for the user's payment configuration. | _ |
+| year | int | Year of the reward issual. | _ |

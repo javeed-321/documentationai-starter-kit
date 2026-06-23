@@ -1,0 +1,136 @@
+---
+title: Invitation Sent Fact Table
+---
+
+This fact table captures events related to the sending of invitations during a referral campaign. It stores detailed information about each invitation sent, including the date and time at which the invitation was sent, identifiers for the campaign, client, and invitee, type of identifier and the status of the invitee.
+
+**Databricks Table Name:** invitation_sent
+
+**Invitation Sent Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 424" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="424" fill="#fafbfc" rx="8"/>
+<path d="M 400 124.0 C 460 124.0, 560 91.0, 620 91.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,91.0 614,88.0 614,94.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 139.0, 620 139.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,139.0 614,136.0 614,142.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 187.0, 620 187.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,187.0 614,184.0 614,190.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 235.0, 620 235.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,235.0 614,232.0 614,238.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 283.0, 620 283.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,283.0 614,280.0 614,286.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 139.0, 620 139.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,139.0 614,136.0 614,142.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 187.0, 620 187.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,187.0 614,184.0 614,190.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="334" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="334" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">invitation_sent</text>
+<text x="30" y="68" fill="#2C3E50" fontSize="11" fontWeight="normal">auto_update_time: bigint</text>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#2C3E50" fontSize="11" fontWeight="normal">client_code: string</text>
+<text x="30" y="108" fill="#2C3E50" fontSize="11" fontWeight="normal">client_type: string</text>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_campaign_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_zone_till_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#2C3E50" fontSize="11" fontWeight="normal">identifier_type: string</text>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#2C3E50" fontSize="11" fontWeight="normal">invitee_id: bigint</text>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">invitee_identifier: string</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">invitee_name: string</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#campaigns" target="_blank">
+<rect x="622" y="75.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="73.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="73.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="73.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="73.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="96.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>campaign</text>
+<line x1="636" y1="99.0" x2="700" y2="99.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="123.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="121.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="121.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="121.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="121.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="144.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="147.0" x2="668" y2="147.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="171.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="169.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="169.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="169.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="169.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="192.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="195.0" x2="668" y2="195.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="219.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="217.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="217.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="217.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="217.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="240.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="243.0" x2="676" y2="243.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="267.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="265.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="265.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="265.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="265.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="288.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="291.0" x2="708" y2="291.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="384" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="394" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="406" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="394" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="406" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="401" x2="395" y2="401" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="401" r="3" fill="#E67E22"/>
+<text x="403" y="406" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Invitation Sent Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table | Availability for Export in theInvitation SentTemplate** |
+| :--- | :---: | :--- | :---: | :--- |
+| auto_update_time | bigint | Date and time when the corresponding record in the invitation_sent table available at the source was last updated. It is in the Unix timestamp format. | _ | Yes; Measure Name: Auto Update Time |
+| client_code | string | Referrers to the store code. | _ | Yes; Measure Name: Client Code |
+| client_type | string | Referrers to the client type from where the invitee came. | _ | Yes; Measure Name: Client Type |
+| dim_campaign_id | bigint | Identifier for the campaign under which the referral was made. | [campaign](https://docs.capillarytech.com/docs/dimension-tables#campaigns) | Yes; Dimension Name: Campaign > Campaign Id |
+| dim_event_date_id | bigint | Date when the invitation was sent. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date > Date |
+| dim_event_time_id | bigint | Time when the invitation was sent. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier for the user who sent the invitation. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_event_zone_till_id | bigint | Identifier assigned to the point-of-sale (POS) terminal within a store. It distinguishes one checkout location from another within the same store. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Store Hierarchy > Till Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| identifier_type | string | Type of identifier used for the invitee (e.g., email, mobile). | _ | Yes; Measure Name: Identifier Type |
+| invitee_id | bigint | Unique identifier for the invitee. It is the primary key of the table. | _ | Yes; Measure Name: Invitee Id |
+| invitee_identifier | string | Identifier for the invitee, such as mobile number. | _ | Yes; Measure Name: Invitee Identifier |
+| invitee_name | string | Name of the invitee. | _ | Yes; Measure Name: Invitee Name |
+| year | int | Year when the invitation was sent. | _ | Yes; Dimension Name: Year |

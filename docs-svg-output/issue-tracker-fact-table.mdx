@@ -1,0 +1,182 @@
+---
+title: Issue Tracker Fact Table
+---
+
+This fact table captures details of all customer complaints that have been converted into "issues" and are managed by the Customer Care Management System.
+
+**Databricks Table Name:** issue_tracker_fact
+
+**Issue Tracker Fact - Entity Relationship Diagram (ERD)**
+
+Zoom in the table for more clarity. Click the table title to view its details.
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 524" style={{maxWidth: "860px", width: "100%", height: "auto", fontFamily: "Helvetica, Arial, sans-serif"}}>
+<rect x="0" y="0" width="860" height="524" fill="#fafbfc" rx="8"/>
+<path d="M 400 64.0 C 460 64.0, 560 93.0, 620 93.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,93.0 614,90.0 614,96.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 84.0 C 460 84.0, 560 141.0, 620 141.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,141.0 614,138.0 614,144.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 104.0 C 460 104.0, 560 141.0, 620 141.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,141.0 614,138.0 614,144.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 124.0 C 460 124.0, 560 141.0, 620 141.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,141.0 614,138.0 614,144.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 144.0 C 460 144.0, 560 189.0, 620 189.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,189.0 614,186.0 614,192.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 164.0 C 460 164.0, 560 189.0, 620 189.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,189.0 614,186.0 614,192.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 184.0 C 460 184.0, 560 237.0, 620 237.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,237.0 614,234.0 614,240.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 204.0 C 460 204.0, 560 285.0, 620 285.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,285.0 614,282.0 614,288.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 224.0 C 460 224.0, 560 333.0, 620 333.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,333.0 614,330.0 614,336.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 244.0 C 460 244.0, 560 189.0, 620 189.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,189.0 614,186.0 614,192.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 264.0 C 460 264.0, 560 237.0, 620 237.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,237.0 614,234.0 614,240.0" fill="#E67E22" opacity="0.8"/>
+<path d="M 400 284.0 C 460 284.0, 560 381.0, 620 381.0" fill="none" stroke="#E67E22" strokeWidth="1.5" opacity="0.6"/>
+<polygon points="620,381.0 614,378.0 614,384.0" fill="#E67E22" opacity="0.8"/>
+<rect x="22" y="22" width="380" height="434" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="20" y="20" width="380" height="434" rx="4" fill="#ffffff" stroke="#2C3E50" strokeWidth="1.5"/>
+<rect x="20" y="20" width="380" height="30" rx="4" fill="#1B4F72"/>
+<rect x="20" y="46" width="380" height="4" fill="#1B4F72"/>
+<text x="210.0" y="40" textAnchor="middle" fill="#ffffff" fontSize="13" fontWeight="bold">issue_tracker_fact</text>
+<text x="30" y="68" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_active_status_id: bigint</text>
+<circle cx="388" cy="64.0" r="3" fill="#E67E22"/>
+<rect x="21" y="74" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="88" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_assigned_by_id: bigint</text>
+<circle cx="388" cy="84.0" r="3" fill="#E67E22"/>
+<text x="30" y="108" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_assigned_to_id: bigint</text>
+<circle cx="388" cy="104.0" r="3" fill="#E67E22"/>
+<rect x="21" y="114" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="128" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_created_by_id: bigint</text>
+<circle cx="388" cy="124.0" r="3" fill="#E67E22"/>
+<text x="30" y="148" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_due_date_id: bigint</text>
+<circle cx="388" cy="144.0" r="3" fill="#E67E22"/>
+<rect x="21" y="154" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="168" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_date_id: bigint</text>
+<circle cx="388" cy="164.0" r="3" fill="#E67E22"/>
+<text x="30" y="188" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_time_id: bigint</text>
+<circle cx="388" cy="184.0" r="3" fill="#E67E22"/>
+<rect x="21" y="194" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="208" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_event_user_id: bigint</text>
+<circle cx="388" cy="204.0" r="3" fill="#E67E22"/>
+<text x="30" y="228" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_issue_type_id: bigint</text>
+<circle cx="388" cy="224.0" r="3" fill="#E67E22"/>
+<rect x="21" y="234" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="248" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_date_id: bigint</text>
+<circle cx="388" cy="244.0" r="3" fill="#E67E22"/>
+<text x="30" y="268" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_latest_updated_time_id: bigint</text>
+<circle cx="388" cy="264.0" r="3" fill="#E67E22"/>
+<rect x="21" y="274" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="288" fill="#1B4F72" fontSize="11" fontWeight="bold">dim_reported_by_id: bigint</text>
+<circle cx="388" cy="284.0" r="3" fill="#E67E22"/>
+<text x="30" y="308" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_code: string</text>
+<rect x="21" y="314" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="328" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_depearment: string</text>
+<text x="30" y="348" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_name: string</text>
+<rect x="21" y="354" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="368" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_priority: string</text>
+<text x="30" y="388" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_status: string</text>
+<rect x="21" y="394" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="408" fill="#2C3E50" fontSize="11" fontWeight="normal">issue_tracker_id: bigint</text>
+<text x="30" y="428" fill="#2C3E50" fontSize="11" fontWeight="normal">ticket_code: string</text>
+<rect x="21" y="434" width="378" height="20" fill="#f8f9fa"/>
+<text x="30" y="448" fill="#2C3E50" fontSize="11" fontWeight="normal">year: int</text>
+<a href="/docs/dimension-tables#active-status" target="_blank">
+<rect x="622" y="77.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="75.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="75.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="75.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="75.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="98.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>active_status</text>
+<line x1="636" y1="101.0" x2="740" y2="101.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#zone-till" target="_blank">
+<rect x="622" y="125.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="123.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="123.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="123.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="123.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="146.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>zone_till</text>
+<line x1="636" y1="149.0" x2="708" y2="149.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#date" target="_blank">
+<rect x="622" y="173.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="171.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="171.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="171.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="171.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="194.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>date</text>
+<line x1="636" y1="197.0" x2="668" y2="197.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#time" target="_blank">
+<rect x="622" y="221.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="219.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="219.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="219.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="219.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="242.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>time</text>
+<line x1="636" y1="245.0" x2="668" y2="245.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#users-users" target="_blank">
+<rect x="622" y="269.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="267.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="267.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="267.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="267.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="290.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>users</text>
+<line x1="636" y1="293.0" x2="676" y2="293.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#issue-type" target="_blank">
+<rect x="622" y="317.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="315.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="315.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="315.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="315.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="338.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>issue_type</text>
+<line x1="636" y1="341.0" x2="716" y2="341.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<a href="/docs/dimension-tables#reported-by" target="_blank">
+<rect x="622" y="365.0" width="220" height="36" rx="4" fill="#000000" fillOpacity="0.06"/>
+<rect x="620" y="363.0" width="220" height="36" rx="4" fill="#E8F8F5" stroke="#1E8449" strokeWidth="1.5" style={{cursor: "pointer"}}/>
+<rect x="620" y="363.0" width="220" height="36" rx="4" fill="#1E8449" opacity="0.15"/>
+<rect x="620" y="363.0" width="6" height="36" rx="4" fill="#1E8449"/>
+<rect x="623" y="363.0" width="3" height="36" fill="#1E8449"/>
+<text x="636" y="386.0" fill="#1E8449" fontSize="13" fontWeight="bold" style={{cursor: "pointer"}}>reported_by</text>
+<line x1="636" y1="389.0" x2="724" y2="389.0" stroke="#2471A3" strokeWidth="2" opacity="0.8"/>
+</a>
+<rect x="20" y="484" width="820" height="35" rx="4" fill="#F8F9FA" stroke="#dee2e6" strokeWidth="1"/>
+<rect x="35" y="494" width="14" height="14" rx="2" fill="#1B4F72"/>
+<text x="55" y="506" fontSize="11" fill="#495057">Fact Table</text>
+<rect x="145" y="494" width="14" height="14" rx="2" fill="#1E8449"/>
+<text x="165" y="506" fontSize="11" fill="#495057">Dimension Table (click to view)</text>
+<line x1="365" y1="501" x2="395" y2="501" stroke="#E67E22" strokeWidth="2"/>
+<circle cx="395" cy="501" r="3" fill="#E67E22"/>
+<text x="403" y="506" fontSize="11" fill="#495057">Linking Key</text>
+</svg>
+
+**Issue Tracker Fact Table**
+
+| **Column Name** | **Data Type** | **Description** | Linked Table | **Availability for Export in theIssue Trackers Template** |
+| :--- | :---: | :--- | :---: | :--- |
+| dim_active_status_id | bigint | Identifier indicating whether the issue is still active or not. Possible values are 0 and 1. | [active_status](https://docs.capillarytech.com/docs/dimension-tables#active-status) | Yes; Dimension Name: Active Status > Id |
+| dim_assigned_by_id | bigint | Identifier for the person or entity who assigned the issue. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Assigned By > Till Id |
+| dim_assigned_to_id | bigint | Identifier for the person or department to whom the issue is assigned. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Assigned To > Id |
+| dim_created_by_id | bigint | Identifier for the person who created the issue record. | [zone_till](https://docs.capillarytech.com/docs/dimension-tables#zone-till) | Yes; Dimension Name: Created By > Till Id |
+| dim_due_date_id | bigint | Identifier for the due date of the issue resolution. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Due Date > Date |
+| dim_event_date_id | bigint | Date when the issue event occurred. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Date |
+| dim_event_time_id | bigint | Time when the issue event occurred. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Time > Time Id |
+| dim_event_user_id | bigint | Identifier for the user involved in the issue event. | [users](https://docs.capillarytech.com/docs/dimension-tables#users-users) | Yes; Dimension Name: User > User Id |
+| dim_issue_type_id | bigint | Identifier for the type or category of the issue. Possible values are - Store, and Customer. | [issue_type](https://docs.capillarytech.com/docs/dimension-tables#issue-type) | Yes; Dimension Name: Issue Type > Id |
+| dim_latest_updated_date_id | bigint | Date when the data corresponding to this event/row is changed in the source table. | [date](https://docs.capillarytech.com/docs/dimension-tables#date) | Yes; Dimension Name: Latest Updated Date > Date |
+| dim_latest_updated_time_id | bigint | Time when the data corresponding to this event/row is changed in the source table. | [time](https://docs.capillarytech.com/docs/dimension-tables#time) | Yes; Dimension Name: Latest Updated Time > Time Id |
+| dim_reported_by_id | bigint | Identifier indicating how the issue was reported. Possible values are - email, intouch, call center, client and microsite. | [reported_by](https://docs.capillarytech.com/docs/dimension-tables#reported-by) | Yes; Dimension Name: Reported By > Id |
+| issue_code | string | Identifier of the issue. | _ | Yes; Measure Name: Issue Code |
+| issue_depearment | string | Department to which the issue belongs. | _ | Yes; Measure Name: Issue Department |
+| issue_name | string | Gives the actual issue description. | _ | Yes; Measure Name: Issue Name |
+| issue_priority | string | Priority of the complaint as per the escalation metrics. Possible values are - high, medium, and low. | _ | Yes; Measure Name: Issue Priority |
+| issue_status | string | Current status of the issue. Possible values are - open, and closed. | _ | Yes; Measure Name: Issue Status |
+| issue_tracker_id | bigint | Unique identifier generated for the issue or complaint. It is the primary key for the table. | _ | Yes; Measure Name: Issue Tracker Id |
+| ticket_code | string | Unique identifier of the issue for internal reference. | _ | Yes; Measure Name: Ticket Code |
+| year | int | Year of the issue. | _ | Yes; Dimension Name: Year |
