@@ -10,101 +10,11 @@
         "tab": "User Documentation",
         "groups": [
           {
-            "group": "Entities Management",
-            "pages": [
-              {
-                "title": "jav",
-                "path": "jav"
-              },
-              {
-                "title": "Entities Management",
-                "path": "docs/data-entities"
-              },
-              {
-                "title": "Customer Entity",
-                "path": "docs/customer_entity"
-              },
-              {
-                "title": "Setup Store Hierarchy",
-                "path": "docs/store-hierarchy"
-              },
-              {
-                "title": "Setup Transactions",
-                "path": "docs/set-transactions"
-              },
-              {
-                "title": "Handling of Rejected Transactions",
-                "path": "docs/handling-of-rejected-transactions"
-              },
-              {
-                "title": "Setup Behavioral Events",
-                "path": "docs/setup-test-behavioral-events"
-              },
-              {
-                "title": "Setup Cards",
-                "path": "docs/card"
-              },
-              {
-                "title": "Setup User Groups",
-                "path": "docs/user-group"
-              },
-              {
-                "title": "Setup Customer Hierarchy",
-                "path": "docs/hierarchy"
-              },
-              {
-                "title": "Product",
-                "path": "docs/product"
-              }
-            ]
-          },
-          {
             "group": "Data Fields",
             "pages": [
               {
-                "title": "Data Fields",
-                "path": "docs/data-fields"
-              },
-              {
-                "title": "Standard Fields",
-                "path": "docs/standard-fields"
-              },
-              {
-                "title": "Extended Fields",
-                "path": "docs/extended-fields"
-              },
-              {
-                "title": "Custom Fields",
-                "path": "docs/entity-management-custom-fields"
-              }
-            ]
-          },
-          {
-            "group": "Search Filter",
-            "pages": [
-              {
-                "title": "Create Search Filter for Entities",
-                "path": "docs/create-search-filter"
-              },
-              {
-                "title": "Use Cases",
-                "path": "docs/use-case-search-filter"
-              },
-              {
-                "title": "Overview",
-                "path": "docs/overview-search-filter"
-              },
-              {
-                "title": "Create a Search Filter",
-                "path": "docs/create-search-filter-"
-              },
-              {
-                "title": "Perform Search",
-                "path": "docs/performing-search-"
-              },
-              {
-                "title": "FAQs",
-                "path": "docs/search-filter-faq"
+                "title": "Home Page",
+                "path": "jav"
               }
             ]
           }
