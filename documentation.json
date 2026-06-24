@@ -8,6 +8,10 @@
             "group": "Loyalty Promotions API",
             "pages": [
               {
+                "title": "Loyalty Promotions",
+                "path": "api-reference/loyalty-promotions/loyalty-promotions"
+              },
+              {
                 "title": "Create a Loyalty Promotion",
                 "path": "api-reference/loyalty-promotions/create-loyalty-promotion",
                 "openapi": "api-reference/loyalty-promotions/create-loyalty-promotion.yaml POST /v3/promotions",
