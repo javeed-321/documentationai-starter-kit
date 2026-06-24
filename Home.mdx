@@ -54,21 +54,13 @@
   }
 
   /* ─── Page heading ─── */
-  .cap-home .cap-h2 {
-    color: var(--cap-heading);
-    font-weight: 600 !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-size: 21px !important;
-  margin: 16px 0 6px !important;   /* ← first value is top */
-    border: none !important;
-        line-height: 1.7 !important;
-
-    border-bottom: none !important;
-    padding-bottom: 0 !important;
+  /* Dark mode heading color — inline style handles light mode, this handles dark */
+  .dark .cap-home .cap-h2 {
+    color: #D1D8DD !important;
   }
   .cap-home .cap-sub {
     color: var(--cap-subtext);
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-weight: 400 !important;
     line-height: 1.6 !important;
     margin: 0 0 0;
@@ -236,7 +228,7 @@
 
 <div className="cap-home">
 
-<p className="cap-h2"    >Capillary Documentation Hub</p>
+<p className="cap-h2" style={{fontSize:'21px',fontWeight:'600',lineHeight:'1.7',color:'#434B4F',margin:'16px 0 6px',fontFamily:"'Roboto', sans-serif",borderBottom:'none',paddingBottom:'0'}}>Capillary Documentation Hub</p>
 <p className="cap-sub">Welcome to your Capillary Documentation Hub! You'll find resources for our industry-leading products and solutions.</p>
 
 <br />
