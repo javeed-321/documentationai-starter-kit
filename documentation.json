@@ -67,11 +67,15 @@
             "group": "Fact & Dimension Tables",
             "pages": [
               {
+                "title": "Dimensions Tables",
+                "path": "dimensions-tables"
+              },
+              {
                 "group": "Fact tables",
                 "pages": [
                   {
-                    "title": "Fact tables",
-                    "path": "docs/fact-tables"
+                    "title": "Fact Tables",
+                    "path": "fact-tables"
                   },
                   {
                     "title": "Badges Fact Table",
@@ -222,10 +226,6 @@
                     "path": "docs/supplementary-partner-program-fact-table"
                   }
                 ]
-              },
-              {
-                "group": "Dimension tables",
-                "pages": []
               }
             ]
           },

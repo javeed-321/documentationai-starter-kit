@@ -1,0 +1,280 @@
+---
+title: "Fact tables"
+---
+
+{/* ── Custom CSS ── */}
+
+<style>
+{`
+  /* Intro highlight block */
+  .fact-intro {
+    background: linear-gradient(135deg, #eef2ff 0%, #f0f7ff 100%);
+    border-left: 4px solid #4f6ef7;
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: #374151;
+  }
+
+  /* Fact table list items */
+  .fact-table-item {
+    background: #f0f5ff;
+    border: 1px solid #dce4f5;
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin: 8px 0;
+    font-weight: 600;
+    font-size: 15px;
+    color: #1e293b;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+  }
+
+  .fact-table-item:hover {
+    background: #e0eaff;
+    border-color: #b4c6f0;
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(79, 110, 247, 0.12);
+  }
+
+  /* Section divider */
+  .section-divider {
+    border: none;
+    border-top: 2px solid #e5e7eb;
+    margin: 32px 0;
+  }
+
+  /* Quick stats row */
+  .stats-row {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0 28px 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-badge {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: #475569;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stat-badge strong {
+    color: #4f6ef7;
+  }
+
+  /* Key concepts grid */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 640px) {
+    .concept-grid {
+      grid-template-columns: 1fr;
+    }
+    .stats-row {
+      flex-direction: column;
+    }
+  }
+
+  .concept-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.2s ease;
+  }
+
+  .concept-card:hover {
+    border-color: #4f6ef7;
+    box-shadow: 0 4px 12px rgba(79, 110, 247, 0.08);
+  }
+
+  .concept-card h4 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    color: #1e293b;
+  }
+
+  .concept-card p {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .concept-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* Table section heading */
+  .table-list-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+    margin: 32px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #4f6ef7;
+    display: inline-block;
+  }
+`}
+</style>
+
+Fact and dimension tables form the foundation for all reporting conducted within Insights+. They represent the core data structures that power your analytics, dashboards, and business intelligence workflows.
+
+<div className="stats-row">
+  <span className="stat-badge">📊 <strong>18+</strong> Fact Tables</span>
+  <span className="stat-badge">🔗 <strong>Multiple</strong> Dimension References</span>
+  <span className="stat-badge">📈 <strong>Real-time</strong> Reporting</span>
+</div>
+
+---
+
+## What are fact tables?
+
+<div className="fact-intro">
+Fact tables contain quantitative data, typically numerical values that represent the measurements or metrics of a business process. For instance, in a sales environment, a fact table might record each sale transaction, with columns representing details such as transaction ID, sale amount, product ID, and date of sale. Each row in the fact table corresponds to a unique event or transaction and often references multiple dimension tables, which provide context to the facts.
+</div>
+
+<Callout type="info" title="Note">
+  By default, fact tables are not onboarded for all organisations. To enable them, raise a JIRA ticket with the Capillary Product Support team.
+</Callout>
+
+## Key concepts
+
+<div className="concept-grid">
+  <div className="concept-card">
+    <span className="concept-icon">📋</span>
+    <h4>Fact Table</h4>
+    <p>Stores measurable, quantitative data — the numbers you analyze. Each row is one event or transaction.</p>
+  </div>
+  <div className="concept-card">
+    <span className="concept-icon">🏷️</span>
+    <h4>Dimension Table</h4>
+    <p>Stores descriptive attributes — the context around your facts. Think product names, customer info, dates.</p>
+  </div>
+  <div className="concept-card">
+    <span className="concept-icon">🔑</span>
+    <h4>Foreign Keys</h4>
+    <p>Links between fact and dimension tables. Each fact row references dimensions to add meaning to the numbers.</p>
+  </div>
+  <div className="concept-card">
+    <span className="concept-icon">📐</span>
+    <h4>Measures vs Attributes</h4>
+    <p>Measures are the numeric values you aggregate (sum, avg). Attributes are the categories you group by.</p>
+  </div>
+</div>
+
+## Example structure
+
+Here's what a typical sales fact table looks like:
+
+| Column | Type | Description |
+|---|---|---|
+| `transaction_id` | Primary Key | Unique identifier for each sale |
+| `customer_id` | Foreign Key | References the Customer dimension |
+| `product_id` | Foreign Key | References the Product dimension |
+| `store_id` | Foreign Key | References the Store dimension |
+| `sale_amount` | Measure | Total value of the transaction |
+| `quantity` | Measure | Number of items purchased |
+| `date_of_sale` | Foreign Key | References the Date dimension |
+
+---
+
+<div className="table-list-heading">Frequently used fact tables</div>
+
+<ExpandableGroup>
+  <Expandable title="Badges">
+    Tracks badge-related events including badge issuance, badge earning, and badge expiry for customers in the loyalty program. Use this table to analyze badge distribution and engagement patterns.
+  </Expandable>
+
+  <Expandable title="Bill Line Items">
+    Records individual line-item details from customer transactions. Each row represents a single product or SKU within a bill, including quantity, price, discount, and associated attributes.
+  </Expandable>
+
+  <Expandable title="Call Task Customer Status">
+    Captures the status of outbound call tasks assigned to agents. Includes task creation, assignment, completion, and outcome data for customer engagement tracking.
+  </Expandable>
+
+  <Expandable title="Communication Credits Log">
+    Logs all communication credit transactions — issuance, consumption, and expiry. Useful for monitoring messaging budgets and channel-level spend.
+  </Expandable>
+
+  <Expandable title="Contact Info">
+    Stores customer contact detail change events, including email, phone, and address updates. Enables audit trails for customer data modifications.
+  </Expandable>
+
+  <Expandable title="Coupons">
+    Tracks coupon lifecycle events — creation, issuance, redemption, and expiry. Analyze coupon performance, redemption rates, and campaign effectiveness.
+  </Expandable>
+
+  <Expandable title="Customer Summary">
+    Provides an aggregated snapshot of each customer's transaction history, loyalty tier, lifetime value, and engagement metrics. Ideal for segmentation and cohort analysis.
+  </Expandable>
+
+  <Expandable title="Daily Till Summary">
+    Summarizes daily point-of-sale activity at the till level. Includes total transactions, revenue, average basket size, and other daily KPIs per store register.
+  </Expandable>
+
+  <Expandable title="Goodwill Requests">
+    Tracks manual goodwill point or reward issuance requests made by store associates or support teams, including approval status and reason codes.
+  </Expandable>
+
+  <Expandable title="Nsadmin Messages">
+    Records messaging events across channels (SMS, email, push, WhatsApp). Includes delivery status, template details, and campaign linkage.
+  </Expandable>
+
+  <Expandable title="Payment Details">
+    Captures payment-level breakdown for transactions, including payment mode, tender type, amount, and gateway details for each bill.
+  </Expandable>
+
+  <Expandable title="Points">
+    Logs all loyalty points transactions — earning, redemption, expiry, and transfers. Core table for loyalty program analytics and liability reporting.
+  </Expandable>
+
+  <Expandable title="Profile Users">
+    Stores customer profile registration and update events. Tracks onboarding source, registration channel, and profile completeness metrics.
+  </Expandable>
+
+  <Expandable title="Registration Event">
+    Captures the initial customer registration event with timestamp, source, store, and channel information. Key table for acquisition analysis.
+  </Expandable>
+
+  <Expandable title="Return Bill Line Item">
+    Records returned line items at the product level. Includes return reason, refund amount, and linkage back to the original transaction.
+  </Expandable>
+
+  <Expandable title="Streaks">
+    Tracks customer streak-based engagement activities. Records consecutive action completions, streak milestones, and reward triggers.
+  </Expandable>
+</ExpandableGroup>
+
+---
+
+## Related resources
+
+<Card title="Dimension Tables" icon="table" href="/insights/fact-and-dimension-tables/dimension-tables">
+  Learn about dimension tables that provide context and descriptive attributes to your fact data.
+</Card>
+
+<Card title="KPI and Dimensions" icon="bar-chart" href="/insights/kpi-and-dimensions">
+  Understand how KPIs are built on top of fact and dimension table relationships.
+</Card>
+
+<Card title="Charts & Reporting" icon="line-chart" href="/insights/charts">
+  Build visual reports and dashboards using data from fact tables.
+</Card>
