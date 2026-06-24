@@ -106,37 +106,6 @@
         "tab": "User Documentation",
         "groups": [
           {
-            "group": "API Reference",
-            "openapi": "api-reference/my-shop-api.yaml",
-            "pages": []
-          },
-          {
-            "group": "Custom API Docs",
-            "pages": [
-              {
-                "title": "Thieves Checking",
-                "path": "docs/thieves-checking",
-                "openapi": "api-reference/your-api.yaml GET /thieves",
-                "openapi-mode": "custom",
-                "method": "GET"
-              },
-              {
-                "title": "Get User Details",
-                "path": "api-reference/users/get-user",
-                "openapi": "api-reference/your-api.yaml GET /users/{id}",
-                "openapi-mode": "auto",
-                "method": "GET"
-              },
-              {
-                "title": "Authentication",
-                "path": "api-reference/authentication",
-                "openapi": "api-reference/your-api.yaml GET /users/{id}",
-                "openapi-mode": "auto",
-                "method": "GET"
-              }
-            ]
-          },
-          {
             "group": "Data Fields",
             "pages": [
               {
