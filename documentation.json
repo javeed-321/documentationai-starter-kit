@@ -189,6 +189,42 @@
               {
                 "title": "slab-change-log-fact-table",
                 "path": "docs-svg-output/slab-change-log-fact-table"
+              },
+              {
+                "title": "Fact Tables",
+                "path": "docs-svg-output/fact-tables"
+              },
+              {
+                "title": "Earned Promotions Fact Table",
+                "path": "docs-svg-output/earned-promotions-fact"
+              },
+              {
+                "title": "External Partner Program Table",
+                "path": "docs-svg-output/external-partner-program-table"
+              },
+              {
+                "title": "Issued Promotions Fact Table",
+                "path": "docs-svg-output/issued-promotions-fact-table"
+              },
+              {
+                "title": "Partner Program Linking Fact Table",
+                "path": "docs-svg-output/link"
+              },
+              {
+                "title": "Partner Program Enrollment Fact Table",
+                "path": "docs-svg-output/partner-program-enrollment-fact-table"
+              },
+              {
+                "title": "Partner Program Slab History Fact Table",
+                "path": "docs-svg-output/partner-program-slab-history-fact-table"
+              },
+              {
+                "title": "Partner Program Slab History Fact Table (Supplementary)",
+                "path": "docs-svg-output/partner-program-slab-history-fact-table-1"
+              },
+              {
+                "title": "Supplementary Partner Program Fact Table",
+                "path": "docs-svg-output/supplementary-partner-program-fact-table"
               }
             ]
           },
