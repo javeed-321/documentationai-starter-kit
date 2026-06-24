@@ -96,6 +96,8 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease;
     box-sizing: border-box;
+      overflow: hidden;        /* ← add this */
+
   }
   .cap-home .cap-docs-grid > div:hover {
     box-shadow: 0 4px 4px 3px rgba(0,0,0,0.07);
@@ -153,30 +155,41 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     border-radius: 24px;
+      background-size: cover;      /* ← was 100% 100% */
   }
+
+
   .cap-home .cap-bg-02 {
     background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     border-radius: 24px;
+      background-size: cover;      /* ← was 100% 100% */
+
   }
   .cap-home .cap-bg-03 {
     background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     border-radius: 24px;
+      background-size: cover;      /* ← was 100% 100% */
+
   }
   .cap-home .cap-bg-04 {
     background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     border-radius: 24px;
+      background-size: cover;      /* ← was 100% 100% */
+
   }
 
   /* ─── Developer docs gray card ─── */
   .cap-home .cap-bg-05 {
     background: var(--cap-bg05);
     border-radius: 24px;
+      background-size: cover;      /* ← was 100% 100% */
+
   }
 
   /* ─── Dark mode overlay for colored cards ─── */
@@ -225,6 +238,11 @@
     }
     .cap-home .cap-docs-grid > div {
       max-width: 100%;
+    }
+     .dai-article,
+    .dai-content-column {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
     }
   }
 `}</style>
