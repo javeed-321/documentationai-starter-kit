@@ -1,195 +1,263 @@
 <style>{`
-  /* ═══════════════════════════════════════════
-     CAP HUB — page-scoped styles
-     Replicates docs.capillarytech.com layout
-  ═══════════════════════════════════════════ */
+  /* ─── Hide the "Home Page" platform page-title ─── */
+  .dai-page-header { display: none !important; }
 
-  /* ─── Hero ─── */
+  /* ─── Make content full-width, left-aligned ─── */
+  .dai-article,
+  .dai-page,
+  .dai-content-area {
+    max-width: 100% !important;
+  }
+
+  /* ─── Hub wrapper ─── */
+  .cap-hub-wrap {
+    font-family: 'Roboto', sans-serif;
+    max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ─── Heading ─── */
+  .cap-hub-title {
+    color: #434B4F;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0 0 6px;
+    line-height: 1.3;
+  }
+  .dark .cap-hub-title { color: #D1D8DD; }
+
   .cap-hub-subtitle {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-top: -0.5rem;
-    margin-bottom: 2rem;
-    max-width: 680px;
+    color: #747474;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 0 24px;
+    line-height: 1.6;
   }
+  .dark .cap-hub-subtitle { color: #A0A0A0; }
 
-  /* ─── Section labels (plain bold text, not <h2>) ─── */
+  /* ─── Section labels ─── */
   .cap-section-label {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
+    color: #434B4F;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 12px;
+    line-height: 1.4;
+  }
+  .dark .cap-section-label { color: #D1D8DD; }
+
+  /* ─── Card grid ─── */
+  .cap-card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 32px;
+    padding-top: 12px;
+    align-items: stretch;
+  }
+  .cap-card-grid > a {
+    flex: 1 0 calc(25% - 16px);
+    max-width: calc(25% - 12px);
+    min-width: 190px;
+    box-sizing: border-box;
   }
 
-  /* ══════════════════════════════════════
-     USER DOCS — dark colored cards
-  ══════════════════════════════════════ */
-  .cap-user-docs .dai-card {
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 16px !important;
-    min-height: 190px;
-    overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  /* ─── Individual card ─── */
+  .cap-card {
+    border-radius: 24px;
+    min-height: 215px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none !important;
+    transition: box-shadow 0.3s ease;
   }
-  .cap-user-docs .dai-card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 16px 36px rgba(0,0,0,0.28) !important;
+  .cap-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-decoration: none !important;
   }
-
-  /* White text inside colored cards */
-  .cap-user-docs .dai-card-title {
-    color: #ffffff !important;
-    font-size: 1.1rem !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.01em !important;
+  .cap-card-inner {
+    padding: 20px;
   }
-  .cap-user-docs .dai-card-description {
-    color: rgba(255,255,255,0.82) !important;
-    font-size: 0.875rem !important;
-    line-height: 1.6 !important;
+  .cap-card-icon {
+    max-width: 40px;
+    margin-bottom: 10px;
+    display: block;
   }
-  .cap-user-docs .dai-card-cta {
-    color: rgba(255,255,255,0.7) !important;
+  .cap-card-title {
+    color: #3B4A61;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 6px;
+    line-height: 1.3;
   }
-
-  /* Icon bubble on colored cards */
-  .cap-user-docs .dai-card-icon {
-    background: rgba(255,255,255,0.22) !important;
-    border-radius: 50% !important;
-    width: 50px !important;
-    height: 50px !important;
-    color: #ffffff !important;
-    margin-bottom: 0.6rem;
+  .cap-card-desc {
+    color: #3B4A61;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.5;
   }
 
-  /* ─── Per-card background colors (covers both flat & wrapped DOM) ─── */
-
-  /* 1 — Loyalty+ : dark olive-gold */
-  .cap-user-docs .dai-card:nth-of-type(1),
-  .cap-user-docs > * > *:nth-child(1) .dai-card,
-  .cap-user-docs > * > *:nth-child(1) > a.dai-card {
-    background: linear-gradient(150deg, #7D6C38 0%, #5C4F28 100%) !important;
+  /* ─── Colored card backgrounds (exact S3 images from docs.capillarytech.com) ─── */
+  .cap-bg-01 {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/da520d6b-8cb3-4ac3-bdb5-bae859a1.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
-  /* 2 — Engage+ : dark slate blue */
-  .cap-user-docs .dai-card:nth-of-type(2),
-  .cap-user-docs > * > *:nth-child(2) .dai-card,
-  .cap-user-docs > * > *:nth-child(2) > a.dai-card {
-    background: linear-gradient(150deg, #4B6380 0%, #354A61 100%) !important;
+  .cap-bg-02 {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
-  /* 3 — Insights+ : dark forest green */
-  .cap-user-docs .dai-card:nth-of-type(3),
-  .cap-user-docs > * > *:nth-child(3) .dai-card,
-  .cap-user-docs > * > *:nth-child(3) > a.dai-card {
-    background: linear-gradient(150deg, #3F6E52 0%, #2B5038 100%) !important;
+  .cap-bg-03 {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
-  /* 4 — Capillary Data Platform : dark mauve-purple */
-  .cap-user-docs .dai-card:nth-of-type(4),
-  .cap-user-docs > * > *:nth-child(4) .dai-card,
-  .cap-user-docs > * > *:nth-child(4) > a.dai-card {
-    background: linear-gradient(150deg, #664B7C 0%, #4C3659 100%) !important;
+  .cap-bg-04 {
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
   }
 
-  /* ══════════════════════════════════════
-     DEVELOPER DOCS — white cards with colored icons
-  ══════════════════════════════════════ */
-  .cap-dev-docs .dai-card {
-    border: 1px solid var(--card-border) !important;
-    background: var(--card-bg) !important;
-    box-shadow: var(--card-shadow) !important;
-    border-radius: 12px !important;
-    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  /* ─── Developer docs: light-gray card ─── */
+  .cap-bg-05 {
+    background: #F7F7F7;
   }
-  .cap-dev-docs .dai-card:hover {
-    transform: translateY(-3px) !important;
-    box-shadow: var(--card-shadow-hover) !important;
+  .dark .cap-bg-05 {
+    background: #1E2530;
   }
-  .cap-dev-docs .dai-card-title {
-    color: var(--text-primary) !important;
-    font-size: 0.975rem !important;
-    font-weight: 600 !important;
+  .cap-bg-05 .cap-card-title {
+    color: #3B4A61;
   }
-  .cap-dev-docs .dai-card-description {
-    color: var(--text-secondary) !important;
-    font-size: 0.85rem !important;
+  .dark .cap-bg-05 .cap-card-title {
+    color: #D6E0F0;
   }
-  .cap-dev-docs .dai-card-icon {
-    border-radius: 8px !important;
-    width: 44px !important;
-    height: 44px !important;
+  .cap-bg-05 .cap-card-desc {
+    color: #3B4A61;
+  }
+  .dark .cap-bg-05 .cap-card-desc {
+    color: #D6E0F0;
   }
 
-  /* Per-card icon accent colors */
-  /* 1 — API Building Blocks : teal */
-  .cap-dev-docs .dai-card:nth-of-type(1) .dai-card-icon,
-  .cap-dev-docs > * > *:nth-child(1) .dai-card-icon {
-    color: #0D9488 !important;
-    background: #F0FDFA !important;
+  /* ─── Dark mode overlay on image-bg cards ─── */
+  .dark .cap-bg-01,
+  .dark .cap-bg-02,
+  .dark .cap-bg-03,
+  .dark .cap-bg-04 {
+    position: relative;
   }
-  /* 2 — Guides : rose-pink */
-  .cap-dev-docs .dai-card:nth-of-type(2) .dai-card-icon,
-  .cap-dev-docs > * > *:nth-child(2) .dai-card-icon {
-    color: #E11D48 !important;
-    background: #FFF1F2 !important;
+  .dark .cap-bg-01::before,
+  .dark .cap-bg-02::before,
+  .dark .cap-bg-03::before,
+  .dark .cap-bg-04::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: rgba(0,0,0,0.45);
+    pointer-events: none;
+    z-index: 0;
   }
-  /* 3 — V2 API Reference : blue */
-  .cap-dev-docs .dai-card:nth-of-type(3) .dai-card-icon,
-  .cap-dev-docs > * > *:nth-child(3) .dai-card-icon {
-    color: #2563EB !important;
-    background: #EFF6FF !important;
+  .dark .cap-bg-01 .cap-card-inner,
+  .dark .cap-bg-02 .cap-card-inner,
+  .dark .cap-bg-03 .cap-card-inner,
+  .dark .cap-bg-04 .cap-card-inner {
+    position: relative;
+    z-index: 1;
   }
-  /* 4 — V1.1 API Reference : violet */
-  .cap-dev-docs .dai-card:nth-of-type(4) .dai-card-icon,
-  .cap-dev-docs > * > *:nth-child(4) .dai-card-icon {
-    color: #7C3AED !important;
-    background: #F5F3FF !important;
+  .dark .cap-bg-01 .cap-card-title,
+  .dark .cap-bg-02 .cap-card-title,
+  .dark .cap-bg-03 .cap-card-title,
+  .dark .cap-bg-04 .cap-card-title {
+    color: #ffffff;
+  }
+  .dark .cap-bg-01 .cap-card-desc,
+  .dark .cap-bg-02 .cap-card-desc,
+  .dark .cap-bg-03 .cap-card-desc,
+  .dark .cap-bg-04 .cap-card-desc {
+    color: rgba(255,255,255,0.85);
   }
 
-  /* dark mode overrides for dev-docs icon backgrounds */
-  .dark .cap-dev-docs .dai-card-icon { background: rgba(255,255,255,0.07) !important; }
+  /* ─── Mobile ─── */
+  @media (max-width: 768px) {
+    .cap-card-grid {
+      flex-direction: column;
+    }
+    .cap-card-grid > a {
+      max-width: 100%;
+    }
+  }
 `}</style>
 
-# Capillary Documentation Hub
+<div className="cap-hub-wrap">
 
+<h2 className="cap-hub-title">Capillary Documentation Hub</h2>
 <p className="cap-hub-subtitle">Welcome to your Capillary Documentation Hub! You'll find resources for our industry-leading products and solutions.</p>
 
 <p className="cap-section-label">User Documentation</p>
 
-<div className="cap-user-docs">
-<Columns cols="4">
-  <Card title="Loyalty+" icon="gift" href="/loyalty/overview">
-    Retain customers and repeat sales with personalised loyalty programs
-  </Card>
-  <Card title="Engage+" icon="megaphone" href="/engage/overview">
-    Personalise your engagement with omnichannel marketing solutions
-  </Card>
-  <Card title="Insights+" icon="bar-chart-2" href="/insights/overview">
-    Get actionable insights with AI-powered customer and retail analytics
-  </Card>
-  <Card title="Capillary Data Platform" icon="database" href="/data-platform/overview">
-    Connect and manage data seamlessly across multiple sources.
-  </Card>
-</Columns>
+<div className="cap-card-grid">
+  <a href="/loyalty/overview" className="cap-card cap-bg-01">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/bf2b0e73-415b-4ad5-8447-6a017c50.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">Loyalty+</h3>
+      <p className="cap-card-desc">Retain customers and repeat sales with personalised loyalty programs</p>
+    </div>
+  </a>
+  <a href="/engage/overview" className="cap-card cap-bg-02">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/a2a58193-0c27-469a-bf81-b457d261.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">Engage+</h3>
+      <p className="cap-card-desc">Personalise your engagement with omnichannel marketing solutions</p>
+    </div>
+  </a>
+  <a href="/insights/overview" className="cap-card cap-bg-03">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0b1ca3bf-41e5-4753-ab6a-074657db.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">Insights+</h3>
+      <p className="cap-card-desc">Get actionable insights with AI-powered customer and retail analytics</p>
+    </div>
+  </a>
+  <a href="/data-platform/overview" className="cap-card cap-bg-04">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/1ca3ec67-b996-43cc-bfb3-bb34c44c.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">Capillary Data Platform</h3>
+      <p className="cap-card-desc">Connect and manage data seamlessly across multiple sources.</p>
+    </div>
+  </a>
 </div>
 
 <p className="cap-section-label">Developer Documentation</p>
 
-<div className="cap-dev-docs">
-<Columns cols="4">
-  <Card title="API Building Blocks" icon="layout-grid" href="/api-reference/overview">
-    Get started with Capillary APIs
-  </Card>
-  <Card title="Guides" icon="book-open" href="/guides">
-    Know how to integrate and run these APIs
-  </Card>
-  <Card title="V2 API Reference" icon="file-code" href="/api-reference/v2">
-    Explore v2 API entities
-  </Card>
-  <Card title="V1.1 API Reference" icon="file-text" href="/api-reference/v1">
-    Explore V1.1 API entities
-  </Card>
-</Columns>
+<div className="cap-card-grid">
+  <a href="/api-reference/overview" className="cap-card cap-bg-05">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/e0afea44-782a-48c4-9286-29decabf.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">API Building Blocks</h3>
+      <p className="cap-card-desc">Get started with Capillary APIs</p>
+    </div>
+  </a>
+  <a href="/guides" className="cap-card cap-bg-05">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/a841ee68-9149-43ad-911e-3f7cf6c5.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">Guides</h3>
+      <p className="cap-card-desc">Know how to integrate and run these APIs</p>
+    </div>
+  </a>
+  <a href="/api-reference/v2" className="cap-card cap-bg-05">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/d8ec48f7-fa8c-4a92-8541-a95c4d6c.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">V2 API Reference</h3>
+      <p className="cap-card-desc">Explore v2 API entities</p>
+    </div>
+  </a>
+  <a href="/api-reference/v1" className="cap-card cap-bg-05">
+    <div className="cap-card-inner">
+      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/d8ec48f7-fa8c-4a92-8541-a95c4d6c.png" className="cap-card-icon" alt="" />
+      <h3 className="cap-card-title">V1.1 API Reference</h3>
+      <p className="cap-card-desc">Explore V1.1 API entities</p>
+    </div>
+  </a>
+</div>
+
 </div>
