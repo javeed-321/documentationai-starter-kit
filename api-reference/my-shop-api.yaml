@@ -1,0 +1,48 @@
+openapi: 3.0.3           # version of the OpenAPI standard
+info:
+  title: My Shop API     # name of your API
+  version: 1.0.0         # your API's version
+
+tags:
+  - name: Users
+  - name: Projects
+  - name: Files
+
+paths:
+  /users:
+    get:
+      summary: List users
+      responses:
+        '200':
+          description: Success
+  /thieves:
+    get:
+      summary: List users
+      responses:
+        '200':
+          description: Success
+
+  /users/{id}:
+    get:
+      summary: Get User by ID
+      tags: [Users]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
