@@ -454,25 +454,7 @@ paths:
                       example: '2026-12-31T23:59:59Z'
                     promotionType:
                       type: string
-                      description: >-
-                        The type of promotion. Determines the enrollment and
-                        earning model in combination with enrolmentMethod and
-                        loyaltyEarningType. GENERIC: Neither opt-in nor
-                        enrollment is active. The promotion is triggered
-                        automatically by customer transactions. Use with
-                        enrolmentMethod: TRANSACTION and loyaltyEarningType:
-                        null. LOYALTY: Enrollment is active, opt-in is disabled.
-                        Focuses on loyalty membership status rather than a
-                        specific earning mechanism. Use with enrolmentMethod:
-                        IMPORT and loyaltyEarningType: null. LOYALTY_EARNING
-                        with loyaltyEarningType ISSUE_AND_EARN: Both enrollment
-                        and opt-in are active. Customers sign up (enroll) and
-                        then earn rewards upon qualifying events. Use with
-                        enrolmentMethod: IMPORT. LOYALTY_EARNING with
-                        loyaltyEarningType DIRECT_EARN: Opt-in is active,
-                        enrollment is disabled. Customers earn rewards directly
-                        through participation without a formal enrollment step.
-                        Use with enrolmentMethod: IMPORT.
+                      description: "The type of promotion. Determines the enrollment and earning model in combination with enrolmentMethod and loyaltyEarningType. GENERIC: Neither opt-in nor enrollment is active. The promotion is triggered automatically by customer transactions. Use with enrolmentMethod: TRANSACTION and loyaltyEarningType: null. LOYALTY: Enrollment is active, opt-in is disabled. Focuses on loyalty membership status rather than a specific earning mechanism. Use with enrolmentMethod: IMPORT and loyaltyEarningType: null. LOYALTY_EARNING with loyaltyEarningType ISSUE_AND_EARN: Both enrollment and opt-in are active. Customers sign up (enroll) and then earn rewards upon qualifying events. Use with enrolmentMethod: IMPORT. LOYALTY_EARNING with loyaltyEarningType DIRECT_EARN: Opt-in is active, enrollment is disabled. Customers earn rewards directly through participation without a formal enrollment step. Use with enrolmentMethod: IMPORT."
                       enum:
                         - GENERIC
                         - LOYALTY
