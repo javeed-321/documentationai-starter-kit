@@ -25,7 +25,7 @@ Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion. U
 
 - Accepts exactly **1 customer per call** in the current release. Multi-customer batching is planned for a future release.
 
-- A maximum of **10&#x20;****`enrollmentIds`****&#x20;or&#x20;****`optInIds`** can be supplied per customer entry.
+- A maximum of **10&#x20;********`enrollmentIds`********&#x20;or \*\*\*\*****`optInIds`** can be supplied per customer entry.
 
 - Revoke is not allowed on promotions in the `STOPPED` state. `LIVE`, `UPCOMING`, `PAUSED`, and `ENDED` promotions are all supported.
 
@@ -35,8 +35,8 @@ Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion. U
 
 ### Example request
 
-<CodeGroup show-lines="true" tabs={[]}>
-  ```bash
+<CodeGroup default-tab="1" show-lines="true" tabs={["REVOKE_ENROLL","REVOKE_OPTIN"]}>
+  ```bash REVOKE_ENROLL
   curl -X POST "https://{host}/v3/promotions/revoke" \
     -H "Authorization: Basic {token}" \
     -H "Content-Type: application/json" \
@@ -57,7 +57,7 @@ Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion. U
     }'
   ```
 
-  ```json
+  ```json REVOKE_OPTIN
   curl -X POST "https://{host}/v3/promotions/revoke" \
     -H "Authorization: Basic {token}" \
     -H "Content-Type: application/json" \
