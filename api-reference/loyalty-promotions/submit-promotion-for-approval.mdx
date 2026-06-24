@@ -23,76 +23,65 @@ Updates the status of a loyalty promotion to manage its lifecycle. Use this endp
 </Callout>
 
 ## Example requests
+<CodeGroup>
+
+```bash DRAFT → PENDING_APPROVAL
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=DRAFT' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "PENDING_APPROVAL"
+}'
+```
+
+```bash PENDING_APPROVAL → DRAFT
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PENDING_APPROVAL' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "REVOKE"
+}'
+```
+
+```bash ACTIVE → PAUSED
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "PAUSE"
+}'
+```
+
+```bash ACTIVE → STOPPED
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "STOP"
+}'
+```
+
+```bash PAUSED → ACTIVE
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "RESUME"
+}'
+```
+
+```bash PAUSED → STOPPED
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "STOP"
+}'
+```
+
+</CodeGroup>
 
 
-
-<Tabs>
-  <Tab title="DRAFT → PENDING_APPROVAL" icon="send">
-    ```bash
-        curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=DRAFT' \
-        --header 'Content-Type: application/json' \
-        --header 'Authorization: Basic <token>' \
-        --data '{
-            "promotionStatus": "PENDING_APPROVAL"
-        }'
-    ```
-  </Tab>
-
-  <Tab title="PENDING_APPROVAL → DRAFT" icon="undo">
-    ```bash
-        curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PENDING_APPROVAL' \
-        --header 'Content-Type: application/json' \
-        --header 'Authorization: Basic <token>' \
-        --data '{
-            "promotionStatus": "REVOKE"
-        }'
-    ```
-  </Tab>
-
-  <Tab title="ACTIVE → PAUSED" icon="pause">
-    ```bash
-        curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
-        --header 'Content-Type: application/json' \
-        --header 'Authorization: Basic <token>' \
-        --data '{
-            "promotionStatus": "PAUSE"
-        }'
-    ```
-  </Tab>
-
-  <Tab title="ACTIVE → STOPPED" icon="square">
-    ```bash
-        curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
-        --header 'Content-Type: application/json' \
-        --header 'Authorization: Basic <token>' \
-        --data '{
-            "promotionStatus": "STOP"
-        }'
-    ```
-  </Tab>
-
-  <Tab title="PAUSED → ACTIVE" icon="play">
-    ```bash
-        curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
-        --header 'Content-Type: application/json' \
-        --header 'Authorization: Basic <token>' \
-        --data '{
-            "promotionStatus": "RESUME"
-        }'
-    ```
-  </Tab>
-
-  <Tab title="PAUSED → STOPPED" icon="x-circle">
-    ```bash
-        curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
-        --header 'Content-Type: application/json' \
-        --header 'Authorization: Basic <token>' \
-        --data '{
-            "promotionStatus": "STOP"
-        }'
-    ```
-  </Tab>
-</Tabs>
 
 ## Prerequisites
 
