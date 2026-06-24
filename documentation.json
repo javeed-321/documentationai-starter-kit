@@ -36,7 +36,8 @@
                 "title": "Home Page",
                 "path": "Home",
                 "show-sidebar": false,
-                "show-toc": false
+                "show-toc": false,
+                "show-parent-label": false
               }
             ]
           },
