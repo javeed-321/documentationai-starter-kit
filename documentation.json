@@ -1,9 +1,4 @@
 {
-  "css": [
-    {
-      "src": "styles/capillary.css"
-    }
-  ],
   "navigation": {
     "tabs": [
       {
