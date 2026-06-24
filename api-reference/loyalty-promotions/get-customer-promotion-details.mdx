@@ -1,38 +1,43 @@
 ---
-title: Get Customer Promotion Details
+title: 'Get Customer Promotion Details '
 ---
-
-
 ## Get Customer Promotion Details
 
 Retrieves a consolidated benefits summary for a specific customer in a loyalty promotion, including points earned by category, alternate currencies, and a unified list of all incentive actions such as rewards, coupons, badges, tier upgrades, and enrolment events.
 
 **What this API supports**
 
-* Retrieve all points, alternate currencies, and incentive actions earned by a customer for a specific promotion in a single response.
-* Filter results by promotion activity using the optional `activityId` parameter.
-* Returns a unified `incentives` array covering all action types: rewards, coupons, badges, tier upgrades, enrolment, and opt-in events.
-* Supports promotions created on both the old and new loyalty promotion UI.
+- Retrieve all points, alternate currencies, and incentive actions earned by a customer for a specific promotion in a single response.
+
+- Filter results by promotion activity using the optional `activityId` parameter.
+
+- Returns a unified `incentives` array covering all action types: rewards, coupons, badges, tier upgrades, enrolment, and opt-in events.
+
+- Supports promotions created on both the old and new loyalty promotion UI.
 
 **Limits and configuration**
 
-* Returns benefits earned on or after **June 12, 2025** only. Benefits earned before that date are not included.
-* Both `programId` and `promotionId` are required — the API will not return results without them.
+- Returns benefits earned on or after **June 12, 2025** only. Benefits earned before that date are not included.
 
-<Callout kind="tip" title="Notes">
+- Both `programId` and `promotionId` are required — the API will not return results without them.
 
-* For detailed information about our APIs and for hands-on testing, refer to the [API overview](https://docs.capillarytech.com/reference/apioverview) and the [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) guide.
-* This API only lists benefits earned from a promotion on or after **June 12, 2025**. Benefits earned before that date are not included.
-* This API fetches results for loyalty promotions created on the [old UI](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced#/) and new UI.
-* To retrieve the same benefits using customer identifiers (mobile number, external ID) instead of a customer ID, use [Get Loyalty Promotion Benefits for Customer](https://docs.capillarytech.com/reference/get-promotion-benefits-for-customer).
+<Callout kind="tip" collapsed="false">
+  * For detailed information about our APIs and for hands-on testing, refer to the [API overview](https://docs.capillarytech.com/reference/apioverview) and the [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) guide.
 
+  * This API only lists benefits earned from a promotion on or after **June 12, 2025**. Benefits earned before that date are not included.
+
+  * This API fetches results for loyalty promotions created on the [old UI](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced#/) and new UI.
+
+  * To retrieve the same benefits using customer identifiers (mobile number, external ID) instead of a customer ID, use [Get Loyalty Promotion Benefits for Customer](https://docs.capillarytech.com/reference/get-promotion-benefits-for-customer).
 </Callout>
 
 ## Prerequisites
 
-* Authentication: Basic/OAuth authentication
-* Default access group
-* `programId` and `promotionId`
+- Authentication: Basic/OAuth authentication
+
+- Default access group
+
+- `programId` and `promotionId`
 
 ## Resource information
 
@@ -43,108 +48,107 @@ Retrieves a consolidated benefits summary for a specific customer in a loyalty p
 
 ## Example request
 
-<CodeGroup tabs="cURL,Code,Customer with benefits,No benefits found">
+<CodeGroup show-lines="true" tabs={[]}>
+  ```json
+  curl -X GET "https://{host}/v3/customers/388597285/customerPromotionDetails/actionSummary?programId=3334&promotionId=1133600978" \
+    -H "Authorization: Basic dGlsbGhnXXXXXXXX"
 
-```json
-curl -X GET "https://{host}/v3/customers/388597285/customerPromotionDetails/actionSummary?programId=3334&promotionId=1133600978" \
-  -H "Authorization: Basic dGlsbGhnXXXXXXXX"
+  GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary
+  └─ Response
+      ├─ orgId (number)
+      ├─ programId (number)
+      ├─ entityId (number)
+      ├─ promotionId (number)
+      ├─ incentives []
+      │   ├─ activityId (string)
+      │   ├─ action (string)
+      │   ├─ actionId (string)
+      │   ├─ actionIssuedCount (number)
+      │   └─ lastIssuedOn (number)
+      ├─ points []
+      │   ├─ pointsCategory (string)
+      │   ├─ totalPointsIssued (string)
+      │   ├─ numberOfTimesIssued (number)
+      │   └─ lastIssuedOn (number)
+      ├─ alternateCurrencies []
+      │   ├─ currencyName (string)
+      │   ├─ totalCurrencyIssued (string)
+      │   ├─ numberOfTimesIssued (number)
+      │   └─ lastIssuedOn (number)
+      └─ warnings [] (string)
+  ```
 
-GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary
-└─ Response
-    ├─ orgId (number)
-    ├─ programId (number)
-    ├─ entityId (number)
-    ├─ promotionId (number)
-    ├─ incentives []
-    │   ├─ activityId (string)
-    │   ├─ action (string)
-    │   ├─ actionId (string)
-    │   ├─ actionIssuedCount (number)
-    │   └─ lastIssuedOn (number)
-    ├─ points []
-    │   ├─ pointsCategory (string)
-    │   ├─ totalPointsIssued (string)
-    │   ├─ numberOfTimesIssued (number)
-    │   └─ lastIssuedOn (number)
-    ├─ alternateCurrencies []
-    │   ├─ currencyName (string)
-    │   ├─ totalCurrencyIssued (string)
-    │   ├─ numberOfTimesIssued (number)
-    │   └─ lastIssuedOn (number)
-    └─ warnings [] (string)
-````
+  ```bash
+  {
+      "orgId": 51948,
+      "programId": 3334,
+      "entityId": 388597285,
+      "promotionId": 1133600978,
+      "incentives": [
+          {
+              "activityId": "activity_reward_1",
+              "action": "REWARD",
+              "actionIssuedCount": 1,
+              "actionId": "133423",
+              "lastIssuedOn": 1734533309000
+          },
+          {
+              "activityId": "activity_badge_1",
+              "action": "BADGES",
+              "actionIssuedCount": 1,
+              "actionId": "SomeBadgeId",
+              "lastIssuedOn": 1734533309000
+          },
+          {
+              "activityId": "activity_coupon_1",
+              "action": "COUPONS",
+              "actionIssuedCount": 1,
+              "actionId": "5231232",
+              "lastIssuedOn": 1734533309000
+          }
+      ],
+      "points": [
+          {
+              "pointsCategory": "REGULAR_POINTS",
+              "totalPointsIssued": "1234.000",
+              "numberOfTimesIssued": 1,
+              "lastIssuedOn": 1734533309000
+          }
+      ],
+      "alternateCurrencies": [
+          {
+              "currencyName": "some_ac",
+              "totalCurrencyIssued": "1234.000",
+              "numberOfTimesIssued": 1,
+              "lastIssuedOn": 1734533309000
+          }
+      ],
+      "warnings": []
+  }
+  ```
 
-```bash
-{
-    "orgId": 51948,
-    "programId": 3334,
-    "entityId": 388597285,
-    "promotionId": 1133600978,
-    "incentives": [
-        {
-            "activityId": "activity_reward_1",
-            "action": "REWARD",
-            "actionIssuedCount": 1,
-            "actionId": "133423",
-            "lastIssuedOn": 1734533309000
-        },
-        {
-            "activityId": "activity_badge_1",
-            "action": "BADGES",
-            "actionIssuedCount": 1,
-            "actionId": "SomeBadgeId",
-            "lastIssuedOn": 1734533309000
-        },
-        {
-            "activityId": "activity_coupon_1",
-            "action": "COUPONS",
-            "actionIssuedCount": 1,
-            "actionId": "5231232",
-            "lastIssuedOn": 1734533309000
-        }
-    ],
-    "points": [
-        {
-            "pointsCategory": "REGULAR_POINTS",
-            "totalPointsIssued": "1234.000",
-            "numberOfTimesIssued": 1,
-            "lastIssuedOn": 1734533309000
-        }
-    ],
-    "alternateCurrencies": [
-        {
-            "currencyName": "some_ac",
-            "totalCurrencyIssued": "1234.000",
-            "numberOfTimesIssued": 1,
-            "lastIssuedOn": 1734533309000
-        }
-    ],
-    "warnings": []
-}
-````
-
-```json
-{
-    "data": {
-        "orgId": 51948,
-        "programId": 3334,
-        "entityId": 388597285,
-        "promotionId": 1133600978,
-        "incentives": [],
-        "warnings": [
-            {
-                "status": false,
-                "code": 8116,
-                "message": "No promotion action summary found for the given promotionId"
-            }
-        ]
-    },
-    "errors": null,
-    "warnings": null
-}
-````
-
+  ```json
+  {
+      "data": {
+          "orgId": 51948,
+          "programId": 3334,
+          "entityId": 388597285,
+          "promotionId": 1133600978,
+          "incentives": [],
+          "warnings": [
+              {
+                  "status": false,
+                  "code": 8116,
+                  "message": "No promotion action summary found for the given promotionId"
+              }
+          ]
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
 </CodeGroup>
+
 ## Response parameters
 
 | Field                  | Type    | Description                                                                                                                                                                         |
@@ -182,24 +186,21 @@ GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary
 | 500  | Error   | Internal server error. Retry the request after a short delay.                                                        |
 | 8116 | Warning | No promotion action summary found for the given promotion. The customer has no recorded benefits for this promotion. |
 
-
 ## Parameters & Headers
 
-<Expandable title="Request Headers">
-  <ParamField header="Authorization" param-type="string" required="true">
-  </ParamField>
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="true" deprecated="false" show-location="true" />
 </Expandable>
 
-<Expandable title="Path Parameters">
-  <ParamField path="customerId" param-type="integer" required="true">
-  </ParamField>
+<Expandable title="Path Parameters" default-open="false">
+  <ParamField path="customerId" param-type="integer" required="true" deprecated="false" show-location="true" />
 </Expandable>
 
-<Expandable title="Query Parameters">
-  <ParamField query="programId" param-type="integer" required="true">
-  </ParamField>
-  <ParamField query="promotionId" param-type="integer" required="true">
-  </ParamField>
-  <ParamField query="activityId" param-type="string" required="false">
-  </ParamField>
+<Expandable title="Query Parameters" default-open="false">
+  <ParamField query="programId" param-type="integer" required="true" deprecated="false" show-location="true" />
+
+  <ParamField query="promotionId" param-type="integer" required="true" deprecated="false" show-location="true" />
+
+  <ParamField query="activityId" param-type="string" required="false" deprecated="false" show-location="true" />
 </Expandable>
+

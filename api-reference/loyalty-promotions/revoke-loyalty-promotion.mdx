@@ -1,8 +1,6 @@
 ---
-title: Revoke a Loyalty Promotion
+title: 'Revoke a Loyalty Promotion '
 ---
-
-
 ## Revoke a Loyalty Promotion
 
 Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion.
@@ -11,76 +9,85 @@ Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion. U
 
 **What this API supports**
 
-* Revoke a customer's enrollment (`REVOKE_ENROLL`) from a promotion.
-* Revoke a customer's opt-in (`REVOKE_OPTIN`) from a promotion that supports opt-in.
-* Automatically cascade the linked opt-in revoke when revoking an enrollment on a promotion that supports both enrollment and opt-in — both `revokedEnrollmentIds` and `revokedOptInIds` are populated in the response.
-* Target specific enrollment or opt-in IDs, or use the `revokeAllEnrollments` / `revokeAllOptIns` query parameters to revoke all active records in a single call.
-* Retroactively timestamp a revoke by supplying `optOutDate`.
-* Attribute the revoke to a source system and actor using `sourceDetails`.
+- Revoke a customer's enrollment (`REVOKE_ENROLL`) from a promotion.
+
+- Revoke a customer's opt-in (`REVOKE_OPTIN`) from a promotion that supports opt-in.
+
+- Automatically cascade the linked opt-in revoke when revoking an enrollment on a promotion that supports both enrollment and opt-in — both `revokedEnrollmentIds` and `revokedOptInIds` are populated in the response.
+
+- Target specific enrollment or opt-in IDs, or use the `revokeAllEnrollments` / `revokeAllOptIns` query parameters to revoke all active records in a single call.
+
+- Retroactively timestamp a revoke by supplying `optOutDate`.
+
+- Attribute the revoke to a source system and actor using `sourceDetails`.
 
 **Limits and configuration**
 
-* Accepts exactly **1 customer per call** in the current release. Multi-customer batching is planned for a future release.
-* A maximum of **10 `enrollmentIds` or `optInIds`** can be supplied per customer entry.
-* Revoke is not allowed on promotions in the `STOPPED` state. `LIVE`, `UPCOMING`, `PAUSED`, and `ENDED` promotions are all supported.
-* Revoke does **not** un-enroll the customer from any associated target groups, milestones, or streaks. Call `POST /v3/targetGroups/{tgId}/targets/{targetId}/unEnroll` separately if required.
+- Accepts exactly **1 customer per call** in the current release. Multi-customer batching is planned for a future release.
 
-***
+- A maximum of **10&#x20;****`enrollmentIds`****&#x20;or&#x20;****`optInIds`** can be supplied per customer entry.
+
+- Revoke is not allowed on promotions in the `STOPPED` state. `LIVE`, `UPCOMING`, `PAUSED`, and `ENDED` promotions are all supported.
+
+- Revoke does **not** un-enroll the customer from any associated target groups, milestones, or streaks. Call `POST /v3/targetGroups/{tgId}/targets/{targetId}/unEnroll` separately if required.
+
+---
 
 ### Example request
 
-<CodeGroup tabs="REVOKE_ENROLL,REVOKE_OPTIN">
+<CodeGroup show-lines="true" tabs={[]}>
+  ```bash
+  curl -X POST "https://{host}/v3/promotions/revoke" \
+    -H "Authorization: Basic {token}" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "requestId": "revoke-enroll-20260512-001",
+      "action": "REVOKE_ENROLL",
+      "programId": 3390,
+      "promotion": {
+        "promotionId": 1133617579
+      },
+      "customers": [
+        {
+          "identifierName": "id",
+          "identifierValue": "388995213",
+          "enrollmentIds": [227111]
+        }
+      ]
+    }'
+  ```
 
-```bash
-curl -X POST "https://{host}/v3/promotions/revoke" \
-  -H "Authorization: Basic {token}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "requestId": "revoke-enroll-20260512-001",
-    "action": "REVOKE_ENROLL",
-    "programId": 3390,
-    "promotion": {
-      "promotionId": 1133617579
-    },
-    "customers": [
-      {
-        "identifierName": "id",
-        "identifierValue": "388995213",
-        "enrollmentIds": [227111]
-      }
-    ]
-  }'
-````
-
-```json
-curl -X POST "https://{host}/v3/promotions/revoke" \
-  -H "Authorization: Basic {token}" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "requestId": "revoke-optin-20260512-001",
-    "action": "REVOKE_OPTIN",
-    "programId": 3390,
-    "promotion": {
-      "promotionId": 1133617581
-    },
-    "customers": [
-      {
-        "identifierName": "id",
-        "identifierValue": "388995216",
-        "optInIds": [188472]
-      }
-    ]
-  }'
-````
-
+  ```json
+  curl -X POST "https://{host}/v3/promotions/revoke" \
+    -H "Authorization: Basic {token}" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "requestId": "revoke-optin-20260512-001",
+      "action": "REVOKE_OPTIN",
+      "programId": 3390,
+      "promotion": {
+        "promotionId": 1133617581
+      },
+      "customers": [
+        {
+          "identifierName": "id",
+          "identifierValue": "388995216",
+          "optInIds": [188472]
+        }
+      ]
+    }'
+  ```
 </CodeGroup>
-***
+
+---
 
 ### Prerequisites
 
-* Authentication: Basic or OAuth authentication.
-* Default access group.
-* The customer must already be enrolled or opted in to the promotion.
+- Authentication: Basic or OAuth authentication.
+
+- Default access group.
+
+- The customer must already be enrolled or opted in to the promotion.
 
 ### Header information
 
@@ -123,149 +130,148 @@ curl -X POST "https://{host}/v3/promotions/revoke" \
 | `..notes`              | String        | Optional    | Any additional context about the revoke (e.g., `Approved by store manager on 2026-05-12`). Max 250 characters.                                                                                                        |
 | `..eventIdentifier`    | String        | Optional    | A reference to the event or trigger that caused the revoke (e.g., a rule ID, journey block ID, or campaign ID). Max 50 characters.                                                                                    |
 
-***
+---
 
 ### API Quick Reference
 
-<CodeGroup tabs="Code,REVOKE_ENROLL success,REVOKE_ENROLL with opt-in,Per-customer failure (no active enrollment)">
+<CodeGroup show-lines="true" tabs={[]}>
+  ```
+  POST /v3/promotions/revoke
+     ├─ Request
+     │   ├─ requestId (string)
+     │   ├─ action (string)
+     │   ├─ programId (number)
+     │   ├─ promotion
+     │   │   ├─ promotionId (number)
+     │   │   └─ promotionIdentifier (string)
+     │   ├─ customers []
+     │   │   ├─ identifierName (string)
+     │   │   ├─ identifierValue (string)
+     │   │   ├─ source (string)
+     │   │   ├─ enrollmentIds [] (number)
+     │   │   └─ optInIds [] (number)
+     │   ├─ optOutDate (string)
+     │   ├─ storeUnitId (number)
+     │   └─ sourceDetails
+     │       ├─ source (string)
+     │       ├─ sourceId (string)
+     │       ├─ sourceActivity (string)
+     │       └─ sourceMetadata
+     │           ├─ revokedBy (number)
+     │           ├─ reason (string)
+     │           └─ notes (string)
+     └─ Response
+         ├─ data
+         │   ├─ requestId (string)
+         │   ├─ action (string)
+         │   ├─ status (string)
+         │   ├─ promotionId (number)
+         │   ├─ promotionIdentifier (string)
+         │   ├─ totalCount (number)
+         │   ├─ failureCount (number)
+         │   └─ customerResults []
+         │       ├─ identifierName (string)
+         │       ├─ identifierValue (string)
+         │       ├─ customerId (number)
+         │       ├─ revokedEnrollmentIds [] (number)
+         │       ├─ revokedOptInIds [] (number)
+         │       ├─ status (string)
+         │       ├─ errors []
+         │       └─ warnings []
+         ├─ errors
+         └─ warnings
+  ```
 
-```
-POST /v3/promotions/revoke
-   ├─ Request
-   │   ├─ requestId (string)
-   │   ├─ action (string)
-   │   ├─ programId (number)
-   │   ├─ promotion
-   │   │   ├─ promotionId (number)
-   │   │   └─ promotionIdentifier (string)
-   │   ├─ customers []
-   │   │   ├─ identifierName (string)
-   │   │   ├─ identifierValue (string)
-   │   │   ├─ source (string)
-   │   │   ├─ enrollmentIds [] (number)
-   │   │   └─ optInIds [] (number)
-   │   ├─ optOutDate (string)
-   │   ├─ storeUnitId (number)
-   │   └─ sourceDetails
-   │       ├─ source (string)
-   │       ├─ sourceId (string)
-   │       ├─ sourceActivity (string)
-   │       └─ sourceMetadata
-   │           ├─ revokedBy (number)
-   │           ├─ reason (string)
-   │           └─ notes (string)
-   └─ Response
-       ├─ data
-       │   ├─ requestId (string)
-       │   ├─ action (string)
-       │   ├─ status (string)
-       │   ├─ promotionId (number)
-       │   ├─ promotionIdentifier (string)
-       │   ├─ totalCount (number)
-       │   ├─ failureCount (number)
-       │   └─ customerResults []
-       │       ├─ identifierName (string)
-       │       ├─ identifierValue (string)
-       │       ├─ customerId (number)
-       │       ├─ revokedEnrollmentIds [] (number)
-       │       ├─ revokedOptInIds [] (number)
-       │       ├─ status (string)
-       │       ├─ errors []
-       │       └─ warnings []
-       ├─ errors
-       └─ warnings
-````
+  ```bash
+  {
+      "data": {
+          "requestId": "revoke-enroll-20260512-001",
+          "action": "REVOKE_ENROLL",
+          "status": "SUCCESS",
+          "promotionId": 1133617579,
+          "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
+          "customerResults": [
+              {
+                  "identifierName": "id",
+                  "identifierValue": "388995213",
+                  "customerId": 388995213,
+                  "revokedEnrollmentIds": [227111],
+                  "revokedOptInIds": [],
+                  "status": "SUCCESS",
+                  "errors": [],
+                  "warnings": []
+              }
+          ],
+          "totalCount": 1,
+          "failureCount": 0
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
 
-```bash
-{
-    "data": {
-        "requestId": "revoke-enroll-20260512-001",
-        "action": "REVOKE_ENROLL",
-        "status": "SUCCESS",
-        "promotionId": 1133617579,
-        "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
-        "customerResults": [
-            {
-                "identifierName": "id",
-                "identifierValue": "388995213",
-                "customerId": 388995213,
-                "revokedEnrollmentIds": [227111],
-                "revokedOptInIds": [],
-                "status": "SUCCESS",
-                "errors": [],
-                "warnings": []
-            }
-        ],
-        "totalCount": 1,
-        "failureCount": 0
-    },
-    "errors": null,
-    "warnings": null
-}
-````
+  ```json
+  {
+      "data": {
+          "requestId": "revoke-enroll-20260512-002",
+          "action": "REVOKE_ENROLL",
+          "status": "SUCCESS",
+          "promotionId": 1133617580,
+          "promotionIdentifier": "a7b95d5d-d756-49aa-92f8-7b875ab99d78",
+          "customerResults": [
+              {
+                  "identifierName": "id",
+                  "identifierValue": "388995215",
+                  "customerId": 388995215,
+                  "revokedEnrollmentIds": [227160],
+                  "revokedOptInIds": [188711],
+                  "status": "SUCCESS",
+                  "errors": [],
+                  "warnings": []
+              }
+          ],
+          "totalCount": 1,
+          "failureCount": 0
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
 
-```json
-{
-    "data": {
-        "requestId": "revoke-enroll-20260512-002",
-        "action": "REVOKE_ENROLL",
-        "status": "SUCCESS",
-        "promotionId": 1133617580,
-        "promotionIdentifier": "a7b95d5d-d756-49aa-92f8-7b875ab99d78",
-        "customerResults": [
-            {
-                "identifierName": "id",
-                "identifierValue": "388995215",
-                "customerId": 388995215,
-                "revokedEnrollmentIds": [227160],
-                "revokedOptInIds": [188711],
-                "status": "SUCCESS",
-                "errors": [],
-                "warnings": []
-            }
-        ],
-        "totalCount": 1,
-        "failureCount": 0
-    },
-    "errors": null,
-    "warnings": null
-}
-````
-
-```json
-{
-    "data": {
-        "requestId": "revoke-enroll-20260512-003",
-        "action": "REVOKE_ENROLL",
-        "status": "FAILED",
-        "promotionId": 1133617579,
-        "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
-        "customerResults": [
-            {
-                "identifierName": "id",
-                "identifierValue": "388995213",
-                "customerId": 388995213,
-                "revokedEnrollmentIds": [],
-                "revokedOptInIds": [],
-                "status": "FAILED",
-                "errors": [
-                    {
-                        "code": 400,
-                        "message": "[NO_ACTIVE_ENROLLMENT] active/non expired issual not present for the customer (orgId=52023, customerId=388995213)"
-                    }
-                ],
-                "warnings": []
-            }
-        ],
-        "totalCount": 1,
-        "failureCount": 1
-    },
-    "errors": null,
-    "warnings": null
-}
-````
-
+  ```json
+  {
+      "data": {
+          "requestId": "revoke-enroll-20260512-003",
+          "action": "REVOKE_ENROLL",
+          "status": "FAILED",
+          "promotionId": 1133617579,
+          "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
+          "customerResults": [
+              {
+                  "identifierName": "id",
+                  "identifierValue": "388995213",
+                  "customerId": 388995213,
+                  "revokedEnrollmentIds": [],
+                  "revokedOptInIds": [],
+                  "status": "FAILED",
+                  "errors": [
+                      {
+                          "code": 400,
+                          "message": "[NO_ACTIVE_ENROLLMENT] active/non expired issual not present for the customer (orgId=52023, customerId=388995213)"
+                      }
+                  ],
+                  "warnings": []
+              }
+          ],
+          "totalCount": 1,
+          "failureCount": 1
+      },
+      "errors": null,
+      "warnings": null
+  }
+  ```
 </CodeGroup>
+
 ### Response parameters
 
 | Field                    | Type          | Description                                                                                                                                                                   |
@@ -290,7 +296,7 @@ POST /v3/promotions/revoke
 | `errors`                 | Array         | Top-level errors for request-level validation failures (HTTP 400). Null on success.                                                                                           |
 | `warnings`               | Array         | Top-level warnings. Null when not applicable.                                                                                                                                 |
 
-***
+---
 
 ### Error and warning codes
 
@@ -318,101 +324,123 @@ POST /v3/promotions/revoke
 | 8893 | Error   | No active opt-in exists for this customer on the promotion — already revoked or never opted in.                                                                                           |
 | -    | Warning | `revokeAllEnrollments=true` or `revokeAllOptIns=true` was set and explicit IDs were also provided. The IDs are ignored; all active records are revoked (`IDS_IGNORED_DUE_TO_REVOKE_ALL`). |
 
-
 ## Parameters & Headers
 
-<Expandable title="Request Headers">
-  <ParamField header="Authorization" param-type="string" required="true">
-  </ParamField>
-  <ParamField header="Content-Type" param-type="string" required="true">
-  </ParamField>
-  <ParamField header="X-CAP-API-AUTH-ENTITY-ID" param-type="integer" required="false">
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="true" deprecated="false" show-location="true" />
+
+  <ParamField header="Content-Type" param-type="string" required="true" deprecated="false" show-location="true" />
+
+  <ParamField header="X-CAP-API-AUTH-ENTITY-ID" param-type="integer" required="false" deprecated="false" show-location="true">
     Numeric till ID to attribute the revoke to a specific till. Must be used alongside X-CAP-API-ATTRIBUTION-TILL-CODE when authenticating via OAuth.
   </ParamField>
 </Expandable>
 
-<Expandable title="Query Parameters">
-  <ParamField query="revokeAllEnrollments" param-type="boolean" required="false">
-    When true, revokes all active enrollments for the customer on the specified promotion. Only valid with action=REVOKE_ENROLL. Cannot be used together with revokeAllOptIns=true.
+<Expandable title="Query Parameters" default-open="false">
+  <ParamField query="revokeAllEnrollments" param-type="boolean" required="false" deprecated="false" show-location="true">
+    When true, revokes all active enrollments for the customer on the specified promotion. Only valid with action=REVOKE\_ENROLL. Cannot be used together with revokeAllOptIns=true.
   </ParamField>
-  <ParamField query="revokeAllOptIns" param-type="boolean" required="false">
-    When true, revokes all active opt-ins for the customer on the specified promotion. Only valid with action=REVOKE_OPTIN. Cannot be used together with revokeAllEnrollments=true.
+
+  <ParamField query="revokeAllOptIns" param-type="boolean" required="false" deprecated="false" show-location="true">
+    When true, revokes all active opt-ins for the customer on the specified promotion. Only valid with action=REVOKE\_OPTIN. Cannot be used together with revokeAllEnrollments=true.
   </ParamField>
 </Expandable>
 
-<Expandable title="Request Body">
-  <ParamField body="requestId" param-type="string" required="false">
+<Expandable title="Request Body" default-open="false">
+  <ParamField body="requestId" param-type="string" required="false" deprecated="false" show-location="true">
     A plain string reference identifier for this revoke request. Each requestId must be unique per org — duplicate values are rejected.
   </ParamField>
-  <ParamField body="action" param-type="string enum" required="true">
+
+  <ParamField body="action" param-type="string enum" required="true" deprecated="false" show-location="true">
     The revoke action to perform. Case-sensitive.
   </ParamField>
-  <ParamField body="programId" param-type="integer" required="true">
+
+  <ParamField body="programId" param-type="integer" required="true" deprecated="false" show-location="true">
     Unique identifier of the loyalty program.
   </ParamField>
-  <ParamField body="promotion" param-type="object" required="true">
+
+  <ParamField body="promotion" param-type="object" required="true" deprecated="false" show-location="true">
     Identifies the promotion to revoke from. Provide exactly one of promotionId or promotionIdentifier.
-    <Expandable title="promotion properties">
-    <ParamField body="promotionId" param-type="integer" required="false">
-      Numeric identifier of the promotion.
-    </ParamField>
-    <ParamField body="promotionIdentifier" param-type="string" required="false">
-      UUID string identifier of the promotion.
-    </ParamField>
+
+    <Expandable title="promotion properties" default-open="false">
+      <ParamField body="promotionId" param-type="integer" required="false" deprecated="false" show-location="true">
+        Numeric identifier of the promotion.
+      </ParamField>
+
+      <ParamField body="promotionIdentifier" param-type="string" required="false" deprecated="false" show-location="true">
+        UUID string identifier of the promotion.
+      </ParamField>
     </Expandable>
   </ParamField>
-  <ParamField body="customers" param-type="object[]" required="true">
+
+  <ParamField body="customers" param-type="object[]" required="true" deprecated="false" show-location="true">
     List of customers to revoke. Exactly 1 entry is supported in the current release.
-    <Expandable title="customers properties">
-    <ParamField body="identifierName" param-type="string enum" required="true">
-      Customer identifier type.
-    </ParamField>
-    <ParamField body="identifierValue" param-type="string" required="true">
-      Value for the customer identifier.
-    </ParamField>
-    <ParamField body="source" param-type="string enum" required="false">
-      Source of the customer's registration.
-    </ParamField>
-    <ParamField body="enrollmentIds" param-type="integer[]" required="false">
-      Enrollment IDs to revoke. Required for REVOKE_ENROLL unless revokeAllEnrollments=true. Max 10.
-    </ParamField>
-    <ParamField body="optInIds" param-type="integer[]" required="false">
-      Opt-in IDs to revoke. Required for REVOKE_OPTIN unless revokeAllOptIns=true. Max 10.
-    </ParamField>
+
+    <Expandable title="customers properties" default-open="false">
+      <ParamField body="identifierName" param-type="string enum" required="true" deprecated="false" show-location="true">
+        Customer identifier type.
+      </ParamField>
+
+      <ParamField body="identifierValue" param-type="string" required="true" deprecated="false" show-location="true">
+        Value for the customer identifier.
+      </ParamField>
+
+      <ParamField body="source" param-type="string enum" required="false" deprecated="false" show-location="true">
+        Source of the customer's registration.
+      </ParamField>
+
+      <ParamField body="enrollmentIds" param-type="integer[]" required="false" deprecated="false" show-location="true">
+        Enrollment IDs to revoke. Required for REVOKE\_ENROLL unless revokeAllEnrollments=true. Max 10.
+      </ParamField>
+
+      <ParamField body="optInIds" param-type="integer[]" required="false" deprecated="false" show-location="true">
+        Opt-in IDs to revoke. Required for REVOKE\_OPTIN unless revokeAllOptIns=true. Max 10.
+      </ParamField>
     </Expandable>
   </ParamField>
-  <ParamField body="optOutDate" param-type="string" required="false">
+
+  <ParamField body="optOutDate" param-type="string" required="false" deprecated="false" show-location="true">
     ISO-8601 timestamp to retroactively stamp as the revoke date. Must not be in the future.
   </ParamField>
-  <ParamField body="storeUnitId" param-type="integer" required="false">
+
+  <ParamField body="storeUnitId" param-type="integer" required="false" deprecated="false" show-location="true">
     Till ID to stamp on the event log for the revoke and any cascade. Falls back to the authenticated user's till when omitted.
   </ParamField>
-  <ParamField body="sourceDetails" param-type="object" required="false">
+
+  <ParamField body="sourceDetails" param-type="object" required="false" deprecated="false" show-location="true">
     Audit attribution for the revoke operation.
-    <Expandable title="sourceDetails properties">
-    <ParamField body="source" param-type="string" required="false">
-      Channel or system performing the revoke.
-    </ParamField>
-    <ParamField body="sourceId" param-type="string" required="false">
-      Workflow or correlation identifier.
-    </ParamField>
-    <ParamField body="sourceActivity" param-type="string" required="false">
-      Activity tag from the calling system.
-    </ParamField>
-    <ParamField body="sourceMetadata" param-type="object" required="false">
-      Free-form key-value audit metadata to associate with the revoke operation.
-      <Expandable title="sourceMetadata properties">
-      <ParamField body="revokedBy" param-type="integer" required="false">
-        ID of the admin user performing the revoke.
+
+    <Expandable title="sourceDetails properties" default-open="false">
+      <ParamField body="source" param-type="string" required="false" deprecated="false" show-location="true">
+        Channel or system performing the revoke.
       </ParamField>
-      <ParamField body="reason" param-type="string" required="false">
-        Reason for the revoke.
+
+      <ParamField body="sourceId" param-type="string" required="false" deprecated="false" show-location="true">
+        Workflow or correlation identifier.
       </ParamField>
-      <ParamField body="notes" param-type="string" required="false">
-        Additional notes.
+
+      <ParamField body="sourceActivity" param-type="string" required="false" deprecated="false" show-location="true">
+        Activity tag from the calling system.
       </ParamField>
-      </Expandable>
-    </ParamField>
+
+      <ParamField body="sourceMetadata" param-type="object" required="false" deprecated="false" show-location="true">
+        Free-form key-value audit metadata to associate with the revoke operation.
+
+        <Expandable title="sourceMetadata properties" default-open="false">
+          <ParamField body="revokedBy" param-type="integer" required="false" deprecated="false" show-location="true">
+            ID of the admin user performing the revoke.
+          </ParamField>
+
+          <ParamField body="reason" param-type="string" required="false" deprecated="false" show-location="true">
+            Reason for the revoke.
+          </ParamField>
+
+          <ParamField body="notes" param-type="string" required="false" deprecated="false" show-location="true">
+            Additional notes.
+          </ParamField>
+        </Expandable>
+      </ParamField>
     </Expandable>
   </ParamField>
 </Expandable>
+

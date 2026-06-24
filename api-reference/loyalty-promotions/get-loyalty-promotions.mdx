@@ -1,8 +1,6 @@
 ---
-title: Get Details of all Loyalty Promotions
+title: 'Get Details of all Loyalty Promotions '
 ---
-
-
 ## Get Details of all Loyalty Promotions
 
 Endpoint for GET /v3/promotions
@@ -11,25 +9,25 @@ This endpoint retrieves a paginated list of all unified promotions within the or
 
 ## Example request
 
-<CodeGroup tabs={`cURL,With "searchText" filter`}>
+<CodeGroup show-lines="true" tabs={[]}>
+  ```json
+  curl --location 'https://{Host}/v3/promotions' \
+  --header 'Authorization: Basic Z2VvcmdlLmJ1a2w6NzYzNDkxOGF4ZjU4ZjY3MmNhZjY1ZmY=' \
+  --header 'Cookie: _cfuvid=FpP1pTKDZjT_pAkTzJBGUZqKDqpA-1761801071752-0.0.1.1-604800000'
+  ```
 
-```json
-curl --location 'https://{Host}/v3/promotions' \
---header 'Authorization: Basic Z2VvcmdlLmJ1a2w6NzYzNDkxOGF4ZjU4ZjY3MmNhZjY1ZmY=' \
---header 'Cookie: _cfuvid=FpP1pTKDZjT_pAkTzJBGUZqKDqpA-1761801071752-0.0.1.1-604800000'
-````
-
-```Text
-curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%20up' \
---header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
---header 'Cookie: _cfuvid=FpP1pTKkTzJBGUZqKDqpA-1761801071752-0.0.1.1-604800000; _cfuvid=jnGbtvnNJI85qRcw7Ho7SDPv5sP0HLx9pom2SRZtKoQ-1765204446635-0.0.1.1-604800000'
-````
-
+  ```Text
+  curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%20up' \
+  --header 'Authorization: Basic Z2VvcmdlLmRvY2RlbW86NjYjk1MWY5MGY1NTY5NDk1YmNkNzUxYmJiY2U=' \
+  --header 'Cookie: _cfuvid=FpP1pTKkTzJBGUZqKDqpA-1761801071752-0.0.1.1-604800000; _cfuvid=jnGbtvnNJI85qRcw7Ho7SDPv5sP0HLx9pom2SRZtKoQ-1765204446635-0.0.1.1-604800000'
+  ```
 </CodeGroup>
+
 ## Prerequisites
 
-* Authentication: Basic or OAuth authentication.
-* Default access group
+- Authentication: Basic or OAuth authentication.
+
+- Default access group
 
 ## Resource information
 
@@ -40,13 +38,13 @@ curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%
 
 ## Query parameters
 
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| searchText | string | Optional | Specifies a search term to filter promotions by name or description. Use this to quickly find promotions containing specific keywords, like "Holiday Bonus". Supported Values: String. Example: "Holiday Bonus" |
-| status | String | Optional | Specifies an array of statuses to filter by, allowing retrieval of only promotions in specific states. You can specify multiple values, separated by commas. Supported Values: `DRAFT`, `ACTIVE`, `PAUSED`, `PENDING_APPROVAL`, `LIVE`, `UPCOMING`. Example: `ACTIVE`, `UPCOMING` |
-| page | integer | Optional | Specifies the page number to retrieve (0-indexed) for pagination. Use 0 for the first page, 1 for the second, etc. |
-| size | integer | Optional | Specifies the number of promotions to return per page. Set to 20 to retrieve 20 promotions at a time. Supported Values: Positive integer. Default value: 10 |
-| includeDraftDetails | boolean | Optional | Indicates whether to include details about the draft version if a promotion exists as both a live version and a draft. true includes extra draft info. Default is false |
+| Field               | Type    | Required | Description                                                                                                                                                                                                                                                                       |
+| ------------------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| searchText          | string  | Optional | Specifies a search term to filter promotions by name or description. Use this to quickly find promotions containing specific keywords, like "Holiday Bonus". Supported Values: String. Example: "Holiday Bonus"                                                                   |
+| status              | String  | Optional | Specifies an array of statuses to filter by, allowing retrieval of only promotions in specific states. You can specify multiple values, separated by commas. Supported Values: `DRAFT`, `ACTIVE`, `PAUSED`, `PENDING_APPROVAL`, `LIVE`, `UPCOMING`. Example: `ACTIVE`, `UPCOMING` |
+| page                | integer | Optional | Specifies the page number to retrieve (0-indexed) for pagination. Use 0 for the first page, 1 for the second, etc.                                                                                                                                                                |
+| size                | integer | Optional | Specifies the number of promotions to return per page. Set to 20 to retrieve 20 promotions at a time. Supported Values: Positive integer. Default value: 10                                                                                                                       |
+| includeDraftDetails | boolean | Optional | Indicates whether to include details about the draft version if a promotion exists as both a live version and a draft. true includes extra draft info. Default is false                                                                                                           |
 
 ## Example response
 
@@ -180,7 +178,7 @@ curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%
     "errors": null,
     "warnings": null
 }
-````
+```
 
 ## Response parameters
 
@@ -238,7 +236,7 @@ curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%
 | ...promotionMode                      | String                   | Indicates the mode under which the promotion was created.                                                                                                                                                                                                                                                                                                                                        |
 | ..customerEnrolment                   | Object                   | Defines the customer enrollment rules.                                                                                                                                                                                                                                                                                                                                                           |
 | ...enrolmentMethod                    | String                   | Indicates how customers are enrolled into the promotion.                                                                                                                                                                                                                                                                                                                                         |
-| ...customerEligibilityType            | String                   | Restricts which customers are eligible based on loyalty enrollment status. Values: LOYAL, NON_LOYAL, ALL.                                                                                                                                                                                                                                                                                       |
+| ...customerEligibilityType            | String                   | Restricts which customers are eligible based on loyalty enrollment status. Values: LOYAL, NON\_LOYAL, ALL.                                                                                                                                                                                                                                                                                       |
 | ...audienceGroups                     | Array (Object)           | Defines a list of audience groups for enrollment.                                                                                                                                                                                                                                                                                                                                                |
 | ....audienceGroupId                   | Integer (int64)          | Specifies the unique ID for the audience group.                                                                                                                                                                                                                                                                                                                                                  |
 | ....audienceGroupName                 | String                   | Specifies the name of the audience group.                                                                                                                                                                                                                                                                                                                                                        |
@@ -322,7 +320,7 @@ curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%
 | ...liabilityOwnerType                 | String                   | Indicates the liability owner's type. Possible Values: PARTNER, PROGRAM.                                                                                                                                                                                                                                                                                                                         |
 | ...active                             | Boolean                  | Indicates if the split info is active. Possible Values: true, false.                                                                                                                                                                                                                                                                                                                             |
 | ..workflowMetadata                    | Object                   | Defines workflow metadata for enrolment and opt-in.                                                                                                                                                                                                                                                                                                                                              |
-| ...enrolment                          | Object                   | Defines enrolment workflow details (Enrolment). Possible Values: A valid Enrolment object or empty object \{\}.                                                                                                                                                                                                                                                                                   |
+| ...enrolment                          | Object                   | Defines enrolment workflow details (Enrolment). Possible Values: A valid Enrolment object or empty object \{}.                                                                                                                                                                                                                                                                                   |
 | ....basedOn                           | String                   | Indicates the basis for enrolment. Possible Values: `ACTIVITY`, `AUDIENCE`, `EXTERNAL_TRIGGER`.                                                                                                                                                                                                                                                                                                  |
 | ....activities                        | Array (Object)           | Defines activities triggering enrolment.                                                                                                                                                                                                                                                                                                                                                         |
 | ....audienceMapping                   | Array (Object)           | Defines audience mappings for enrolment.                                                                                                                                                                                                                                                                                                                                                         |
@@ -336,8 +334,8 @@ curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%
 | .....enrolmentLimitPerPromotion       | Object                   | Defines the maximum total number of customer enrolments allowed for the promotion.                                                                                                                                                                                                                                                                                                               |
 | .....enrolmentLimitPerCustomer        | Object                   | Defines the maximum number of times a single customer can enrol in the promotion.                                                                                                                                                                                                                                                                                                                |
 | .....maxPointsPerEarnPerCustomer      | Object                   | Defines the maximum points a customer can earn in a single earning event under this promotion.                                                                                                                                                                                                                                                                                                   |
-| ...optin                              | Object                   | Defines opt-in workflow details (Optin). Possible Values: A valid Optin object or empty object \{\}.                                                                                                                                                                                                                                                                                              |
-| ....basedOn                           | String                   | Indicates the basis for opt-in. Possible Values: ACTIVITY, AUDIENCE, EXTERNAL_TRIGGER.                                                                                                                                                                                                                                                                                                          |
+| ...optin                              | Object                   | Defines opt-in workflow details (Optin). Possible Values: A valid Optin object or empty object \{}.                                                                                                                                                                                                                                                                                              |
+| ....basedOn                           | String                   | Indicates the basis for opt-in. Possible Values: ACTIVITY, AUDIENCE, EXTERNAL\_TRIGGER.                                                                                                                                                                                                                                                                                                          |
 | ....activities                        | Array (Object)           | Defines activities (SingleActivity/GroupActivity) triggering opt-in.                                                                                                                                                                                                                                                                                                                             |
 | ....audienceMapping                   | Array (Object)           | Defines audience mappings.                                                                                                                                                                                                                                                                                                                                                                       |
 | .....groupId                          | Integer (int64)          | Specifies the group ID.                                                                                                                                                                                                                                                                                                                                                                          |
@@ -410,12 +408,11 @@ curl --location 'https://eu.api.capillarytech.com/v3/promotions?searchText=sign%
 | 498        | Token Expired. Your authentication session has expired. Please log in again to refresh your token.                      |
 | 999999     | Generic Validation Error. Check the error metadata for specific details on invalid filter formats (e.g., date formats). |
 
-
 ## Parameters & Headers
 
-<Expandable title="Request Headers">
-  <ParamField header="Authorization" param-type="string" required="false">
-  </ParamField>
-  <ParamField header="Cookie" param-type="string" required="false">
-  </ParamField>
+<Expandable title="Request Headers" default-open="false">
+  <ParamField header="Authorization" param-type="string" required="false" deprecated="false" show-location="true" />
+
+  <ParamField header="Cookie" param-type="string" required="false" deprecated="false" show-location="true" />
 </Expandable>
+
