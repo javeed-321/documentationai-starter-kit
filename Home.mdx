@@ -1,75 +1,195 @@
-
-
 <style>{`
-  /* ── Hide breadcrumb / top filepath on this page ── */
-  nav[aria-label="breadcrumb"],
-  .dai-breadcrumb,
-  [class*="breadcrumb"],
-  [class*="Breadcrumb"],
-  [class*="page-path"],
-  [class*="filePath"],
-  [data-testid="breadcrumb"] {
-    display: none !important;
+  /* ═══════════════════════════════════════════
+     CAP HUB — page-scoped styles
+     Replicates docs.capillarytech.com layout
+  ═══════════════════════════════════════════ */
+
+  /* ─── Hero ─── */
+  .cap-hub-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+    max-width: 680px;
   }
 
-  /* ── Center the navbar content ── */
-  nav[class*="navbar"] > *,
-  header[class*="navbar"] > *,
-  [class*="navbar__inner"],
-  [class*="NavbarContent"],
-  [class*="navbar-inner"] {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    justify-content: center !important;
+  /* ─── Section labels (plain bold text, not <h2>) ─── */
+  .cap-section-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
   }
+
+  /* ══════════════════════════════════════
+     USER DOCS — dark colored cards
+  ══════════════════════════════════════ */
+  .cap-user-docs .dai-card {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 16px !important;
+    min-height: 190px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  }
+  .cap-user-docs .dai-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.28) !important;
+  }
+
+  /* White text inside colored cards */
+  .cap-user-docs .dai-card-title {
+    color: #ffffff !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+  }
+  .cap-user-docs .dai-card-description {
+    color: rgba(255,255,255,0.82) !important;
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+  }
+  .cap-user-docs .dai-card-cta {
+    color: rgba(255,255,255,0.7) !important;
+  }
+
+  /* Icon bubble on colored cards */
+  .cap-user-docs .dai-card-icon {
+    background: rgba(255,255,255,0.22) !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    color: #ffffff !important;
+    margin-bottom: 0.6rem;
+  }
+
+  /* ─── Per-card background colors (covers both flat & wrapped DOM) ─── */
+
+  /* 1 — Loyalty+ : dark olive-gold */
+  .cap-user-docs .dai-card:nth-of-type(1),
+  .cap-user-docs > * > *:nth-child(1) .dai-card,
+  .cap-user-docs > * > *:nth-child(1) > a.dai-card {
+    background: linear-gradient(150deg, #7D6C38 0%, #5C4F28 100%) !important;
+  }
+  /* 2 — Engage+ : dark slate blue */
+  .cap-user-docs .dai-card:nth-of-type(2),
+  .cap-user-docs > * > *:nth-child(2) .dai-card,
+  .cap-user-docs > * > *:nth-child(2) > a.dai-card {
+    background: linear-gradient(150deg, #4B6380 0%, #354A61 100%) !important;
+  }
+  /* 3 — Insights+ : dark forest green */
+  .cap-user-docs .dai-card:nth-of-type(3),
+  .cap-user-docs > * > *:nth-child(3) .dai-card,
+  .cap-user-docs > * > *:nth-child(3) > a.dai-card {
+    background: linear-gradient(150deg, #3F6E52 0%, #2B5038 100%) !important;
+  }
+  /* 4 — Capillary Data Platform : dark mauve-purple */
+  .cap-user-docs .dai-card:nth-of-type(4),
+  .cap-user-docs > * > *:nth-child(4) .dai-card,
+  .cap-user-docs > * > *:nth-child(4) > a.dai-card {
+    background: linear-gradient(150deg, #664B7C 0%, #4C3659 100%) !important;
+  }
+
+  /* ══════════════════════════════════════
+     DEVELOPER DOCS — white cards with colored icons
+  ══════════════════════════════════════ */
+  .cap-dev-docs .dai-card {
+    border: 1px solid var(--card-border) !important;
+    background: var(--card-bg) !important;
+    box-shadow: var(--card-shadow) !important;
+    border-radius: 12px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+  .cap-dev-docs .dai-card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: var(--card-shadow-hover) !important;
+  }
+  .cap-dev-docs .dai-card-title {
+    color: var(--text-primary) !important;
+    font-size: 0.975rem !important;
+    font-weight: 600 !important;
+  }
+  .cap-dev-docs .dai-card-description {
+    color: var(--text-secondary) !important;
+    font-size: 0.85rem !important;
+  }
+  .cap-dev-docs .dai-card-icon {
+    border-radius: 8px !important;
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* Per-card icon accent colors */
+  /* 1 — API Building Blocks : teal */
+  .cap-dev-docs .dai-card:nth-of-type(1) .dai-card-icon,
+  .cap-dev-docs > * > *:nth-child(1) .dai-card-icon {
+    color: #0D9488 !important;
+    background: #F0FDFA !important;
+  }
+  /* 2 — Guides : rose-pink */
+  .cap-dev-docs .dai-card:nth-of-type(2) .dai-card-icon,
+  .cap-dev-docs > * > *:nth-child(2) .dai-card-icon {
+    color: #E11D48 !important;
+    background: #FFF1F2 !important;
+  }
+  /* 3 — V2 API Reference : blue */
+  .cap-dev-docs .dai-card:nth-of-type(3) .dai-card-icon,
+  .cap-dev-docs > * > *:nth-child(3) .dai-card-icon {
+    color: #2563EB !important;
+    background: #EFF6FF !important;
+  }
+  /* 4 — V1.1 API Reference : violet */
+  .cap-dev-docs .dai-card:nth-of-type(4) .dai-card-icon,
+  .cap-dev-docs > * > *:nth-child(4) .dai-card-icon {
+    color: #7C3AED !important;
+    background: #F5F3FF !important;
+  }
+
+  /* dark mode overrides for dev-docs icon backgrounds */
+  .dark .cap-dev-docs .dai-card-icon { background: rgba(255,255,255,0.07) !important; }
 `}</style>
-# Welcome to Capillary Documentation
 
-<p className="cap-hero-sub">
-Everything you need to integrate Capillary's loyalty, engagement, analytics, and data platforms — from your first API call to production.
-</p>
+# Capillary Documentation Hub
 
+<p className="cap-hub-subtitle">Welcome to your Capillary Documentation Hub! You'll find resources for our industry-leading products and solutions.</p>
 
+<p className="cap-section-label">User Documentation</p>
 
-
-<Columns cols="2">
-  <Card title="Loyalty+" href="/loyalty/overview" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214148507-tdsqzu59h7-Gemini_Generated_Image_q3qh9iq3qh9iq3qh.png?fm=auto&auto=compress%2Cformat" cta="Learn More" horizontal="false" target="_self">
-    Design programs, manage points and tiers, configure promotions, and set up reward strategies that drive repeat purchases.
+<div className="cap-user-docs">
+<Columns cols="4">
+  <Card title="Loyalty+" icon="gift" href="/loyalty/overview">
+    Retain customers and repeat sales with personalised loyalty programs
   </Card>
-
-  <Card title="Engage+" href="/engage/overview" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214168929-mpjykceu06e-Gemini_Generated_Image_9zq9hn9zq9hn9zq9.png?fm=auto&auto=compress%2Cformat" cta="Learn More" horizontal="false" target="_self">
-    Build omnichannel campaigns, design customer journeys, and send targeted messages across SMS, email, push, and WhatsApp.
+  <Card title="Engage+" icon="megaphone" href="/engage/overview">
+    Personalise your engagement with omnichannel marketing solutions
   </Card>
-
-  <Card title="Insights+" href="/insights/overview" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214187634-fv75g28iseo-Gemini_Generated_Image_q8k1ewq8k1ewq8k1.png?fm=auto&auto=compress%2Cformat" cta="Learn More" horizontal="false" target="_self">
-    Query fact and dimension tables, build dashboards, and use AI-powered analytics to understand customer behavior at scale.
+  <Card title="Insights+" icon="bar-chart-2" href="/insights/overview">
+    Get actionable insights with AI-powered customer and retail analytics
   </Card>
-
-  <Card title="Data Platform" href="/data-platform/overview" image="https://blob-cdn.documentation.ai/org-852a81c4-9351-4db1-9f23-cefe8e32d308/doc-031af356-8855-43ab-950b-8f736a72c767/1782214201265-xndmnegvflg-Gemini_Generated_Image_nh0vdrnh0vdrnh0v--1-.png?fm=auto&auto=compress%2Cformat" cta="Learn More" horizontal="false" target="_self">
-    Set up event schemas, configure integrations and webhooks, and manage the unified customer data layer powering all products.
+  <Card title="Capillary Data Platform" icon="database" href="/data-platform/overview">
+    Connect and manage data seamlessly across multiple sources.
   </Card>
 </Columns>
+</div>
 
-<h2 className="cap-section-heading">Migration progress</h2>
+<p className="cap-section-label">Developer Documentation</p>
 
-<p className="cap-section-desc">Key documentation areas currently being migrated to the new platform.</p>
-
-
-<Columns cols="2">
-  <Card title="Fact & dimension tables" href="/insights/fact-dimension-tables" icon="layout-grid" horizontal="false" target="_self">
-    Images in correct proportions with cross-references between diagrams and body text.
+<div className="cap-dev-docs">
+<Columns cols="4">
+  <Card title="API Building Blocks" icon="layout-grid" href="/api-reference/overview">
+    Get started with Capillary APIs
   </Card>
-
-  <Card title="Event schema payload" href="/data-platform/event-schema-payload" icon="zap" horizontal="false" target="_self">
-    Restructured for faster page load — streamlined schema sections and navigation.
+  <Card title="Guides" icon="book-open" href="/guides">
+    Know how to integrate and run these APIs
   </Card>
-
-  <Card title="OpenAPI v1.json migration" href="/api-reference/overview" icon="file-json" horizontal="false" target="_self">
-    Full API spec split into separate YAML files per endpoint — zero information loss.
+  <Card title="V2 API Reference" icon="file-code" href="/api-reference/v2">
+    Explore v2 API entities
   </Card>
-
-  <Card title="Loyalty promotions APIs" href="/api-reference/loyalty-promotions" icon="target" horizontal="false" target="_self">
-    All promotion endpoints — YAML definitions and markdown body content preserved.
+  <Card title="V1.1 API Reference" icon="file-text" href="/api-reference/v1">
+    Explore V1.1 API entities
   </Card>
 </Columns>
-
+</div>
