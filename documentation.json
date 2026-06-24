@@ -9,7 +9,10 @@
             "pages": [
               {
                 "title": "check",
-                "path": "check"
+                "path": "check",
+                "openapi": "api-reference/your-api.yaml GET /users",
+                "openapi-mode": "auto",
+                "method": "GET"
               },
               {
                 "title": "badges-fact-table",
@@ -53,7 +56,8 @@
               },
               {
                 "title": "communication-credits-log-fact-table",
-                "path": "docs-svg-output/communication-credits-log-fact-table"
+                "path": "docs-svg-output/communication-credits-log-fact-table",
+                "icon": "activity-icon"
               },
               {
                 "title": "contact-info-fact-table",
