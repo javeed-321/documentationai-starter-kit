@@ -59,7 +59,7 @@
     font-weight: 600 !important;
     font-family: 'Roboto', sans-serif !important;
     font-size: 21px !important;
-    line-height: 1.5 !important;
+    line-height: 1.7 !important;
     margin: 0 0 6px;
     border: none !important;
     border-bottom: none !important;
@@ -82,19 +82,15 @@
     margin: 0 0 0;
   }
 
-  /* ─── Card grid — exact from source ─── */
+  /* ─── Card grid ─── */
   .cap-home .cap-docs-grid {
-    display: flex;
-    flex-flow: wrap row;
-    align-items: baseline;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding-bottom: 40px;
     padding-top: 15px;
   }
   .cap-home .cap-docs-grid > div {
-    flex: 1 calc(25% - 3em);
-    max-width: 25%;
-    min-width: 210px;
     min-height: 215px;
     cursor: pointer;
     transition: box-shadow 0.3s ease;
@@ -177,24 +173,22 @@
     border-radius: 24px;
   }
 
-  /* ─── Dark mode overlay for colored cards ─── */
-  .dark .cap-home .cap-bg-01,
-  .dark .cap-home .cap-bg-02,
-  .dark .cap-home .cap-bg-03,
-  .dark .cap-home .cap-bg-04 {
-    position: relative;
+  /* ─── Dark mode: gradient overlay baked into background, no z-index needed ─── */
+  .dark .cap-home .cap-bg-01 {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/da520d6b-8cb3-4ac3-bdb5-bae859a1.png) center/cover no-repeat;
   }
-  .dark .cap-home .cap-bg-01::before,
-  .dark .cap-home .cap-bg-02::before,
-  .dark .cap-home .cap-bg-03::before,
-  .dark .cap-home .cap-bg-04::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 24px;
-    background: rgba(0,0,0,0.45);
-    pointer-events: none;
-    z-index: 0;
+  .dark .cap-home .cap-bg-02 {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png) center/cover no-repeat;
+  }
+  .dark .cap-home .cap-bg-03 {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png) center/cover no-repeat;
+  }
+  .dark .cap-home .cap-bg-04 {
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+                url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png) center/cover no-repeat;
   }
   .dark .cap-home .cap-bg-01 .cap-card-title,
   .dark .cap-home .cap-bg-02 .cap-card-title,
@@ -211,10 +205,13 @@
 
   /* ─── Tablet: 2 columns ─── */
   @media (max-width: 900px) {
-    .cap-home .cap-docs-grid > div {
-      flex: 1 1 calc(50% - 10px);
-      max-width: calc(50% - 10px);
-      min-width: 0;
+    .dai-article,
+    .dai-content-column {
+      padding-left: 32px !important;
+      padding-right: 32px !important;
+    }
+    .cap-home .cap-docs-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
@@ -226,15 +223,11 @@
       padding-right: 16px !important;
     }
     .cap-home .cap-docs-grid {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: 12px;
       padding-bottom: 24px;
     }
     .cap-home .cap-docs-grid > div {
-      flex: none;
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
       min-height: 150px;
     }
   }
