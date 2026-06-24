@@ -156,6 +156,54 @@
                 "path": "docs-svg-output/slab-change-log-fact-table"
               }
             ]
+          },
+          {
+            "group": "Event Schema Payload",
+            "pages": [
+              {
+                "title": "event-schema-advanced-request-workflows",
+                "path": "event-schema-advanced-request-workflows",
+                "icon": "activity"
+              },
+              {
+                "title": "event-schema-request-updated",
+                "path": "event-schema-request-updated",
+                "icon": "album"
+              },
+              {
+                "title": "event-schema-cards",
+                "path": "event-schema-cards",
+                "icon": "alarm-clock-check"
+              },
+              {
+                "title": "event-schema-incentives",
+                "path": "event-schema-incentives"
+              },
+              {
+                "title": "event-schema-partner-program",
+                "path": "event-schema-partner-program"
+              },
+              {
+                "title": "event-schema-tier",
+                "path": "event-schema-tier"
+              },
+              {
+                "title": "event-schema-loyalty-and-cart-promotions",
+                "path": "event-schema-loyalty-and-cart-promotions"
+              },
+              {
+                "title": "event-schema-loyalty",
+                "path": "event-schema-loyalty"
+              },
+              {
+                "title": "event-schema-rewards",
+                "path": "event-schema-rewards"
+              },
+              {
+                "title": "event-schema-customer",
+                "path": "event-schema-customer"
+              }
+            ]
           }
         ]
       }
