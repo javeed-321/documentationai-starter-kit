@@ -58,7 +58,7 @@
     color: var(--cap-heading);
     font-weight: 600 !important;
     font-family: 'Roboto', sans-serif !important;
-    font-size: 20px;
+    font-size: 21px !important;
     margin: 0 0 6px;
     border: none !important;
     border-bottom: none !important;
@@ -96,8 +96,7 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease;
     box-sizing: border-box;
-      overflow: hidden;        /* ← add this */
-
+    overflow: hidden;
   }
   .cap-home .cap-docs-grid > div:hover {
     box-shadow: 0 4px 4px 3px rgba(0,0,0,0.07);
@@ -151,45 +150,26 @@
 
   /* ─── Colored card backgrounds — exact S3 images ─── */
   .cap-home .cap-bg-01 {
-    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/da520d6b-8cb3-4ac3-bdb5-bae859a1.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/da520d6b-8cb3-4ac3-bdb5-bae859a1.png) center/cover no-repeat;
     border-radius: 24px;
-      background-size: cover;      /* ← was 100% 100% */
   }
-
-
   .cap-home .cap-bg-02 {
-    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png) center/cover no-repeat;
     border-radius: 24px;
-      background-size: cover;      /* ← was 100% 100% */
-
   }
   .cap-home .cap-bg-03 {
-    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png) center/cover no-repeat;
     border-radius: 24px;
-      background-size: cover;      /* ← was 100% 100% */
-
   }
   .cap-home .cap-bg-04 {
-    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png) center/cover no-repeat;
     border-radius: 24px;
-      background-size: cover;      /* ← was 100% 100% */
-
   }
 
   /* ─── Developer docs gray card ─── */
   .cap-home .cap-bg-05 {
     background: var(--cap-bg05);
     border-radius: 24px;
-      background-size: cover;      /* ← was 100% 100% */
-
   }
 
   /* ─── Dark mode overlay for colored cards ─── */
@@ -211,13 +191,6 @@
     pointer-events: none;
     z-index: 0;
   }
-  .dark .cap-home .cap-bg-01 .cap-card-body,
-  .dark .cap-home .cap-bg-02 .cap-card-body,
-  .dark .cap-home .cap-bg-03 .cap-card-body,
-  .dark .cap-home .cap-bg-04 .cap-card-body {
-    position: relative;
-    z-index: 1;
-  }
   .dark .cap-home .cap-bg-01 .cap-card-title,
   .dark .cap-home .cap-bg-02 .cap-card-title,
   .dark .cap-home .cap-bg-03 .cap-card-title,
@@ -231,18 +204,33 @@
     color: rgba(255,255,255,0.85) !important;
   }
 
-  /* ─── Mobile ─── */
-  @media (max-width: 768px) {
-    .cap-home .cap-docs-grid {
-      flex-flow: nowrap column;
-    }
+  /* ─── Tablet: 2 columns ─── */
+  @media (max-width: 900px) {
     .cap-home .cap-docs-grid > div {
-      max-width: 100%;
+      flex: 1 1 calc(50% - 10px);
+      max-width: calc(50% - 10px);
+      min-width: 0;
     }
-     .dai-article,
+  }
+
+  /* ─── Mobile: 1 column ─── */
+  @media (max-width: 540px) {
+    .dai-article,
     .dai-content-column {
       padding-left: 16px !important;
       padding-right: 16px !important;
+    }
+    .cap-home .cap-docs-grid {
+      flex-direction: column;
+      gap: 12px;
+      padding-bottom: 24px;
+    }
+    .cap-home .cap-docs-grid > div {
+      flex: none;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 150px;
     }
   }
 `}</style>
