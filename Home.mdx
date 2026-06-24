@@ -1,167 +1,159 @@
-<style>{`
-  /* ─── Hide the "Home Page" platform page-title ─── */
+<style>{` 
+  /* ─── Hide platform-injected page title ─── */
   .dai-page-header { display: none !important; }
   .page-title { display: none !important; }
 
-  /* ─── Make content full-width, left-aligned ─── */
-  .dai-article,
-  .dai-page,
-  .dai-content-area {
-    max-width: 100% !important;
-  }
-
-  /* ─── Hub wrapper ─── */
-  .cap-hub-wrap {
+  /* ─── Color tokens — exact match from docs.capillarytech.com ─── */
+  .cap-home {
+    --cap-heading:    #434B4F;
+    --cap-subtext:    #747474;
+    --cap-title:      #3B4A61;
+    --cap-content:    #3B4A61;
+    --cap-bg05:       #F7F7F7;
     font-family: 'Roboto', sans-serif;
-    max-width: 1200px;
-    width: 100%;
-    box-sizing: border-box;
+  }
+  .dark .cap-home {
+    --cap-heading:    #D1D8DD;
+    --cap-subtext:    #A0A0A0;
+    --cap-title:      #D6E0F0;
+    --cap-content:    #D6E0F0;
+    --cap-bg05:       #1E2530;
   }
 
-  /* ─── Heading ─── */
-  .cap-hub-title {
-    color: #434B4F;
+  /* ─── Page heading ─── */
+  .cap-home .cap-h2 {
+    color: var(--cap-heading);
     font-weight: 500;
     font-size: 20px;
     margin: 0 0 6px;
-    line-height: 1.3;
     border: none !important;
     border-bottom: none !important;
     padding-bottom: 0 !important;
-  }i
-  .dark .cap-hub-title { color: #D1D8DD; }
-
-  .cap-hub-subtitle {
-    color: #747474;
+  }
+  .cap-home .cap-sub {
+    color: var(--cap-subtext);
     font-size: 14px;
     font-weight: 400;
-    margin: 0 0 24px;
-    line-height: 1.6;
+    margin: 0 0 0;
   }
-  .dark .cap-hub-subtitle { color: #A0A0A0; }
 
   /* ─── Section labels ─── */
-  .cap-section-label {
-    color: #434B4F;
-    font-size: 16px;
+  .cap-home .cap-section-head {
+    color: var(--cap-heading);
     font-weight: 500;
-    margin: 0 0 12px;
-    line-height: 1.4;
+    font-size: 16px;
+    margin: 0 0 0;
   }
-  .dark .cap-section-label { color: #D1D8DD; }
 
-  /* ─── Card grid ─── */
-  .cap-card-grid {
+  /* ─── Card grid — exact from source ─── */
+  .cap-home .cap-docs-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    padding-bottom: 32px;
-    padding-top: 12px;
-    align-items: flex-start;
-    justify-content: flex-start;
+    flex-flow: wrap row;
+    align-items: baseline;
+    gap: 20px;
+    padding-bottom: 40px;
+    padding-top: 15px;
   }
-  .cap-card-grid > a {
-    flex: 1 0 calc(25% - 16px);
-    max-width: calc(25% - 12px);
-    min-width: 190px;
+  .cap-home .cap-docs-grid > div {
+    flex: 1 calc(25% - 3em);
+    max-width: 25%;
+    min-width: 210px;
+    min-height: 215px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    box-sizing: border-box;
+  }
+  .cap-home .cap-docs-grid > div:hover {
+    box-shadow: 0 4px 4px 3px rgba(0,0,0,0.07);
+  }
+
+  /* ─── Card inner padding ─── */
+  .cap-home .cap-card-body {
+    padding: 20px;
+    height: 100%;
     box-sizing: border-box;
   }
 
-  /* ─── Individual card ─── */
-  .cap-card {
-    border-radius: 18px;
-    min-height: 170px;
-    cursor: pointer;
+  /* ─── Card icon ─── */
+  .cap-home .cap-card-icon {
+    max-width: 40px;
     display: block;
+    margin-bottom: 0;
+  }
+
+  /* ─── Card title (h3) ─── */
+  .cap-home .cap-card-title {
+    color: var(--cap-title) !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
     text-decoration: none !important;
-    border: none !important;
-    border-bottom: none !important;
-    box-shadow: none;
-    outline: none;
-    transition: box-shadow 0.3s ease;
-  }
-  .cap-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    text-decoration: none !important;
-  }
-  .cap-card-inner {
-    padding: 15px;
-  }
-  .cap-card-icon {
-    max-width: 32px;
-    margin-bottom: 8px;
-    display: block;
-  }
-  .cap-card-title {
-    color: #3B4A61;
-    font-weight: 600;
-    font-size: 14px;
-    margin: 0 0 4px;
-    line-height: 1.3;
     border: none !important;
     border-bottom: none !important;
     padding-bottom: 0 !important;
-  }
-  .cap-card-desc {
-    color: #3B4A61;
-    font-size: 12px;
-    margin: 0;
-    line-height: 1.5;
+    margin: 8px 0 4px;
   }
 
-  /* ─── Colored card backgrounds (exact S3 images from docs.capillarytech.com) ─── */
-  .cap-bg-01 {
+  /* ─── Card description ─── */
+  .cap-home .cap-card-desc {
+    color: var(--cap-content) !important;
+    font-size: 13px !important;
+    margin: 0 !important;
+    text-decoration: none !important;
+  }
+
+  /* ─── Inner link — no underline, no border ─── */
+  .cap-home .cap-card-link {
+    text-decoration: none !important;
+    border: none !important;
+    display: block;
+  }
+  .cap-home .cap-card-link:hover {
+    text-decoration: none !important;
+  }
+
+  /* ─── Colored card backgrounds — exact S3 images ─── */
+  .cap-home .cap-bg-01 {
     background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/da520d6b-8cb3-4ac3-bdb5-bae859a1.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    border-radius: 24px;
   }
-  .cap-bg-02 {
+  .cap-home .cap-bg-02 {
     background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b432aaf5-5d36-4947-9fa3-06b1140b.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    border-radius: 24px;
   }
-  .cap-bg-03 {
+  .cap-home .cap-bg-03 {
     background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0f637aee-3e50-4713-9f20-1251f84d.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    border-radius: 24px;
   }
-  .cap-bg-04 {
+  .cap-home .cap-bg-04 {
     background: url(https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/b67c4cb9-5cf9-48ff-a2fc-7cf02a50.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    border-radius: 24px;
   }
 
-  /* ─── Developer docs: light-gray card ─── */
-  .cap-bg-05 {
-    background: #F7F7F7;
-  }
-  .dark .cap-bg-05 {
-    background: #1E2530;
-  }
-  .cap-bg-05 .cap-card-title {
-    color: #3B4A61;
-  }
-  .dark .cap-bg-05 .cap-card-title {
-    color: #D6E0F0;
-  }
-  .cap-bg-05 .cap-card-desc {
-    color: #3B4A61;
-  }
-  .dark .cap-bg-05 .cap-card-desc {
-    color: #D6E0F0;
+  /* ─── Developer docs gray card ─── */
+  .cap-home .cap-bg-05 {
+    background: var(--cap-bg05);
+    border-radius: 24px;
   }
 
-  /* ─── Dark mode overlay on image-bg cards ─── */
-  .dark .cap-bg-01,
-  .dark .cap-bg-02,
-  .dark .cap-bg-03,
-  .dark .cap-bg-04 {
+  /* ─── Dark mode overlay for colored cards ─── */
+  .dark .cap-home .cap-bg-01,
+  .dark .cap-home .cap-bg-02,
+  .dark .cap-home .cap-bg-03,
+  .dark .cap-home .cap-bg-04 {
     position: relative;
   }
-  .dark .cap-bg-01::before,
-  .dark .cap-bg-02::before,
-  .dark .cap-bg-03::before,
-  .dark .cap-bg-04::before {
+  .dark .cap-home .cap-bg-01::before,
+  .dark .cap-home .cap-bg-02::before,
+  .dark .cap-home .cap-bg-03::before,
+  .dark .cap-home .cap-bg-04::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -170,106 +162,124 @@
     pointer-events: none;
     z-index: 0;
   }
-  .dark .cap-bg-01 .cap-card-inner,
-  .dark .cap-bg-02 .cap-card-inner,
-  .dark .cap-bg-03 .cap-card-inner,
-  .dark .cap-bg-04 .cap-card-inner {
+  .dark .cap-home .cap-bg-01 .cap-card-body,
+  .dark .cap-home .cap-bg-02 .cap-card-body,
+  .dark .cap-home .cap-bg-03 .cap-card-body,
+  .dark .cap-home .cap-bg-04 .cap-card-body {
     position: relative;
     z-index: 1;
   }
-  .dark .cap-bg-01 .cap-card-title,
-  .dark .cap-bg-02 .cap-card-title,
-  .dark .cap-bg-03 .cap-card-title,
-  .dark .cap-bg-04 .cap-card-title {
-    color: #ffffff;
+  .dark .cap-home .cap-bg-01 .cap-card-title,
+  .dark .cap-home .cap-bg-02 .cap-card-title,
+  .dark .cap-home .cap-bg-03 .cap-card-title,
+  .dark .cap-home .cap-bg-04 .cap-card-title {
+    color: #ffffff !important;
   }
-  .dark .cap-bg-01 .cap-card-desc,
-  .dark .cap-bg-02 .cap-card-desc,
-  .dark .cap-bg-03 .cap-card-desc,
-  .dark .cap-bg-04 .cap-card-desc {
-    color: rgba(255,255,255,0.85);
+  .dark .cap-home .cap-bg-01 .cap-card-desc,
+  .dark .cap-home .cap-bg-02 .cap-card-desc,
+  .dark .cap-home .cap-bg-03 .cap-card-desc,
+  .dark .cap-home .cap-bg-04 .cap-card-desc {
+    color: rgba(255,255,255,0.85) !important;
   }
 
   /* ─── Mobile ─── */
   @media (max-width: 768px) {
-    .cap-card-grid {
-      flex-direction: column;
+    .cap-home .cap-docs-grid {
+      flex-flow: nowrap column;
     }
-    .cap-card-grid > a {
+    .cap-home .cap-docs-grid > div {
       max-width: 100%;
     }
   }
 `}</style>
 
-<div className="cap-hub-wrap">
+<div className="cap-home">
 
-<h2 className="cap-hub-title">Capillary Documentation Hub</h2>
-<p className="cap-hub-subtitle">Welcome to your Capillary Documentation Hub! You'll find resources for our industry-leading products and solutions.</p>
+<h2 className="cap-h2">Capillary Documentation Hub</h2>
+<p className="cap-sub">Welcome to your Capillary Documentation Hub! You'll find resources for our industry-leading products and solutions.</p>
 
-<p className="cap-section-label">User Documentation</p>
+<br />
 
-<div className="cap-card-grid">
-  <a href="/loyalty/overview" className="cap-card cap-bg-01">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/bf2b0e73-415b-4ad5-8447-6a017c50.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">Loyalty+</h3>
-      <p className="cap-card-desc">Retain customers and repeat sales with personalised loyalty programs</p>
+<p className="cap-section-head">User Documentation</p>
+
+<div className="cap-docs-grid">
+  <div className="cap-bg-01">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/loyalty/overview">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/bf2b0e73-415b-4ad5-8447-6a017c50.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">Loyalty+</h3>
+        <p className="cap-card-desc">Retain customers and repeat sales with personalised loyalty programs</p>
+      </a>
     </div>
-  </a>
-  <a href="/engage/overview" className="cap-card cap-bg-02">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/a2a58193-0c27-469a-bf81-b457d261.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">Engage+</h3>
-      <p className="cap-card-desc">Personalise your engagement with omnichannel marketing solutions</p>
+  </div>
+  <div className="cap-bg-02">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/engage/overview">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/a2a58193-0c27-469a-bf81-b457d261.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">Engage+</h3>
+        <p className="cap-card-desc">Personalise your engagement with omnichannel marketing solutions</p>
+      </a>
     </div>
-  </a>
-  <a href="/insights/overview" className="cap-card cap-bg-03">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0b1ca3bf-41e5-4753-ab6a-074657db.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">Insights+</h3>
-      <p className="cap-card-desc">Get actionable insights with AI-powered customer and retail analytics</p>
+  </div>
+  <div className="cap-bg-03">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/insights/overview">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/0b1ca3bf-41e5-4753-ab6a-074657db.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">Insights+</h3>
+        <p className="cap-card-desc">Get actionable insights with AI-powered customer and retail analytics</p>
+      </a>
     </div>
-  </a>
-  <a href="/data-platform/overview" className="cap-card cap-bg-04">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/1ca3ec67-b996-43cc-bfb3-bb34c44c.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">Capillary Data Platform</h3>
-      <p className="cap-card-desc">Connect and manage data seamlessly across multiple sources.</p>
+  </div>
+  <div className="cap-bg-04">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/data-platform/overview">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/1ca3ec67-b996-43cc-bfb3-bb34c44c.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">Capillary Data Platform</h3>
+        <p className="cap-card-desc">Connect and manage data seamlessly across multiple sources.</p>
+      </a>
     </div>
-  </a>
+  </div>
 </div>
 
-<p className="cap-section-label">Developer Documentation</p>
+<p className="cap-section-head">Developer Documentation</p>
 
-<div className="cap-card-grid">
-  <a href="/api-reference/overview" className="cap-card cap-bg-05">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/e0afea44-782a-48c4-9286-29decabf.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">API Building Blocks</h3>
-      <p className="cap-card-desc">Get started with Capillary APIs</p>
+<div className="cap-docs-grid">
+  <div className="cap-bg-05">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/api-reference/overview">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/e0afea44-782a-48c4-9286-29decabf.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">API Building Blocks</h3>
+        <p className="cap-card-desc">Get started with Capillary APIs</p>
+      </a>
     </div>
-  </a>
-  <a href="/guides" className="cap-card cap-bg-05">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/a841ee68-9149-43ad-911e-3f7cf6c5.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">Guides</h3>
-      <p className="cap-card-desc">Know how to integrate and run these APIs</p>
+  </div>
+  <div className="cap-bg-05">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/guides">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/a841ee68-9149-43ad-911e-3f7cf6c5.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">Guides</h3>
+        <p className="cap-card-desc">Know how to integrate and run these APIs</p>
+      </a>
     </div>
-  </a>
-  <a href="/api-reference/v2" className="cap-card cap-bg-05">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/d8ec48f7-fa8c-4a92-8541-a95c4d6c.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">V2 API Reference</h3>
-      <p className="cap-card-desc">Explore v2 API entities</p>
+  </div>
+  <div className="cap-bg-05">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/api-reference/v2">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/d8ec48f7-fa8c-4a92-8541-a95c4d6c.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">V2 API Reference</h3>
+        <p className="cap-card-desc">Explore v2 API entities</p>
+      </a>
     </div>
-  </a>
-  <a href="/api-reference/v1" className="cap-card cap-bg-05">
-    <div className="cap-card-inner">
-      <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/d8ec48f7-fa8c-4a92-8541-a95c4d6c.png" className="cap-card-icon" alt="" />
-      <h3 className="cap-card-title">V1.1 API Reference</h3>
-      <p className="cap-card-desc">Explore V1.1 API entities</p>
+  </div>
+  <div className="cap-bg-05">
+    <div className="cap-card-body">
+      <a className="cap-card-link" href="/api-reference/v1">
+        <img src="https://s3.amazonaws.com/fileservice.in/intouch_creative_assets/d8ec48f7-fa8c-4a92-8541-a95c4d6c.png" className="cap-card-icon" alt="" />
+        <h3 className="cap-card-title">V1.1 API Reference</h3>
+        <p className="cap-card-desc">Explore V1.1 API entities</p>
+      </a>
     </div>
-  </a>
+  </div>
 </div>
 
 </div>
