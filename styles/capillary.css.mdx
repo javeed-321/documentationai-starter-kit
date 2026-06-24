@@ -325,6 +325,38 @@
     border-bottom: none;
   }
 
+  /* ─── Home page: cap-* classes ─── */
+  .cap-hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 680px;
+    margin-bottom: 2.5rem;
+  }
+
+  .cap-section-heading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-top: 3rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .cap-section-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  /* ─── Hide breadcrumb navigation ─── */
+  nav[aria-label="breadcrumb"],
+  .dai-breadcrumb,
+  [class*="breadcrumb"] {
+    display: none !important;
+  }
+
   /* ─── Links ─── */
   a {
     transition: color 0.2s ease;
