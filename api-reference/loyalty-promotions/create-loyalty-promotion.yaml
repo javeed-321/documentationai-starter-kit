@@ -18,26 +18,7 @@ paths:
           description: Session authentication cookie for browser-based or internal access.
           schema:
             type: string
-            example: >-
-              cqd4sJGKWK;
-              intercom-device-id-m6855w1q=2cb436a9-655a-4e88-b754-8c3b11266d15;
-              _ga=GA1.4.2043386039.1756703131; _gid=GA1.2.1414318397.1761018743;
-              _gid=GA1.4.1414318397.1761018743;
-              CS=2e610e15e7dede8cc6e16e9348477878;
-              CTT=oHgB7DgLKOMvSaikcY0nrBuUpZaTM_ySBiefr08CLE_PMA40mLSK4MQW2-xvMD7S;
-              CC=ufUVg-6Vvy3amNDwvuamTCghXIPtLq4wahTyUOz2f5AGiXNbQjjrfkw13Zw6FBe3;
-              CCEXP=1761306963;
-              CT=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6WyIyOTc0NjAiXSwib3JnSUQiOjAsImV4cCI6MTc2MTMwNjk2NCwiaWF0IjoxNzYxMjIwNTcwLCJpc3MiOiJjYXBpbGxhcnl0ZWNoLmNvbSIsImF1ZCI6ImNhcGlsbGFyeSxpbnRvdWNoLGFyeWEscmVvbixhcHBzIiwic291cmNlIjoiV0VCQVBQIiwicmVmZXJlbmNlSUQiOiI1MDc4Njk4MSJ9.rtfXZ_skDcP6m2itm8GLY6DmuAa27nVsDHIzUtmlc2k;
-              userPreferenceSelected=50786981_RCID; OID=51174;
-              intercom-session-m6855w1q=aUtiQVVabkhYTEtPTUlMQ2xKazBZWlE3WkoxOTl5QjZNaCtxRkZGT0ZVQnB2dzQwZUtUV25Jd0FDN3Z1QktxY0RaUnVwRzVkTXBteVVLT1FOSjkwY3REQUo3Mk5mN3hFZW0xeGtIVXZEN2M9LS1uMVVpQXdacWt3a1FsNllnWWRnVzdnPT0=--b5b8d75b79276dbb28d72a814f144a3e02185690;
-              _ga_KL2T5V26LV=GS2.2.s1761286205$o20$g1$t1761286229$j36$l0$h0;
-              fs_uid=#FSV9A#67c5eb74-78ba-4dff-80ee-decd6d52f587:
-              fd6765ac-f998-42ec-b8dd-e462fe9bb0d0: 1761281569807: :
-              8#a77fbed8#/1788501324;
-              AMP_dc8065a65e=JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjIyMjNkMTFiNC05MGVkLTRmNTEtYWFiMi01YTgxZGIzYmIxYTQlMjIlMkMlMjJ1c2VySWQlMjIlM0ElMjJnZW9yZ2Uuam9obnNvbiU0MGNhcGlsbGFyeXRlY2guY29tJTIyJTJDJTIyc2Vzc2lvbklkJTIyJTNBMTc2MTI4OTk0NDc4MSUyQyUyMm9wdE91dCUyMiUzQWZhbHNlJTJDJTIybGFzdEV2ZW50VGltZSUyMiUzQTE3NjEyOTAxOTE3NTQlMkMlMjJsYXN0RXZlbnRJZCUyMiUzQTQ2MjUlMkMlMjJwYWdlQ291bnRlciUyMiUzQTAlN0Q=;
-              _ga_Z68ZS274TW=GS2.2.s1761290249$o97$g1$t1761290256$j53$l0$h0;
-              _ga_DMDM65MHS0=GS2.2.s1761290524$o30$g1$t1761290842$j57$l0$h0;
-              _ga_KL2T5V26LV=GS2.4.s1761294802$o21$g0$t1761294813$j49$l0$h0
+            example: "your-session-cookie-value"
         - name: x-cap-remote-user
           in: header
           required: false
