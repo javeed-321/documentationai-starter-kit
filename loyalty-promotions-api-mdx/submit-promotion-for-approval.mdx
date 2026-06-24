@@ -1,0 +1,320 @@
+---
+title: Update Promotion Status
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Update Promotion Status
+
+Updates the status of a loyalty promotion to manage its lifecycle. Supports submitting a promotion for approval, withdrawing it from review, pausing or resuming an active promotion, and stopping a promotion permanently.
+
+Updates the status of a loyalty promotion to manage its lifecycle. Use this endpoint to submit a promotion for approval, withdraw it from review, pause or resume an active promotion, or stop a promotion permanently.
+
+## Supported transitions
+
+| `existingStatus`   | `promotionStatus`  | Outcome                                                      |
+| :----------------- | :----------------- | :----------------------------------------------------------- |
+| `DRAFT`            | `PENDING_APPROVAL` | Submits the promotion for checker review                     |
+| `PENDING_APPROVAL` | `REVOKE`           | Withdraws the promotion from review, reverting it to `DRAFT` |
+| `ACTIVE`           | `PAUSE`            | Pauses the promotion                                         |
+| `ACTIVE`           | `STOP`             | Stops the promotion permanently                              |
+| `PAUSED`           | `RESUME`           | Resumes the promotion, returning it to `ACTIVE`              |
+| `PAUSED`           | `STOP`             | Stops the promotion permanently                              |
+
+<Callout kind="info" title="Note">
+
+`STOPPED` is a terminal state — no further transitions are possible. To move a promotion from `PENDING_APPROVAL` to `ACTIVE`, use the [Review Loyalty Promotion](https://docs.capillarytech.com/reference/review-loyalty-promotion) endpoint.
+
+</Callout>
+
+## Example requests
+
+```curl Submit for approval (DRAFT → PENDING_APPROVAL)
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=DRAFT' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "PENDING_APPROVAL"
+}'
+````
+```curl Withdraw from review (PENDING_APPROVAL → DRAFT)
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PENDING_APPROVAL' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "REVOKE"
+}'
+````
+```curl Pause a promotion (ACTIVE → PAUSED)
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "PAUSE"
+}'
+````
+```curl Stop a promotion (ACTIVE → STOPPED)
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=ACTIVE' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "STOP"
+}'
+````
+```curl Resume a paused promotion (PAUSED → ACTIVE)
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "RESUME"
+}'
+````
+```curl Stop a paused promotion (PAUSED → STOPPED)
+curl --location --request PUT 'https://eu.api.capillarytech.com/v3/requests/PROMOTION/{promotionId}/status?existingStatus=PAUSED' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <token>' \
+--data '{
+    "promotionStatus": "STOP"
+}'
+````
+
+## Prerequisites
+
+* Authentication: Basic or OAuth authentication.
+* The promotion must exist and be in the status specified by `existingStatus`.
+
+## Path parameters
+
+| Field       | Type   | Required | Description                                                                                   |
+| :---------- | :----- | :------- | :-------------------------------------------------------------------------------------------- |
+| promotionId | string | Yes      | The unique identifier of the promotion to update. Example: `19551632ee4c4107aba369486036f993` |
+
+## Query parameters
+
+| Field          | Type   | Required | Description                                                                                                                                                                           |
+| :------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| existingStatus | string | Yes      | The current status of the promotion. Supported values: `DRAFT`, `PENDING_APPROVAL`, `ACTIVE`, `PAUSED`. The request fails if the promotion's actual status does not match this value. |
+
+## Request body parameters
+
+| Field           | Type   | Required | Description                                                                                                                                                                                                                                                                                                         |
+| :-------------- | :----- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| promotionStatus | string | Yes      | The target status for the promotion. Supported values: `PENDING_APPROVAL` (use with `existingStatus=DRAFT`), `REVOKE` (use with `existingStatus=PENDING_APPROVAL`), `PAUSE` (use with `existingStatus=ACTIVE`), `RESUME` (use with `existingStatus=PAUSED`), `STOP` (use with `existingStatus=ACTIVE` or `PAUSED`). |
+
+## Response
+
+A successful request returns the updated promotion object with `metadata.status` reflecting the new status.
+
+## Error codes
+
+| Error Code | Description                                                                                                                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 310191     | Promotion not found, or the promotion's actual status does not match the value passed in `existingStatus`. Verify the `promotionId` and confirm the promotion is in the expected status. Note: this error returns with HTTP status 200, not 404. |
+| 300009     | `promotionStatus` is required. Include a valid `promotionStatus` value in the request body.                                                                                                                                                      |
+| 300008     | Invalid `promotionStatus` value. Supported values are: `PENDING_APPROVAL`, `REVOKE`, `RESUME`, `PAUSE`, `STOP`.                                                                                                                                  |
+| 400        | Invalid `existingStatus` value. Supported values are: `DRAFT`, `PENDING_APPROVAL`, `ACTIVE`, `PAUSED`.                                                                                                                                           |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Update Promotion Status",
+    "version": "1.0.0",
+    "description": "API specification for PUT /v3/requests/PROMOTION/{promotionId}/status"
+  },
+  "servers": [
+    {
+      "url": "https://{host}"
+    }
+  ],
+  "paths": {
+    "/v3/requests/PROMOTION/{promotionId}/status": {
+      "put": {
+        "summary": "Update Promotion Status",
+        "description": "Updates the status of a loyalty promotion to manage its lifecycle. Supports submitting a promotion for approval, withdrawing it from review, pausing or resuming an active promotion, and stopping a promotion permanently.",
+        "operationId": "submitPromotionForApproval",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Basic or OAuth authentication credentials.",
+            "schema": {
+              "type": "string",
+              "example": "Basic <YOUR_AUTH_TOKEN>"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "in": "path",
+            "name": "promotionId",
+            "required": true,
+            "description": "The unique identifier of the promotion to update.",
+            "schema": {
+              "type": "string",
+              "example": "<PROMOTION_ID>"
+            }
+          },
+          {
+            "in": "query",
+            "name": "existingStatus",
+            "required": true,
+            "description": "The current status of the promotion. The request fails if the promotion's actual status does not match this value.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "DRAFT",
+                "PENDING_APPROVAL",
+                "ACTIVE",
+                "PAUSED"
+              ],
+              "example": "DRAFT"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Promotion status transition details.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "promotionStatus"
+                ],
+                "properties": {
+                  "promotionStatus": {
+                    "type": "string",
+                    "description": "The target status for the promotion. Valid values depend on existingStatus: PENDING_APPROVAL (from DRAFT), REVOKE (from PENDING_APPROVAL), PAUSE (from ACTIVE), STOP (from ACTIVE or PAUSED), RESUME (from PAUSED).",
+                    "enum": [
+                      "PENDING_APPROVAL",
+                      "REVOKE",
+                      "RESUME",
+                      "PAUSE",
+                      "STOP"
+                    ],
+                    "example": "PENDING_APPROVAL"
+                  }
+                }
+              },
+              "examples": {
+                "Submit for approval": {
+                  "summary": "Submit for approval (DRAFT → PENDING_APPROVAL)",
+                  "value": {
+                    "promotionStatus": "PENDING_APPROVAL"
+                  }
+                },
+                "Withdraw from review": {
+                  "summary": "Withdraw from review (PENDING_APPROVAL → DRAFT)",
+                  "value": {
+                    "promotionStatus": "REVOKE"
+                  }
+                },
+                "Pause": {
+                  "summary": "Pause promotion (ACTIVE → PAUSED)",
+                  "value": {
+                    "promotionStatus": "PAUSE"
+                  }
+                },
+                "Stop from active": {
+                  "summary": "Stop promotion (ACTIVE → STOPPED)",
+                  "value": {
+                    "promotionStatus": "STOP"
+                  }
+                },
+                "Resume": {
+                  "summary": "Resume promotion (PAUSED → ACTIVE)",
+                  "value": {
+                    "promotionStatus": "RESUME"
+                  }
+                },
+                "Stop from paused": {
+                  "summary": "Stop promotion (PAUSED → STOPPED)",
+                  "value": {
+                    "promotionStatus": "STOP"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Promotion status updated successfully.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": {
+                    "unifiedPromotionId": "<PROMOTION_ID>",
+                    "metadata": {
+                      "name": "Sample Promotion",
+                      "description": "Sample promotion description",
+                      "programId": "<PROGRAM_ID>",
+                      "orgId": "<ORG_ID>",
+                      "startDate": "2026-08-01T00:00:00Z",
+                      "endDate": "2026-08-31T23:59:59Z",
+                      "promotionType": "GENERIC",
+                      "status": "PENDING_APPROVAL",
+                      "promotionMode": "UNIFIED",
+                      "promoIdentifier": "sample-promo-identifier"
+                    },
+                    "customerEnrolment": {
+                      "enrolmentMethod": "TRANSACTION"
+                    },
+                    "activities": [
+                      {
+                        "type": "SINGLE",
+                        "id": "<ACTIVITY_ID>",
+                        "name": "Activity 1",
+                        "event": "TransactionAdd"
+                      }
+                    ],
+                    "version": 1,
+                    "limits": []
+                  },
+                  "errors": null,
+                  "warnings": null
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object"
+                    },
+                    "errors": {
+                      "type": "object",
+                      "nullable": true
+                    },
+                    "warnings": {
+                      "type": "object",
+                      "nullable": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request. Returned when promotionStatus is missing or invalid, or existingStatus is not a supported value."
+          },
+          "401": {
+            "description": "Unauthorized. Invalid or missing authentication credentials."
+          }
+        }
+      }
+    }
+  }
+}
+```

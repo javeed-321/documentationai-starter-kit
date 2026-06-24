@@ -1,0 +1,351 @@
+---
+title: Get Customer Promotion Details
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Get Customer Promotion Details
+
+Retrieves a consolidated benefits summary for a specific customer in a loyalty promotion, including points earned by category, alternate currencies, and a unified list of all incentive actions such as rewards, coupons, badges, tier upgrades, and enrolment events.
+
+**What this API supports**
+
+* Retrieve all points, alternate currencies, and incentive actions earned by a customer for a specific promotion in a single response.
+* Filter results by promotion activity using the optional `activityId` parameter.
+* Returns a unified `incentives` array covering all action types: rewards, coupons, badges, tier upgrades, enrolment, and opt-in events.
+* Supports promotions created on both the old and new loyalty promotion UI.
+
+**Limits and configuration**
+
+* Returns benefits earned on or after **June 12, 2025** only. Benefits earned before that date are not included.
+* Both `programId` and `promotionId` are required — the API will not return results without them.
+
+<Callout kind="tip" title="Notes">
+
+* For detailed information about our APIs and for hands-on testing, refer to the [API overview](https://docs.capillarytech.com/reference/apioverview) and the [Make your first API call](https://docs.capillarytech.com/reference/make-your-first-api-call) guide.
+* This API only lists benefits earned from a promotion on or after **June 12, 2025**. Benefits earned before that date are not included.
+* This API fetches results for loyalty promotions created on the [old UI](https://docs.capillarytech.com/docs/loyalty-promotions-basic-and-advanced#/) and new UI.
+* To retrieve the same benefits using customer identifiers (mobile number, external ID) instead of a customer ID, use [Get Loyalty Promotion Benefits for Customer](https://docs.capillarytech.com/reference/get-promotion-benefits-for-customer).
+
+</Callout>
+
+## Prerequisites
+
+* Authentication: Basic/OAuth authentication
+* Default access group
+* `programId` and `promotionId`
+
+## Resource information
+
+|               |    |
+| :------------ | :- |
+| Pagination    | No |
+| Batch support | No |
+
+## Example request
+
+<CodeGroup tabs="cURL,Code,Customer with benefits,No benefits found">
+
+```json
+curl -X GET "https://{host}/v3/customers/388597285/customerPromotionDetails/actionSummary?programId=3334&promotionId=1133600978" \
+  -H "Authorization: Basic dGlsbGhnXXXXXXXX"
+
+GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary
+└─ Response
+    ├─ orgId (number)
+    ├─ programId (number)
+    ├─ entityId (number)
+    ├─ promotionId (number)
+    ├─ incentives []
+    │   ├─ activityId (string)
+    │   ├─ action (string)
+    │   ├─ actionId (string)
+    │   ├─ actionIssuedCount (number)
+    │   └─ lastIssuedOn (number)
+    ├─ points []
+    │   ├─ pointsCategory (string)
+    │   ├─ totalPointsIssued (string)
+    │   ├─ numberOfTimesIssued (number)
+    │   └─ lastIssuedOn (number)
+    ├─ alternateCurrencies []
+    │   ├─ currencyName (string)
+    │   ├─ totalCurrencyIssued (string)
+    │   ├─ numberOfTimesIssued (number)
+    │   └─ lastIssuedOn (number)
+    └─ warnings [] (string)
+````
+
+```bash
+{
+    "orgId": 51948,
+    "programId": 3334,
+    "entityId": 388597285,
+    "promotionId": 1133600978,
+    "incentives": [
+        {
+            "activityId": "activity_reward_1",
+            "action": "REWARD",
+            "actionIssuedCount": 1,
+            "actionId": "133423",
+            "lastIssuedOn": 1734533309000
+        },
+        {
+            "activityId": "activity_badge_1",
+            "action": "BADGES",
+            "actionIssuedCount": 1,
+            "actionId": "SomeBadgeId",
+            "lastIssuedOn": 1734533309000
+        },
+        {
+            "activityId": "activity_coupon_1",
+            "action": "COUPONS",
+            "actionIssuedCount": 1,
+            "actionId": "5231232",
+            "lastIssuedOn": 1734533309000
+        }
+    ],
+    "points": [
+        {
+            "pointsCategory": "REGULAR_POINTS",
+            "totalPointsIssued": "1234.000",
+            "numberOfTimesIssued": 1,
+            "lastIssuedOn": 1734533309000
+        }
+    ],
+    "alternateCurrencies": [
+        {
+            "currencyName": "some_ac",
+            "totalCurrencyIssued": "1234.000",
+            "numberOfTimesIssued": 1,
+            "lastIssuedOn": 1734533309000
+        }
+    ],
+    "warnings": []
+}
+````
+
+```json
+{
+    "data": {
+        "orgId": 51948,
+        "programId": 3334,
+        "entityId": 388597285,
+        "promotionId": 1133600978,
+        "incentives": [],
+        "warnings": [
+            {
+                "status": false,
+                "code": 8116,
+                "message": "No promotion action summary found for the given promotionId"
+            }
+        ]
+    },
+    "errors": null,
+    "warnings": null
+}
+````
+
+</CodeGroup>
+## Response parameters
+
+| Field                  | Type    | Description                                                                                                                                                                         |
+| :--------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `orgId`                | Integer | Unique identifier of the organisation.                                                                                                                                              |
+| `programId`            | Integer | Unique identifier of the loyalty program.                                                                                                                                           |
+| `entityId`             | Long    | Unique identifier of the customer.                                                                                                                                                  |
+| `promotionId`          | Long    | Unique identifier of the loyalty promotion.                                                                                                                                         |
+| `incentives`           | Array   | Unified list of all non-points incentive actions earned by the customer for this promotion, including rewards, coupons, badges, tier upgrades, enrolment events, and opt-in events. |
+| `.activityId`          | String  | Identifier of the promotion activity that triggered this incentive. Null when the incentive is not associated with a specific activity.                                             |
+| `.action`              | String  | Type of incentive action. Supported values: `REWARD`, `COUPONS`, `BADGES`, `ENROL`, `OPTIN`, `UPGRADE_TIER`. Case-sensitive.                                                        |
+| `.actionId`            | String  | Identifier of the specific benefit issued, for example a reward ID, badge ID, coupon series ID, or issual ID.                                                                       |
+| `.actionIssuedCount`   | Long    | Number of times this incentive action was issued for this promotion.                                                                                                                |
+| `.lastIssuedOn`        | Long    | UTC timestamp of the most recent issuance, in milliseconds since epoch.                                                                                                             |
+| `points`               | Array   | List of points earned by the customer for this promotion, grouped by category.                                                                                                      |
+| `.pointsCategory`      | String  | Category of the points earned. Supported values: `REGULAR_POINTS`, `BONUS_POINTS`.                                                                                                  |
+| `.totalPointsIssued`   | String  | Total points issued across all events for this category.                                                                                                                            |
+| `.numberOfTimesIssued` | Long    | Number of events that contributed points in this category.                                                                                                                          |
+| `.lastIssuedOn`        | Long    | UTC timestamp of the most recent points issuance in this category, in milliseconds since epoch.                                                                                     |
+| `alternateCurrencies`  | Array   | List of alternate currencies earned by the customer for this promotion, aggregated by currency name.                                                                                |
+| `.currencyName`        | String  | Name of the alternate currency, for example `STARS` or `COINS`.                                                                                                                     |
+| `.totalCurrencyIssued` | String  | Total alternate currency units issued for this promotion.                                                                                                                           |
+| `.numberOfTimesIssued` | Long    | Number of issuance events for this currency.                                                                                                                                        |
+| `.lastIssuedOn`        | Long    | UTC timestamp of the most recent alternate currency issuance, in milliseconds since epoch.                                                                                          |
+| `warnings`             | Array   | List of warning messages associated with the response. Empty when no warnings are present.                                                                                          |
+
+## Error and warning codes
+
+| Code | Type    | Description                                                                                                          |
+| :--- | :------ | :------------------------------------------------------------------------------------------------------------------- |
+| 400  | Error   | Required query parameter `programId` or `promotionId` is missing.                                                    |
+| 9002 | Error   | Customer not found. Check that the `customerId` is valid.                                                            |
+| 9001 | Error   | Program not found. Check that the `programId` is valid and belongs to your organisation.                             |
+| 3013 | Error   | Promotion not found. Check the `promotionId` and confirm the promotion exists for the loyalty program.               |
+| 500  | Error   | Internal server error. Retry the request after a short delay.                                                        |
+| 8116 | Warning | No promotion action summary found for the given promotion. The customer has no recorded benefits for this promotion. |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Get Customer Promotion Details",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://{Host}",
+      "variables": {
+        "Host": {
+          "enum": [
+            "eu.intouch.capillarytech.com",
+            "intouch.capillary.co.in",
+            "apac2.intouch.capillarytech.com",
+            "sgcrm.cc.capillarytech.com",
+            "intouch.capillarytech.cn.com",
+            "north-america.intouch.capillarytech.com"
+          ],
+          "default": "eu.intouch.capillarytech.com"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/v3/customers/{customerId}/customerPromotionDetails/actionSummary": {
+      "get": {
+        "tags": [
+          "Promotions"
+        ],
+        "summary": "Get Customer Promotion Details",
+        "operationId": "getCustomerPromotionDetailsV3",
+        "parameters": [
+          {
+            "name": "customerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 388597285
+          },
+          {
+            "name": "programId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 3334
+          },
+          {
+            "name": "promotionId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1133600978
+          },
+          {
+            "name": "activityId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "activity_badge_1"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic dGlsbGhnXXXXXXXX"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "example": {
+                  "orgId": 51948,
+                  "programId": 3334,
+                  "entityId": 388597285,
+                  "promotionId": 1133600978,
+                  "incentives": [
+                    {
+                      "activityId": "activity_reward_1",
+                      "action": "REWARD",
+                      "actionIssuedCount": 1,
+                      "actionId": "133423",
+                      "lastIssuedOn": 1734533309000
+                    },
+                    {
+                      "activityId": "activity_badge_1",
+                      "action": "BADGES",
+                      "actionIssuedCount": 1,
+                      "actionId": "SomeBadgeId",
+                      "lastIssuedOn": 1734533309000
+                    },
+                    {
+                      "activityId": "activity_coupon_1",
+                      "action": "COUPONS",
+                      "actionIssuedCount": 1,
+                      "actionId": "5231232",
+                      "lastIssuedOn": 1734533309000
+                    }
+                  ],
+                  "points": [
+                    {
+                      "pointsCategory": "REGULAR_POINTS",
+                      "totalPointsIssued": "1234.000",
+                      "numberOfTimesIssued": 1,
+                      "lastIssuedOn": 1734533309000
+                    }
+                  ],
+                  "alternateCurrencies": [
+                    {
+                      "currencyName": "some_ac",
+                      "totalCurrencyIssued": "1234.000",
+                      "numberOfTimesIssued": 1,
+                      "lastIssuedOn": 1734533309000
+                    }
+                  ],
+                  "warnings": []
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Promotions",
+      "description": "Operations related to customer promotions"
+    }
+  ]
+}
+````

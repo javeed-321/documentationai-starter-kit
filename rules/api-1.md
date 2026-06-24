@@ -1,0 +1,497 @@
+## Overview
+
+Import OpenAPI 3.0+ specifications to automatically generate comprehensive API documentation. Documentation.AI parses your OpenAPI files and creates individual MDX pages for each endpoint with interactive request/response examples.
+
+Use OpenAPI import when you have:
+
+- Existing OpenAPI specifications (JSON or YAML format)
+
+- APIs with multiple endpoints requiring documentation
+
+- Need for automatically generated parameter documentation
+
+- Requirements for interactive API testing capabilities
+
+<Callout kind="alert" collapsed="false">
+  Only OpenAPI 3.0+ specs are supported. Upgrade any OpenAPI 2.0/Swagger files before importing.
+</Callout>
+
+## Basic Setup
+
+### Step 1: Add OpenAPI File
+
+Place your OpenAPI specification file in the `api-reference` folder within your documentation project:
+
+<Callout kind="info" collapsed="false">
+  All OpenAPI specification files must be placed in the `api-reference` folder. When you add OpenAPI specs via the dashboard (Editor > OpenAPI Specs tab or Navigation section), this folder structure is created automatically.
+</Callout>
+
+```
+your-docs/
+├── api-reference/
+│   └── openapi.yaml    # Your OpenAPI spec
+├── documentation.json
+└── other-docs.mdx
+```
+
+### Step 2: Configure in documentation.json
+
+Add the `openapi` property to a group in your `documentation.json`:
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "API Reference",
+        "icon": "code",
+        "openapi": "api-reference/openapi.yaml",
+        "pages": [
+          {
+            "title": "Authentication",
+            "path": "api-reference/authentication"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Group-level OpenAPI Properties:**
+
+<ParamField path="openapi" param-type="string" required="true" deprecated="false">
+  Relative path to your OpenAPI specification file in the `api-reference` folder. Supports `.json`, `.yaml`, and `.yml` formats.
+</ParamField>
+
+<ParamField path="hidden-apis" param-type="array" required="false" deprecated="false">
+  Array of endpoint identifiers to exclude from automatic generation. Each entry must use the exact format `"METHOD /path"` (e.g., `"DELETE /users/{id}"`). The method must be uppercase.
+</ParamField>
+
+### Hiding Specific Endpoints
+
+Use `hidden-apis` to exclude specific endpoints from automatic generation:
+
+```json
+{
+  "group": "Users API",
+  "openapi": "api-reference/openapi.yaml",
+  "hidden-apis": [
+    "DELETE /users/{id}",
+    "GET /internal/health"
+  ],
+  "pages": []
+}
+```
+
+<Callout kind="info" collapsed="false">
+  The `hidden-apis` format must match exactly: uppercase HTTP method, single space, then the path as defined in your OpenAPI spec. For example, `"GET /users/{id}"` is valid, but `"get /users/{id}"` or `"GET/users/{id}"` will not work.
+</Callout>
+
+## OpenAPI Configuration
+
+### Supported File Formats
+
+Documentation.AI accepts OpenAPI specifications in multiple formats:
+
+<CodeGroup show-lines="true" tabs={[]}>
+  ```yaml
+  openapi: 3.0.3
+  info:
+    title: Your API
+    version: 1.0.0
+  paths:
+    /users:
+      get:
+        summary: List users
+        responses:
+          '200':
+            description: Success
+  ```
+
+  ```json
+  {
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Your API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/users": {
+        "get": {
+          "summary": "List users",
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      }
+    }
+  }
+  ```
+</CodeGroup>
+
+### File Organization
+
+Structure your OpenAPI files within the `api-reference` folder:
+
+```
+docs/
+├── api-reference/
+│   ├── openapi.yaml           # Main API specification
+│   ├── v1/
+│   │   └── legacy-api.json    # Version-specific specs
+│   └── schemas/
+│       └── components.yaml    # Shared components
+├── documentation.json
+└── getting-started.mdx
+```
+
+## Generated Documentation
+
+### Automatic Page Creation
+
+Documentation.AI automatically generates MDX files for each endpoint:
+
+- **Path-based naming**: `/users/{id}` becomes `users-id.mdx`
+
+- **Method inclusion**: Separate pages for each HTTP method
+
+- **Parameter documentation**: Automatic `ParamField` generation
+
+- **Response examples**: Interactive response samples
+
+### Generated File Structure
+
+For an endpoint `GET /users/{id}`, Documentation.AI creates:
+
+````mdx
+---
+title: Get User by ID
+method: GET
+path: /users/{id}
+---
+
+# Get User by ID
+
+Retrieve detailed information for a specific user.
+
+<ParamField path="id" param-type="string" required="true">
+  Unique identifier for the user.
+</ParamField>
+
+<Request>
+```javascript
+const response = await fetch('/api/users/123', {
+  headers: { 'Authorization': 'Bearer TOKEN' }
+});
+```
+</Request>
+
+<Response>
+```json
+{
+  "id": "123",
+  "name": "John Doe", 
+  "email": "john@example.com"
+}
+```
+</Response>
+
+**Response Fields:**
+
+<ResponseField name="id" field-type="string" required="true">
+  Unique identifier for the user.
+</ResponseField>
+
+<ResponseField name="name" field-type="string" required="true">
+  Full name of the user.
+</ResponseField>
+
+<ResponseField name="email" field-type="string" required="true">
+  Email address of the user.
+</ResponseField>
+````
+
+## Advanced Configuration
+
+### Nested OpenAPI Specifications
+
+Use multiple OpenAPI files for different API sections:
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Core API",
+        "openapi": "api-reference/core.yaml",
+        "pages": [
+          {
+            "group": "User Management",
+            "openapi": "api-reference/users.yaml",
+            "pages": [
+              {
+                "title": "User Overview",
+                "path": "api-reference/users/overview"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Mixed Content Pages
+
+Combine generated API documentation with custom content:
+
+```json
+{
+  "group": "API Reference",
+  "openapi": "api-reference/openapi.yaml",
+  "pages": [
+    {
+      "title": "Getting Started",
+      "path": "api-reference/getting-started"
+    },
+    {
+      "title": "Authentication Guide", 
+      "path": "api-reference/authentication"
+    }
+  ]
+}
+```
+
+## Page-level OpenAPI Connection
+
+For more control over individual endpoint documentation, connect a specific OpenAPI endpoint to a custom MDX page. This injects OpenAPI-generated content (playground, request examples, responses) into your page while preserving your custom content.
+
+### Basic Page Connection
+
+Add the `openapi` property to a page with the format `"filepath METHOD /endpoint"`:
+
+```json
+{
+  "group": "Custom API Docs",
+  "pages": [
+    {
+      "title": "Get User Details",
+      "path": "api-reference/users/get-user",
+      "openapi": "api-reference/openapi.yaml GET /users/{id}"
+    }
+  ]
+}
+```
+
+**Page-level OpenAPI Properties:**
+
+<ParamField path="openapi" param-type="string" required="false" deprecated="false">
+  Connects a specific OpenAPI endpoint to this page. Format: `"filepath METHOD /endpoint"` (e.g., `"api-reference/openapi.yaml GET /users/{id}"`). The method must be uppercase.
+</ParamField>
+
+<ParamField path="openapi-mode" param-type="string" required="false" deprecated="false">
+  Controls how much content is injected into your page. Values: `"auto"` (default) injects full documentation including parameters and descriptions. `"custom"` injects only the playground component, request examples, and response examples.
+</ParamField>
+
+### Auto Mode vs Custom Mode
+
+**Auto mode** (default) injects comprehensive documentation:
+
+- Parameter documentation
+- Endpoint description
+- Request code examples
+- Response examples
+- Interactive playground
+
+**Custom mode** injects minimal content, preserving your custom structure:
+
+- Interactive playground
+- Request code examples
+- Response examples
+
+```json
+{
+  "title": "Create User",
+  "path": "api-reference/users/create-user",
+  "openapi": "api-reference/openapi.yaml POST /users",
+  "openapi-mode": "custom"
+}
+```
+
+<Callout kind="tip" collapsed="false">
+  Use `"openapi-mode": "custom"` when you want to write your own parameter descriptions, add custom sections, or structure the page differently than the auto-generated format.
+</Callout>
+
+### Combining Group and Page Connections
+
+Hide an endpoint from automatic generation and create a custom page for it:
+
+```json
+{
+  "navigation": {
+    "groups": [
+      {
+        "group": "Auto Generated API",
+        "openapi": "api-reference/openapi.yaml",
+        "hidden-apis": ["GET /health"],
+        "pages": []
+      },
+      {
+        "group": "Custom Documentation",
+        "pages": [
+          {
+            "title": "Health Check Guide",
+            "path": "api-reference/health-check",
+            "openapi": "api-reference/openapi.yaml GET /health",
+            "openapi-mode": "custom"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## OpenAPI Features Support
+
+### Authentication Schemes
+
+Documentation.AI supports all OpenAPI 3.0 security schemes:
+
+<ParamField path="apiKey" param-type="object" required="false" deprecated="false">
+  API key authentication in headers, query, or cookies.
+</ParamField>
+
+<ParamField path="http" param-type="object" required="false" deprecated="false">
+  HTTP authentication including Basic and Bearer token schemes.
+</ParamField>
+
+<ParamField path="oauth2" param-type="object" required="false" deprecated="false">
+  OAuth 2.0 flows with automatic authorization URL generation.
+</ParamField>
+
+<ParamField path="openIdConnect" param-type="object" required="false" deprecated="false">
+  OpenID Connect discovery with automatic configuration.
+</ParamField>
+
+### Parameter Types
+
+All OpenAPI parameter types generate appropriate `ParamField` components:
+
+- **Path parameters**: `<ParamField path="...">` with location badges
+
+- **Query parameters**: `<ParamField query="...">` with validation
+
+- **Headers**: `<ParamField header="...">` with optional indicators
+
+- **Request body**: `<ParamField body="...">` with schema validation
+
+### Response Documentation
+
+Multiple response formats automatically generate tabbed examples:
+
+- **Status codes**: Separate tabs for 200, 400, 500 responses
+
+- **Content types**: JSON, XML, plain text examples
+
+- **Error responses**: Detailed error schema documentation
+
+## Common Patterns
+
+### API Versioning
+
+Organize versioned APIs using separate OpenAPI files:
+
+```json
+{
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.0",
+        "groups": [
+          {
+            "group": "API Reference",
+            "openapi": "api-reference/v2/openapi.yaml"
+          }
+        ]
+      },
+      {
+        "version": "v1.0", 
+        "groups": [
+          {
+            "group": "Legacy API",
+            "openapi": "api-reference/v1/openapi.json"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Multi-Service APIs
+
+Document microservices with separate OpenAPI specifications:
+
+```json
+{
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "User Service",
+        "groups": [
+          {
+            "group": "Users API",
+            "openapi": "api-reference/users-service.yaml"
+          }
+        ]
+      },
+      {
+        "tab": "Payment Service",
+        "groups": [
+          {
+            "group": "Payments API", 
+            "openapi": "api-reference/payments-service.yaml"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Import Issues
+
+<Callout kind="note" collapsed="false">
+  **Invalid OpenAPI Format**: Ensure your specification follows OpenAPI 3.0+ standards. Use tools like Swagger Editor to validate your spec before importing.
+</Callout>
+
+<Callout kind="note" collapsed="false">
+  **Missing Endpoints**: If endpoints don't appear, verify that all paths have valid `operationId` values and at least one response defined.
+</Callout>
+
+### File Path Resolution
+
+- Use relative paths from your documentation root
+
+- Ensure OpenAPI files are committed to your repository
+
+- Verify file extensions match the content format (.yaml for YAML, .json for JSON)
+
+### Validation Requirements
+
+Your OpenAPI specification must include:
+
+- Valid `openapi` version (3.0.0 or higher)
+
+- `info` object with title and version
+
+- At least one path with one operation
+
+- Response definitions for all operations

@@ -1,0 +1,910 @@
+---
+title: Revoke a Loyalty Promotion
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Revoke a Loyalty Promotion
+
+Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion.
+
+Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion. Use this API to remove a customer from a promotion when they should no longer participate or receive benefits.
+
+**What this API supports**
+
+* Revoke a customer's enrollment (`REVOKE_ENROLL`) from a promotion.
+* Revoke a customer's opt-in (`REVOKE_OPTIN`) from a promotion that supports opt-in.
+* Automatically cascade the linked opt-in revoke when revoking an enrollment on a promotion that supports both enrollment and opt-in — both `revokedEnrollmentIds` and `revokedOptInIds` are populated in the response.
+* Target specific enrollment or opt-in IDs, or use the `revokeAllEnrollments` / `revokeAllOptIns` query parameters to revoke all active records in a single call.
+* Retroactively timestamp a revoke by supplying `optOutDate`.
+* Attribute the revoke to a source system and actor using `sourceDetails`.
+
+**Limits and configuration**
+
+* Accepts exactly **1 customer per call** in the current release. Multi-customer batching is planned for a future release.
+* A maximum of **10 `enrollmentIds` or `optInIds`** can be supplied per customer entry.
+* Revoke is not allowed on promotions in the `STOPPED` state. `LIVE`, `UPCOMING`, `PAUSED`, and `ENDED` promotions are all supported.
+* Revoke does **not** un-enroll the customer from any associated target groups, milestones, or streaks. Call `POST /v3/targetGroups/{tgId}/targets/{targetId}/unEnroll` separately if required.
+
+***
+
+### Example request
+
+<CodeGroup tabs="REVOKE_ENROLL,REVOKE_OPTIN">
+
+```bash
+curl -X POST "https://{host}/v3/promotions/revoke" \
+  -H "Authorization: Basic {token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "requestId": "revoke-enroll-20260512-001",
+    "action": "REVOKE_ENROLL",
+    "programId": 3390,
+    "promotion": {
+      "promotionId": 1133617579
+    },
+    "customers": [
+      {
+        "identifierName": "id",
+        "identifierValue": "388995213",
+        "enrollmentIds": [227111]
+      }
+    ]
+  }'
+````
+
+```json
+curl -X POST "https://{host}/v3/promotions/revoke" \
+  -H "Authorization: Basic {token}" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "requestId": "revoke-optin-20260512-001",
+    "action": "REVOKE_OPTIN",
+    "programId": 3390,
+    "promotion": {
+      "promotionId": 1133617581
+    },
+    "customers": [
+      {
+        "identifierName": "id",
+        "identifierValue": "388995216",
+        "optInIds": [188472]
+      }
+    ]
+  }'
+````
+
+</CodeGroup>
+***
+
+### Prerequisites
+
+* Authentication: Basic or OAuth authentication.
+* Default access group.
+* The customer must already be enrolled or opted in to the promotion.
+
+### Header information
+
+| Header                     | Required | Description                                                                                                                                                                                                                                                                                                       |
+| :------------------------- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `X-CAP-API-AUTH-ENTITY-ID` | Optional | Numeric till ID to attribute the revoke to a specific till. Use this header when authenticating via OAuth and you want to specify the till by its numeric ID rather than its code. Must be used alongside `X-CAP-API-ATTRIBUTION-TILL-CODE`. If omitted, attribution falls back to the authenticated user's till. |
+
+### Query parameters
+
+| Field                  | Type    | Required | Description                                                                                                                                                                                                                                                                                                                   |
+| :--------------------- | :------ | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `revokeAllEnrollments` | Boolean | Optional | When `true`, revokes all active enrollments for the customer on the specified promotion. Only valid with `action=REVOKE_ENROLL`. Cannot be used together with `revokeAllOptIns=true`. If `enrollmentIds` are also provided in the request body, they are ignored and a per-customer warning is returned. Defaults to `false`. |
+| `revokeAllOptIns`      | Boolean | Optional | When `true`, revokes all active opt-ins for the customer on the specified promotion. Only valid with `action=REVOKE_OPTIN`. Cannot be used together with `revokeAllEnrollments=true`. If `optInIds` are also provided, they are ignored with the same warning. Defaults to `false`.                                           |
+
+### Body parameters
+
+| Field                  | Type          | Required    | Description                                                                                                                                                                                                           |
+| :--------------------- | :------------ | :---------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `requestId`            | String        | Optional    | A plain string reference identifier for this revoke request. Each `requestId` must be unique per org — duplicate values are rejected. Max 50 characters.                                                              |
+| `action`               | String        | Yes         | The revoke action to perform. Supported values: `REVOKE_ENROLL`, `REVOKE_OPTIN`. Case-sensitive.                                                                                                                      |
+| `programId`            | Long          | Yes         | Unique identifier of the loyalty program.                                                                                                                                                                             |
+| `promotion`            | Object        | Yes         | Identifies the promotion to revoke from. Provide exactly one of `promotionId` or `promotionIdentifier`.                                                                                                               |
+| `.promotionId`         | Long          | Conditional | Numeric identifier of the promotion. Required if `promotionIdentifier` is not provided.                                                                                                                               |
+| `.promotionIdentifier` | String        | Conditional | UUID string identifier of the promotion. Required if `promotionId` is not provided.                                                                                                                                   |
+| `customers`            | Array         | Yes         | List of customers to revoke. Exactly 1 entry is supported in the current release.                                                                                                                                     |
+| `.identifierName`      | String        | Yes         | Customer identifier type. Supported values: `id`, `mobile`, `email`, `externalId`.                                                                                                                                    |
+| `.identifierValue`     | String        | Yes         | Value for the customer identifier.                                                                                                                                                                                    |
+| `.source`              | String        | Optional    | Source of the customer's registration. Supported values: `FACEBOOK`, `WEB_ENGAGE`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`. Defaults to `INSTORE`.                      |
+| `.enrollmentIds`       | Array of Long | Conditional | Enrollment IDs to revoke. Required for `REVOKE_ENROLL` unless `revokeAllEnrollments=true`. Max 10. Cannot be used with `REVOKE_OPTIN`.                                                                                |
+| `.optInIds`            | Array of Long | Conditional | Opt-in IDs to revoke. Required for `REVOKE_OPTIN` unless `revokeAllOptIns=true`. Max 10. Cannot be used with `REVOKE_ENROLL`.                                                                                         |
+| `optOutDate`           | String        | Optional    | ISO-8601 timestamp to retroactively stamp as the revoke date. Must not be in the future. Example: `"2026-04-25T00:59:35+05:30"`.                                                                                      |
+| `storeUnitId`          | Long          | Optional    | Till ID to stamp on the EMF event log for the revoke and any cascade. Falls back to the authenticated user's till when omitted.                                                                                       |
+| `sourceDetails`        | Object        | Optional    | Custom information you can add for audit logging. Use this to record who triggered the revoke, from which system, and why.                                                                                            |
+| `.source`              | String        | Optional    | The platform or system initiating the revoke (e.g., `CRM`, `ServiceDesk`, `BackofficeAdmin`). Supports alphanumeric characters, spaces, and special characters. Max 50 characters.                                    |
+| `.sourceId`            | String        | Optional    | A reference ID from your system that links this revoke to a specific workflow, support ticket, or batch job (e.g., `SUPP-4821`). Supports alphanumeric characters, spaces, and special characters. Max 50 characters. |
+| `.sourceActivity`      | String        | Optional    | The business action that triggered the revoke (e.g., `Customer request`, `Fraud investigation`, `Tier downgrade`). Supports alphanumeric characters, spaces, and special characters. Max 50 characters.               |
+| `.sourceMetadata`      | Object        | Optional    | Free-form JSON for additional audit context. Supported keys: `revokedBy`, `reason`, `notes`, and `eventIdentifier`.                                                                                                   |
+| `..revokedBy`          | Long          | Optional    | ID of the admin user performing the revoke. Obtain this from `admin_users.id`.                                                                                                                                        |
+| `..reason`             | String        | Optional    | Business justification for the revoke (e.g., `Fraud investigation`, `Customer request`). Max 250 characters.                                                                                                          |
+| `..notes`              | String        | Optional    | Any additional context about the revoke (e.g., `Approved by store manager on 2026-05-12`). Max 250 characters.                                                                                                        |
+| `..eventIdentifier`    | String        | Optional    | A reference to the event or trigger that caused the revoke (e.g., a rule ID, journey block ID, or campaign ID). Max 50 characters.                                                                                    |
+
+***
+
+### API Quick Reference
+
+<CodeGroup tabs="Code,REVOKE_ENROLL success,REVOKE_ENROLL with opt-in,Per-customer failure (no active enrollment)">
+
+```
+POST /v3/promotions/revoke
+   ├─ Request
+   │   ├─ requestId (string)
+   │   ├─ action (string)
+   │   ├─ programId (number)
+   │   ├─ promotion
+   │   │   ├─ promotionId (number)
+   │   │   └─ promotionIdentifier (string)
+   │   ├─ customers []
+   │   │   ├─ identifierName (string)
+   │   │   ├─ identifierValue (string)
+   │   │   ├─ source (string)
+   │   │   ├─ enrollmentIds [] (number)
+   │   │   └─ optInIds [] (number)
+   │   ├─ optOutDate (string)
+   │   ├─ storeUnitId (number)
+   │   └─ sourceDetails
+   │       ├─ source (string)
+   │       ├─ sourceId (string)
+   │       ├─ sourceActivity (string)
+   │       └─ sourceMetadata
+   │           ├─ revokedBy (number)
+   │           ├─ reason (string)
+   │           └─ notes (string)
+   └─ Response
+       ├─ data
+       │   ├─ requestId (string)
+       │   ├─ action (string)
+       │   ├─ status (string)
+       │   ├─ promotionId (number)
+       │   ├─ promotionIdentifier (string)
+       │   ├─ totalCount (number)
+       │   ├─ failureCount (number)
+       │   └─ customerResults []
+       │       ├─ identifierName (string)
+       │       ├─ identifierValue (string)
+       │       ├─ customerId (number)
+       │       ├─ revokedEnrollmentIds [] (number)
+       │       ├─ revokedOptInIds [] (number)
+       │       ├─ status (string)
+       │       ├─ errors []
+       │       └─ warnings []
+       ├─ errors
+       └─ warnings
+````
+
+```bash
+{
+    "data": {
+        "requestId": "revoke-enroll-20260512-001",
+        "action": "REVOKE_ENROLL",
+        "status": "SUCCESS",
+        "promotionId": 1133617579,
+        "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
+        "customerResults": [
+            {
+                "identifierName": "id",
+                "identifierValue": "388995213",
+                "customerId": 388995213,
+                "revokedEnrollmentIds": [227111],
+                "revokedOptInIds": [],
+                "status": "SUCCESS",
+                "errors": [],
+                "warnings": []
+            }
+        ],
+        "totalCount": 1,
+        "failureCount": 0
+    },
+    "errors": null,
+    "warnings": null
+}
+````
+
+```json
+{
+    "data": {
+        "requestId": "revoke-enroll-20260512-002",
+        "action": "REVOKE_ENROLL",
+        "status": "SUCCESS",
+        "promotionId": 1133617580,
+        "promotionIdentifier": "a7b95d5d-d756-49aa-92f8-7b875ab99d78",
+        "customerResults": [
+            {
+                "identifierName": "id",
+                "identifierValue": "388995215",
+                "customerId": 388995215,
+                "revokedEnrollmentIds": [227160],
+                "revokedOptInIds": [188711],
+                "status": "SUCCESS",
+                "errors": [],
+                "warnings": []
+            }
+        ],
+        "totalCount": 1,
+        "failureCount": 0
+    },
+    "errors": null,
+    "warnings": null
+}
+````
+
+```json
+{
+    "data": {
+        "requestId": "revoke-enroll-20260512-003",
+        "action": "REVOKE_ENROLL",
+        "status": "FAILED",
+        "promotionId": 1133617579,
+        "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
+        "customerResults": [
+            {
+                "identifierName": "id",
+                "identifierValue": "388995213",
+                "customerId": 388995213,
+                "revokedEnrollmentIds": [],
+                "revokedOptInIds": [],
+                "status": "FAILED",
+                "errors": [
+                    {
+                        "code": 400,
+                        "message": "[NO_ACTIVE_ENROLLMENT] active/non expired issual not present for the customer (orgId=52023, customerId=388995213)"
+                    }
+                ],
+                "warnings": []
+            }
+        ],
+        "totalCount": 1,
+        "failureCount": 1
+    },
+    "errors": null,
+    "warnings": null
+}
+````
+
+</CodeGroup>
+### Response parameters
+
+| Field                    | Type          | Description                                                                                                                                                                   |
+| :----------------------- | :------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data`                   | Object        | Contains the revoke result.                                                                                                                                                   |
+| `.requestId`             | String        | Echo of the `requestId` from the request.                                                                                                                                     |
+| `.action`                | String        | Echo of the `action` from the request.                                                                                                                                        |
+| `.status`                | String        | Overall result across all customer entries. `SUCCESS` — all entries succeeded. `FAILED` — all entries failed. `PARTIAL_SUCCESS` — reserved for future multi-customer support. |
+| `.promotionId`           | Long          | Numeric identifier of the promotion.                                                                                                                                          |
+| `.promotionIdentifier`   | String        | UUID string identifier of the promotion.                                                                                                                                      |
+| `.totalCount`            | Integer       | Total number of customer entries processed.                                                                                                                                   |
+| `.failureCount`          | Integer       | Number of customer entries that failed.                                                                                                                                       |
+| `.customerResults`       | Array         | Per-customer revoke results.                                                                                                                                                  |
+| `..identifierName`       | String        | Echo of the customer identifier type from the request.                                                                                                                        |
+| `..identifierValue`      | String        | Echo of the customer identifier value from the request.                                                                                                                       |
+| `..customerId`           | Long          | Resolved Capillary customer ID. Omitted if the customer was not found.                                                                                                        |
+| `..revokedEnrollmentIds` | Array of Long | Enrollment IDs successfully revoked.                                                                                                                                          |
+| `..revokedOptInIds`      | Array of Long | Opt-in IDs successfully revoked, including any auto-cascaded from an enrollment revoke on promotions that support both enrollment and opt-in.                                 |
+| `..status`               | String        | Per-customer result: `SUCCESS` or `FAILED`.                                                                                                                                   |
+| `..errors`               | Array         | Per-customer errors. Each entry has `code` (integer) and `message` (string).                                                                                                  |
+| `..warnings`             | Array         | Per-customer warnings. Each entry has `message` (string).                                                                                                                     |
+| `errors`                 | Array         | Top-level errors for request-level validation failures (HTTP 400). Null on success.                                                                                           |
+| `warnings`               | Array         | Top-level warnings. Null when not applicable.                                                                                                                                 |
+
+***
+
+### Error and warning codes
+
+| Code | Type    | Description                                                                                                                                                                               |
+| :--- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 400  | Error   | `action` is missing or not one of `REVOKE_ENROLL`, `REVOKE_OPTIN`.                                                                                                                        |
+| 400  | Error   | `programId` is missing or the loyalty program was not found.                                                                                                                              |
+| 400  | Error   | `customers` array is missing or empty.                                                                                                                                                    |
+| 400  | Error   | `customers` array contains more than 1 entry.                                                                                                                                             |
+| 400  | Error   | `promotion` is empty, both `promotionId` and `promotionIdentifier` are blank, or both are set simultaneously.                                                                             |
+| 400  | Error   | `revokeAllEnrollments` used with `REVOKE_OPTIN`, `revokeAllOptIns` used with `REVOKE_ENROLL`, or both flags set to `true` simultaneously.                                                 |
+| 400  | Error   | `optOutDate` is in the future.                                                                                                                                                            |
+| 400  | Error   | Promotion not found for the given `promotionId` or `promotionIdentifier`.                                                                                                                 |
+| 400  | Error   | Promotion is in `STOPPED` state. Revoke is not allowed for stopped promotions.                                                                                                            |
+| 400  | Error   | `action` is not applicable for this promotion.                                                                                                                                            |
+| 558  | Error   | The same `requestId` was already processed for this org (`DUPLICATE_REQUEST_ID`).                                                                                                         |
+| 400  | Error   | `enrollmentIds` are missing and `revokeAllEnrollments` is not set.                                                                                                                        |
+| 400  | Error   | `optInIds` are missing and `revokeAllOptIns` is not set.                                                                                                                                  |
+| 400  | Error   | `enrollmentIds` passed with `REVOKE_OPTIN`, or `optInIds` passed with `REVOKE_ENROLL`.                                                                                                    |
+| 400  | Error   | More than 10 `enrollmentIds` passed per customer entry.                                                                                                                                   |
+| 400  | Error   | More than 10 `optInIds` passed per customer entry.                                                                                                                                        |
+| 400  | Error   | Customer not found for the given identifier.                                                                                                                                              |
+| 3901 | Error   | No active enrollment exists — not enrolled, already revoked, or the enrollment ID belongs to a different customer.                                                                        |
+| 8892 | Error   | No active opt-in found for the provided `optInId`(s) — already revoked or invalid.                                                                                                        |
+| 8893 | Error   | No active opt-in exists for this customer on the promotion — already revoked or never opted in.                                                                                           |
+| -    | Warning | `revokeAllEnrollments=true` or `revokeAllOptIns=true` was set and explicit IDs were also provided. The IDs are ignored; all active records are revoked (`IDS_IGNORED_DUE_TO_REVOKE_ALL`). |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Revoke a Loyalty Promotion",
+    "version": "1.0.0",
+    "description": "API specification for POST /v3/promotions/revoke"
+  },
+  "servers": [
+    {
+      "url": "https://{host}"
+    }
+  ],
+  "paths": {
+    "/v3/promotions/revoke": {
+      "post": {
+        "summary": "Revoke a Loyalty Promotion",
+        "description": "Revokes a customer's enrollment or opt-in from a v3 unified loyalty promotion.",
+        "operationId": "postV3promotionsRevoke",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Basic {token}"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "application/json"
+            }
+          },
+          {
+            "name": "X-CAP-API-AUTH-ENTITY-ID",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Numeric till ID to attribute the revoke to a specific till. Must be used alongside X-CAP-API-ATTRIBUTION-TILL-CODE when authenticating via OAuth."
+          },
+          {
+            "name": "revokeAllEnrollments",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "When true, revokes all active enrollments for the customer on the specified promotion. Only valid with action=REVOKE_ENROLL. Cannot be used together with revokeAllOptIns=true."
+          },
+          {
+            "name": "revokeAllOptIns",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "When true, revokes all active opt-ins for the customer on the specified promotion. Only valid with action=REVOKE_OPTIN. Cannot be used together with revokeAllEnrollments=true."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "action",
+                  "programId",
+                  "promotion",
+                  "customers"
+                ],
+                "properties": {
+                  "requestId": {
+                    "type": "string",
+                    "maxLength": 50,
+                    "description": "A plain string reference identifier for this revoke request. Each requestId must be unique per org — duplicate values are rejected.",
+                    "example": "revoke-enroll-20260512-001"
+                  },
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "REVOKE_ENROLL",
+                      "REVOKE_OPTIN"
+                    ],
+                    "description": "The revoke action to perform. Case-sensitive.",
+                    "example": "REVOKE_ENROLL"
+                  },
+                  "programId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Unique identifier of the loyalty program.",
+                    "example": 3390
+                  },
+                  "promotion": {
+                    "type": "object",
+                    "description": "Identifies the promotion to revoke from. Provide exactly one of promotionId or promotionIdentifier.",
+                    "properties": {
+                      "promotionId": {
+                        "type": "integer",
+                        "format": "int64",
+                        "description": "Numeric identifier of the promotion.",
+                        "example": 1133617579
+                      },
+                      "promotionIdentifier": {
+                        "type": "string",
+                        "description": "UUID string identifier of the promotion.",
+                        "example": "46be2caf-1227-44bc-a770-5fa194dc14ea"
+                      }
+                    }
+                  },
+                  "customers": {
+                    "type": "array",
+                    "description": "List of customers to revoke. Exactly 1 entry is supported in the current release.",
+                    "maxItems": 1,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "identifierName",
+                        "identifierValue"
+                      ],
+                      "properties": {
+                        "identifierName": {
+                          "type": "string",
+                          "enum": [
+                            "id",
+                            "mobile",
+                            "email",
+                            "externalId"
+                          ],
+                          "description": "Customer identifier type.",
+                          "example": "id"
+                        },
+                        "identifierValue": {
+                          "type": "string",
+                          "description": "Value for the customer identifier.",
+                          "example": "388995213"
+                        },
+                        "source": {
+                          "type": "string",
+                          "enum": [
+                            "FACEBOOK",
+                            "WEB_ENGAGE",
+                            "INSTORE",
+                            "MARTJACK",
+                            "TMALL",
+                            "TAOBAO",
+                            "JD",
+                            "ECOMMERCE",
+                            "WEBSITE",
+                            "LINE",
+                            "ALL"
+                          ],
+                          "default": "INSTORE",
+                          "description": "Source of the customer's registration.",
+                          "example": "INSTORE"
+                        },
+                        "enrollmentIds": {
+                          "type": "array",
+                          "maxItems": 10,
+                          "description": "Enrollment IDs to revoke. Required for REVOKE_ENROLL unless revokeAllEnrollments=true. Max 10.",
+                          "items": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "example": [
+                            227111
+                          ]
+                        },
+                        "optInIds": {
+                          "type": "array",
+                          "maxItems": 10,
+                          "description": "Opt-in IDs to revoke. Required for REVOKE_OPTIN unless revokeAllOptIns=true. Max 10.",
+                          "items": {
+                            "type": "integer",
+                            "format": "int64"
+                          },
+                          "example": [
+                            188472
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "optOutDate": {
+                    "type": "string",
+                    "description": "ISO-8601 timestamp to retroactively stamp as the revoke date. Must not be in the future.",
+                    "example": "2026-04-25T00:59:35+05:30"
+                  },
+                  "storeUnitId": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Till ID to stamp on the event log for the revoke and any cascade. Falls back to the authenticated user's till when omitted.",
+                    "example": 75032301
+                  },
+                  "sourceDetails": {
+                    "type": "object",
+                    "description": "Audit attribution for the revoke operation.",
+                    "properties": {
+                      "source": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "description": "Channel or system performing the revoke.",
+                        "example": "CRM_SYSTEM"
+                      },
+                      "sourceId": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "description": "Workflow or correlation identifier.",
+                        "example": "WF-20260512-001"
+                      },
+                      "sourceActivity": {
+                        "type": "string",
+                        "maxLength": 50,
+                        "description": "Activity tag from the calling system.",
+                        "example": "CUSTOMER_SUPPORT_REVOKE"
+                      },
+                      "sourceMetadata": {
+                        "type": "object",
+                        "description": "Free-form key-value audit metadata to associate with the revoke operation.",
+                        "properties": {
+                          "revokedBy": {
+                            "type": "integer",
+                            "format": "int64",
+                            "description": "ID of the admin user performing the revoke.",
+                            "example": 50045123
+                          },
+                          "reason": {
+                            "type": "string",
+                            "maxLength": 250,
+                            "description": "Reason for the revoke.",
+                            "example": "Customer requested removal from promotion"
+                          },
+                          "notes": {
+                            "type": "string",
+                            "maxLength": 250,
+                            "description": "Additional notes.",
+                            "example": "Verified via support ticket"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Revoke processed. Check data.status and customerResults[].status for per-customer outcomes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "requestId": {
+                          "type": "string",
+                          "example": "revoke-enroll-20260512-001"
+                        },
+                        "action": {
+                          "type": "string",
+                          "example": "REVOKE_ENROLL"
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "SUCCESS",
+                            "FAILED",
+                            "PARTIAL_SUCCESS"
+                          ],
+                          "example": "SUCCESS"
+                        },
+                        "promotionId": {
+                          "type": "integer",
+                          "format": "int64",
+                          "example": 1133617579
+                        },
+                        "promotionIdentifier": {
+                          "type": "string",
+                          "example": "46be2caf-1227-44bc-a770-5fa194dc14ea"
+                        },
+                        "totalCount": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "failureCount": {
+                          "type": "integer",
+                          "example": 0
+                        },
+                        "customerResults": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "identifierName": {
+                                "type": "string",
+                                "example": "id"
+                              },
+                              "identifierValue": {
+                                "type": "string",
+                                "example": "388995213"
+                              },
+                              "customerId": {
+                                "type": "integer",
+                                "format": "int64",
+                                "example": 388995213
+                              },
+                              "revokedEnrollmentIds": {
+                                "type": "array",
+                                "items": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "example": [
+                                  227111
+                                ]
+                              },
+                              "revokedOptInIds": {
+                                "type": "array",
+                                "items": {
+                                  "type": "integer",
+                                  "format": "int64"
+                                },
+                                "example": []
+                              },
+                              "status": {
+                                "type": "string",
+                                "enum": [
+                                  "SUCCESS",
+                                  "FAILED"
+                                ],
+                                "example": "SUCCESS"
+                              },
+                              "errors": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "code": {
+                                      "type": "integer"
+                                    },
+                                    "message": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "example": []
+                              },
+                              "warnings": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "message": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "example": []
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "array",
+                      "nullable": true,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "example": null
+                    },
+                    "warnings": {
+                      "type": "array",
+                      "nullable": true,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "example": null
+                    }
+                  }
+                },
+                "examples": {
+                  "REVOKE_ENROLL success": {
+                    "value": {
+                      "data": {
+                        "requestId": "revoke-enroll-20260512-001",
+                        "action": "REVOKE_ENROLL",
+                        "status": "SUCCESS",
+                        "promotionId": 1133617579,
+                        "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
+                        "customerResults": [
+                          {
+                            "identifierName": "id",
+                            "identifierValue": "388995213",
+                            "customerId": 388995213,
+                            "revokedEnrollmentIds": [
+                              227111
+                            ],
+                            "revokedOptInIds": [],
+                            "status": "SUCCESS",
+                            "errors": [],
+                            "warnings": []
+                          }
+                        ],
+                        "totalCount": 1,
+                        "failureCount": 0
+                      },
+                      "errors": null,
+                      "warnings": null
+                    }
+                  },
+                  "REVOKE_ENROLL with opt-in cascade": {
+                    "value": {
+                      "data": {
+                        "requestId": "revoke-enroll-20260512-002",
+                        "action": "REVOKE_ENROLL",
+                        "status": "SUCCESS",
+                        "promotionId": 1133617580,
+                        "promotionIdentifier": "a7b95d5d-d756-49aa-92f8-7b875ab99d78",
+                        "customerResults": [
+                          {
+                            "identifierName": "id",
+                            "identifierValue": "388995215",
+                            "customerId": 388995215,
+                            "revokedEnrollmentIds": [
+                              227160
+                            ],
+                            "revokedOptInIds": [
+                              188711
+                            ],
+                            "status": "SUCCESS",
+                            "errors": [],
+                            "warnings": []
+                          }
+                        ],
+                        "totalCount": 1,
+                        "failureCount": 0
+                      },
+                      "errors": null,
+                      "warnings": null
+                    }
+                  },
+                  "Per-customer failure": {
+                    "value": {
+                      "data": {
+                        "requestId": "revoke-enroll-20260512-003",
+                        "action": "REVOKE_ENROLL",
+                        "status": "FAILED",
+                        "promotionId": 1133617579,
+                        "promotionIdentifier": "46be2caf-1227-44bc-a770-5fa194dc14ea",
+                        "customerResults": [
+                          {
+                            "identifierName": "id",
+                            "identifierValue": "388995213",
+                            "customerId": 388995213,
+                            "revokedEnrollmentIds": [],
+                            "revokedOptInIds": [],
+                            "status": "FAILED",
+                            "errors": [
+                              {
+                                "code": 3901,
+                                "message": "[NO_ACTIVE_ENROLMENT] active/non expired issual not present for the customer (orgId=52023, customerId=388995213)"
+                              }
+                            ],
+                            "warnings": []
+                          }
+                        ],
+                        "totalCount": 1,
+                        "failureCount": 1
+                      },
+                      "errors": null,
+                      "warnings": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Request-level validation failure.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "nullable": true
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "integer"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "warnings": {
+                      "type": "array",
+                      "nullable": true
+                    }
+                  }
+                },
+                "examples": {
+                  "Invalid action": {
+                    "value": {
+                      "data": null,
+                      "errors": [
+                        {
+                          "code": 400,
+                          "message": "[INVALID_ACTION] action must be REVOKE_ENROLL or REVOKE_OPTIN"
+                        }
+                      ],
+                      "warnings": null
+                    }
+                  },
+                  "Duplicate requestId": {
+                    "value": {
+                      "data": null,
+                      "errors": [
+                        {
+                          "code": 558,
+                          "message": "[DUPLICATE_REQUEST_ID] Duplicate requestId"
+                        }
+                      ],
+                      "warnings": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "shell",
+              "name": "REVOKE_ENROLL",
+              "code": "curl -X POST \"https://{host}/v3/promotions/revoke\" \\\n  -H \"Authorization: Basic {token}\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"requestId\": \"revoke-enroll-20260512-001\",\n    \"action\": \"REVOKE_ENROLL\",\n    \"programId\": 3390,\n    \"promotion\": {\n      \"promotionId\": 1133617579\n    },\n    \"customers\": [\n      {\n        \"identifierName\": \"id\",\n        \"identifierValue\": \"388995213\",\n        \"enrollmentIds\": [227111]\n      }\n    ]\n  }'"
+            },
+            {
+              "language": "shell",
+              "name": "REVOKE_OPTIN",
+              "code": "curl -X POST \"https://{host}/v3/promotions/revoke\" \\\n  -H \"Authorization: Basic {token}\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"requestId\": \"revoke-optin-20260512-001\",\n    \"action\": \"REVOKE_OPTIN\",\n    \"programId\": 3390,\n    \"promotion\": {\n      \"promotionId\": 1133617581\n    },\n    \"customers\": [\n      {\n        \"identifierName\": \"id\",\n        \"identifierValue\": \"388995216\",\n        \"optInIds\": [188472]\n      }\n    ]\n  }'"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+```

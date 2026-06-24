@@ -1,0 +1,357 @@
+---
+title: Get Member Promotion Explode Details
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## Get Member Promotion Explode Details
+
+Returns the full participation history for a specific promotion for a member, including enrollment and opt-in timeline details, promotion metadata, and promotion-level custom fields. Use the optional query parameter filters to narrow results by enrolment status, promotion identifier, or promotion ID.
+
+## Example request
+
+```json cURL
+curl -X GET "https://{host}/v3/members/388757266/promotions/1133608813?memberEnrollmentStatus=AVAILABLE_TO_REDEEM" \
+  -H "Authorization: Basic dGlsbGhnXXXXXXXX"
+```
+
+## Prerequisites
+
+* Authentication: Basic authentication. Provide a valid `Authorization` header.
+* The member must exist in the org.
+* The promotion must be in `ACTIVE`, `PAUSED`, or `STOPPED` status.
+
+## Resource information
+
+|               |    |
+| :------------ | :- |
+| Pagination    | No |
+| Batch support | No |
+
+## Path parameters
+
+| Field         | Type | Required | Description                                                                                        |
+| :------------ | :--- | :------- | :------------------------------------------------------------------------------------------------- |
+| `memberId`    | Long | Yes      | Unique identifier of the member.                                                                   |
+| `promotionId` | Long | Yes      | Unique identifier of the promotion. Must resolve to an `ACTIVE`, `PAUSED`, or `STOPPED` promotion. |
+
+## Query parameters
+
+| Field                    | Type   | Required | Description                                                                                                                                                                               |
+| :----------------------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `memberEnrollmentStatus` | String | Optional | Filters the returned participation timeline by enrollment status. Supported values: `PENDING_ENROLLMENT`, `PENDING_OPT_IN`, `AVAILABLE_TO_REDEEM`, `REDEEMED`, `EXPIRED`. Case-sensitive. |
+| `promotionIdentifier`    | String | Optional | Filters results to a specific promotion by its unique string identifier. Must resolve to an `ACTIVE`, `PAUSED`, or `STOPPED` promotion, otherwise error `310193` is returned.             |
+
+## API Quick Reference
+
+```
+GET /v3/members/{memberId}/promotions/{promotionId}
+└─ response
+    ├─ memberId (number)
+    └─ promotions []
+        ├─ promotionId (number)
+        ├─ promotionName (string)
+        ├─ programId (number)
+        ├─ startDateISO (string)
+        ├─ endDateISO (string)
+        ├─ timezoneName (string)
+        ├─ promotionIdentifier (string)
+        ├─ unifiedPromotionId (string)
+        ├─ description (string)
+        ├─ active (boolean)
+        ├─ optInStartDateISO (string)
+        ├─ optInEndDateISO (string)
+        ├─ promotionCustomFields []
+        │   ├─ key (string)
+        │   ├─ value (string)
+        │   └─ brandDefined (boolean)
+        └─ customerPromotionTimelines []
+            └─ enrollmentDetails []
+                ├─ enrollmentId (number)
+                ├─ enrollmentDateISO (string)
+                ├─ enrollmentExpiryDateISO (string)
+                ├─ enrollEventLogId (number)
+                ├─ active (boolean)
+                └─ optInDetails []
+                    ├─ optInId (number)
+                    ├─ optInDateISO (string)
+                    ├─ optInExpiryDateISO (string)
+                    ├─ optInEventLogId (number)
+                    ├─ optInProcessingDateISO (string)
+                    └─ active (boolean)
+````
+
+## Example response
+
+```json
+{
+    "memberId": 388757266,
+    "promotions": [
+        {
+            "promotionId": 1133608813,
+            "promotionName": "test-loyalty-promo-123",
+            "programId": 2607,
+            "startDateISO": "2026-03-01T00:00:00+05:30",
+            "endDateISO": "2026-04-01T23:59:59+05:30",
+            "timezoneName": "Asia/Kolkata",
+            "promotionIdentifier": "2dac55ea-2ae8-486a-bed1-0c7992c2565c",
+            "unifiedPromotionId": "abc12345-0000-4abc-8def-000000000000",
+            "description": "test-loyalty-promo-123",
+            "active": true,
+            "promotionCustomFields": [
+                { "key": "header-new", "value": "1234", "brandDefined": true },
+                { "key": "xsx", "value": "4567", "brandDefined": true }
+            ],
+            "customerPromotionTimelines": [
+                {
+                    "enrollmentDetails": [
+                        {
+                            "enrollmentId": 222987,
+                            "enrollmentDateISO": "2026-03-10T13:55:10+05:30",
+                            "enrollmentExpiryDateISO": "2026-04-01T23:59:59+05:30",
+                            "enrollEventLogId": 52208266,
+                            "active": true,
+                            "optInDetails": [
+                                {
+                                    "optInId": 185122,
+                                    "optInDateISO": "2026-03-10T13:57:20+05:30",
+                                    "optInExpiryDateISO": "2026-04-01T23:59:59+05:30",
+                                    "optInEventLogId": 52208279,
+                                    "optInProcessingDateISO": "2026-03-10T13:57:20+05:30",
+                                    "active": true
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+````
+
+## Response parameters
+
+| Field                          | Type    | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| :----------------------------- | :------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.memberId`                    | Long    | Unique identifier of the member.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `.promotions`                  | Array   | List of promotion objects with full participation timeline details.                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `..promotionId`                | Long    | Unique identifier of the promotion.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `..promotionName`              | String  | The display name of the promotion shown to members during enrollment.                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `..programId`                  | Integer | The unique identifier of the loyalty program under which this promotion operates.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `..startDateISO`               | String  | Indicates the promotion's start date and time in ISO 8601 format, returned in the server time zone.<br /><br />EU server example: 2026-03-01T00:00:00Z → 01 March 2026, 00:00:00 (UTC)<br /><br />India server example: 2026-03-01T00:00:00+05:30 → 01 March 2026, 00:00:00 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                                 |
+| `..endDateISO`                 | String  | Indicates the promotion's end date and time in ISO 8601 format, returned in the server time zone.<br /><br />EU server example: 2026-04-01T23:59:59Z → 01 April 2026, 23:59:59 (UTC)<br /><br />India server example: 2026-04-01T23:59:59+05:30 → 01 April 2026, 23:59:59 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                                   |
+| `..timezoneName`               | String  | The IANA timezone name that governs how the promotion's start, end, and opt-in dates are evaluated and displayed.                                                                                                                                                                                                                                                                                                                                                                 |
+| `..promotionIdentifier`        | String  | Unique string identifier of the promotion.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `..unifiedPromotionId`         | String  | UUID that identifies the promotion in the Unified Promotions system.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `..description`                | String  | The text describing the promotion's benefits and terms, displayed to members during enrollment.                                                                                                                                                                                                                                                                                                                                                                                   |
+| `..active`                     | Boolean | Indicates if the promotion is currently in effect and eligible for member enrollment and redemption.                                                                                                                                                                                                                                                                                                                                                                              |
+| `..optInStartDateISO`          | String  | Indicates the start of the opt-in window in ISO 8601 format, returned in the server time zone. Returned only when an opt-in window is configured for the promotion.<br /><br />EU server example: 2026-03-01T00:00:00Z → 01 March 2026, 00:00:00 (UTC)<br /><br />India server example: 2026-03-01T00:00:00+05:30 → 01 March 2026, 00:00:00 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request. |
+| `..optInEndDateISO`            | String  | Indicates the end of the opt-in window in ISO 8601 format, returned in the server time zone. Returned only when an opt-in window is configured for the promotion.<br /><br />EU server example: 2026-03-15T23:59:59Z → 15 March 2026, 23:59:59 (UTC)<br /><br />India server example: 2026-03-15T23:59:59+05:30 → 15 March 2026, 23:59:59 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.   |
+| `..promotionCustomFields`      | Array   | Custom key-value fields configured at the promotion level to store brand-specific metadata.                                                                                                                                                                                                                                                                                                                                                                                       |
+| `...key`                       | String  | The identifier for the custom field used to reference its associated value.                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `...value`                     | String  | The data stored for this custom field, as configured by the brand during promotion setup.                                                                                                                                                                                                                                                                                                                                                                                         |
+| `...brandDefined`              | Boolean | Indicates if the custom field is part of the brand's configuration, as opposed to a system-provided default.                                                                                                                                                                                                                                                                                                                                                                      |
+| `..customerPromotionTimelines` | Array   | A chronological record of the member's enrollment, opt-in, and redemption milestones for this promotion.                                                                                                                                                                                                                                                                                                                                                                          |
+| `...enrollmentDetails`         | Array   | Sequential records of the member's enrollment events, each capturing a distinct enrollment period and its status.                                                                                                                                                                                                                                                                                                                                                                 |
+| `....enrollmentId`             | Long    | The system-generated ID that uniquely identifies this specific enrollment instance.                                                                                                                                                                                                                                                                                                                                                                                               |
+| `....enrollmentDateISO`        | String  | Indicates the date and time the member enrolled, in ISO 8601 format, returned in the server time zone.<br /><br />EU server example: 2026-03-10T08:25:10Z → 10 March 2026, 08:25:10 (UTC)<br /><br />India server example: 2026-03-10T13:55:10+05:30 → 10 March 2026, 13:55:10 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                              |
+| `....enrollmentExpiryDateISO`  | String  | Indicates the enrollment expiry date and time in ISO 8601 format, returned in the server time zone.<br /><br />EU server example: 2026-04-01T18:29:59Z → 01 April 2026, 18:29:59 (UTC)<br /><br />India server example: 2026-04-01T23:59:59+05:30 → 01 April 2026, 23:59:59 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                                 |
+| `....enrollEventLogId`         | Long    | Event log ID for the enrollment event.                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `....active`                   | Boolean | Indicates if the member's current enrollment is valid and eligible for earning and redemption.                                                                                                                                                                                                                                                                                                                                                                                    |
+| `....optInDetails`             | Array   | Records of opt-in events associated with this enrollment, capturing when the member consented to participate.                                                                                                                                                                                                                                                                                                                                                                     |
+| `.....optInId`                 | Long    | The system-generated ID that uniquely identifies this specific opt-in instance.                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `.....optInDateISO`            | String  | Indicates the date and time the member opted in, in ISO 8601 format, returned in the server time zone.<br /><br />EU server example: 2026-03-10T08:27:20Z → 10 March 2026, 08:27:20 (UTC)<br /><br />India server example: 2026-03-10T13:57:20+05:30 → 10 March 2026, 13:57:20 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                              |
+| `.....optInExpiryDateISO`      | String  | Indicates the opt-in expiry date and time in ISO 8601 format, returned in the server time zone.<br /><br />EU server example: 2026-04-01T18:29:59Z → 01 April 2026, 18:29:59 (UTC)<br /><br />India server example: 2026-04-01T23:59:59+05:30 → 01 April 2026, 23:59:59 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                                                     |
+| `.....optInEventLogId`         | Long    | The identifier referencing the event log entry for the opt-in action, enabling audit and historical tracking.                                                                                                                                                                                                                                                                                                                                                                     |
+| `.....optInProcessingDateISO`  | String  | Indicates the date and time the opt-in was processed by the system, in ISO 8601 format, returned in the server time zone.<br /><br />EU server example: 2026-03-10T08:27:20Z → 10 March 2026, 08:27:20 (UTC)<br /><br />India server example: 2026-03-10T13:57:20+05:30 → 10 March 2026, 13:57:20 (IST)<br /><br />Note: The response time zone always matches the server time zone, regardless of the time zone offset in the request.                                           |
+| `.....active`                  | Boolean | Indicates if the member's opt-in is currently valid and the promotion terms remain applicable to the member.                                                                                                                                                                                                                                                                                                                                                                      |
+
+## Error and warning codes
+
+| Code   | Type  | Description                                                                                                                                         |
+| :----- | :---- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 310192 | Error | Member not found for the given `memberId`. Use a valid `memberId`.                                                                                  |
+| 310194 | Error | No `ACTIVE`, `PAUSED`, or `STOPPED` promotion found for the given `promotionId`. Use a valid `promotionId`.                                         |
+| 310193 | Error | No `ACTIVE`, `PAUSED`, or `STOPPED` promotion found for the given `promotionIdentifier`. Use a valid `promotionIdentifier`.                         |
+| 310196 | Error | Invalid value for `memberEnrollmentStatus`. Supported values: `PENDING_ENROLLMENT`, `PENDING_OPT_IN`, `AVAILABLE_TO_REDEEM`, `REDEEMED`, `EXPIRED`. |
+| 500    | Error | Internal server error. Retry the request after a short delay.                                                                                       |
+
+## OpenAPI definition
+
+```json
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Get Member Promotion Explode Details",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://{Host}",
+      "variables": {
+        "Host": {
+          "enum": [
+            "eu.intouch.capillarytech.com",
+            "intouch.capillary.co.in",
+            "apac2.intouch.capillarytech.com",
+            "sgcrm.cc.capillarytech.com",
+            "intouch.capillarytech.cn.com",
+            "north-america.intouch.capillarytech.com"
+          ],
+          "default": "eu.intouch.capillarytech.com"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/v3/members/{memberId}/promotions/{promotionId}": {
+      "get": {
+        "tags": [
+          "Promotions"
+        ],
+        "summary": "Get Member Promotion Explode Details",
+        "operationId": "getMemberPromotionDetails",
+        "parameters": [
+          {
+            "name": "memberId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 388757266
+          },
+          {
+            "name": "promotionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1133608813
+          },
+          {
+            "name": "memberEnrollmentStatus",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PENDING_ENROLLMENT",
+                "PENDING_OPT_IN",
+                "AVAILABLE_TO_REDEEM",
+                "REDEEMED",
+                "EXPIRED"
+              ]
+            },
+            "example": "AVAILABLE_TO_REDEEM"
+          },
+          {
+            "name": "promotionIdentifier",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "2dac55ea-2ae8-486a-bed1-0c7992c2565c"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Basic dGlsbGhnXXXXXXXX"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "example": {
+                  "memberId": 388757266,
+                  "promotions": [
+                    {
+                      "promotionId": 1133608813,
+                      "promotionName": "test-loyalty-promo-123",
+                      "programId": 2607,
+                      "startDateISO": "2026-03-01T00:00:00+05:30",
+                      "endDateISO": "2026-04-01T23:59:59+05:30",
+                      "timezoneName": "Asia/Kolkata",
+                      "promotionIdentifier": "2dac55ea-2ae8-486a-bed1-0c7992c2565c",
+                      "unifiedPromotionId": "abc12345-0000-4abc-8def-000000000000",
+                      "description": "test-loyalty-promo-123",
+                      "active": true,
+                      "promotionCustomFields": [
+                        {
+                          "key": "header-new",
+                          "value": "1234",
+                          "brandDefined": true
+                        },
+                        {
+                          "key": "xsx",
+                          "value": "4567",
+                          "brandDefined": true
+                        }
+                      ],
+                      "customerPromotionTimelines": [
+                        {
+                          "enrollmentDetails": [
+                            {
+                              "enrollmentId": 222987,
+                              "enrollmentDateISO": "2026-03-10T13:55:10+05:30",
+                              "enrollmentExpiryDateISO": "2026-04-01T23:59:59+05:30",
+                              "enrollEventLogId": 52208266,
+                              "active": true,
+                              "optInDetails": [
+                                {
+                                  "optInId": 185122,
+                                  "optInDateISO": "2026-03-10T13:57:20+05:30",
+                                  "optInExpiryDateISO": "2026-04-01T23:59:59+05:30",
+                                  "optInEventLogId": 52208279,
+                                  "optInProcessingDateISO": "2026-03-10T13:57:20+05:30",
+                                  "active": true
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Promotions",
+      "description": "Operations related to member promotions"
+    }
+  ]
+}
+```
