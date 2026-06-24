@@ -14,7 +14,7 @@
             "pages": [
               {
                 "title": "Thieves Checking",
-                "path": "thieves-checking",
+                "path": "docs/thieves-checking",
                 "openapi": "api-reference/your-api.yaml GET /thieves",
                 "openapi-mode": "custom",
                 "method": "GET"
@@ -39,31 +39,24 @@
             "group": "Data Fields",
             "pages": [
               {
-                "title": "check",
-                "path": "check",
-                "openapi": "api-reference/your-api.yaml GET /users",
-                "openapi-mode": "auto",
-                "method": "GET"
-              },
-              {
                 "title": "badges-fact-table",
-                "path": "badges-fact-table"
+                "path": "docs/badges-fact-table"
               },
               {
                 "title": "coupuns-fact-table",
-                "path": "coupuns-fact-table"
+                "path": "docs/coupuns-fact-table"
               },
               {
                 "title": "hello",
-                "path": "hello"
+                "path": "docs/hello"
               },
               {
                 "title": "hai",
-                "path": "hai"
+                "path": "docs/hai"
               },
               {
                 "title": "Home Page",
-                "path": "Home",
+                "path": "docs/Home",
                 "show-sidebar": false,
                 "show-toc": false,
                 "show-parent-label": false
@@ -71,160 +64,168 @@
             ]
           },
           {
-            "group": "fact-table",
+            "group": "Fact & Dimension Tables",
             "pages": [
               {
-                "title": "badges-fact-table",
-                "path": "docs-svg-output/badges-fact-table"
+                "group": "Fact tables",
+                "pages": [
+                  {
+                    "title": "Fact tables",
+                    "path": "docs/fact-tables"
+                  },
+                  {
+                    "title": "Badges Fact Table",
+                    "path": "docs/badges-fact-table"
+                  },
+                  {
+                    "title": "Bill Line Items Fact Table",
+                    "path": "docs/bill-line-items-fact-table"
+                  },
+                  {
+                    "title": "Call Task Customer Status Fact Table",
+                    "path": "docs/call-task-customer-status-fact-table"
+                  },
+                  {
+                    "title": "Communication Credits Log Fact Table",
+                    "path": "docs/communication-credits-log-fact-table"
+                  },
+                  {
+                    "title": "Contact Info Fact Table",
+                    "path": "docs/contact-info-fact-table"
+                  },
+                  {
+                    "title": "Coupons Fact Table",
+                    "path": "docs/coupons-fact-table"
+                  },
+                  {
+                    "title": "Customer Merge Log Fact Table",
+                    "path": "docs/customer-merge-log-fact-table"
+                  },
+                  {
+                    "title": "Customer Notes Fact Table",
+                    "path": "docs/customer-notes-fact-table"
+                  },
+                  {
+                    "title": "Customer Summary Fact Table",
+                    "path": "docs/customer-summary-members-fact-table"
+                  },
+                  {
+                    "title": "Custom Field Data Fact Table",
+                    "path": "docs/custom-field-data-fact-table"
+                  },
+                  {
+                    "title": "Daily Till Summary Fact Table",
+                    "path": "docs/daily-till-summary-fact-table"
+                  },
+                  {
+                    "title": "Earned Promotions Fact Table",
+                    "path": "docs/earned-promotions-fact"
+                  },
+                  {
+                    "title": "Email Click Stats Fact Table",
+                    "path": "docs/email-click-stats-fact-table"
+                  },
+                  {
+                    "title": "External Partner Program Table",
+                    "path": "docs/external-partner-program-table"
+                  },
+                  {
+                    "title": "Goodwill Requests Fact Table",
+                    "path": "docs/goodwill-requests-fact-table"
+                  },
+                  {
+                    "title": "Invitation Sent Fact Table",
+                    "path": "docs/invitation-sent-fact-table"
+                  },
+                  {
+                    "title": "Issue Tracker Fact Table",
+                    "path": "docs/issue-tracker-fact-table"
+                  },
+                  {
+                    "title": "Issued Promotions Fact Table",
+                    "path": "docs/issued-promotions-fact-table"
+                  },
+                  {
+                    "title": "Journeys Fact Table",
+                    "path": "docs/journeys-fact-table"
+                  },
+                  {
+                    "title": "Milestones Fact Table",
+                    "path": "docs/fact_milestones"
+                  },
+                  {
+                    "title": "Nsadmin Messages Fact Table",
+                    "path": "docs/nsadmin-messages-fact-table"
+                  },
+                  {
+                    "title": "Partner Program Enrollment Fact Table",
+                    "path": "docs/partner-program-enrollment-fact-table"
+                  },
+                  {
+                    "title": "Partner Program Linking Fact Table",
+                    "path": "docs/link"
+                  },
+                  {
+                    "title": "Partner Program Slab History Fact Table",
+                    "path": "docs/partner-program-slab-history-fact-table"
+                  },
+                  {
+                    "title": "Partner Program Slab History Fact Table (Supplementary)",
+                    "path": "docs/partner-program-slab-history-fact-table-1"
+                  },
+                  {
+                    "title": "Payment Details Fact Table",
+                    "path": "docs/payment-details-fact"
+                  },
+                  {
+                    "title": "Points Fact Table",
+                    "path": "docs/points-fact-table"
+                  },
+                  {
+                    "title": "Profile Users Fact Table",
+                    "path": "docs/profile-users-fact-table"
+                  },
+                  {
+                    "title": "Referrals Fact Table",
+                    "path": "docs/referrals-fact-table"
+                  },
+                  {
+                    "title": "Referrers Fact Table",
+                    "path": "docs/referrers-fact-table"
+                  },
+                  {
+                    "title": "Registration Event Fact Table",
+                    "path": "docs/fact_registration-event"
+                  },
+                  {
+                    "title": "Response Info Fact Table",
+                    "path": "docs/response-info-fact-table"
+                  },
+                  {
+                    "title": "Return Bill Line Item Fact Table",
+                    "path": "docs/return-bill-line-item-fact-table"
+                  },
+                  {
+                    "title": "Rewards Fact Table",
+                    "path": "docs/rewards-fact-table"
+                  },
+                  {
+                    "title": "Slab Change Log Fact Table",
+                    "path": "docs/slab-change-log-fact-table"
+                  },
+                  {
+                    "title": "Streaks Fact Table",
+                    "path": "docs/fact_streaks"
+                  },
+                  {
+                    "title": "Supplementary Partner Program Fact Table",
+                    "path": "docs/supplementary-partner-program-fact-table"
+                  }
+                ]
               },
               {
-                "title": "bill-line-items-fact-table",
-                "path": "docs-svg-output/bill-line-items-fact-table"
-              },
-              {
-                "title": "call-task-customer-status-fact-table",
-                "path": "docs-svg-output/call-task-customer-status-fact-table"
-              },
-              {
-                "title": "communication-credits-log-fact-table",
-                "path": "docs-svg-output/communication-credits-log-fact-table",
-                "icon": "activity-icon"
-              },
-              {
-                "title": "contact-info-fact-table",
-                "path": "docs-svg-output/contact-info-fact-table"
-              },
-              {
-                "title": "coupons-fact-table",
-                "path": "docs-svg-output/coupons-fact-table"
-              },
-              {
-                "title": "customer-merge-log-fact-table",
-                "path": "docs-svg-output/customer-merge-log-fact-table"
-              },
-              {
-                "title": "customer-notes-fact-table",
-                "path": "docs-svg-output/customer-notes-fact-table"
-              },
-              {
-                "title": "customer-summary-members-fact-table",
-                "path": "docs-svg-output/customer-summary-members-fact-table"
-              },
-              {
-                "title": "custom-field-data-fact-table",
-                "path": "docs-svg-output/custom-field-data-fact-table"
-              },
-              {
-                "title": "daily-till-summary-fact-table",
-                "path": "docs-svg-output/daily-till-summary-fact-table"
-              },
-              {
-                "title": "email-click-stats-fact-table",
-                "path": "docs-svg-output/email-click-stats-fact-table"
-              },
-              {
-                "title": "fact_milestones",
-                "path": "docs-svg-output/fact_milestones"
-              },
-              {
-                "title": "fact_registration-event",
-                "path": "docs-svg-output/fact_registration-event"
-              },
-              {
-                "title": "fact_streaks",
-                "path": "docs-svg-output/fact_streaks"
-              },
-              {
-                "title": "goodwill-requests-fact-table",
-                "path": "docs-svg-output/goodwill-requests-fact-table"
-              },
-              {
-                "title": "invitation-sent-fact-table",
-                "path": "docs-svg-output/invitation-sent-fact-table"
-              },
-              {
-                "title": "issue-tracker-fact-table",
-                "path": "docs-svg-output/issue-tracker-fact-table"
-              },
-              {
-                "title": "journeys-fact-table",
-                "path": "docs-svg-output/journeys-fact-table"
-              },
-              {
-                "title": "nsadmin-messages-fact-table",
-                "path": "docs-svg-output/nsadmin-messages-fact-table"
-              },
-              {
-                "title": "payment-details-fact",
-                "path": "docs-svg-output/payment-details-fact"
-              },
-              {
-                "title": "points-fact-table",
-                "path": "docs-svg-output/points-fact-table"
-              },
-              {
-                "title": "profile-users-fact-table",
-                "path": "docs-svg-output/profile-users-fact-table"
-              },
-              {
-                "title": "referrals-fact-table",
-                "path": "docs-svg-output/referrals-fact-table"
-              },
-              {
-                "title": "referrers-fact-table",
-                "path": "docs-svg-output/referrers-fact-table"
-              },
-              {
-                "title": "response-info-fact-table",
-                "path": "docs-svg-output/response-info-fact-table"
-              },
-              {
-                "title": "return-bill-line-item-fact-table",
-                "path": "docs-svg-output/return-bill-line-item-fact-table"
-              },
-              {
-                "title": "rewards-fact-table",
-                "path": "docs-svg-output/rewards-fact-table"
-              },
-              {
-                "title": "slab-change-log-fact-table",
-                "path": "docs-svg-output/slab-change-log-fact-table"
-              },
-              {
-                "title": "Fact Tables",
-                "path": "docs-svg-output/fact-tables"
-              },
-              {
-                "title": "Earned Promotions Fact Table",
-                "path": "docs-svg-output/earned-promotions-fact"
-              },
-              {
-                "title": "External Partner Program Table",
-                "path": "docs-svg-output/external-partner-program-table"
-              },
-              {
-                "title": "Issued Promotions Fact Table",
-                "path": "docs-svg-output/issued-promotions-fact-table"
-              },
-              {
-                "title": "Partner Program Linking Fact Table",
-                "path": "docs-svg-output/link"
-              },
-              {
-                "title": "Partner Program Enrollment Fact Table",
-                "path": "docs-svg-output/partner-program-enrollment-fact-table"
-              },
-              {
-                "title": "Partner Program Slab History Fact Table",
-                "path": "docs-svg-output/partner-program-slab-history-fact-table"
-              },
-              {
-                "title": "Partner Program Slab History Fact Table (Supplementary)",
-                "path": "docs-svg-output/partner-program-slab-history-fact-table-1"
-              },
-              {
-                "title": "Supplementary Partner Program Fact Table",
-                "path": "docs-svg-output/supplementary-partner-program-fact-table"
+                "group": "Dimension tables",
+                "pages": []
               }
             ]
           },
@@ -232,47 +233,51 @@
             "group": "Event Schema Payload",
             "pages": [
               {
-                "title": "event-schema-advanced-request-workflows",
-                "path": "event-schema-advanced-request-workflows",
+                "title": "Event Schema Payload",
+                "path": "docs/event-schema-payload"
+              },
+              {
+                "title": "Advanced Request Workflows",
+                "path": "docs/event-schema-advanced-request-workflows",
                 "icon": "activity"
               },
               {
-                "title": "event-schema-request-updated",
-                "path": "event-schema-request-updated",
+                "title": "Request Updated",
+                "path": "docs/event-schema-request-updated",
                 "icon": "album"
               },
               {
-                "title": "event-schema-cards",
-                "path": "event-schema-cards",
+                "title": "Cards",
+                "path": "docs/event-schema-cards",
                 "icon": "alarm-clock-check"
               },
               {
-                "title": "event-schema-incentives",
-                "path": "event-schema-incentives"
+                "title": "Incentives",
+                "path": "docs/event-schema-incentives"
               },
               {
-                "title": "event-schema-partner-program",
-                "path": "event-schema-partner-program"
+                "title": "Partner Program",
+                "path": "docs/event-schema-partner-program"
               },
               {
-                "title": "event-schema-tier",
-                "path": "event-schema-tier"
+                "title": "Tier",
+                "path": "docs/event-schema-tier"
               },
               {
-                "title": "event-schema-loyalty-and-cart-promotions",
-                "path": "event-schema-loyalty-and-cart-promotions"
+                "title": "Loyalty and Cart Promotions",
+                "path": "docs/event-schema-loyalty-and-cart-promotions"
               },
               {
-                "title": "event-schema-loyalty",
-                "path": "event-schema-loyalty"
+                "title": "Loyalty",
+                "path": "docs/event-schema-loyalty"
               },
               {
-                "title": "event-schema-rewards",
-                "path": "event-schema-rewards"
+                "title": "Rewards",
+                "path": "docs/event-schema-rewards"
               },
               {
-                "title": "event-schema-customer",
-                "path": "event-schema-customer"
+                "title": "Customer",
+                "path": "docs/event-schema-customer"
               }
             ]
           }
