@@ -15,6 +15,12 @@ paths:
       responses:
         '200':
           description: Success
+  /thieves:
+    get:
+      summary: List users
+      responses:
+        '200':
+          description: Success
 
   /users/{id}:
     get:

@@ -9,6 +9,13 @@
             "openapi": "api-reference/openapi.yaml",
             "pages": [
               {
+                "title": "Thieves Checking",
+                "path": "thieves-checking",
+                "openapi": "api-reference/your-api.yaml GET /thieves",
+                "openapi-mode": "custom",
+                "method": "GET"
+              },
+              {
                 "title": "Get User Details",
                 "path": "api-reference/users/get-user",
                 "openapi": "api-reference/your-api.yaml GET /users/{id}",
