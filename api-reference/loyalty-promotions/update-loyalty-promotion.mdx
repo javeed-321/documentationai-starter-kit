@@ -21,7 +21,7 @@ Use this endpoint to make changes such as adjusting the promotion name, extendin
 
 ## Example request
 
-<CodeGroup default-tab="0" show-lines="true" tabs={["JSON"]}>
+<CodeGroup show-lines="true" tabs={["JSON"]}>
   ```json JSON
   {
       "metadata": {
@@ -103,6 +103,67 @@ Use this endpoint to make changes such as adjusting the promotion name, extendin
   }
   ```
 </CodeGroup>
+
+## API Quick Reference
+
+
+```curl
+{{updateUnifiedPromotion}}
+   ├─ {{metadata}}
+   │   ├─ {{name}} (string)
+   │   ├─ {{description}} (string)
+   │   ├─ {{orgId}} (integer)
+   │   ├─ {{programId}} (integer)
+   │   ├─ {{startDate}} (string)
+   │   ├─ {{endDate}} (string)
+   │   ├─ {{promotionType}} (string)
+   │   ├─ {{status}} (string)
+   │   ├─ {{timezoneName}} (string)
+   │   └─ {{promoIdentifier}} (string)
+   ├─ {{customerEnrolment}}
+   │   ├─ {{enrolmentMethod}} (string)
+   │   └─ {{audienceGroups}} []
+   ├─ {{activities}} []
+   │   ├─ {{activityId}} (string)
+   │   ├─ {{activityType}} (string)
+   │   ├─ {{activityName}} (string)
+   │   ├─ {{event}} (string)
+   │   ├─ {{expJSON}} (string)
+   │   └─ {{commonCycleActionMapping}} []
+   │       ├─ {{cycle}} (string)
+   │       ├─ {{cycleStartDate}} (string)
+   │       ├─ {{cycleEndDate}} (string)
+   │       └─ {{actions}} []
+   │           ├─ {{actionId}} (string)
+   │           ├─ {{actionName}} (string)
+   │           ├─ {{actionClass}} (string)
+   │           ├─ {{actionDescription}} (string)
+   │           └─ {{mandatoryPropertiesValues}}
+   │               ├─ {{AwardStrategy}} (string)
+   │               ├─ {{ExpiryStrategy}} (string)
+   │               └─ {{PointType}} (string)
+   ├─ {{limits}} []
+   │   ├─ {{granularity}} (string)
+   │   ├─ {{limitActionType}} (string)
+   │   ├─ {{actionSubTypeId}} (string)
+   │   ├─ {{limitType}} (string)
+   │   ├─ {{limitValue}} (integer)
+   │   └─ {{period}}
+   │       ├─ {{periodType}} (string)
+   │       ├─ {{periodUnit}} (string)
+   │       └─ {{periodValue}} (integer)
+   ├─ {{liabilityOwnerSplitInfo}} []
+   │   ├─ {{liabilityOwnerId}} (integer)
+   │   ├─ {{componentType}} (string)
+   │   ├─ {{ratio}} (integer)
+   │   ├─ {{isActive}} (boolean)
+   │   ├─ {{liabilityOwnerName}} (string)
+   │   ├─ {{liabilityOwnerType}} (string)
+   │   └─ {{liabilityOrgId}} (integer)
+   └─ {{workflowMetadata}}
+       ├─ {{optin}} (object)
+       └─ {{enrolment}} (object)
+```
 
 ## Prerequisites
 
@@ -1818,17 +1879,17 @@ curl --location --request PUT 'https://eu.api.capillarytech.com/v3/promotions/{p
 ## Parameters & Headers
 
 <Expandable title="Request Headers" default-open="false">
-  <ParamField header="Authorization" param-type="string" deprecated="false" show-location="true">
+  <ParamField header="Authorization" param-type="string" required="false" deprecated="false" show-location="true">
     Basic or OAuth authorization token. Example: `Basic <base64-encoded-credentials>`
   </ParamField>
 
-  <ParamField header="Content-Type" param-type="string" deprecated="false" show-location="true">
+  <ParamField header="Content-Type" param-type="string" required="false" deprecated="false" show-location="true">
     Must be `application/json`.
   </ParamField>
 </Expandable>
 
 <Expandable title="Path Parameters" default-open="false">
-  <ParamField path="promotion_id" param-type="string" deprecated="false" show-location="true">
+  <ParamField path="promotion_id" param-type="string" required="false" deprecated="false" show-location="true">
     The unique system-generated ID of the loyalty promotion to update. Example: `693bba55147aa26388780ffd`
   </ParamField>
 </Expandable>
