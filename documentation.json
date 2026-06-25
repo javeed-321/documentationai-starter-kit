@@ -9,96 +9,96 @@
             "pages": [
               {
                 "title": "Loyalty Promotions",
-                "path": "api-reference/loyalty-promotions/loyalty-promotions"
+                "path": "reference/loyalty-promotions"
               },
               {
                 "title": "Create a Loyalty Promotion",
-                "path": "api-reference/loyalty-promotions/create-loyalty-promotion",
-                "openapi": "api-reference/loyalty-promotions/create-loyalty-promotion.yaml POST /v3/promotions",
+                "path": "reference/create-loyalty-promotion",
+                "openapi": "reference/create-loyalty-promotion.yaml POST /v3/promotions",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
               {
                 "title": "Update Promotion Status",
-                "path": "api-reference/loyalty-promotions/submit-promotion-for-approval",
-                "openapi": "api-reference/loyalty-promotions/submit-promotion-for-approval.yaml PUT /v3/requests/PROMOTION/{promotionId}/status",
+                "path": "reference/submit-promotion-for-approval",
+                "openapi": "reference/submit-promotion-for-approval.yaml PUT /v3/requests/PROMOTION/{promotionId}/status",
                 "openapi-mode": "custom",
                 "method": "PUT"
               },
               {
                 "title": "Review a Loyalty Promotion",
-                "path": "api-reference/loyalty-promotions/review-loyalty-promotion",
-                "openapi": "api-reference/loyalty-promotions/review-loyalty-promotion.yaml POST /v3/promotions/{promotionId}/review",
+                "path": "reference/review-loyalty-promotion",
+                "openapi": "reference/review-loyalty-promotion.yaml POST /v3/promotions/{promotionId}/review",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
               {
                 "title": "Enrol Members to a Loyalty Promotion",
-                "path": "api-reference/loyalty-promotions/enrol-loyalty-promotion",
-                "openapi": "api-reference/loyalty-promotions/enrol-loyalty-promotion.yaml POST /v3/promotions/enrol",
+                "path": "reference/enrol-loyalty-promotion",
+                "openapi": "reference/enrol-loyalty-promotion.yaml POST /v3/promotions/enrol",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
               {
                 "title": "Update a Loyalty Promotion",
-                "path": "api-reference/loyalty-promotions/update-loyalty-promotion",
-                "openapi": "api-reference/loyalty-promotions/update-loyalty-promotion.yaml PUT /v3/promotions/{promotion_id}",
+                "path": "reference/update-loyalty-promotion",
+                "openapi": "reference/update-loyalty-promotion.yaml PUT /v3/promotions/{promotion_id}",
                 "openapi-mode": "custom",
                 "method": "PUT"
               },
               {
                 "title": "Get Details of Loyalty Promotion using ID",
-                "path": "api-reference/loyalty-promotions/get-loyalty-promotion-by-id",
-                "openapi": "api-reference/loyalty-promotions/get-loyalty-promotion-by-id.yaml GET /v3/promotions/{promotionId}",
+                "path": "reference/get-loyalty-promotion-by-id",
+                "openapi": "reference/get-loyalty-promotion-by-id.yaml GET /v3/promotions/{promotionId}",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "Get Details of all Loyalty Promotions",
-                "path": "api-reference/loyalty-promotions/get-loyalty-promotions",
-                "openapi": "api-reference/loyalty-promotions/get-loyalty-promotions.yaml GET /v3/promotions",
+                "path": "reference/get-loyalty-promotions",
+                "openapi": "reference/get-loyalty-promotions.yaml GET /v3/promotions",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "List Member Promotions",
-                "path": "api-reference/loyalty-promotions/list-member-promotions",
-                "openapi": "api-reference/loyalty-promotions/list-member-promotions.yaml GET /v3/members/{memberId}/promotions",
+                "path": "reference/list-member-promotions",
+                "openapi": "reference/list-member-promotions.yaml GET /v3/members/{memberId}/promotions",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "Get Member Promotion Explode Details",
-                "path": "api-reference/loyalty-promotions/get-member-promotion-explode",
-                "openapi": "api-reference/loyalty-promotions/get-member-promotion-explode.yaml GET /v3/members/{memberId}/promotions/{promotionId}",
+                "path": "reference/get-member-promotion-explode",
+                "openapi": "reference/get-member-promotion-explode.yaml GET /v3/members/{memberId}/promotions/{promotionId}",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "Get Customer Promotion Details",
-                "path": "api-reference/loyalty-promotions/get-customer-promotion-details",
-                "openapi": "api-reference/loyalty-promotions/get-customer-promotion-details.yaml GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary",
+                "path": "reference/get-customer-promotion-details",
+                "openapi": "reference/get-customer-promotion-details.yaml GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "Revoke a Loyalty Promotion",
-                "path": "api-reference/loyalty-promotions/revoke-loyalty-promotion",
-                "openapi": "api-reference/loyalty-promotions/revoke-loyalty-promotion.yaml POST /v3/promotions/revoke",
+                "path": "reference/revoke-loyalty-promotion",
+                "openapi": "reference/revoke-loyalty-promotion.yaml POST /v3/promotions/revoke",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
               {
                 "title": "Activate Promotion for Customer",
-                "path": "api-reference/loyalty-promotions/activate-promotion-for-customer",
-                "openapi": "api-reference/loyalty-promotions/activate-promotion-for-customer.yaml POST /api_gateway/v1/promotions/{promotionId}/activate",
+                "path": "reference/activate-promotion-for-customer",
+                "openapi": "reference/activate-promotion-for-customer.yaml POST /api_gateway/v1/promotions/{promotionId}/activate",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
               {
                 "title": "Deactivate Promotion for Customer",
-                "path": "api-reference/loyalty-promotions/deactivate-promotion-for-customer",
-                "openapi": "api-reference/loyalty-promotions/deactivate-promotion-for-customer.yaml POST /api_gateway/v1/promotions/{promotionId}/deactivate",
+                "path": "reference/deactivate-promotion-for-customer",
+                "openapi": "reference/deactivate-promotion-for-customer.yaml POST /api_gateway/v1/promotions/{promotionId}/deactivate",
                 "openapi-mode": "custom",
                 "method": "POST"
               }
