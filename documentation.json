@@ -14,7 +14,7 @@
               {
                 "title": "Create a Loyalty Promotion",
                 "path": "reference/create-loyalty-promotion",
-                "openapi": "api-reference/create-loyalty-promotion.yaml POST /v3/promotions",
+                "openapi": "api-reference/1.-create-unified-promo.yaml POST /v3/promotions",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
@@ -28,35 +28,35 @@
               {
                 "title": "Review a Loyalty Promotion",
                 "path": "reference/review-loyalty-promotion",
-                "openapi": "api-reference/review-loyalty-promotion.yaml POST /v3/promotions/{promotionId}/review",
+                "openapi": "api-reference/5.-review-unified-promo.yaml POST /v3/promotions/{promotionId}/review",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
               {
                 "title": "Enrol Members to a Loyalty Promotion",
                 "path": "reference/enrol-loyalty-promotion",
-                "openapi": "api-reference/enrol-loyalty-promotion.yaml POST /v3/promotions/enrol",
+                "openapi": "api-reference/2.-enrol-unified-promo.yaml POST /v3/promotions/enrol",
                 "openapi-mode": "custom",
                 "method": "POST"
               },
               {
                 "title": "Update a Loyalty Promotion",
                 "path": "reference/update-loyalty-promotion",
-                "openapi": "api-reference/update-loyalty-promotion.yaml PUT /v3/promotions/{promotion_id}",
+                "openapi": "api-reference/6.-update-unified-promo.yaml PUT /v3/promotions/{promotion_id}",
                 "openapi-mode": "custom",
                 "method": "PUT"
               },
               {
                 "title": "Get Details of Loyalty Promotion using ID",
                 "path": "reference/get-loyalty-promotion-by-id",
-                "openapi": "api-reference/get-loyalty-promotion-by-id.yaml GET /v3/promotions/{promotionId}",
+                "openapi": "api-reference/3.-get-unified-promo-with-id.yaml GET /v3/promotions/{promotionId}",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "Get Details of all Loyalty Promotions",
                 "path": "reference/get-loyalty-promotions",
-                "openapi": "api-reference/get-loyalty-promotions.yaml GET /v3/promotions",
+                "openapi": "api-reference/4.-get-unified-promo.yaml GET /v3/promotions",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
@@ -70,21 +70,21 @@
               {
                 "title": "Get Member Promotion Explode Details",
                 "path": "reference/get-member-promotion-explode",
-                "openapi": "api-reference/get-member-promotion-explode.yaml GET /v3/members/{memberId}/promotions/{promotionId}",
+                "openapi": "api-reference/summary-get-member-promotions-explode.yaml GET /v3/members/{memberId}/promotions/{promotionId}",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "Get Customer Promotion Details",
                 "path": "reference/get-customer-promotion-details",
-                "openapi": "api-reference/get-customer-promotion-details.yaml GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary",
+                "openapi": "api-reference/get-customer-promotion-details-v3.yaml GET /v3/customers/{customerId}/customerPromotionDetails/actionSummary",
                 "openapi-mode": "custom",
                 "method": "GET"
               },
               {
                 "title": "Revoke a Loyalty Promotion",
                 "path": "reference/revoke-loyalty-promotion",
-                "openapi": "api-reference/revoke-loyalty-promotion.yaml POST /v3/promotions/revoke",
+                "openapi": "api-reference/revoke-a-loyalty-promotion.yaml POST /v3/promotions/revoke",
                 "openapi-mode": "custom",
                 "method": "POST"
               },

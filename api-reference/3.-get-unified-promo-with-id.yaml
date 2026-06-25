@@ -45,6 +45,7 @@ paths:
                 example: |-
                   {
                     "message": "Success"
+                  }
                   {
                       "data": {
                           "metadata": {
