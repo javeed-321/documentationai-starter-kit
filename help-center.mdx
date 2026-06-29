@@ -1,16 +1,47 @@
 ---
 title: "Help Center"
-description: "Find tutorials, troubleshooting guides, and answers for using Mailchimp's AI-powered email and multichannel marketing platform."
+description: "Find guides, tutorials, and answers for using our AI-powered email marketing and automation platform."
+show-toc: false
+content-width: wide
+---
+
+## How can we help?
+
+Find guides, tutorials, and answers to get the most out of our platform.
+
 ---
 
 ## Featured guides
 
-<CollectionList id="hc-featured" layout="cards" cols={3} node="tabs:Help Center" card-variant="centered" />
+<Columns cols={3}>
+  <Card title="Getting started & account" icon="rocket" href="/docs/getting-started" cta="Get started">
+    Account setup, workspace configuration, and your first campaign.
+  </Card>
+  <Card title="Product guides" icon="book-open" href="/docs/product-guides" cta="View guides">
+    Step-by-step tutorials for every product feature.
+  </Card>
+  <Card title="Support & policies" icon="life-buoy" href="/docs/support" cta="Get help">
+    Contact support, SLAs, and community resources.
+  </Card>
+</Columns>
 
-## All articles
+---
 
-<CollectionContent id="hc-all" node="tabs:Help Center" default-expanded={false} />
+## All guides
 
-<Callout kind="info">
-  Can't find what you're looking for? Contact our support team for personalized help.
-</Callout>
+<CollectionList node="tabs:Help Center" cols={3} />
+
+<CollectionContent node="tabs:Help Center" />
+
+---
+
+## Suggested articles
+
+<Columns cols={2}>
+  <Card title="Quickstart: get set up in under 15 minutes" icon="timer" href="/docs/quickstart" cta="Read article">
+    A fast path from signup to your first sent campaign.
+  </Card>
+  <Card title="Understanding your dashboard" icon="layout-dashboard" href="/docs/dashboard" cta="Read article">
+    Learn what every metric on your home dashboard means.
+  </Card>
+</Columns>
