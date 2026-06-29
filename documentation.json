@@ -31,7 +31,9 @@
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "info",
-                "show-sidebar": false
+                "show-sidebar": false,
+                "show-toc": false,
+                "content-width": "wide"
               }
             ]
           },
