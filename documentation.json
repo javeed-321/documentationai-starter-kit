@@ -24,6 +24,10 @@
             "expandable": false,
             "pages": [
               {
+                "title": "svg",
+                "path": "svg"
+              },
+              {
                 "title": "Help Center",
                 "path": "help-center",
                 "icon": "info",
