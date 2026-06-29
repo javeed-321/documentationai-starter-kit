@@ -1,0 +1,95 @@
+---
+title: Changelog
+description: Track the latest product changes to the Capillary loyalty platform — new features, updates, and bug fixes as they ship.
+---
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.capillarytech.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+## New Features
+
+<Update label="June 22, 2024" description="Alternate Currencies">
+
+### Alternate Currencies
+
+- Create and distribute alternate currencies such as stars, stamps, and tier points across your loyalty programs.
+- Use alternate currencies in Multi-Loyalty Programs and trackers to manage tier upgrades and downgrades with more control.
+- Query alternate currency data through the API for reporting workflows and external integrations.
+- Learn more: [Alternate Currencies](/jav)
+
+
+</Update>
+
+<Update label="June 22, 2024" description="Search Filters for Entities">
+
+### Search Filters for Entities
+
+- Build search filters with `AND` or `OR` conditions to find customers and transactions by any combination of fields, including mobile number, email, external ID, date of birth, and city.
+- Use partial-match searches with `OR` for broader lookups, or exact-match searches with `AND` when you need precise filtering.
+- Mark filter fields as optional to narrow results without forcing users to enter every condition.
+- Copy the search API request directly from the UI with **Copy cURL**, which speeds up API testing and integration.
+- Learn more: [Search Filter Overview](/docs/overview-search-filter) and [Perform Search](/docs/performing-search-)
+
+
+</Update>
+
+## Updates
+
+<Update label="June 22, 2024" description="Rejected Transaction Handling">
+
+### Rejected Transaction Handling
+
+- Rejected transactions now move through a centralized sanity queue, which makes review and reprocessing easier.
+- Receive event notifications when transactions are rejected so your team can investigate and act faster.
+- Fetch rejected transactions and reprocess them in bulk through APIs, reducing manual follow-up.
+- Learn more: [Handling of Rejected Transactions](/docs/handling-of-rejected-transactions)
+
+
+</Update>
+
+<Update label="June 22, 2024" description="Behavioral Events in Connected Organizations">
+
+### Behavioral Events in Connected Organizations
+
+- Route behavioral events for child organizations through a single parent-level webhook instead of configuring separate webhooks for each child org.
+- Configure webhook delivery once at the parent organization level to reduce setup effort in multi-organization deployments.
+- Learn more: [Setup Behavioral Events](/docs/setup-test-behavioral-events)
+
+
+</Update>
+
+<Update label="June 22, 2024" description="Extended Fields">
+
+### Extended Fields
+
+- Use new `LIST` and `STRING_SET` data types for extended fields when you need ordered lists or unique sets of string values.
+- Integer extended fields on bill and line-item entities now convert null values to `0` during ETL, which improves consistency in numeric aggregations. Use the String type if you need to preserve null values.
+- Add an explicit timezone offset in ISO 8601 format for DateTime and Timestamp extended fields to avoid time-shift issues during promotion evaluation.
+- Learn more: [Extended Fields](/docs/extended-fields)
+
+
+</Update>
+
+<Update label="June 22, 2024" description="Custom Fields">
+
+### Custom Fields
+
+- Enable audit trail logging on custom fields to track how values change over time.
+- Classify custom fields as PII or PSI data to support compliance and data governance requirements.
+- Convert custom fields to extended fields when you need stricter system-enforced data types and validation.
+- Learn more: [Custom Fields](/docs/entity-management-custom-fields)
+
+
+</Update>
+
+## Bug Fixes
+
+<Update label="June 22, 2024" description="No bug fixes in this release">
+
+### Bug Fixes
+
+- No bug fixes shipped in this release.
+
+
+</Update>
