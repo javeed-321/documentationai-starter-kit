@@ -50,17 +50,22 @@
 
 
   /* ─────────────────────────────────────────────────────────────
-     3.  HERO  — clean large centred text, no background box
-         (gap-free: remove all margins on the Heading wrapper
-          so h2 and following p flow as one unit)
+     3.  HERO  — large centred text, no background box
+         Force centering on both the Heading wrapper and the h2
+         because the platform may use flex inside the wrapper.
   ───────────────────────────────────────────────────────────── */
 
   [data-component="Heading"]:has(h2#how-can-we-help) {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
     margin: 0 !important;
     padding: 0 !important;
   }
 
   .dai-article h2#how-can-we-help {
+    display: block !important;
+    width: 100% !important;
     font-size: 38px !important;
     font-weight: 700 !important;
     text-align: center !important;
@@ -68,22 +73,24 @@
     line-height: 1.2 !important;
     border-bottom: none !important;
     background: none !important;
-    padding: 56px 0 10px !important;
+    padding: 48px 0 12px !important;
     margin: 0 !important;
   }
   &.dark .dai-article h2#how-can-we-help {
     color: #F9FAFB !important;
   }
 
-  /* Hero subtitle paragraph */
+  /* Hero subtitle — centred, max-width so it stays readable */
   .dai-article h2#how-can-we-help + p {
+    display: block !important;
     text-align: center !important;
     font-size: 16px !important;
     font-weight: 400 !important;
     color: #6B7280 !important;
     line-height: 1.6 !important;
     background: none !important;
-    margin: 0 0 48px !important;
+    max-width: 560px !important;
+    margin: 0 auto 52px !important;
     padding: 0 !important;
   }
   &.dark .dai-article h2#how-can-we-help + p {
@@ -145,12 +152,12 @@
     transform: none !important;
   }
   &.dark [data-component="Card"] {
-    background: #1F2937 !important;
-    border-color: #374151 !important;
+    background: #161b25 !important;
+    border-color: #252d3d !important;
   }
   &.dark [data-component="Card"]:hover {
-    border-color: #4B5563 !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+    border-color: #3a4258 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
   }
 
   /* Card icon — soft neutral square */
@@ -165,8 +172,8 @@
     color: #374151 !important;
   }
   &.dark [data-component="Card"] .dai-card-icon {
-    background: #374151 !important;
-    color: #D1D5DB !important;
+    background: #1e2535 !important;
+    color: #94a3b8 !important;
   }
 
   /* Card title */
@@ -219,11 +226,11 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
   }
   &.dark [data-component="CollectionCard"] {
-    background: #1F2937 !important;
-    border-color: #374151 !important;
+    background: #161b25 !important;
+    border-color: #252d3d !important;
   }
   &.dark [data-component="CollectionCard"]:hover {
-    border-color: #4B5563 !important;
+    border-color: #3a4258 !important;
   }
 
   /* Collection card title (e.g. "Overview", "Getting Started") */
@@ -260,8 +267,8 @@
     margin-bottom: 4px !important;
   }
   &.dark .dai-collection-node {
-    background: #1F2937 !important;
-    border-color: #374151 !important;
+    background: #161b25 !important;
+    border-color: #252d3d !important;
   }
 
 
